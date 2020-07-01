@@ -1,5 +1,7 @@
 # P5 - Utilisez les données publiques d'Open Food Acts
 
+*UNDER CONSTRUCTION*
+
 ## API OFF
 
 ### Endpoints
@@ -19,101 +21,147 @@ Countries taxonomy:
 
 ### DB Model
 
-Class category:
-    id_category :
-    original_id_category:
+[link](https://drive.google.com/drive/folders/1AgDhnDVAao_IKeIPdGskjCfVUt9Q0sc9)
+
+#### OFF Data Description
+
+##### Class category:
+
+* id :
+    * Descritpion: product id
 
 Example:
 
-    "id": "3245390031341",
+    "id": "en:plant-based-foods-and-beverages",
 
-Class product:
-* id:
-    * Origin: OFF API
+* name :
+    * Descritpion: category name
+
+* url :
+    * Descritpion: category url
+
+* products :
+    * Descritpion: count of product in category 
+
+##### Class product:
+
+* \_id:
     * Descritpion: product id
-    * Status: mandatory
-    * Type : integer
-    * Constraints: unique, primarykey TO CHECK UNIQUENESS
-* id_product:
-    * Origin: system
+
+Exemple (Fromage, Comté):
+
+    "_id": "2454495041334",
+
+* id: (TO CHECK if \_id or id)
     * Descritpion: product id
-    * Status: mandatory
-    * Type : integer
-    * Constraints: unique, primarykey
+
+Exemple (Fromage, Comté):
+
+    "id": 2454495041334,  -- meme str que "_id" et "code"
+
+
 * code:
-    * Origin: OFF API
     * Descritpion: barcode of the product.
-    * Status: mandatorys
-    * Type : integer
-    * Constraints: unique
-* url:
-    * Origin: OFF API
+
+Example (Fromage, Comté):
+
+    "code": "2454495041334",
+
+* url
     * Descritpion: url of the product page
-    * Status: mandatory
+
+Example:
+
+    "url": "https://fr-en.openfoodfacts.org/product/2454495041334/comte",
+
 * product_name:
-    * Origin: OFF API
+
     * Descritpion: product name
     * Status: mandatory - OK
 
-* product_name:
-    * Origin: OFF API
-    * Descritpion: product name in french
-    * Status: TO CHECK
+Example (Fromage, Comté):
+
+    "product_name": "Comté",
+
 * categories:
-    * Origin: OFF API
     * Descritpion: categories of the product
-    * Status: mandatory - OK
 
 Example:
     
       "categories": "Produits laitiers,Produits fermentés,Produits laitiers fermentés,Fromages,Frais,Fromages de France,Fromages de chèvre,Fromages à pâte molle à croûte naturelle,Fromages au lait cru,Rocamadour,en:aoc-cheeses,en:labeled-cheeses",
 
 * categories_tags:
-    * Origin: OFF API
     * Descritpion: catgories tag
-    * Status: mandatory
 
-* categories_hierarchy:
-    * Origin: OFF API
-    * Descritpion: catgories tag
-    * Status: TO CHECK
+Example:
+
+    "categories_tags": [
+        "en:dairies",
+        "en:fermented-foods",
+        "en:fermented-milk-products",
+        "en:cheeses",
+        "en:cooked-pressed-cheeses",
+        "en:french-cheeses",
+        "fr:comte",
+        "en:aoc-cheeses",
+        "en:labeled-cheeses"
+    ],
 
 * countries:
-    * Origin: OFF API
     * Descritpion: list of countries where the product is sold
-    * Status: mandatory
+
 
 Example:
 
     "countries": "France",
+
 * countries_tags:
-    * Origin: OFF API
     * Descritpion: countries tag
-    * Status: mandatory
-* nutrition_grade_fr:
-    * Origin: OFF API
+
+Example:
+
+    "countries_tags": [
+        "en:france"
+    ],
+
+* nutrition_grades:
     * Descritpion: nutrition grade ('a' to 'e')
-    * Status: mandatory
-* nutriscore_grade:
-    * Origin: OFF API
+
+Example (Fromage, Rocamadour):
+
+    "nutrition_grades": "d",
+
+* nutriscore_grade
     * Descritpion: nutrition grade ('a' to 'e')
-    * Status: mandatory
+
+Example (Fromage, Rocamadour):
+
+    "nutriscore_grade": "d",
+
+* nutrition_score_beverage:
+    * Descritpion: nutrition score for beverages?
+
+Example (Fromage, Rocamadour):
+
+    "nutrition_score_beverage": 0,
+
 * stores:
-    * Origin: OFF API
     * Descritpion: distributor name
-    * Status: optionnal
+    
 * purchase_places:
-    * Origin: OFF API
     * Descritpion: country, state and/or city where the product can be purchased
-    * Status: optionnal
+
+Example (fromage, emmental):
+
+    "purchase_places": "",
+
+ou
+
+    "purchase_places": "FRANCE,Saint-Ouen,Etréchy",
+
 * purchase_places_tags:
-    * Origin: OFF API
     * Descritpion: purchased place tag
-    * Status: TO CHECK
  
-
-
-
 ### Notes - TO DELETE
 
 You can retrieve a list of products that belong to a specific category. For example, "cheeses":
