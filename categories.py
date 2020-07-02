@@ -25,6 +25,7 @@ class Categories:
             category_instance = category.Category(id, name, url, products)
             self.categories_list.append(category_instance)
 
+    def insert_data
 
         #print (self.categories_raw_data["tags"][0])
 

@@ -38,14 +38,4 @@ CREATE TABLE IF NOT EXISTS p5.registration(
     PRIMARY KEY (id),
     FOREIGN KEY (product_product_id) REFERENCES p5.product(id),
     FOREIGN KEY (substitut_product_id) REFERENCES p5.product(id)
-    # CONSTRAINT FK_product_substitut FOREIGN KEY (product_product_id)
-    # REFERENCES p5.product(id),
-    # CONSTRAINT FK_product_substitut2 FOREIGN KEY (substitut_product_id)
-    # REFERENCES p5.product(id)
     )ENGINE=INNODB;
-
-DESCRIBE p5.category;
-DESCRIBE p5.product;
-DESCRIBE p5.registration;
-
-
