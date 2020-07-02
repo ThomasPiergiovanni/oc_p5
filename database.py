@@ -30,7 +30,7 @@ class Database:
         self.database.commit()
 
     def select_categories(self):
-        self.cursor.execute ("SELECT * FROM category WHERE category.id_origin IN\
+        self.cursor.execute ("SELECT category.id_origin FROM category WHERE category.id_origin IN\
          (%s,%s,%s,%s,%s) ", config.SELECTED_CATEGORIES)
         self.selected_categories = self.cursor.fetchall()
 

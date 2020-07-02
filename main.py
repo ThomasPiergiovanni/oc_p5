@@ -2,6 +2,7 @@
 
 import database
 import categories
+import products
 
 
 database_instance = database.Database()
@@ -13,4 +14,8 @@ categories.Categories.initialize(categories_instance)
 
 database.Database.insert_categories(database_instance, categories_instance.categories_list)
 
-selected_categories = database.Database.select_categories(database_instance)
+database.Database.select_categories(database_instance)
+
+products_instance = products.Products()
+products.Products.get_data(products_instance, database_instance.selected_categories)
+#products.Product.initialize(database_instance.selected_categories)

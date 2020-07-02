@@ -7,6 +7,13 @@
 # Comments: Endpoint return the products categories list.
 CATEGORIES_ENDPOINT = "https://fr-en.openfoodfacts.org/categories.json"
 
+# Description:OpenFoodActs products per category ENDPOINT.
+# Mandatory : Yes.
+# Settings: "https://fr-en.openfoodfacts.org/categories.json" (default).
+# Comments: Endpoint return the products categories list.
+PRODUCTS_ENDPOINT_BEGINNING = "https://fr-en.openfoodfacts.org/category/"
+PRODUCTS_ENDPOINT_END = ".json"
+
 # Description:Headers.
 # Mandatory : Yes.
 # Settings: {'User-Agent': 'ThomasApp - Web - Version 0.0'} (default).
