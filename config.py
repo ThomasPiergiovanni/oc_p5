@@ -13,6 +13,12 @@ CATEGORIES_ENDPOINT = "https://fr-en.openfoodfacts.org/categories.json"
 # Comments: Application general inforamtions.
 HEADER = {'User-Agent': 'ThomasApp - Web - Version 0.0'}
 
+# Description:Database name.
+# Mandatory : Yes.
+# Settings: project_5 (default).
+# Comments: Can be changed. If a database with that name already exist, it will be overwritten.
+HOST= "project_5"
+
 # Description:Host server.
 # Mandatory : Yes.
 # Settings: localhost (default).
@@ -36,3 +42,9 @@ PASSWORD= "root"
 # Settings: "create_database.sql" (default).
 # Comments: Shou.
 SQL_FILE= "create_database.sql"
+
+# Description: Product categories used.
+# Mandatory : Yes.
+# Settings: ["en:snacks", "en:desserts", "en:breads", "en:breakfast-cereals","en:meals"] (default).
+# Comments: Shou.
+SELECTED_CATEGORIES= ["en:snacks", "en:desserts", "en:breads", "en:breakfast-cereals","en:meals"]

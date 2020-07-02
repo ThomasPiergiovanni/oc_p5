@@ -15,5 +15,19 @@ class Database:
             for querry in querries:
                 self.cursor.execute(querry)
 
-database_instance = Database()
-Database.create(database_instance)
+    def insert_categories (self, categories):
+        statement = "INSERT INTO category (id_origin, name_origin, url_origin) VALUES (%s, %s, %s)"
+        value = []
+        for elt in categories:
+            if elt.id and elt.name and elt.url:
+                elt_string = (elt.id, elt.name, elt.url)
+                value.append(elt_string)
+            else:
+                print(elt.id,"; ", elt.name,"; ", elt.url)
+
+        self.cursor.executemany(statement, value)
+        self.database.commit()
+
+        print(self.cursor.rowcount, "was inserted.")
+
+
