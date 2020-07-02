@@ -17,7 +17,7 @@ HEADER = {'User-Agent': 'ThomasApp - Web - Version 0.0'}
 # Mandatory : Yes.
 # Settings: project_5 (default).
 # Comments: Can be changed. If a database with that name already exist, it will be overwritten.
-HOST= "project_5"
+DATABASE_NAME= "project_5"
 
 # Description:Host server.
 # Mandatory : Yes.
@@ -46,5 +46,11 @@ SQL_FILE= "create_database.sql"
 # Description: Product categories used.
 # Mandatory : Yes.
 # Settings: ["en:snacks", "en:desserts", "en:breads", "en:breakfast-cereals","en:meals"] (default).
-# Comments: Shou.
+# Comments: MUST contain 5 catgories.
 SELECTED_CATEGORIES= ["en:snacks", "en:desserts", "en:breads", "en:breakfast-cereals","en:meals"]
+
+# Description: Maximum amount of product to store in DB per product category.
+# Mandatory : Yes.
+# Settings: 1000 (default).
+# Comments: Shou.
+PRODUCT_MAX_COUNT= 1000
