@@ -17,13 +17,20 @@ class Products():
             request = urllib.request.Request(url, headers = config.HEADER, method = 'GET')
             response = urllib.request.urlopen(request)
             self.source_data = json.load(response)
-            print (self.source_data)
 
-        # def initialize(self):
-        # for elt in self.source_data["tags"]:
-        #     id = elt["id"]
-        #     name = elt["name"]
-        #     url = elt["url"]
+    def initialize(self, categories_instance):
+        for elt in self.source_data["products"]:
+            id = elt["id"]
+            product_name = elt["product_name"]
+            url = elt["url"]
+            countries = elt["countries"]
+            countries_tag = elt["countries_tag"]
+            nutriscore_grade = elt["nutriscore_grade"]
+            stores = elt["stores"]
+            purchase_places = elt["purchase_places"]
+            purchase_places_tags = elt["purchase_places_tags"]
+            category_id = elt["category"]
+            countries_tag = elt["countries_tag"]
         #     products = elt["products"]
         #     category_instance = category.Category(id, name, url, products)
         #     self.categories_list.append(category_instance)
