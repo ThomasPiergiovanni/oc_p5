@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS p5.product(
     product_name_origin VARCHAR(250),
     url_origin VARCHAR(250),
     countries_origin VARCHAR(250),
-    countries_tag_origin VARCHAR(250),
+    countries_tags_origin VARCHAR(250),
     nutriscore_grade_origin VARCHAR(250),
     stores_origin VARCHAR(250),
     purchase_places_origin VARCHAR(250),

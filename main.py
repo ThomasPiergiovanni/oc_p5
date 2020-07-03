@@ -15,6 +15,5 @@ categories.Categories.insert(categories_instance, database_instance)
 categories.Categories.initialize_category(categories_instance, database_instance)
 
 
-# products_instance = products.Products()
-# products.Products.get_data(products_instance, categories_instance)
+
 #products.Product.initialize(database_instance.selected_categories)

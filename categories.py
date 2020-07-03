@@ -7,6 +7,7 @@ import mysql.connector
 
 import config
 import category
+import products
 
 class Categories:
     def __init__(self):
@@ -42,6 +43,11 @@ class Categories:
             products_origin = elt[4]
             category_instance = category.Category(id_category, id_origin, name_origin, url_origin, products_origin)
             self.categories_list.append(category_instance)
+            products_instance = products.Products()
+            products.Products.get_data(products_instance, category_instance)
+            products.Products.test(products_instance)
+            print(category_instance.name_origin, products_instance)
+            # products.Products.insert(products_instance, category_instance, database_instance)
 
         for elt in self.categories_list:
             print(elt.id_category, elt.name_origin )

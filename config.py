@@ -20,6 +20,7 @@ PRODUCTS_ENDPOINT_END = ".json"
 # Comments: Application general inforamtions.
 HEADER = {'User-Agent': 'ThomasApp - Web - Version 0.0'}
 
+
 # Description:Database name.
 # Mandatory : Yes.
 # Settings: project_5 (default).
