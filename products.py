@@ -11,13 +11,13 @@ class Products():
         self.source_data = []
         self.products_list = []
 
-    def get_data(self,selected_categories):
-        for elt in selected_categories:
-            url = config.PRODUCTS_ENDPOINT_BEGINNING + elt.name_origin + PRODUCTS_ENDPOINT_END
+    def get_data(self,categories_instance):
+        for elt in categories_instance.wanted_categories:
+            url = config.PRODUCTS_ENDPOINT_BEGINNING + elt.id + config.PRODUCTS_ENDPOINT_END
             request = urllib.request.Request(url, headers = config.HEADER, method = 'GET')
             response = urllib.request.urlopen(request)
             self.source_data = json.load(response)
-            print (elt)
+            print (self.source_data)
 
         # def initialize(self):
         # for elt in self.source_data["tags"]:

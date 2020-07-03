@@ -12,10 +12,9 @@ categories_instance = categories.Categories()
 categories.Categories.get_data(categories_instance)
 categories.Categories.initialize(categories_instance)
 
-database.Database.insert_categories(database_instance, categories_instance.categories_list)
-
-database.Database.select_categories(database_instance)
+categories.Categories.insert(categories_instance, database_instance)
+categories.Categories.wanted(categories_instance)
 
 products_instance = products.Products()
-products.Products.get_data(products_instance, database_instance.selected_categories)
+products.Products.get_data(products_instance, categories_instance)
 #products.Product.initialize(database_instance.selected_categories)

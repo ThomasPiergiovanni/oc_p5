@@ -6,7 +6,7 @@ USE p5;
 DROP TABLE IF EXISTS p5.category, p5.product, p5.registration;
 
 CREATE TABLE IF NOT EXISTS p5.category(
-    id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    id_category SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
     id_origin VARCHAR(250) NOT NULL,
     name_origin VARCHAR(250) NOT NULL,
     url_origin LONGTEXT NOT NULL,
@@ -15,11 +15,11 @@ CREATE TABLE IF NOT EXISTS p5.category(
     )ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS p5.product(
-    id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    id_product SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
     id_origin VARCHAR(250) UNIQUE,
     product_name_origin VARCHAR(250),
     url_origin VARCHAR(250),
-    countries VARCHAR(250),
+    countries_origin VARCHAR(250),
     countries_tag_origin VARCHAR(250),
     nutriscore_grade_origin VARCHAR(250),
     stores_origin VARCHAR(250),
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS p5.product(
     )ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS p5.registration(
-    id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    id_registration SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
     product_product_id SMALLINT UNSIGNED NOT NULL,
     substitut_product_id SMALLINT UNSIGNED NOT NULL,
     PRIMARY KEY (id),
