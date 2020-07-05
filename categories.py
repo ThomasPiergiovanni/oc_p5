@@ -15,8 +15,15 @@ class Categories:
         self.categories_list=[]
 
     def get_data(self):
-        response_api =requests.get(config.CATEGORIES_ENDPOINT, headers = config.HEADER )
-        self.source_data = response_api.json()
+        try:
+            response_api =requests.get(config.CATEGORIES_ENDPOINT, headers = config.HEADER )
+            self.source_data = response_api.json()
+        except HTTPError as http_error:
+            print(f'HTTP error occurred: {http_error}')
+        except Exception as other_error:
+            print(f'Other error occurred: {other_error}')  # Python 3.6
+        else:
+            print('HTTP call to API for categories successfull')
 
     def insert(self, database_instance):
         statement = "INSERT INTO category (id_origin, name_origin,\
