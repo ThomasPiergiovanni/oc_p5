@@ -23,6 +23,8 @@ class Products():
                 "page":1,
                 "page_size": config.PRODUCTS_AMOUNT}
             response_api =requests.get(config.PRODUCTS_ENDPOINT, headers = config.HEADER, params = params  )
+            url_i = response_api.url
+            print (url_i)
             self.source_data = response_api.json()
         except HTTPError as http_error:
             print(f"HTTP error occurred: {http_error}")
@@ -62,12 +64,27 @@ class Products():
                     product_name_origin = elt["product_name"]
                     nutriscore_grade_origin = elt["nutriscore_grade"]
                     category_id = category.id_category
-                    product_instance = product.Product(id_product, id_origin, product_name_origin, nutriscore_grade_origin,category_id)
+                    countries_origin = elt["countries"]
+                    countries_tags_origin = elt["countries_tags"]
+
+                    product_instance = product.Product(\
+                    id_product,\
+                    id_origin,\
+                    product_name_origin,\
+                    nutriscore_grade_origin,\
+                    category_id,\
+                    countries_origin,\
+                    countries_tags_origin)
                     self.products_list.append(product_instance) 
 
 
                     # Products.instanciate_product(elt, id_incrementer, category)
-                    print (product_instance.id_product, product_instance.id_origin, product_instance.product_name_origin,product_instance.category_id)
+                    print (product_instance.id_product,\
+                    product_instance.id_origin,\
+                    product_instance.product_name_origin,\
+                    product_instance.category_id,\
+                    product_instance.countries_tags_origin)
+
                     id_incrementer += 1
 
             except Exception as error:
