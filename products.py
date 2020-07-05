@@ -64,6 +64,7 @@ class Products():
                     product_name_origin = elt["product_name"]
                     nutriscore_grade_origin = elt["nutriscore_grade"]
                     category_id = category.id_category
+                    categories_origin = elt["categories"]
                     countries_origin = elt["countries"]
                     countries_tags_origin = elt["countries_tags"]
 
@@ -73,6 +74,7 @@ class Products():
                     product_name_origin,\
                     nutriscore_grade_origin,\
                     category_id,\
+                    categories_origin,\
                     countries_origin,\
                     countries_tags_origin)
                     self.products_list.append(product_instance) 
@@ -83,6 +85,8 @@ class Products():
                     product_instance.id_origin,\
                     product_instance.product_name_origin,\
                     product_instance.category_id,\
+                    product_instance.categories_origin,\
+                    product_instance.countries_origin,\
                     product_instance.countries_tags_origin)
 
                     id_incrementer += 1
