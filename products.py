@@ -9,37 +9,33 @@ import config
 class Products():
     def __init__(self):
         self.source_data = {}
-        self.products_list = []
+        # self.products_raw =[]
+        # self.products_list = []
 
-    def get_data(self,categories_instance):
-        for elt in categories_instance.categories_list:
-            try:
-                params = {
-                    "action":"process",
-                    "tagtype_0": "categories",
-                    "tag_contains_0":"contains",
-                    "tag_0":elt.id_origin,
-                    "json":1,
-                    "page":1,
-                    "page_size": config.PRODUCTS_AMOUNT}
-                response_api =requests.get(config.PRODUCTS_ENDPOINT, headers = config.HEADER, params = params  )
-                self.source_data = response_api.json()
-                for product in self.source_data["products"]:
-                    try:
-                        if product["product_name"] and product["id"]:
-                             print (product["id"], product["product_name"] )
-                        else:
-                             print("missing")
-                    except:
-                        pass
+    def get_data(self, category):
+        try:
+            params = {
+                "action":"process",
+                "tagtype_0": "categories",
+                "tag_contains_0":"contains",
+                "tag_0":category.id_origin,
+                "json":1,
+                "page":1,
+                "page_size": config.PRODUCTS_AMOUNT}
+            response_api =requests.get(config.PRODUCTS_ENDPOINT, headers = config.HEADER, params = params  )
+            self.source_data = response_api.json()
+        except HTTPError as http_error:
+            print(f"HTTP error occurred: {http_error}")
+        except Exception as other_error:
+            print(f"Other error occurred: {other_error}")  # Python 3.6
+        else:
+            print(f"HTTP call to API for {category.id_origin} successfull")
+
+    # def keep_valid(self):
+    #     for elt in self.source_data["products"]
 
 
-            except HTTPError as http_error:
-                print(f"HTTP error occurred: {http_error}")
-            except Exception as other_error:
-                print(f"Other error occurred: {other_error}")  # Python 3.6
-            else:
-                print(f"HTTP call to API for {elt.id_origin} successfull")
+
 
 
 

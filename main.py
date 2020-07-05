@@ -14,7 +14,8 @@ categories.Categories.insert(categories_instance, database_instance)
 categories.Categories.instanciate_category(categories_instance, database_instance)
 
 products_instance = products.Products()
-products.Products.get_data(products_instance, categories_instance)
+for category in categories_instance.categories_list:
+    products.Products.get_data(products_instance, category)
 #products.Products.test(products_instance)
 
 
