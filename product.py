@@ -9,7 +9,8 @@ class Product:
     category_id,\
     categories_origin,\
     countries_origin,\
-    countries_tags_origin):
+    countries_tags_origin,\
+    stores_origin):
         self.id_product = id_product
         self.id_origin = id_origin
         self.product_name_origin = product_name_origin
@@ -18,3 +19,4 @@ class Product:
         self.categories_origin = categories_origin
         self.countries_origin = countries_origin
         self.countries_tags_origin = countries_tags_origin
+        self.stores_origin = stores_origin

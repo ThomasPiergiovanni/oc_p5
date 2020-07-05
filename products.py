@@ -67,6 +67,7 @@ class Products():
                     categories_origin = elt["categories"]
                     countries_origin = elt["countries"]
                     countries_tags_origin = elt["countries_tags"]
+                    stores_origin = elt["stores"]
 
                     product_instance = product.Product(\
                     id_product,\
@@ -76,7 +77,8 @@ class Products():
                     category_id,\
                     categories_origin,\
                     countries_origin,\
-                    countries_tags_origin)
+                    countries_tags_origin,\
+                    stores_origin)
                     self.products_list.append(product_instance) 
 
 
@@ -87,7 +89,8 @@ class Products():
                     product_instance.category_id,\
                     product_instance.categories_origin,\
                     product_instance.countries_origin,\
-                    product_instance.countries_tags_origin)
+                    product_instance.countries_tags_origin,\
+                    product_instance.stores_origin)
 
                     id_incrementer += 1
 
