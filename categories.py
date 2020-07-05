@@ -1,6 +1,6 @@
 #-*-coding:utf-8 -*
 
-import urllib.request
+import requests
 import json
 import operator
 import mysql.connector
@@ -15,9 +15,8 @@ class Categories:
         self.categories_list=[]
 
     def get_data(self):
-        request = urllib.request.Request(config.CATEGORIES_ENDPOINT, headers = config.HEADER, method = 'GET')
-        response = urllib.request.urlopen(request)
-        self.source_data = json.load(response)
+        response_api =requests.get(config.CATEGORIES_ENDPOINT, headers = config.HEADER )
+        self.source_data = response_api.json()
 
     def insert(self, database_instance):
         statement = "INSERT INTO category (id_origin, name_origin,\
@@ -32,7 +31,7 @@ class Categories:
         database_instance.cursor.executemany(statement, value)
         database_instance.database.commit()
 
-    def initialize_category(self, database_instance):
+    def instanciate_category(self, database_instance):
         database_instance.cursor.execute ("SELECT * FROM category")
         selection = database_instance.cursor.fetchall()
         for elt in selection:
@@ -43,14 +42,10 @@ class Categories:
             products_origin = elt[4]
             category_instance = category.Category(id_category, id_origin, name_origin, url_origin, products_origin)
             self.categories_list.append(category_instance)
-            products_instance = products.Products()
-            products.Products.get_data(products_instance, category_instance)
-            products.Products.test(products_instance)
-            print(category_instance.name_origin, products_instance)
-            # products.Products.insert(products_instance, category_instance, database_instance)
 
-        for elt in self.categories_list:
-            print(elt.id_category, elt.name_origin )
+            print (category_instance.id_category)
+
+
 
 
 

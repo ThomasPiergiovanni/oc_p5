@@ -11,15 +11,13 @@ CATEGORIES_ENDPOINT = "https://fr-en.openfoodfacts.org/categories.json"
 # Mandatory : Yes.
 # Settings: "https://fr-en.openfoodfacts.org/categories.json" (default).
 # Comments: Endpoint return the products categories list.
-PRODUCTS_ENDPOINT_BEGINNING = "https://fr-en.openfoodfacts.org/category/"
-PRODUCTS_ENDPOINT_END = ".json"
+PRODUCTS_ENDPOINT= "https://fr.openfoodfacts.org/cgi/search.pl"
 
 # Description:Headers.
 # Mandatory : Yes.
 # Settings: {'User-Agent': 'ThomasApp - Web - Version 0.0'} (default).
 # Comments: Application general inforamtions.
 HEADER = {'User-Agent': 'ThomasApp - Web - Version 0.0'}
-
 
 # Description:Database name.
 # Mandatory : Yes.
@@ -61,4 +59,4 @@ SELECTED_CATEGORIES= ["en:snacks", "en:desserts", "en:breads", "en:breakfast-cer
 # Mandatory : Yes.
 # Settings: 1000 (default).
 # Comments: Shou.
-PRODUCT_MAX_COUNT= 1000
+PRODUCT_MAX_COUNT= 100

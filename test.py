@@ -24,9 +24,6 @@ def get_data():
         "page":1,
         "page_size": 100}
     res= requests.get(url, params = params)
-    print(res.status_code)
-    print(res.encoding)
-    print(res.url)
     results = res.json()
 
  
