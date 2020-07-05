@@ -49,7 +49,8 @@ class Products():
                     # countries_tags_origin = elt["countries_tags"]
                     elt["stores"])
                     value.append(elt_string)
-            except:
+            except Exception as error:
+                print(f"The following error occurred: {error}")
                 pass
         database_instance.cursor.executemany(statement, value)
         database_instance.database.commit()

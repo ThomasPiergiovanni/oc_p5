@@ -16,11 +16,11 @@ CREATE TABLE IF NOT EXISTS p5.category(
 
 CREATE TABLE IF NOT EXISTS p5.product(
     id_product SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
-    id_origin VARCHAR(250),
-    product_name_origin VARCHAR(250),
-    nutriscore_grade_origin VARCHAR(250),
+    id_origin VARCHAR(250) NOT NULL,
+    product_name_origin VARCHAR(250) NOT NULL,
+    nutriscore_grade_origin VARCHAR(250) NOT NULL,
     category_id SMALLINT UNSIGNED NOT NULL,
-    categories_origin LONGTEXT,
+    categories_origin LONGTEXT NOT NULL,
     countries_origin VARCHAR(250),
     stores_origin VARCHAR(250),
     PRIMARY KEY (id_product),
