@@ -22,7 +22,7 @@ class Products():
                 "json":1,
                 "page":1,
                 "page_size": config.PRODUCTS_AMOUNT}
-            response_api =requests.get(config.PRODUCTS_ENDPOINT, headers = config.HEADER, params = params  )
+            response_api =requests.get(config.PRODUCTS_ENDPOINT, headers = config.HEADER, params = params)
             self.source_data = response_api.json()
         except HTTPError as http_error:
             print(f"HTTP error occurred: {http_error}")
