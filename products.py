@@ -14,6 +14,8 @@ class Products():
         self.selected_products = []
         self.products_with_rank =[]
         self.selected_product = 0
+        self.substitutes_list = []
+        self.substitutes_with_rank = []
 
     def get_data(self, category):
         try:
@@ -110,16 +112,25 @@ class Products():
                 print ("You\'ve choosen the \"", elt[1], "\" product") 
                 self.selected_product = elt[0]
 
-    def show_substituts(self):
-        print ("SUBSTITUTS:")
+    def filter_substitutes(self):
         selected_product_nutriscore = [elt.nutriscore_grade_origin for elt in\
         self.selected_products if elt.id_product == self.selected_product]
         selected_product_nutriscore = selected_product_nutriscore [0]
-        print (selected_product_nutriscore)
         for elt in self.selected_products:
             if elt.id_product != self.selected_product and\
             elt.nutriscore_grade_origin < selected_product_nutriscore:
-                print(elt.product_name_origin, " - ", elt.nutriscore_grade_origin)
+                self.substitutes_list.append(elt)
 
+    def show_substitutes(self):
+        print ("SUBSTITUTES:")
+        sorted_substitutes = sorted(self.substitutes_list, key = lambda \
+        product : product.nutriscore_grade_origin)
+        rank = 1
+        for elt in sorted_substitutes:
+            print (rank ," - ",elt.product_name_origin, " - ", elt.nutriscore_grade_origin)
+            substitutes_with_rank=(elt.id_product,\
+            elt.product_name_origin, elt.nutriscore_grade_origin, rank)
+            self.substitutes_with_rank.append(substitutes_with_rank)
+            rank += 1
         
 
