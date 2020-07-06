@@ -19,6 +19,7 @@ def create_category(database_instance):
     # categories.Categories.insert(categories_instance, database_instance)
     categories.Categories.instanciate_category(categories_instance, database_instance)
     categories.Categories.show(categories_instance)
+    categories.Categories.select(categories_instance)
 
 def create_product():
     products_instance = products.Products()

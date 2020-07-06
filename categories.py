@@ -14,6 +14,7 @@ class Categories:
         self.source_data = {}
         self.categories_list=[]
         self.categories_with_rank=[]
+        self.selected_category = 0 
 
     def get_data(self):
         try:
@@ -51,30 +52,27 @@ class Categories:
             category_instance = category.Category(id_category, id_origin, name_origin, url_origin, products_origin)
             self.categories_list.append(category_instance)
 
-
     def show(self):
-
         sorted_categories = sorted(self.categories_list, key = lambda Category:Category.name_origin)
         rank = 1
         for elt in sorted_categories:
             print (rank ," - ",elt.name_origin)
-            rank += 1 
             category_with_rank=(elt.id_category, elt.name_origin, rank)
             self.categories_with_rank.append(category_with_rank)
+            rank += 1 
+
+    def select(self):
+        question= input("Select a category: ")
+        question = int(question)
+        for elt in self.categories_with_rank:
+            if elt[2] == question:
+                print ("You\'ve choosen the ", elt[1], "category") 
+                self.selected_category = elt[0]
 
 
 
-        # self.cursor.execute ("SELECT name_origin, id_category FROM p5.category ORDER BY name_origin ASC")
-        # selection = self.cursor.fetchall()
-        # question = "Select a category:"
-        # print (question)
-        # rank = 1
-        # for elt in selection:
-        #     name_origin = elt[0]
-        #     print (rank," - ", name_origin)
-        #     rank += 1 
-        #     ordered_category=(id_category, name_origin, rank)
-        #     self.ordered_categories.append(ordered_category)
+
+
 
 
 
