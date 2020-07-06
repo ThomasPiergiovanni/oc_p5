@@ -37,6 +37,7 @@ def client_product(products_instance, categories_instance):
     products.Products.select(products_instance, categories_instance)
     products.Products.filter_substitutes(products_instance)
     products.Products.show_substitutes(products_instance)
+    products.Products.select_substitute(products_instance)
 
 def main():
 

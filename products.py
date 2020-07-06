@@ -16,6 +16,7 @@ class Products():
         self.selected_product = 0
         self.substitutes_list = []
         self.substitutes_with_rank = []
+        self.selected_substitute = 0
 
     def get_data(self, category):
         try:
@@ -132,5 +133,13 @@ class Products():
             elt.product_name_origin, elt.nutriscore_grade_origin, rank)
             self.substitutes_with_rank.append(substitutes_with_rank)
             rank += 1
+
+    def select_substitute(self):
+        question= input("Which substitute you want to choose ?")
+        question = int(question)
+        for elt in self.substitutes_with_rank:
+            if elt[3] == question:
+                print ("You\'ve choosen the ", elt[1], "product as a substitute") 
+                self.selected_substitute = elt[0]
         
 
