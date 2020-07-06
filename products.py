@@ -109,5 +109,19 @@ class Products():
             if elt[2] == question:
                 print ("You\'ve choosen the \"", elt[1], "\" product") 
                 self.selected_product = elt[0]
+
+    def show_substituts(self):
+        print ("SUBSTITUTS:")
+        selected_product_nutriscore = [elt.nutriscore_grade_origin for elt in\
+        self.selected_products if elt.id_product == self.selected_product]
+        selected_product_nutriscore = selected_product_nutriscore [0]
+        print (selected_product_nutriscore)
+        # for elt in self.selected_products:
+        #     product_nutriscore = []
+        #     if elt.category_id == categories_instance.selected_category:
+        #         self.selected_products.append(elt)
+        #         sorted_products = sorted(self.selected_products, key = lambda \
+        #         product : product.product_name_origin)
+
         
 
