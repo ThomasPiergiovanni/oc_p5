@@ -13,6 +13,7 @@ class Categories:
     def __init__(self):
         self.source_data = {}
         self.categories_list=[]
+        self.categories_with_rank=[]
 
     def get_data(self):
         try:
@@ -54,8 +55,13 @@ class Categories:
     def show(self):
 
         sorted_categories = sorted(self.categories_list, key = lambda Category:Category.name_origin)
+        rank = 1
         for elt in sorted_categories:
-            print (elt.name_origin)
+            print (rank ," - ",elt.name_origin)
+            rank += 1 
+            category_with_rank=(elt.id_category, elt.name_origin, rank)
+            self.categories_with_rank.append(category_with_rank)
+
 
 
         # self.cursor.execute ("SELECT name_origin, id_category FROM p5.category ORDER BY name_origin ASC")
