@@ -116,12 +116,10 @@ class Products():
         self.selected_products if elt.id_product == self.selected_product]
         selected_product_nutriscore = selected_product_nutriscore [0]
         print (selected_product_nutriscore)
-        # for elt in self.selected_products:
-        #     product_nutriscore = []
-        #     if elt.category_id == categories_instance.selected_category:
-        #         self.selected_products.append(elt)
-        #         sorted_products = sorted(self.selected_products, key = lambda \
-        #         product : product.product_name_origin)
+        for elt in self.selected_products:
+            if elt.id_product != self.selected_product and\
+            elt.nutriscore_grade_origin < selected_product_nutriscore:
+                print(elt.product_name_origin, " - ", elt.nutriscore_grade_origin)
 
         
 
