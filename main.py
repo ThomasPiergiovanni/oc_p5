@@ -7,18 +7,20 @@ import products
 
 def initiate_db():
     database_instance = database.Database()
-    database.Database.show_categories(database_instance)
+    return database_instance
 
-def create_db():   
+def create_db(database_instance):   
     database.Database.create(database_instance)
 
-def create_tables():
+def create_category(database_instance):
 
     categories_instance = categories.Categories()
-    categories.Categories.get_data(categories_instance)
-    categories.Categories.insert(categories_instance, database_instance)
+    # categories.Categories.get_data(categories_instance)
+    # categories.Categories.insert(categories_instance, database_instance)
     categories.Categories.instanciate_category(categories_instance, database_instance)
+    categories.Categories.show(categories_instance)
 
+def create_product():
     products_instance = products.Products()
     for category in categories_instance.categories_list:
         products.Products.get_data(products_instance, category)
@@ -28,7 +30,8 @@ def create_tables():
 
 def main():
 
-    initiate_db()
+    database_instance = initiate_db()
+    create_category(database_instance)
 
 main()
 

@@ -39,7 +39,7 @@ class Categories:
         database_instance.database.commit()
 
     def instanciate_category(self, database_instance):
-        database_instance.cursor.execute ("SELECT * FROM category")
+        database_instance.cursor.execute ("SELECT * FROM p5.category")
         selection = database_instance.cursor.fetchall()
         for elt in selection:
             id_category = elt[0]
@@ -51,7 +51,24 @@ class Categories:
             self.categories_list.append(category_instance)
 
 
+    def show(self):
 
+        sorted_categories = sorted(self.categories_list, key = lambda Category:Category.name_origin)
+        for elt in sorted_categories:
+            print (elt.name_origin)
+
+
+        # self.cursor.execute ("SELECT name_origin, id_category FROM p5.category ORDER BY name_origin ASC")
+        # selection = self.cursor.fetchall()
+        # question = "Select a category:"
+        # print (question)
+        # rank = 1
+        # for elt in selection:
+        #     name_origin = elt[0]
+        #     print (rank," - ", name_origin)
+        #     rank += 1 
+        #     ordered_category=(id_category, name_origin, rank)
+        #     self.ordered_categories.append(ordered_category)
 
 
 
