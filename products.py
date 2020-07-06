@@ -11,6 +11,8 @@ class Products():
     def __init__(self):
         self.source_data = {}
         self.products_list = []
+        self.selected_products = []
+        self.products_with_rank =[]
 
     def get_data(self, category):
         try:
@@ -56,7 +58,7 @@ class Products():
         database_instance.database.commit()
 
     def instanciate_product(self, database_instance):
-        database_instance.cursor.execute ("SELECT * FROM product")
+        database_instance.cursor.execute ("SELECT * FROM p5.product")
         selection = database_instance.cursor.fetchall()   
         for elt in selection:
             id_product = elt[0]
@@ -83,5 +85,18 @@ class Products():
             self.products_list.append(product_instance)
 
 
-
+    def show(self, categories_instance):
+        print ("PRODUCTS:")
+        for elt in self.products_list:
+            if elt.category_id == categories_instance.selected_category:
+                print (elt.product_name_origin)
+                self.selected_products.append(elt)
+                sorted_products = sorted(self.selected_products, key = lambda product : product.product_name_origin)
+        
+        rank = 1
+        for elt in sorted_products:
+            print (rank ," - ",elt.product_name_origin)
+            product_with_rank=(elt.id_product, elt.product_name_origin, rank)
+            self.products_with_rank.append(product_with_rank)
+            rank += 1 
 

@@ -53,7 +53,8 @@ class Categories:
             self.categories_list.append(category_instance)
 
     def show(self):
-        sorted_categories = sorted(self.categories_list, key = lambda Category:Category.name_origin)
+        print ("CATEGORIES:")
+        sorted_categories = sorted(self.categories_list, key = lambda category : category.name_origin)
         rank = 1
         for elt in sorted_categories:
             print (rank ," - ",elt.name_origin)
@@ -62,7 +63,7 @@ class Categories:
             rank += 1 
 
     def select(self):
-        question= input("Select a category: ")
+        question= input("Which category you want to check products for ?")
         question = int(question)
         for elt in self.categories_with_rank:
             if elt[2] == question:

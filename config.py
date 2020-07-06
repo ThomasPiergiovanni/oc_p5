@@ -59,4 +59,4 @@ SELECTED_CATEGORIES= ["en:snacks", "en:desserts", "en:breads", "en:breakfast-cer
 # Mandatory : Yes.
 # Settings: 1000 (default).
 # Comments: Shou.
-PRODUCTS_AMOUNT= 50
+PRODUCTS_AMOUNT= 10
