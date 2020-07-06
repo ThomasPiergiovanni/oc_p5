@@ -41,7 +41,7 @@ class Products():
     def insert(self, database_instance, category):
         statement = "INSERT INTO product (id_origin, product_name_origin,\
         nutriscore_grade_origin, category_id, categories_origin,\
-        countries_origin,\ stores_origin) VALUES (%s, %s,%s, %s, %s,%s, %s)"
+        countries_origin, stores_origin) VALUES (%s, %s,%s, %s, %s,%s, %s)"
         value = []
         for elt in self.source_data["products"]:
             try: 
@@ -141,5 +141,11 @@ class Products():
             if elt[3] == question:
                 print ("You\'ve choosen the ", elt[1], "product as a substitute") 
                 self.selected_substitute = elt[0]
-        
 
+    def register_substitute(self, database_instance):
+        statement = "INSERT INTO p5.registration (product_product_id,\
+        substitut_product_id) VALUES (%s, %s)"
+        value = [self.selected_product, self.selected_substitute]
+        database_instance.cursor.execute(statement, value)
+        database_instance.database.commit()        
+        

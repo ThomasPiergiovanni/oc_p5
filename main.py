@@ -32,12 +32,13 @@ def client_category(categories_instance):
     categories.Categories.show(categories_instance)
     categories.Categories.select(categories_instance)
 
-def client_product(products_instance, categories_instance):
+def client_product(database_instance, products_instance, categories_instance):
     products.Products.show(products_instance, categories_instance)
     products.Products.select(products_instance, categories_instance)
     products.Products.filter_substitutes(products_instance)
     products.Products.show_substitutes(products_instance)
     products.Products.select_substitute(products_instance)
+    products.Products.register_substitute(products_instance, database_instance)
 
 def main():
 
@@ -46,7 +47,7 @@ def main():
     categories_instance = create_category(database_instance)
     products_instance = create_product(database_instance, categories_instance)
     client_category(categories_instance)
-    client_product(products_instance, categories_instance)
+    client_product(database_instance, products_instance, categories_instance)
 
 main()
 
