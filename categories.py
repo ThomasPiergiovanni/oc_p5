@@ -18,7 +18,8 @@ class Categories:
 
     def get_data(self):
         try:
-            response_api =requests.get(config.CATEGORIES_ENDPOINT, headers = config.HEADER )
+            response_api =requests.get(config.CATEGORIES_ENDPOINT,\
+            headers = config.HEADER )
             self.source_data = response_api.json()
         except HTTPError as http_error:
             print(f'HTTP error occurred: {http_error}')
@@ -32,7 +33,8 @@ class Categories:
          url_origin, products_origin) VALUES (%s, %s, %s,%s)"
         value = []
         for elt in self.source_data["tags"]:
-            if elt["id"] in config.SELECTED_CATEGORIES and elt["name"] and elt["url"] and elt["products"]:
+            if elt["id"] in config.SELECTED_CATEGORIES and elt["name"] and\
+            elt["url"] and elt["products"]:
                 elt_string = (elt["id"], elt["name"], elt["url"], elt["products"])
                 value.append(elt_string)
             else:
@@ -49,12 +51,14 @@ class Categories:
             name_origin = elt[2]
             url_origin = elt[3]
             products_origin = elt[4]
-            category_instance = category.Category(id_category, id_origin, name_origin, url_origin, products_origin)
+            category_instance = category.Category(id_category, id_origin,\
+            name_origin, url_origin, products_origin)
             self.categories_list.append(category_instance)
 
     def show(self):
         print ("CATEGORIES:")
-        sorted_categories = sorted(self.categories_list, key = lambda category : category.name_origin)
+        sorted_categories = sorted(self.categories_list, key = lambda \
+        category : category.name_origin)
         rank = 1
         for elt in sorted_categories:
             print (rank ," - ",elt.name_origin)

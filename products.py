@@ -13,6 +13,7 @@ class Products():
         self.products_list = []
         self.selected_products = []
         self.products_with_rank =[]
+        self.selected_product = 0
 
     def get_data(self, category):
         try:
@@ -24,7 +25,8 @@ class Products():
                 "json":1,
                 "page":1,
                 "page_size": config.PRODUCTS_AMOUNT}
-            response_api =requests.get(config.PRODUCTS_ENDPOINT, headers = config.HEADER, params = params)
+            response_api =requests.get(config.PRODUCTS_ENDPOINT,\
+            headers = config.HEADER, params = params)
             self.source_data = response_api.json()
         except HTTPError as http_error:
             print(f"HTTP error occurred: {http_error}")
@@ -35,8 +37,8 @@ class Products():
 
     def insert(self, database_instance, category):
         statement = "INSERT INTO product (id_origin, product_name_origin,\
-        nutriscore_grade_origin, category_id, categories_origin, countries_origin,\
-        stores_origin) VALUES (%s, %s,%s, %s, %s,%s, %s)"
+        nutriscore_grade_origin, category_id, categories_origin,\
+        countries_origin,\ stores_origin) VALUES (%s, %s,%s, %s, %s,%s, %s)"
         value = []
         for elt in self.source_data["products"]:
             try: 
@@ -89,9 +91,9 @@ class Products():
         print ("PRODUCTS:")
         for elt in self.products_list:
             if elt.category_id == categories_instance.selected_category:
-                print (elt.product_name_origin)
                 self.selected_products.append(elt)
-                sorted_products = sorted(self.selected_products, key = lambda product : product.product_name_origin)
+                sorted_products = sorted(self.selected_products, key = lambda \
+                product : product.product_name_origin)
         
         rank = 1
         for elt in sorted_products:
@@ -99,4 +101,13 @@ class Products():
             product_with_rank=(elt.id_product, elt.product_name_origin, rank)
             self.products_with_rank.append(product_with_rank)
             rank += 1 
+
+    def select(self, categories_instance):
+        question= input("Which product you want to find a substitute for ?")
+        question = int(question)
+        for elt in self.products_with_rank:
+            if elt[2] == question:
+                print ("You\'ve choosen the \"", elt[1], "\" product") 
+                self.selected_product = elt[0]
+        
 
