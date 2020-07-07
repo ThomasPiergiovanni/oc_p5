@@ -6,13 +6,7 @@ import categories
 import products
 
 
-def create_category(database_instance):
 
-    categories_instance = categories.Categories()
-    # categories.Categories.get_data(categories_instance)
-    # categories.Categories.insert(categories_instance, database_instance)
-    categories.Categories.instanciate_category(categories_instance, database_instance)
-    return categories_instance
 
 def create_product(database_instance, categories_instance):
     products_instance = products.Products()
@@ -37,10 +31,15 @@ def client_product(database_instance, products_instance, categories_instance):
 def main():
 
     database_instance = database.Database()
-    database.Database.create(database_instance)
-    download_instance = download.Download()
-    download.Download.categories(download_instance)
-    database.Database.insert_categories(database_instance, download_instance)
+    # database.Database.create(database_instance)
+    # download_instance = download.Download()
+    # download.Download.categories(download_instance)
+    # database.Database.insert_categories(database_instance, download_instance)
+
+    categories_instance = categories.Categories()
+    categories.Categories.instanciate_category(categories_instance, database_instance)
+
+
     # products_instance = create_product(database_instance, categories_instance)
     # client_category(categories_instance)
     # client_product(database_instance, products_instance, categories_instance)

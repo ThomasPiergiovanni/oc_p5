@@ -1,7 +1,5 @@
 #-*-coding:utf-8 -*
 
-import requests
-import json
 import operator
 import mysql.connector
 
@@ -11,24 +9,9 @@ import products
 
 class Categories:
     def __init__(self):
-        self.source_data = {}
         self.categories_list=[]
         self.categories_with_rank=[]
         self.selected_category = 0 
-
-    def insert(self, database_instance):
-        statement = "INSERT INTO category (id_origin, name_origin,\
-         url_origin) VALUES (%s, %s, %s)"
-        value = []
-        for elt in self.source_data["tags"]:
-            if elt["id"] in config.SELECTED_CATEGORIES and elt["name"] and\
-            elt["url"]:
-                elt_string = (elt["id"], elt["name"], elt["url"])
-                value.append(elt_string)
-            else:
-                pass
-        database_instance.cursor.executemany(statement, value)
-        database_instance.database.commit()
 
     def instanciate_category(self, database_instance):
         database_instance.cursor.execute ("SELECT * FROM p5.category")

@@ -5,7 +5,7 @@
 # Mandatory : Yes.
 # Settings: "https://fr-en.openfoodfacts.org/categories.json" (default).
 # Comments: Endpoint return the products categories list.
-CATEGORIES_ENDPOINT = "https://fr-en.openfoodfacts.org/categories.json"
+CATEGORIES_ENDPOINT = "https://fr.openfoodfacts.org/categories.json"
 
 # Description:OpenFoodActs products per category ENDPOINT.
 # Mandatory : Yes.
