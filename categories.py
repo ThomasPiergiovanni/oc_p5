@@ -30,12 +30,12 @@ class Categories:
 
     def insert(self, database_instance):
         statement = "INSERT INTO category (id_origin, name_origin,\
-         url_origin, products_origin) VALUES (%s, %s, %s,%s)"
+         url_origin) VALUES (%s, %s, %s)"
         value = []
         for elt in self.source_data["tags"]:
             if elt["id"] in config.SELECTED_CATEGORIES and elt["name"] and\
-            elt["url"] and elt["products"]:
-                elt_string = (elt["id"], elt["name"], elt["url"], elt["products"])
+            elt["url"]:
+                elt_string = (elt["id"], elt["name"], elt["url"])
                 value.append(elt_string)
             else:
                 pass
@@ -48,21 +48,20 @@ class Categories:
         for elt in selection:
             id_category = elt[0]
             id_origin = elt[1]
-            name_origin = elt[2]
-            url_origin = elt[3]
-            products_origin = elt[4]
+            name = elt[2]
+            url = elt[3]
             category_instance = category.Category(id_category, id_origin,\
-            name_origin, url_origin, products_origin)
+            name, url)
             self.categories_list.append(category_instance)
 
     def show(self):
         print ("CATEGORIES:")
         sorted_categories = sorted(self.categories_list, key = lambda \
-        category : category.name_origin)
+        category : category.name)
         rank = 1
         for elt in sorted_categories:
-            print (rank ," - ",elt.name_origin)
-            category_with_rank=(elt.id_category, elt.name_origin, rank)
+            print (rank ," - ",elt.name)
+            category_with_rank=(elt.id_category, elt.name, rank)
             self.categories_with_rank.append(category_with_rank)
             rank += 1 
 

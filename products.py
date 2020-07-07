@@ -39,9 +39,9 @@ class Products():
             print(f"HTTP call to API for {category.id_origin} successfull")
 
     def insert(self, database_instance, category):
-        statement = "INSERT INTO product (id_origin, product_name_origin,\
-        nutriscore_grade_origin, category_id, categories_origin,\
-        countries_origin, stores_origin) VALUES (%s, %s,%s, %s, %s,%s, %s)"
+        statement = "INSERT INTO product (id_origin, product_name,\
+        nutriscore_grade, category_id, url, stores)\
+        VALUES (%s, %s,%s, %s, %s,%s)"
         value = []
         for elt in self.source_data["products"]:
             try: 
@@ -51,9 +51,7 @@ class Products():
                     elt["product_name"],\
                     elt["nutriscore_grade"],\
                     category.id_category,\
-                    elt["categories"],\
-                    elt["countries"],\
-                    # countries_tags_origin = elt["countries_tags"]
+                    elt["url"],\
                     elt["stores"])
                     value.append(elt_string)
             except Exception as error:
@@ -68,24 +66,21 @@ class Products():
         for elt in selection:
             id_product = elt[0]
             id_origin = elt[1]
-            product_name_origin = elt[2]
-            nutriscore_grade_origin = elt[3]
+            product_name = elt[2]
+            nutriscore_grade = elt[3]
             category_id = elt[4]
-            categories_origin = elt[5]
-            countries_origin = elt[6]
-            stores_origin = elt[7]
+            url = elt[5]
+            stores = elt[6]
 
 
             product_instance = product.Product(\
             id_product,\
             id_origin,\
-            product_name_origin,\
-            nutriscore_grade_origin,\
+            product_name,\
+            nutriscore_grade,\
             category_id,\
-            categories_origin,\
-            countries_origin,\
-            # countries_tags_origin,\
-            stores_origin)
+            url,\
+            stores)
                     
             self.products_list.append(product_instance)
 
@@ -96,12 +91,12 @@ class Products():
             if elt.category_id == categories_instance.selected_category:
                 self.selected_products.append(elt)
                 sorted_products = sorted(self.selected_products, key = lambda \
-                product : product.product_name_origin)
+                product : product.product_name)
         
         rank = 1
         for elt in sorted_products:
-            print (rank ," - ",elt.product_name_origin)
-            product_with_rank=(elt.id_product, elt.product_name_origin, rank)
+            print (rank ," - ",elt.product_name)
+            product_with_rank=(elt.id_product, elt.product_name, rank)
             self.products_with_rank.append(product_with_rank)
             rank += 1 
 
@@ -114,23 +109,23 @@ class Products():
                 self.selected_product = elt[0]
 
     def filter_substitutes(self):
-        selected_product_nutriscore = [elt.nutriscore_grade_origin for elt in\
+        selected_product_nutriscore = [elt.nutriscore_grade for elt in\
         self.selected_products if elt.id_product == self.selected_product]
         selected_product_nutriscore = selected_product_nutriscore [0]
         for elt in self.selected_products:
             if elt.id_product != self.selected_product and\
-            elt.nutriscore_grade_origin < selected_product_nutriscore:
+            elt.nutriscore_grade < selected_product_nutriscore:
                 self.substitutes_list.append(elt)
 
     def show_substitutes(self):
         print ("SUBSTITUTES:")
         sorted_substitutes = sorted(self.substitutes_list, key = lambda \
-        product : product.nutriscore_grade_origin)
+        product : product.nutriscore_grade)
         rank = 1
         for elt in sorted_substitutes:
-            print (rank ," - ",elt.product_name_origin, " - ", elt.nutriscore_grade_origin)
+            print (rank ," - ",elt.product_name, " - ", elt.nutriscore_grade)
             substitutes_with_rank=(elt.id_product,\
-            elt.product_name_origin, elt.nutriscore_grade_origin, rank)
+            elt.product_name, elt.nutriscore_grade, rank)
             self.substitutes_with_rank.append(substitutes_with_rank)
             rank += 1
 

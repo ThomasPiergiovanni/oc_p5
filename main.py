@@ -43,11 +43,11 @@ def client_product(database_instance, products_instance, categories_instance):
 def main():
 
     database_instance = initiate_db()
-    # create_db(database_instance)
-    categories_instance = create_category(database_instance)
-    products_instance = create_product(database_instance, categories_instance)
-    client_category(categories_instance)
-    client_product(database_instance, products_instance, categories_instance)
+    create_db(database_instance)
+    # categories_instance = create_category(database_instance)
+    # products_instance = create_product(database_instance, categories_instance)
+    # client_category(categories_instance)
+    # client_product(database_instance, products_instance, categories_instance)
 
 main()
 
