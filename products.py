@@ -41,6 +41,7 @@ class Products():
             stores)
                     
             self.products_list.append(product_instance)
+            print(product_instance.product_name)
 
 
     def show(self, categories_instance):

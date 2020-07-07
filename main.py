@@ -37,10 +37,11 @@ def main():
     categories_instance = categories.Categories()
     categories.Categories.instanciate_category(categories_instance, database_instance)
 
-    for category in categories_instance.categories_list:
-        download.Download.products(download_instance, category)
-        database.Database.insert_products(database_instance, download_instance,category)
-    # products_instance = create_product(database_instance, categories_instance)
+    # for category in categories_instance.categories_list:
+    #     download.Download.products(download_instance, category)
+    #     database.Database.insert_products(database_instance, download_instance,category)
+    products_instance = products.Products()
+    products.Products.instanciate_product(products_instance, database_instance)
     # client_category(categories_instance)
     # client_product(database_instance, products_instance, categories_instance)
 

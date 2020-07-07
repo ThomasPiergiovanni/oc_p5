@@ -37,14 +37,11 @@ class Database:
         value = []
         for elt in download_instance.source_products["products"]:
             try: 
-                if elt["id"] and elt["product_name"] and elt["nutriscore_grade"] and elt["url"]:
-                    elt_string = (\
-                    elt["id"],\
-                    elt["product_name"],\
-                    elt["nutriscore_grade"],\
-                    category.id_category,\
-                    elt["url"],\
-                    elt["stores"])
+                if elt["id"] and elt["product_name"] and\
+                elt["nutriscore_grade"] and elt["url"]:
+                    elt_string = (elt["id"], elt["product_name"],\
+                    elt["nutriscore_grade"], category.id_category,\
+                    elt["url"], elt["stores"])
                     value.append(elt_string)
             except Exception as error:
                 print(f"The following error occurred: {error}")
