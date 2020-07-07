@@ -10,9 +10,7 @@ import products
 
 def create_product(database_instance, categories_instance):
     products_instance = products.Products()
-    # for category in categories_instance.categories_list:
-        # products.Products.get_data(products_instance, category)
-        # products.Products.insert(products_instance, database_instance, category)
+
     products.Products.instanciate_product(products_instance, database_instance)
     return products_instance
 
@@ -41,7 +39,7 @@ def main():
 
     for category in categories_instance.categories_list:
         download.Download.products(download_instance, category)
-
+        database.Database.insert_products(database_instance, download_instance,category)
     # products_instance = create_product(database_instance, categories_instance)
     # client_category(categories_instance)
     # client_product(database_instance, products_instance, categories_instance)

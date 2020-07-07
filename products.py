@@ -18,28 +18,6 @@ class Products():
         self.substitutes_with_rank = []
         self.selected_substitute = 0
 
-    def insert(self, database_instance, category):
-        statement = "INSERT INTO product (id_origin, product_name,\
-        nutriscore_grade, category_id, url, stores)\
-        VALUES (%s, %s,%s, %s, %s,%s)"
-        value = []
-        for elt in self.source_data["products"]:
-            try: 
-                if elt["id"] and elt["product_name"] and elt["nutriscore_grade"]:
-                    elt_string = (\
-                    elt["id"],\
-                    elt["product_name"],\
-                    elt["nutriscore_grade"],\
-                    category.id_category,\
-                    elt["url"],\
-                    elt["stores"])
-                    value.append(elt_string)
-            except Exception as error:
-                print(f"The following error occurred: {error}")
-                pass
-        database_instance.cursor.executemany(statement, value)
-        database_instance.database.commit()
-
     def instanciate_product(self, database_instance):
         database_instance.cursor.execute ("SELECT * FROM p5.product")
         selection = database_instance.cursor.fetchall()   

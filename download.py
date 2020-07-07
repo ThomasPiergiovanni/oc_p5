@@ -23,13 +23,9 @@ class Download:
     def products(self, category):
         try:
             params = {
-                "action":"process",
-                "tagtype_0": "categories",
-                "tag_contains_0":"contains",
-                "tag_0":category.id_origin,
-                "json":1,
-                "page":1,
-                "page_size": config.PRODUCTS_AMOUNT}
+                "action":"process", "tagtype_0": "categories",
+                "tag_contains_0":"contains", "tag_0":category.id_origin,
+                "json":1, "page":1, "page_size": config.PRODUCTS_AMOUNT}
             response_api =requests.get(config.PRODUCTS_ENDPOINT,\
             headers = config.HEADER, params = params)
             self.source_products = response_api.json()
