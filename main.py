@@ -40,6 +40,7 @@ def main():
     database.Database.create(database_instance)
     download_instance = download.Download()
     download.Download.categories(download_instance)
+    database.Database.insert_categories(database_instance, download_instance)
     # products_instance = create_product(database_instance, categories_instance)
     # client_category(categories_instance)
     # client_product(database_instance, products_instance, categories_instance)

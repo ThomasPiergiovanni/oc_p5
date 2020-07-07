@@ -11,7 +11,7 @@ class Download:
         try:
             response_api =requests.get(config.CATEGORIES_ENDPOINT,\
             headers = config.HEADER )
-            self.source_data = response_api.json()
+            self.source_categories = response_api.json()
         except HTTPError as http_error:
             print(f'HTTP error occurred: {http_error}')
         except Exception as other_error:
