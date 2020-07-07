@@ -14,3 +14,5 @@ class Database:
             querries = content.split(";")
             for querry in querries:
                 self.cursor.execute(querry)
+
+

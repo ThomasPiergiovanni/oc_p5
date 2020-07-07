@@ -1,16 +1,10 @@
 #-*-coding:utf-8 -*
 
 import database
+import download
 import categories
 import products
 
-
-def initiate_db():
-    database_instance = database.Database()
-    return database_instance
-
-def create_db(database_instance):   
-    database.Database.create(database_instance)
 
 def create_category(database_instance):
 
@@ -42,9 +36,10 @@ def client_product(database_instance, products_instance, categories_instance):
 
 def main():
 
-    database_instance = initiate_db()
-    create_db(database_instance)
-    # categories_instance = create_category(database_instance)
+    database_instance = database.Database()
+    database.Database.create(database_instance)
+    download_instance = download.Download()
+    download.Download.categories(download_instance)
     # products_instance = create_product(database_instance, categories_instance)
     # client_category(categories_instance)
     # client_product(database_instance, products_instance, categories_instance)
