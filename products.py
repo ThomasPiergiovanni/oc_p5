@@ -18,26 +18,6 @@ class Products():
         self.substitutes_with_rank = []
         self.selected_substitute = 0
 
-    def get_data(self, category):
-        try:
-            params = {
-                "action":"process",
-                "tagtype_0": "categories",
-                "tag_contains_0":"contains",
-                "tag_0":category.id_origin,
-                "json":1,
-                "page":1,
-                "page_size": config.PRODUCTS_AMOUNT}
-            response_api =requests.get(config.PRODUCTS_ENDPOINT,\
-            headers = config.HEADER, params = params)
-            self.source_data = response_api.json()
-        except HTTPError as http_error:
-            print(f"HTTP error occurred: {http_error}")
-        except Exception as other_error:
-            print(f"Other error occurred: {other_error}")
-        else:
-            print(f"HTTP call to API for {category.id_origin} successfull")
-
     def insert(self, database_instance, category):
         statement = "INSERT INTO product (id_origin, product_name,\
         nutriscore_grade, category_id, url, stores)\
