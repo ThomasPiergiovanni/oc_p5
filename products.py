@@ -1,7 +1,4 @@
 #-*-coding:utf-8 -*
-import requests
-import json
-import operator
 
 import config
 import product
@@ -29,20 +26,10 @@ class Products():
             category_id = elt[4]
             url = elt[5]
             stores = elt[6]
-
-
-            product_instance = product.Product(\
-            id_product,\
-            id_origin,\
-            product_name,\
-            nutriscore_grade,\
-            category_id,\
-            url,\
-            stores)
-                    
+            product_instance = product.Product(id_product, id_origin,\
+            product_name, nutriscore_grade, category_id, url, stores)        
             self.products_list.append(product_instance)
             print(product_instance.product_name)
-
 
     def show(self, categories_instance):
         print ("PRODUCTS:")

@@ -4,15 +4,8 @@ import database
 import download
 import categories
 import products
+import initiate
 
-
-
-
-def create_product(database_instance, categories_instance):
-    products_instance = products.Products()
-
-    products.Products.instanciate_product(products_instance, database_instance)
-    return products_instance
 
 def client_category(categories_instance):
     categories.Categories.show(categories_instance)
@@ -27,7 +20,6 @@ def client_product(database_instance, products_instance, categories_instance):
     products.Products.register_substitute(products_instance, database_instance)
 
 def main():
-
     database_instance = database.Database()
     # database.Database.create(database_instance)
     download_instance = download.Download()
@@ -41,6 +33,7 @@ def main():
     #     download.Download.products(download_instance, category)
     #     database.Database.insert_products(database_instance, download_instance,category)
     products_instance = products.Products()
+ 
     products.Products.instanciate_product(products_instance, database_instance)
     # client_category(categories_instance)
     # client_product(database_instance, products_instance, categories_instance)
