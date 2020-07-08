@@ -11,9 +11,6 @@ class Products():
         self.selected_products = []
         self.products_with_rank =[]
         self.selected_product = 0
-        self.substitutes_list = []
-        self.substitutes_with_rank = []
-        self.selected_substitute = 0
 
     def instanciate_product(self, database_instance):
         database_instance.cursor.execute ("SELECT * FROM p5.product")
