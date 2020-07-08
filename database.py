@@ -60,7 +60,8 @@ class Database:
             substitute_product_id) VALUES (%s, %s)"
             value = [products_instance.selected_product, substitutes_instance.selected_substitute]
             self.cursor.execute(statement, value)
-            self.database.commit()  
+            self.database.commit() 
+            print("Substitute product has been registered !") 
 
 
 

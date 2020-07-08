@@ -48,6 +48,11 @@ class Substitutes:
     def register(self):
         question= input("Do you want to register that choice (y/n)?")
         question = str(question)
-        if question == "y":
+        if question in "yY":
             self.registration = True
+            print("Substitute product has been registered !") 
+        elif question not in "nN":
+            print ("Only y/n")
+            Substitutes.register(self)
+
 
