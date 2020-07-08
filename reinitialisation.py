@@ -7,9 +7,7 @@ import products
 
 class Reinitialisation:
 
-    def reinitialize():
-        database_instance = database.Database()
-        database.Database.delete(database_instance)
+    def reinitialize(database_instance):
         database.Database.create(database_instance)
         download_instance = download.Download()
         download.Download.categories(download_instance)

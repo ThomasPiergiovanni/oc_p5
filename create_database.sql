@@ -20,9 +20,9 @@ CREATE TABLE IF NOT EXISTS p5.product(
     FOREIGN KEY (category_id) REFERENCES p5.category(id_category)
     )ENGINE=INNODB;
 
-CREATE TABLE IF NOT EXISTS p5.registration(
+CREATE TABLE IF NOT EXISTS p5.substitute(
     product_product_id SMALLINT UNSIGNED NOT NULL,
     substitut_product_id SMALLINT UNSIGNED NOT NULL,
-    FOREIGN KEY (product_product_id) REFERENCES p5.product(id_product),
-    FOREIGN KEY (substitut_product_id) REFERENCES p5.product(id_product)
+    FOREIGN KEY (product_product_id) REFERENCES p5.substitute(id_product),
+    FOREIGN KEY (substitut_product_id) REFERENCES p5.substitute(id_product)
     )ENGINE=INNODB;

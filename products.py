@@ -29,7 +29,6 @@ class Products():
             product_instance = product.Product(id_product, id_origin,\
             product_name, nutriscore_grade, category_id, url, stores)        
             self.products_list.append(product_instance)
-            print(product_instance.product_name)
 
     def show(self, categories_instance):
         print ("PRODUCTS:")
@@ -54,39 +53,4 @@ class Products():
                 print ("You\'ve choosen the \"", elt[1], "\" product") 
                 self.selected_product = elt[0]
 
-    def filter_substitutes(self):
-        selected_product_nutriscore = [elt.nutriscore_grade for elt in\
-        self.selected_products if elt.id_product == self.selected_product]
-        selected_product_nutriscore = selected_product_nutriscore [0]
-        for elt in self.selected_products:
-            if elt.id_product != self.selected_product and\
-            elt.nutriscore_grade < selected_product_nutriscore:
-                self.substitutes_list.append(elt)
-
-    def show_substitutes(self):
-        print ("SUBSTITUTES:")
-        sorted_substitutes = sorted(self.substitutes_list, key = lambda \
-        product : product.nutriscore_grade)
-        rank = 1
-        for elt in sorted_substitutes:
-            print (rank ," - ",elt.product_name, " - ", elt.nutriscore_grade)
-            substitutes_with_rank=(elt.id_product,\
-            elt.product_name, elt.nutriscore_grade, rank)
-            self.substitutes_with_rank.append(substitutes_with_rank)
-            rank += 1
-
-    def select_substitute(self):
-        question= input("Which substitute you want to choose ?")
-        question = int(question)
-        for elt in self.substitutes_with_rank:
-            if elt[3] == question:
-                print ("You\'ve choosen the ", elt[1], "product as a substitute") 
-                self.selected_substitute = elt[0]
-
-    def register_substitute(self, database_instance):
-        statement = "INSERT INTO p5.registration (product_product_id,\
-        substitut_product_id) VALUES (%s, %s)"
-        value = [self.selected_product, self.selected_substitute]
-        database_instance.cursor.execute(statement, value)
-        database_instance.database.commit()        
-        
+       
