@@ -15,6 +15,7 @@ class Substitutes:
             substitut_product_id = elt[1]
             substitute_instance = substitute.Subsitute(product_id_product, substitute_instance,\
             name, url)
+            self.products_list.append(product_instance)
 
     def filter(self, product_instance):
         selected_product_nutriscore = [elt.nutriscore_grade for elt in\
@@ -52,7 +53,7 @@ class Substitutes:
             self.registration = True
             print("Substitute product has been registered !") 
         elif question not in "nN":
-            print ("Only y/n")
+            print ("Only letter y/n can be used. Retry ")
             Substitutes.register(self)
 
 
