@@ -16,6 +16,11 @@ class Database:
             for querry in querries:
                 self.cursor.execute(querry)
 
+    def delete(self):
+        statement = "DROP DATABASE IF EXISTS p6"
+        self.cursor.execute(statement)
+        self.database.commit()
+
     def insert_categories(self, download_instance):
         statement = "INSERT INTO p5.category (id_origin, name,\
          url) VALUES (%s, %s, %s)"
@@ -48,5 +53,6 @@ class Database:
                 pass
         self.cursor.executemany(statement, value)
         self.database.commit()
+
 
 

@@ -1,10 +1,8 @@
-CREATE DATABASE IF NOT EXISTS p5 CHARACTER SET 'utf8';
+CREATE DATABASE IF NOT EXISTS p6 CHARACTER SET 'utf8';
 
-USE p5;
+USE p6;
 
-DROP TABLE IF EXISTS p5.category, p5.product, p5.registration;
-
-CREATE TABLE IF NOT EXISTS p5.category(
+CREATE TABLE IF NOT EXISTS p6.category(
     id_category SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
     id_origin VARCHAR(250) NOT NULL,
     name VARCHAR(250) NOT NULL,
@@ -12,7 +10,7 @@ CREATE TABLE IF NOT EXISTS p5.category(
     PRIMARY KEY (id_category)
     )ENGINE=INNODB;
 
-CREATE TABLE IF NOT EXISTS p5.product(
+CREATE TABLE IF NOT EXISTS p6.product(
     id_product SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
     id_origin VARCHAR(250) NOT NULL,
     product_name VARCHAR(250) NOT NULL,
@@ -21,12 +19,12 @@ CREATE TABLE IF NOT EXISTS p5.product(
     url LONGTEXT NOT NULL,
     stores VARCHAR(250),
     PRIMARY KEY (id_product),
-    FOREIGN KEY (category_id) REFERENCES p5.category(id_category)
+    FOREIGN KEY (category_id) REFERENCES p6.category(id_category)
     )ENGINE=INNODB;
 
-CREATE TABLE IF NOT EXISTS p5.registration(
+CREATE TABLE IF NOT EXISTS p6.registration(
     product_product_id SMALLINT UNSIGNED NOT NULL,
     substitut_product_id SMALLINT UNSIGNED NOT NULL,
-    FOREIGN KEY (product_product_id) REFERENCES p5.product(id_product),
-    FOREIGN KEY (substitut_product_id) REFERENCES p5.product(id_product)
+    FOREIGN KEY (product_product_id) REFERENCES p6.product(id_product),
+    FOREIGN KEY (substitut_product_id) REFERENCES p6.product(id_product)
     )ENGINE=INNODB;
