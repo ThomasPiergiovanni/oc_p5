@@ -17,7 +17,7 @@ class Database:
                 self.cursor.execute(querry)
 
     def delete(self):
-        statement = "DROP DATABASE IF EXISTS p6"
+        statement = "DROP DATABASE IF EXISTS p5"
         self.cursor.execute(statement)
         self.database.commit()
 
