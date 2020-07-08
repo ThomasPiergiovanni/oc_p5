@@ -4,6 +4,7 @@ import database
 import download
 import categories
 import products
+import reinitialisation
 
 
 
@@ -21,8 +22,11 @@ def client_product(database_instance, products_instance, categories_instance):
 
 def main():
     database_instance = database.Database()
+
     # database.Database.create(database_instance)
-    database.Database.delete(database_instance)
+    # database.Database.delete(database_instance)
+    reinitialisation.Reinitialisation.reinitialize(database_instance)
+
     # download_instance = download.Download()
 
     # download.Download.categories(download_instance)
