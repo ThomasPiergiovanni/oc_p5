@@ -5,7 +5,16 @@ class Substitutes:
         self.substitutes_list=[]
         self.substitutes_with_rank=[]
         self.selected_substitute = 0
-        self.registeration = False
+        self.registration = False
+
+    def instanciate_substitute(self, database_instance):
+        database_instance.cursor.execute ("SELECT * FROM p5.substitute")
+        selection = database_instance.cursor.fetchall()
+        for elt in selection:
+            product_id_product= elt[0]
+            substitut_product_id = elt[1]
+            substitute_instance = substitute.Subsitute(product_id_product, substitute_instance,\
+            name, url)
 
     def filter(self, product_instance):
         selected_product_nutriscore = [elt.nutriscore_grade for elt in\
@@ -40,5 +49,5 @@ class Substitutes:
         question= input("Do you want to register that choice (y/n)?")
         question = str(question)
         if question == "y":
-            self.registeration = True
-            print (self.registeration)
+            self.registration = True
+

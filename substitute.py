@@ -1,6 +1,6 @@
 #-*-coding:utf-8 -*
 
-class Substitut:
+class Substitute:
     def __init__(self, product):
         self.product_product_id = products.id_product
-        self.substitut_product_id = products.id_product
+        self.substitute_product_id = products.id_product
