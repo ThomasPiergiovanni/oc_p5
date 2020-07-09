@@ -4,9 +4,9 @@ import products
 import substitutes
 import database
 
-class Search:
+class Research:
 
-    def search(database_instance):
+    def research(database_instance):
         categories_instance = categories.Categories()
         categories.Categories.instanciate_category(categories_instance, database_instance)
 
@@ -26,4 +26,3 @@ class Search:
         substitutes.Substitutes.select(substitutes_instance)
         substitutes.Substitutes.register(substitutes_instance)
 
-        database.Database.insert_substitute(database_instance, products_instance, substitutes_instance)
