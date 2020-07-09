@@ -1,5 +1,7 @@
 #-*-coding:utf-8 -*
 
+import recomposition
+
 class Recompositions:
     def __init__(self):
         self.recompositions_list=[]
@@ -18,7 +20,24 @@ class Recompositions:
             products_instance.products_list if product.id_product ==\
             substitute.substitute_product_id]
 
-            print (product[0], " - ",substitute[0])
+
+            recomposition_instance = recomposition.Recomposition(\
+            product[0][0],\
+            product[0][1],\
+            product[0][2],\
+            product[0][3],\
+            product[0][4],\
+            substitute[0][0],\
+            substitute[0][1],\
+            substitute[0][2],\
+            substitute[0][3],\
+            substitute[0][4])
+
+            self.recompositions_list.append(recomposition_instance)
+
+        for elt in self.recompositions_list:
+            print(elt.product_product_name, "-", elt.substitute_product_name)
+
             
 
 
