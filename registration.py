@@ -19,3 +19,4 @@ class Registration:
         recompositions_instance = recompositions.Recompositions()
         recompositions.Recompositions.recompose(recompositions_instance,\
         substitutes_instance, categories_instance, products_instance)
+        recompositions.Recompositions.show(recompositions_instance)
