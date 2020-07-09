@@ -67,15 +67,25 @@ class Substitutes:
                 if product.id_product == substitute.product_product_id:
                     recomposed_object["initial_product_id"] = product.id_product
                     recomposed_object["initial_name"] = product.product_name
+                    recomposed_object["initial_nutriscore_grade"] = product.nutriscore_grade
+                    recomposed_object["initial_url"] = product.url
+                    recomposed_object["initial_stores"] = product.stores
                     # print ("initial :", recompose_product_name)
 
                 elif product.id_product == substitute.substitute_product_id:
                     recomposed_object["substitute_product_id"] = product.id_product
                     recomposed_object["substitute_name"] = product.product_name
-  
+                    recomposed_object["substitute_nutriscore_grade"] = product.nutriscore_grade
+                    recomposed_object["substitute_url"] = product.url
+                    recomposed_object["substitute_stores"] = product.stores  
                     # print ("substitute :", recompose_product_name)
 
-            print (recomposed_object)
+            for key, value in recomposed_object.items():
+                if key == "initial_name":
+                    print ("initial_name: ", value,)
+                elif key == "substitute_name":
+                    print ("substitute_name: ", value)
+
             #         print (substitute.product_product_id, " - ",\
             # product.id_product, " - ", product.product_name)
 
