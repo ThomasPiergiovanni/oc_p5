@@ -4,6 +4,7 @@ import recomposition
 
 class Recompositions:
     def __init__(self):
+        self.recomposed
         self.recompositions_list=[]
 
     def recompose(self,substitutes_instance, categories_instance, products_instance):
@@ -44,32 +45,3 @@ class Recompositions:
 
         for elt in self.recompositions_list:
             print(elt.product_product_name, "-", elt.substitute_product_name, "-", elt.category_name)
-
-            
-
-
-            # for product in products_instance.products_list:
-
-
-            #     if product.id_product == substitute.product_product_id:
-            #         recomposed_object["product_product_id"] = product.id_product
-            #         recomposed_object["product_product_name"] = product.product_name
-            #         recomposed_object["product_nutriscore_grade"] = product.nutriscore_grade
-            #         recomposed_object["product_url"] = product.url
-            #         recomposed_object["product_stores"] = product.stores
-            #         # print ("initial :", recompose_product_name)
-
-            #     elif product.id_product == substitute.substitute_product_id:
-            #         recomposed_object["substitute_product_id"] = product.id_product
-            #         recomposed_object["substitute_product_name"] = product.product_name
-            #         recomposed_object["substitute_nutriscore_grade"] = product.nutriscore_grade
-            #         recomposed_object["substitute_url"] = product.url
-            #         recomposed_object["substitute_stores"] = product.stores  
-            #         # print ("substitute :", recompose_product_name)
-
-            # for key, value in recomposed_object.items():
-            #     product_category_id = 
-            #     if key == "initial_name":
-            #         print ("initial_name: ", value,)
-            #     elif key == "substitute_name":
-            #         print ("substitute_name: ", value)
