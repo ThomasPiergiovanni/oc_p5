@@ -62,10 +62,22 @@ class Substitutes:
 
     def recompose(self, categories_instance, products_instance):
         for substitute in self.substitutes_registered_list:
+            recomposed_object = {}
             for product in products_instance.products_list:
                 if product.id_product == substitute.product_product_id:
-                    print (substitute.product_product_id, " - ",\
-            product.id_product, " - ", product.product_name)
+                    recomposed_object["initial_product_id"] = product.id_product
+                    recomposed_object["initial_name"] = product.product_name
+                    # print ("initial :", recompose_product_name)
+
+                elif product.id_product == substitute.substitute_product_id:
+                    recomposed_object["substitute_product_id"] = product.id_product
+                    recomposed_object["substitute_name"] = product.product_name
+  
+                    # print ("substitute :", recompose_product_name)
+
+            print (recomposed_object)
+            #         print (substitute.product_product_id, " - ",\
+            # product.id_product, " - ", product.product_name)
 
     # def show_registered(self):
     #     print ("REGISTERED SUBSTITUTES:")
