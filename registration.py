@@ -14,3 +14,5 @@ class Registration:
 
         substitutes_instance = substitutes.Substitutes()
         substitutes.Substitutes.instanciate_substitute(substitutes_instance, database_instance)
+
+        substitutes.Substitutes.recompose(substitutes_instance, categories_instance, products_instance)

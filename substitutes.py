@@ -60,6 +60,11 @@ class Substitutes:
             print ("Only letter y/n can be used. Retry ")
             Substitutes.register(self)
 
+    def recompose(self, categories_instance, products_instance):
+        for substitute in self.substitutes_registered_list:
+            print (substitute.product_product_id,\
+            substitute.substitute_product_id)
+
     # def show_registered(self):
     #     print ("REGISTERED SUBSTITUTES:")
     #     sorted_substitutes = sorted(self.substitutes_registered_list, key = lambda \
