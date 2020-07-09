@@ -6,28 +6,23 @@ class Recompositions:
     def __init__(self):
         self.recompositions_list=[]
 
-    def recompose(self,substitutes_instance, categories_instance, products_instance):
+    def instanciate_recomposition(self,substitutes_instance, categories_instance, products_instance):
         for substitute in substitutes_instance.substitutes_registered_list:
-            product  = [(product.id_product, product.product_name,\
-            product.nutriscore_grade, product.url, product.stores, product.category_id)\
-            for product in\
+
+            product  = [product for product in\
             products_instance.products_list if product.id_product ==\
             substitute.product_product_id]
 
-            substitute = [(product.id_product, product.product_name,\
-            product.nutriscore_grade, product.url, product.stores) for product in\
+            substitute = [product for product in\
             products_instance.products_list if product.id_product ==\
             substitute.substitute_product_id]
 
-            category = [category.name for category in\
+            category = [category for category in\
             categories_instance.categories_list if category.id_category ==\
-            product[0][5]]
-
+            product[0].category_id]
 
             recomposition_instance = recomposition.Recomposition(\
-            product[0][0], product[0][1], product[0][2], product[0][3],\
-            product[0][4], product[0][5], category[0], substitute[0][0],\
-            substitute[0][1], substitute[0][2], substitute[0][3], substitute[0][4])
+            product[0], substitute[0], category [0])
 
             self.recompositions_list.append(recomposition_instance)
 
