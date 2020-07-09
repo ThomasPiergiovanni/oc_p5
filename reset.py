@@ -5,9 +5,9 @@ import download
 import categories
 import products
 
-class Reinitialisation:
+class Reset:
 
-    def reinitialize(database_instance):
+    def reset(database_instance):
         database.Database.create(database_instance)
         download_instance = download.Download()
         download.Download.categories(download_instance)
