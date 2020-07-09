@@ -11,7 +11,8 @@ class Recompositions:
             recomposed_object = {}
 
             product  = [(product.id_product, product.product_name,\
-            product.nutriscore_grade, product.url, product.stores) for product in\
+            product.nutriscore_grade, product.url, product.stores, product.category_id)\
+            for product in\
             products_instance.products_list if product.id_product ==\
             substitute.product_product_id]
 
@@ -20,6 +21,10 @@ class Recompositions:
             products_instance.products_list if product.id_product ==\
             substitute.substitute_product_id]
 
+            category = [category.name for category in\
+            categories_instance.categories_list if category.id_category ==\
+            product[0][5]]
+
 
             recomposition_instance = recomposition.Recomposition(\
             product[0][0],\
@@ -27,6 +32,8 @@ class Recompositions:
             product[0][2],\
             product[0][3],\
             product[0][4],\
+            product[0][5],\
+            category[0],\
             substitute[0][0],\
             substitute[0][1],\
             substitute[0][2],\
@@ -36,7 +43,7 @@ class Recompositions:
             self.recompositions_list.append(recomposition_instance)
 
         for elt in self.recompositions_list:
-            print(elt.product_product_name, "-", elt.substitute_product_name)
+            print(elt.product_product_name, "-", elt.substitute_product_name, "-", elt.category_name)
 
             
 
