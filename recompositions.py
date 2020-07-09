@@ -7,14 +7,18 @@ class Recompositions:
     def recompose(self,substitutes_instance, categories_instance, products_instance):
         for substitute in substitutes_instance.substitutes_registered_list:
             recomposed_object = {}
-            product_product_id = [product.id_product for product in\
+
+            product  = [(product.id_product, product.product_name,\
+            product.nutriscore_grade, product.url, product.stores) for product in\
             products_instance.products_list if product.id_product ==\
             substitute.product_product_id]
-            substitute_product_id = [product.id_product for product in\
+
+            substitute = [(product.id_product, product.product_name,\
+            product.nutriscore_grade, product.url, product.stores) for product in\
             products_instance.products_list if product.id_product ==\
             substitute.substitute_product_id]
 
-            print (product_product_id, " - ",substitute_product_id)
+            print (product[0], " - ",substitute[0])
             
 
 
