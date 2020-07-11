@@ -30,7 +30,7 @@ class Substitutes:
             elt.nutriscore_grade < selected_product_nutriscore:
                 self.substitutes_proposed_list.append(elt)
 
-    def show_proposed(self):
+    def show(self):
         print ("SUBSTITUTES:")
         sorted_substitutes = sorted(self.substitutes_proposed_list, key = lambda \
         product : product.nutriscore_grade)
@@ -39,7 +39,7 @@ class Substitutes:
             print (rank ," - ",elt.product_name, " - ", elt.nutriscore_grade)
             substitutes_proposed_with_rank=(elt.id_product,\
             elt.product_name, elt.nutriscore_grade, rank)
-            self.substitutes__proposed_with_rank.append(substitutes__proposed_with_rank)
+            self.substitutes_proposed_with_rank.append(substitutes_proposed_with_rank)
             rank += 1
 
     def select(self):
@@ -60,45 +60,5 @@ class Substitutes:
             print ("Only letter y/n can be used. Retry ")
             Substitutes.register(self)
 
-    def recompose(self, categories_instance, products_instance):
-        for substitute in self.substitutes_registered_list:
-            recomposed_object = {}
-            for product in products_instance.products_list:
-                if product.id_product == substitute.product_product_id:
-                    recomposed_object["initial_product_id"] = product.id_product
-                    recomposed_object["initial_name"] = product.product_name
-                    recomposed_object["initial_nutriscore_grade"] = product.nutriscore_grade
-                    recomposed_object["initial_url"] = product.url
-                    recomposed_object["initial_stores"] = product.stores
-                    # print ("initial :", recompose_product_name)
-
-                elif product.id_product == substitute.substitute_product_id:
-                    recomposed_object["substitute_product_id"] = product.id_product
-                    recomposed_object["substitute_name"] = product.product_name
-                    recomposed_object["substitute_nutriscore_grade"] = product.nutriscore_grade
-                    recomposed_object["substitute_url"] = product.url
-                    recomposed_object["substitute_stores"] = product.stores  
-                    # print ("substitute :", recompose_product_name)
-
-            for key, value in recomposed_object.items():
-                if key == "initial_name":
-                    print ("initial_name: ", value,)
-                elif key == "substitute_name":
-                    print ("substitute_name: ", value)
-
-            #         print (substitute.product_product_id, " - ",\
-            # product.id_product, " - ", product.product_name)
-
-    # def show_registered(self):
-    #     print ("REGISTERED SUBSTITUTES:")
-    #     sorted_substitutes = sorted(self.substitutes_registered_list, key = lambda \
-    #     product : product.nutriscore_grade)
-    #     rank = 1
-    #     for elt in sorted_substitutes:
-    #         print (rank ," - ",elt.product_name, " - ", elt.nutriscore_grade)
-    #         substitutes_proposed_with_rank=(elt.id_product,\
-    #         elt.product_name, elt.nutriscore_grade, rank)
-    #         self.substitutes__proposed_with_rank.append(substitutes__proposed_with_rank)
-    #         rank += 1
 
 
