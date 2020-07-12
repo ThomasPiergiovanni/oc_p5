@@ -9,7 +9,7 @@ class Quit:
         if question in "yY":
             print("Good bye !") 
         elif question in "nN":
-            pass
+            main.main()
         else :
             print ("Only letter y/n can be used. Retry ")
             Quit.show()

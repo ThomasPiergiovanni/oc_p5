@@ -13,11 +13,11 @@ def main():
 
     # research.Research.research(database_instance)
 
-    registration.Registration.regi(database_instance)
+    # registration.Registration.regi(database_instance)
 
     # reset.Reset.reset(database_instance)
 
-    #quit.Quit.show()
+    quit.Quit.show()
 
 
 if __name__=="__main__":

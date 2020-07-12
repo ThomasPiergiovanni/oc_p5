@@ -21,6 +21,7 @@ class Recompositions:
             categories_instance.categories_list if category.id_category ==\
             product[0].category_id]
 
+
             recomposition_instance = recomposition.Recomposition(\
             product[0], substitute[0], category [0])
 
