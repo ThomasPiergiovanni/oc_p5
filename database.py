@@ -9,6 +9,17 @@ class Database:
         (host = config.HOST, user = config.USER, password = config.PASSWORD)
         self.cursor = self.database.cursor()
 
+    def check (self):
+        dbase = "USE p5"
+        nb_category = "SELECT COUNT(*) AS nb_categories FROM p5.category"
+        self.cursor.execute(nb_category)
+        categories_count = self.cursor.fetchall()  
+
+        if categories_count [0][0] == 5:
+            print ("ok")
+        else:
+            print ("bug")
+
     def create(self):
         with open(config.SQL_FILE, "r") as file:
             content = file.read()

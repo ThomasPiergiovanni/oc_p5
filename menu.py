@@ -8,20 +8,25 @@ import quit
 
 class Menu:
     def show (database_instance):
-        print ("1 - Search for healthier food substitute")
-        print ("2 - See your saved substitutes")
-        print ("3 - Reinitiate the database")
-        print ("4 - Quit the program")
-        question = input("What do you want to do (type a number in the list)?")
-        question = int(question)
-        if question == 1:
-            research.Research.research(database_instance)
-        elif question == 2:
-            registration.Registration.regi(database_instance)
-        elif question == 3:
-            registration.Registration.regi(database_instance)
-        elif question == 4:
-            reset.Reset.reset(database_instance)
-        else :
-            print ("Only letter 1, 2, 3 or 4 can be used. Retry ")
-            Menu.show()
+        question = input("What do you want to do (choose one of the bellow number)?\
+        \n 1 - Search for healthier food substitute \
+        \n 2 - See your saved substitutes\
+        \n 3 - Reinitiate the database \
+        \n 4 - Quit the program \n")
+
+        try :
+            question = int(question)
+            if question == 1:
+                research.Research.research(database_instance)
+            elif question == 2:
+                registration.Registration.regi(database_instance)
+            # elif question == 3:
+            #     reset.Reset.reset(database_instance)
+            elif question == 4:
+                 quit.Quit.show()
+            else :
+                print ("Only number from 1 to 4 can be used. Retry ")
+                Menu.show()
+        except : 
+                print ("Only number can be used. Retry ")
+                Menu.show(database_instance)

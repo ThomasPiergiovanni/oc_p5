@@ -8,7 +8,8 @@ import database
 
 def main():
     database_instance= database.Database()
-    menu.Menu.show(database_instance)
+    database.Database.check(database_instance)
+    #menu.Menu.show(database_instance)
 
 
 
