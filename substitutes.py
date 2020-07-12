@@ -20,6 +20,7 @@ class Substitutes:
             substitute_product_id)
             self.substitutes_registered_list.append(substitute_instance)
 
+
     def filter(self, product_instance):
         selected_product_nutriscore = [elt.nutriscore_grade for elt in\
         product_instance.selected_products if elt.id_product ==\

@@ -6,7 +6,7 @@ import substitutes
 import recompositions
 
 class Registration:
-    def registration(database_instance):
+    def regi(database_instance):
         categories_instance = categories.Categories()
         categories.Categories.instanciate_category(categories_instance, database_instance)
 
