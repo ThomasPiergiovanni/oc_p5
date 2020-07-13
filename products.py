@@ -43,11 +43,15 @@ class Products():
             rank += 1 
 
     def select(self, categories_instance):
-        question= input("Which product you want to find a substitute for ?")
+        question= input("Which product you want to find a substitute for?\n")
         question = int(question)
-        for elt in self.products_with_rank:
-            if elt[2] == question:
-                print ("You\'ve choosen the \"", elt[1], "\" product") 
-                self.selected_product = elt[0]
+        if question <= len(self.products_with_rank):
+            for elt in self.products_with_rank:
+                if elt[2] == question:
+                    print ("You\'ve choosen the \"", elt[1], "\" product") 
+                    self.selected_product = elt[0]
+        else:
+            print ("Only numbers included in above list can be used. Retry ")
+            Products.select(self, categories_instance)
 
        
