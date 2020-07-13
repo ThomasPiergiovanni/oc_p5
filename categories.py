@@ -37,12 +37,16 @@ class Categories:
             rank += 1 
 
     def select(self):
-        question= input("Which category you want to check products for ?")
+        question= input("Which category you want to check products for?\n")
         question = int(question)
-        for elt in self.categories_with_rank:
-            if elt[2] == question:
-                print ("You\'ve choosen the ", elt[1], "category") 
-                self.selected_category = elt[0]
+        if question <= len(self.categories_with_rank):
+            for elt in self.categories_with_rank:
+                if elt[2] == question:
+                    print ("You\'ve choosen the ", elt[1], "category") 
+                    self.selected_category = elt[0]
+        else:
+            print ("Only numbers included in above list can be used. Retry ")
+            Categories.select(self)
 
 
 
