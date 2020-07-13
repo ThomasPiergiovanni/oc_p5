@@ -8,56 +8,30 @@ class Database:
         self.connection = mysql.connector.connect\
         (host = config.HOST, user = config.USER, password = config.PASSWORD)
         self.cursor = self.connection.cursor()
-        self.tables_rows_list =[]
-
-    def create_database(self):
-        try:
-            self.cursor.execute("CREATE DATABASE IF NOT EXISTS %s CHARACTER\
-            SET 'utf8'"% config.DATABASE_NAME)
-        except Exception as error:
-            print(f"The following error occurred: {error}")
-            pass
-            
+        self.database_status = False
+        self.tables_status = False
 
 
-    def test(self):
-        for table in self.tables_rows_list:
-            table_rows = table [0][0]
-            table_rows = int(table_rows)
+    def check_database(self):
 
-            print (table_rows)
-        # if result > 1:
-        #     print ("category ok")
-        # else:
-        #     print ("bug")
-
+        self.cursor.execute("SHOW DATABASES")
+        databases = self.cursor.fetchall()
+        database_exists = [database[0] for database in databases if database[0] == "p5"]
+        if database_exists:
+            self.database_status = True
 
     def check_tables (self):
         querries = ("category","product")
         for querry in querries:
             self.cursor.execute("SELECT * FROM p5.%s"% querry)
             self.cursor.fetchall()
-            result = self.cursor.rowcount
-            print(result)
+            if self.cursor.rowcount > 1:
+                self.tables_status = True
 
-
-
-    def check_product (self):
-        check = "SELECT * FROM p5.product"
-        self.cursor.execute(check)
-        self.cursor.fetchall()
-        result = self.cursor.rowcount
-        print(result)
+        print (self.tables_status)
 
     def create(self):
         with open(config.SQL_FILE, "r") as file:
-            content = file.read()
-            querries = content.split(";")
-            for querry in querries:
-                self.cursor.execute(querry)
-
-    def create_test(self):
-        with open("test.sql", "r") as file:
             content = file.read()
             querries = content.split(";")
             for querry in querries:
