@@ -53,11 +53,19 @@ class Substitutes:
 
     def select(self):
         question= input("Which substitute you want to choose ?")
-        question = int(question)
-        for elt in self.substitutes_proposed_with_rank:
-            if elt[3] == question:
-                print ("You\'ve choosen the ", elt[1], "product as a substitute") 
-                self.selected_substitute = elt[0]
+        try:
+            question = int(question)
+            if question <= len(self.substitutes_proposed_with_rank):
+                for elt in self.substitutes_proposed_with_rank:
+                    if elt[3] == question:
+                        print ("You\'ve choosen the ", elt[1], "product as a substitute") 
+                        self.selected_substitute = elt[0]
+            else:
+                print ("Only numbers included in above list can be used. Retry ")
+                Substitutes.select(self)
+        except:
+            print ("Only numbers can be used. Retry ")
+            Substitutes.select(self)
 
     def register(self):
         question= input("Do you want to register that choice (y/n)?")
