@@ -16,7 +16,7 @@ class Database:
         categories_count = self.cursor.fetchall()  
 
         if categories_count [0][0] == 5:
-            print ("ok")
+            print ("category ok")
         else:
             print ("bug")
 
