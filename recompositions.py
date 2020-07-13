@@ -28,6 +28,9 @@ class Recompositions:
             self.recompositions_list.append(recomposition_instance)
 
     def show (self):
-
+        rank = 1
         for elt in self.recompositions_list:
-            print(elt.product_product_name, "-", elt.substitute_product_name, "-", elt.category_name)
+            print(rank,"."\
+            "\n    Product name:", elt.product_product_name,\
+            "\n    Substitute name:", elt.substitute_product_name)
+            rank += 1

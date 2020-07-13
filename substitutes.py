@@ -1,6 +1,7 @@
 #-*-coding:utf-8 -*
 
 import substitute
+import database
 
 class Substitutes:
     def __init__(self):
@@ -21,13 +22,13 @@ class Substitutes:
             self.substitutes_registered_list.append(substitute_instance)
 
 
-    def filter(self, product_instance):
+    def filter(self, products_instance):
         selected_product_nutriscore = [elt.nutriscore_grade for elt in\
-        product_instance.selected_products if elt.id_product ==\
-        product_instance.selected_product]
+        products_instance.selected_products if elt.id_product ==\
+        products_instance.selected_product]
         selected_product_nutriscore = selected_product_nutriscore [0]
-        for elt in product_instance.selected_products:
-            if elt.id_product != product_instance.selected_product and\
+        for elt in products_instance.selected_products:
+            if elt.id_product != products_instance.selected_product and\
             elt.nutriscore_grade < selected_product_nutriscore:
                 self.substitutes_proposed_list.append(elt)
 

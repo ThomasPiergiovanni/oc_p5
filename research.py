@@ -25,4 +25,5 @@ class Research:
         substitutes.Substitutes.show(substitutes_instance)
         substitutes.Substitutes.select(substitutes_instance)
         substitutes.Substitutes.register(substitutes_instance)
+        database.Database.insert_substitute(database_instance, products_instance, substitutes_instance)
 
