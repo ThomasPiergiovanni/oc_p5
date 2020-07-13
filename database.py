@@ -8,27 +8,15 @@ class Database:
         self.connection = mysql.connector.connect\
         (host = config.HOST, user = config.USER, password = config.PASSWORD)
         self.cursor = self.connection.cursor()
-        self.database_status = False
-        self.tables_status = False
+        self.status = False
 
-
-    def check_database(self):
-
-        self.cursor.execute("SHOW DATABASES")
-        databases = self.cursor.fetchall()
-        database_exists = [database[0] for database in databases if database[0] == "p5"]
-        if database_exists:
-            self.database_status = True
-
-    def check_tables (self):
+    def check(self):
         querries = ("category","product")
         for querry in querries:
             self.cursor.execute("SELECT * FROM p5.%s"% querry)
             self.cursor.fetchall()
             if self.cursor.rowcount > 1:
-                self.tables_status = True
-
-        print (self.tables_status)
+                self.status = True
 
     def create(self):
         with open(config.SQL_FILE, "r") as file:
