@@ -5,18 +5,41 @@ import config
 
 class Database:
     def __init__(self):   
-        self.database = mysql.connector.connect\
+        self.connection = mysql.connector.connect\
         (host = config.HOST, user = config.USER, password = config.PASSWORD)
-        self.cursor = self.database.cursor()
+        self.cursor = self.connection.cursor()
+        self.tables_rows_list =[]
 
-    def check (self):
-        dbase = "USE p5"
-        nb_category = "SELECT COUNT(*) AS nb_categories FROM p5.category"
-        self.cursor.execute(nb_category)
-        categories_count = self.cursor.fetchall()  
+    def test(self):
+        for table in self.tables_rows_list:
+            table_rows = table [0][0]
+            table_rows = int(table_rows)
 
-        if categories_count [0][0] == 5:
-            print ("category ok")
+            print (table_rows)
+        # if result > 1:
+        #     print ("category ok")
+        # else:
+        #     print ("bug")
+
+
+    def check_tables (self):
+        check = \
+        "SELECT * FROM p5.category"
+        self.cursor.execute(check)
+        self.cursor.fetchall()
+        result = self.cursor.rowcount
+        print(result)
+        #self.tables_rows_list.append (result)
+
+
+    def check_product (self):
+        check = "SELECT COUNT(*) AS nb_products FROM p5.product"
+        self.cursor.execute(check)
+        result = self.cursor.fetchall()
+        result = result [0][0]
+        result = int(result)
+        if result > 1:
+            print ("product ok")
         else:
             print ("bug")
 
@@ -30,7 +53,7 @@ class Database:
     def delete(self):
         statement = "DROP DATABASE IF EXISTS p5"
         self.cursor.execute(statement)
-        self.database.commit()
+        self.connection.commit()
 
     def insert_categories(self, download_instance):
         statement = "INSERT INTO p5.category (id_origin, name,\
@@ -44,7 +67,7 @@ class Database:
             else:
                 pass
         self.cursor.executemany(statement, value)
-        self.database.commit()
+        self.connection.commit()
 
     def insert_products(self, download_instance, category):
         statement = "INSERT INTO p5.product (id_origin, product_name,\
@@ -63,7 +86,7 @@ class Database:
                 print(f"The following error occurred: {error}")
                 pass
         self.cursor.executemany(statement, value)
-        self.database.commit()
+        self.connection.commit()
 
     def insert_substitute(self,  products_instance, substitutes_instance):
         if substitutes_instance.registration:
@@ -71,7 +94,7 @@ class Database:
             substitute_product_id) VALUES (%s, %s)"
             value = [products_instance.selected_product, substitutes_instance.selected_substitute]
             self.cursor.execute(statement, value)
-            self.database.commit() 
+            self.connection.commit() 
 
 
 
