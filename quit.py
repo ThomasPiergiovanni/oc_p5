@@ -2,13 +2,14 @@
 
 import menu
 import database
+import sys
 
 class Quit:
     def show():
         question = input("Do you want to really want to quit the programm (y/n)?")
         question = str(question)
         if question in "yY":
-            print("Good bye !") 
+            sys.exit("Programm is terminated")
         elif question in "nN":
             database_instance= database.Database()
             menu.Menu.show(database_instance)

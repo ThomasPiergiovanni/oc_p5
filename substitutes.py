@@ -47,21 +47,9 @@ class Substitutes:
                 self.substitutes_proposed_with_rank.append(substitutes_proposed_with_rank)
                 rank += 1
         else: 
-            question = input("There is no healthier substitute for that product.\
-            \nDo you want to search for another product (y/n)?")
-            # try :
-            question = str(question)
-            if question in "yY":
-                database_instance= database.Database()
-                research.Research.research(database_instance) 
-            elif question in "nN":
-                database_instance= database.Database()
-                menu.Menu.show(database_instance)
-            else:
-                print ("Only letter y/n can be used. Retry ")
-                Substitutes.show(self)
-            # except Exception as error:
-                # print (error)
+            print("There is no healthier substitute for that product")
+            database_instance= database.Database()
+            menu.Menu.show(database_instance)
 
     def select(self):
         question= input("Which substitute you want to choose ?")
