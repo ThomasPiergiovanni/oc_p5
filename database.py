@@ -10,6 +10,16 @@ class Database:
         self.cursor = self.connection.cursor()
         self.tables_rows_list =[]
 
+    def create_database(self):
+        try:
+            self.cursor.execute("CREATE DATABASE IF NOT EXISTS %s CHARACTER\
+            SET 'utf8'"% config.DATABASE_NAME)
+        except Exception as error:
+            print(f"The following error occurred: {error}")
+            pass
+            
+
+
     def test(self):
         for table in self.tables_rows_list:
             table_rows = table [0][0]
@@ -25,21 +35,11 @@ class Database:
     def check_tables (self):
         querries = ("category","product")
         for querry in querries:
-            # statement ="SELECT * FROM p5.%s"
-            # value = querry.replace("\"","")
             self.cursor.execute("SELECT * FROM p5.%s"% querry)
             self.cursor.fetchall()
             result = self.cursor.rowcount
             print(result)
-            #self.tables_rows_list.append (result)
 
-        # querries = ["SELECT * FROM p5.category", "SELECT * FROM p5.product"]
-        # for querry in querries:
-        #     self.cursor.execute(querry)
-        #     self.cursor.fetchall()
-        #     result = self.cursor.rowcount
-        #     print(result)
-        #     #self.tables_rows_list.append (result)
 
 
     def check_product (self):
@@ -56,6 +56,13 @@ class Database:
             for querry in querries:
                 self.cursor.execute(querry)
 
+    def create_test(self):
+        with open("test.sql", "r") as file:
+            content = file.read()
+            querries = content.split(";")
+            for querry in querries:
+                self.cursor.execute(querry)
+
     def delete(self):
         statement = "DROP DATABASE IF EXISTS p5"
         self.cursor.execute(statement)
@@ -63,7 +70,7 @@ class Database:
 
     def insert_categories(self, download_instance):
         statement = "INSERT INTO p5.category (id_origin, name,\
-         url) VALUES (%s, %s, %s)"
+        url) VALUES (%s, %s, %s)"
         value = []
         for elt in download_instance.source_categories["tags"]:
             if elt["id"] in config.SELECTED_CATEGORIES and elt["name"] and\
