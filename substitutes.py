@@ -2,6 +2,8 @@
 
 import substitute
 import database
+import research
+import menu
 
 class Substitutes:
     def __init__(self):
@@ -33,16 +35,33 @@ class Substitutes:
                 self.substitutes_proposed_list.append(elt)
 
     def show(self):
-        print ("SUBSTITUTES:")
-        sorted_substitutes = sorted(self.substitutes_proposed_list, key = lambda \
-        product : product.nutriscore_grade)
-        rank = 1
-        for elt in sorted_substitutes:
-            print (rank ," - ",elt.product_name, " - ", elt.nutriscore_grade)
-            substitutes_proposed_with_rank=(elt.id_product,\
-            elt.product_name, elt.nutriscore_grade, rank)
-            self.substitutes_proposed_with_rank.append(substitutes_proposed_with_rank)
-            rank += 1
+        if self.substitutes_proposed_list:
+            print ("SUBSTITUTES:")
+            sorted_substitutes = sorted(self.substitutes_proposed_list, key = lambda \
+            product : product.nutriscore_grade)
+            rank = 1
+            for elt in sorted_substitutes:
+                print (rank ," - ",elt.product_name, " - ", elt.nutriscore_grade)
+                substitutes_proposed_with_rank=(elt.id_product,\
+                elt.product_name, elt.nutriscore_grade, rank)
+                self.substitutes_proposed_with_rank.append(substitutes_proposed_with_rank)
+                rank += 1
+        else: 
+            question = input("There is no healthier substitute for that product.\
+            \nDo you want to search for another product (y/n)?")
+            # try :
+            question = str(question)
+            if question in "yY":
+                database_instance= database.Database()
+                research.Research.research(database_instance) 
+            elif question in "nN":
+                database_instance= database.Database()
+                menu.Menu.show(database_instance)
+            else:
+                print ("Only letter y/n can be used. Retry ")
+                Substitutes.show(self)
+            # except Exception as error:
+                # print (error)
 
     def select(self):
         question= input("Which substitute you want to choose ?")
@@ -58,7 +77,10 @@ class Substitutes:
         if question in "yY":
             self.registration = True
             print("Substitute product has been registered !") 
-        elif question not in "nN":
+        elif question in "nN":
+            database_instance= database.Database()
+            menu.Menu.show(database_instance)
+        else:
             print ("Only letter y/n can be used. Retry ")
             Substitutes.register(self)
 

@@ -18,7 +18,7 @@ class Menu:
             question = int(question)
             if question == 1:
                 research.Research.research(database_instance)
-                Menu.show(database_instance)
+                Menu.show(database_i1nstance)
             elif question == 2:
                 registration.Registration.regi(database_instance)
                 Menu.show(database_instance)

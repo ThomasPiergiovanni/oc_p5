@@ -1,6 +1,7 @@
 #-*-coding:utf-8 -*
 
-import main
+import menu
+import database
 
 class Quit:
     def show():
@@ -9,7 +10,8 @@ class Quit:
         if question in "yY":
             print("Good bye !") 
         elif question in "nN":
-            main.main()
+            database_instance= database.Database()
+            menu.Menu.show(database_instance)
         else :
             print ("Only letter y/n can be used. Retry ")
             Quit.show()
