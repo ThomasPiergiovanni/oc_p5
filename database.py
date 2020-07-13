@@ -23,25 +23,31 @@ class Database:
 
 
     def check_tables (self):
-        check = \
-        "SELECT * FROM p5.category"
+        querries = ("category","product")
+        for querry in querries:
+            # statement ="SELECT * FROM p5.%s"
+            # value = querry.replace("\"","")
+            self.cursor.execute("SELECT * FROM p5.%s"% querry)
+            self.cursor.fetchall()
+            result = self.cursor.rowcount
+            print(result)
+            #self.tables_rows_list.append (result)
+
+        # querries = ["SELECT * FROM p5.category", "SELECT * FROM p5.product"]
+        # for querry in querries:
+        #     self.cursor.execute(querry)
+        #     self.cursor.fetchall()
+        #     result = self.cursor.rowcount
+        #     print(result)
+        #     #self.tables_rows_list.append (result)
+
+
+    def check_product (self):
+        check = "SELECT * FROM p5.product"
         self.cursor.execute(check)
         self.cursor.fetchall()
         result = self.cursor.rowcount
         print(result)
-        #self.tables_rows_list.append (result)
-
-
-    def check_product (self):
-        check = "SELECT COUNT(*) AS nb_products FROM p5.product"
-        self.cursor.execute(check)
-        result = self.cursor.fetchall()
-        result = result [0][0]
-        result = int(result)
-        if result > 1:
-            print ("product ok")
-        else:
-            print ("bug")
 
     def create(self):
         with open(config.SQL_FILE, "r") as file:
