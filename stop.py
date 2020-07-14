@@ -1,5 +1,5 @@
 #-*-coding:utf-8 -*
-
+import sys
 import initialisation
 import tests
 
@@ -8,7 +8,7 @@ class Stop:
         self.question = None
 
     def select(self):
-        self.question = input("Do you really want to quit"\
+        self.question = input("Do you really want to quit "\
         "the programm (y/n)?\n")
 
     def verify (self, tests_instance):
@@ -19,15 +19,14 @@ class Stop:
             Stop.actions(self)
         else:
             print ("Only letters can be used. Retry")
-            stop_instance = Stop()
-            Stop.select(self)
+            initialisation.Initialisation.initiate()
 
     def actions(self):       
         self.question = str(self.question)
         if self.question in "yY":
-            print ("Goodbye")
+            sys.exit("Goodbye")
         elif self.question in "nN":
             initialisation.Initialisation.initiate()
         else :
             print ("Only letter y/n can be used. Retry")
-            Stop.actions(self)
+            initialisation.Initialisation.initiate()

@@ -7,7 +7,7 @@ import initialisation
 
 class Research:
 
-    def research(menu_instance, database_instance):
+    def research(menu_instance, database_instance, tests_instance):
         categories_instance = categories.Categories()
         categories.Categories.instanciate_category(categories_instance,\
         database_instance)
@@ -19,6 +19,9 @@ class Research:
 
         categories.Categories.show(categories_instance)
         categories.Categories.select(categories_instance)
+        categories.Categories.verify(categories_instance, tests_instance)
+        categories.Categories.process(categories_instance, tests_instance)
+
 
         products.Products.show(products_instance, categories_instance)
         products.Products.select(products_instance, categories_instance)
