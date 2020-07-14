@@ -70,6 +70,3 @@ class Database:
             value = [products_instance.selected_product, substitutes_instance.selected_substitute]
             self.cursor.execute(statement, value)
             self.connection.commit() 
-
-
-

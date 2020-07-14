@@ -5,8 +5,8 @@ import products
 import substitutes
 import recompositions
 
-class Registration:
-    def regi(database_instance):
+class Record:
+    def get(database_instance):
         categories_instance = categories.Categories()
         categories.Categories.instanciate_category(categories_instance, database_instance)
 

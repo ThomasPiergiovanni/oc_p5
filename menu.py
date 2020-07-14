@@ -2,7 +2,7 @@
 
 import database
 import research
-import registration
+import record
 import reset
 import quit
 
@@ -20,7 +20,7 @@ class Menu:
                 research.Research.research(database_instance)
                 Menu.show(database_i1nstance)
             elif question == 2:
-                registration.Registration.regi(database_instance)
+                record.Record.get(database_instance)
                 Menu.show(database_instance)
             elif question == 3:
                  reset.Reset.reset(database_instance)

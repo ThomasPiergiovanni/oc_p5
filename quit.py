@@ -2,8 +2,6 @@
 
 import menu
 import database
-import main
-import sys
 
 class Quit:
     def show():
