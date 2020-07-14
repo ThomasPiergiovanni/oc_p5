@@ -3,7 +3,7 @@
 import substitute
 import database
 import research
-import menu
+import initialisation
 
 class Substitutes:
     def __init__(self):
@@ -34,7 +34,7 @@ class Substitutes:
             elt.nutriscore_grade < selected_product_nutriscore:
                 self.substitutes_proposed_list.append(elt)
 
-    def show(self):
+    def show(self, menu_instance):
         if self.substitutes_proposed_list:
             print ("SUBSTITUTES:")
             sorted_substitutes = sorted(self.substitutes_proposed_list, key = lambda \
@@ -48,8 +48,7 @@ class Substitutes:
                 rank += 1
         else: 
             print("There is no healthier substitute for that product")
-            database_instance= database.Database()
-            menu.Menu.show(database_instance)
+            initialisation.Initialisation.initiate()
 
     def select(self):
         question= input("Which substitute you want to choose ?")
@@ -67,15 +66,14 @@ class Substitutes:
             print ("Only numbers can be used. Retry ")
             Substitutes.select(self)
 
-    def register(self):
+    def register(self, menu_instance):
         question= input("Do you want to register that choice (y/n)?")
         question = str(question)
         if question in "yY":
             self.registration = True
             print("Substitute product has been registered !") 
         elif question in "nN":
-            database_instance= database.Database()
-            menu.Menu.show(database_instance)
+            initialisation.Initialisation.initiate()
         else:
             print ("Only letter y/n can be used. Retry ")
             Substitutes.register(self)
