@@ -2,6 +2,7 @@
 
 import menu
 import database
+import main
 import sys
 
 class Quit:
@@ -9,7 +10,7 @@ class Quit:
         question = input("Do you want to really want to quit the programm (y/n)?")
         question = str(question)
         if question in "yY":
-            sys.exit("Programm is terminated")
+            print ("Goodbye")
         elif question in "nN":
             database_instance= database.Database()
             menu.Menu.show(database_instance)

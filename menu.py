@@ -22,8 +22,8 @@ class Menu:
             elif question == 2:
                 registration.Registration.regi(database_instance)
                 Menu.show(database_instance)
-            # elif question == 3:
-            #     reset.Reset.reset(database_instance)
+            elif question == 3:
+                 reset.Reset.reset(database_instance)
             elif question == 4:
                 quit.Quit.show()
             else :
