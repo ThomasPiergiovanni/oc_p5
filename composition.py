@@ -1,6 +1,6 @@
 #-*-coding:utf-8 -*
 
-class Recomposition:
+class Composition:
     def __init__(self, product, substitute, category):
         self.product_product_id = product.id_product
         self.product_product_name = product.product_name

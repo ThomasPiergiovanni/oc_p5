@@ -1,12 +1,12 @@
 #-*-coding:utf-8 -*
 
-import recomposition
+import composition
 
-class Recompositions:
+class Compositions:
     def __init__(self):
-        self.recompositions_list=[]
+        self.compositions_list=[]
 
-    def instanciate_recomposition(self,substitutes_instance, categories_instance, products_instance):
+    def instanciate_composition(self,substitutes_instance, categories_instance, products_instance):
         for substitute in substitutes_instance.substitutes_registered_list:
 
             product  = [product for product in\
@@ -22,14 +22,14 @@ class Recompositions:
             product[0].category_id]
 
 
-            recomposition_instance = recomposition.Recomposition(\
+            composition_instance = composition.Recomposition(\
             product[0], substitute[0], category [0])
 
-            self.recompositions_list.append(recomposition_instance)
+            self.compositions_list.append(composition_instance)
 
     def show (self):
         rank = 1
-        for elt in self.recompositions_list:
+        for elt in self.compositions_list:
             print(rank,"."\
             "\n    Product name:", elt.product_product_name,\
             "\n    Substitute name:", elt.substitute_product_name)

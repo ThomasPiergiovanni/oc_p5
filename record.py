@@ -3,7 +3,7 @@
 import categories
 import products
 import substitutes
-import recompositions
+import compositions
 
 class Record:
     def get(database_instance):
@@ -16,8 +16,8 @@ class Record:
         substitutes_instance = substitutes.Substitutes()
         substitutes.Substitutes.instanciate_substitute(substitutes_instance, database_instance)
 
-        recompositions_instance = recompositions.Recompositions()
-        recompositions.Recompositions.instanciate_recomposition(recompositions_instance,\
+        compositions_instance = compositions.Compositions()
+        compositions.Compositions.instanciate_composition(recompositions_instance,\
         substitutes_instance, categories_instance, products_instance)
         
-        recompositions.Recompositions.show(recompositions_instance)
+        compositions.Compositions.show(compositions_instance)
