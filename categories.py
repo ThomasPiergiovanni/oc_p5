@@ -31,9 +31,9 @@ class Categories:
             self.categories_list.append(category_instance)
 
     def process (self, tests_instance):
-        Categories.show(categories_instance)
-        Categories.select(categories_instance)
-        Categories.verify(categories_instance, tests_instance)
+        Categories.show(self)
+        Categories.select(self)
+        Categories.verify(self, tests_instance)
 
     def show(self):
         print ("CATEGORIES:")
