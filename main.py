@@ -4,7 +4,7 @@ import initialisation
 import quit
 
 def main():
-    initialisation.Initialisation.initialize()
+    initialisation.Initialisation.initiate()
     
 if __name__=="__main__":
     main()

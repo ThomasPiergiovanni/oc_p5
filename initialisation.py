@@ -3,8 +3,8 @@
 import menu
 import database
 
-class Initialisation:
-    def initialize():
+class Initilaisation:
+    def initiate():
         database_instance= database.Database()
         database.Database.check(database_instance)
         if database_instance.status:
