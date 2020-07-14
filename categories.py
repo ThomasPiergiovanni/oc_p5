@@ -1,6 +1,5 @@
 #-*-coding:utf-8 -*
 
-import operator
 import mysql.connector
 
 import config
@@ -56,6 +55,7 @@ class Categories:
         else:
             print ("Only numbers can be used. Retry")
             initialisation.Initialisation.initiate()
+            Categories.process(self, tests_instance)
 
     def actions(self):
         self.question = int(self.question)

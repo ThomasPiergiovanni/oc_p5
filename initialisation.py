@@ -8,7 +8,7 @@ import reset
 
 class Initialisation:
     def initiate():
-        database_instance= database.Database()
+        database_instance = database.Database()
         database.Database.check(database_instance)
         tests_instance = tests.Tests()
         if database_instance.status:
