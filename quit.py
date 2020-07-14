@@ -5,7 +5,7 @@ import database
 
 class Quit:
     def show():
-        question = input("Do you want to really want to quit the programm (y/n)?")
+        question = input("Do you want to really want to quit the programm (y/n)?\n")
         question = str(question)
         if question in "yY":
             print ("Goodbye")

@@ -22,7 +22,7 @@ class Compositions:
             product[0].category_id]
 
 
-            composition_instance = composition.Recomposition(\
+            composition_instance = composition.Composition(\
             product[0], substitute[0], category [0])
 
             self.compositions_list.append(composition_instance)

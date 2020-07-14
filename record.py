@@ -17,7 +17,7 @@ class Record:
         substitutes.Substitutes.instanciate_substitute(substitutes_instance, database_instance)
 
         compositions_instance = compositions.Compositions()
-        compositions.Compositions.instanciate_composition(recompositions_instance,\
+        compositions.Compositions.instanciate_composition(compositions_instance,\
         substitutes_instance, categories_instance, products_instance)
         
         compositions.Compositions.show(compositions_instance)
