@@ -33,7 +33,9 @@ class Menu:
     def actions(self, database_instance, tests_instance) :
         self.question = int(self.question)
         if self.question == 1:
-            research.Research.research(self, database_instance, tests_instance)
+            research_instance = research.Research()
+            research.Research.instanciate(research_instance, database_instance)
+            research.Research.research(research_instance, database_instance, tests_instance)
         elif self.question == 2:
             record.Record.get(database_instance)
         elif self.question == 3:

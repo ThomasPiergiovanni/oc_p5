@@ -34,7 +34,7 @@ class Substitutes:
             elt.nutriscore_grade < selected_product_nutriscore:
                 self.substitutes_proposed_list.append(elt)
 
-    def show(self, menu_instance):
+    def show(self):
         if self.substitutes_proposed_list:
             print ("SUBSTITUTES:")
             sorted_substitutes = sorted(self.substitutes_proposed_list, key = lambda \
@@ -66,7 +66,7 @@ class Substitutes:
             print ("Only numbers can be used. Retry ")
             Substitutes.select(self)
 
-    def register(self, menu_instance):
+    def register(self):
         question= input("Do you want to register that choice (y/n)?")
         question = str(question)
         if question in "yY":

@@ -7,27 +7,34 @@ import initialisation
 
 class Research:
 
-    def research(menu_instance, database_instance, tests_instance):
-        categories_instance = categories.Categories()
-        categories.Categories.instanciate_category(categories_instance,\
+    def __init__(self):
+        self.categories_instance = None
+        self.products_instance = None
+        self.substitutes_instance = None
+
+    def instanciate(self, database_instance):
+        self.categories_instance = categories.Categories()
+        categories.Categories.instanciate_category(self.categories_instance,\
         database_instance)
+        self.products_instance = products.Products()
+        products.Products.instanciate_product(self.products_instance,\
+        database_instance)
+        self.substitutes_instance = substitutes.Substitutes()
 
-        products_instance = products.Products()
-        products.Products.instanciate_product(products_instance, database_instance)
+    def research(self, database_instance, tests_instance):
 
-        substitutes_instance = substitutes.Substitutes()
+        categories.Categories.process(self.categories_instance, tests_instance)
 
-        categories.Categories.process(categories_instance, tests_instance)
+        products.Products.show(self.products_instance, self.categories_instance)
+        products.Products.select(self.products_instance, self.categories_instance)
 
-        products.Products.show(products_instance, categories_instance)
-        products.Products.select(products_instance, categories_instance)
-
-        substitutes.Substitutes.filter(substitutes_instance, products_instance)
-        substitutes.Substitutes.show(substitutes_instance, menu_instance)
-        substitutes.Substitutes.select(substitutes_instance)
-        substitutes.Substitutes.register(substitutes_instance, menu_instance)
+        substitutes.Substitutes.filter(self.substitutes_instance,\
+        self.products_instance)
+        substitutes.Substitutes.show(self.substitutes_instance)
+        substitutes.Substitutes.select(self.substitutes_instance)
+        substitutes.Substitutes.register(self.substitutes_instance)
         database.Database.insert_substitute(database_instance,\
-        products_instance, substitutes_instance)
+        self.products_instance, self.substitutes_instance)
 
         initialisation.Initialisation.initiate()
 
