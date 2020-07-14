@@ -23,10 +23,11 @@ class Research:
 
     def research(self, database_instance, tests_instance):
 
-        categories.Categories.process(self.categories_instance, tests_instance)
+        categories.Categories.process(self.categories_instance,\
+        tests_instance)
 
-        products.Products.show(self.products_instance, self.categories_instance)
-        products.Products.select(self.products_instance, self.categories_instance)
+        products.Products.process(self.products_instance,\
+        self.categories_instance, tests_instance)
 
         substitutes.Substitutes.filter(self.substitutes_instance,\
         self.products_instance)

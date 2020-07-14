@@ -2,6 +2,8 @@
 
 import config
 import product
+import tests
+import initialisation
 
 
 class Products():
@@ -9,7 +11,9 @@ class Products():
         self.source_data = {}
         self.products_list = []
         self.selected_products = []
+        self.sorted_products = []
         self.products_with_rank =[]
+        self.question = None
         self.selected_product = 0
 
     def instanciate_product(self, database_instance):
@@ -27,35 +31,49 @@ class Products():
             product_name, nutriscore_grade, category_id, url, stores)        
             self.products_list.append(product_instance)
 
-    def show(self, categories_instance):
+    def process (self, categories_instance, tests_instance):
+        Products.organize(self, categories_instance)
+        Products.show(self)
+        Products.select(self)
+        Products.verify(self, tests_instance)
+
+    def organize(self, categories_instance):
         print ("PRODUCTS:")
         for elt in self.products_list:
             if elt.category_id == categories_instance.selected_category:
                 self.selected_products.append(elt)
-                sorted_products = sorted(self.selected_products, key = lambda \
+                self.sorted_products = sorted(self.selected_products, key = lambda \
                 product : product.product_name)
-        
+
+    def show(self):
         rank = 1
-        for elt in sorted_products:
+        for elt in self.sorted_products:
             print (rank ," - ",elt.product_name)
             product_with_rank=(elt.id_product, elt.product_name, rank)
             self.products_with_rank.append(product_with_rank)
             rank += 1 
 
-    def select(self, categories_instance):
-        question= input("Which product you want to find a substitute for?\n")
-        try:
-            question = int(question)
-            if question <= len(self.products_with_rank):
-                for elt in self.products_with_rank:
-                    if elt[2] == question:
-                        print ("You\'ve choosen the \"", elt[1], "\" product") 
-                        self.selected_product = elt[0]
-            else:
-                print ("Only numbers included in above list can be used. Retry ")
-                Products.select(self, categories_instance)
-        except:
-            print ("Only numbers can be used. Retry ")
-            Products.select(self, categories_instance)
+    def select(self):
+        self.question= input("Which product you want to find a substitute for?\n")
+
+    def verify(self, tests_instance):
+        tests.Tests.test_integer(tests_instance, self.question)
+        if tests_instance.valid:
+            Products.actions(self)
+        else:
+            print ("Only numbers can be used. Retry")
+            initialisation.Initialisation.initiate()
+
+    def actions(self):
+        self.question = int(self.question)
+        if self.question <= len(self.products_with_rank):
+            for elt in self.products_with_rank:
+                if elt[2] == self.question:
+                    print ("You\'ve choosen the \"", elt[1], "\" product") 
+                    self.selected_product = elt[0]
+        else:
+            print ("Only numbers included in above list can be used. Retry ")
+            initialisation.Initialisation.initiate()
+
 
        
