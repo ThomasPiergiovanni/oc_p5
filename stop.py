@@ -8,7 +8,7 @@ class Stop:
         self.question = None
 
     def select(self):
-        self.question = input("Do you really want to quit "\
+        self.question = input("Do you really want to quit"\
         "the programm (y/n)?\n")
 
     def verify (self, tests_instance):
@@ -30,4 +30,4 @@ class Stop:
             initialisation.Initialisation.initiate()
         else :
             print ("Only letter y/n can be used. Retry")
-            Stop.select(self)
+            Stop.actions(self)

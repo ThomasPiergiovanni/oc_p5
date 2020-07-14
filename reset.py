@@ -4,10 +4,12 @@ import database
 import download
 import categories
 import products
+import initialisation
 
 class Reset:
 
     def reset(database_instance):
+        database.Database.delete(database_instance)
         database.Database.create(database_instance)
         download_instance = download.Download()
         download.Download.categories(download_instance)
@@ -19,4 +21,5 @@ class Reset:
             database.Database.insert_products(database_instance, download_instance,category)
         products_instance = products.Products()
         products.Products.instanciate_product(products_instance, database_instance)
+        initialisation.Initialisation.initiate()
 

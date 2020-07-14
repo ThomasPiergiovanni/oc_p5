@@ -3,6 +3,7 @@ import categories
 import products
 import substitutes
 import database
+import initialisation
 
 class Research:
 
@@ -28,4 +29,6 @@ class Research:
         substitutes.Substitutes.register(substitutes_instance, menu_instance)
         database.Database.insert_substitute(database_instance,\
         products_instance, substitutes_instance)
+
+        initialisation.Initialisation.initiate()
 

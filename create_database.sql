@@ -23,6 +23,6 @@ CREATE TABLE IF NOT EXISTS p5.product(
 CREATE TABLE IF NOT EXISTS p5.substitute(
     product_product_id SMALLINT UNSIGNED NOT NULL,
     substitute_product_id SMALLINT UNSIGNED NOT NULL,
-    FOREIGN KEY (product_product_id) REFERENCES p5.products(id_product),
-    FOREIGN KEY (substitute_product_id) REFERENCES p5.products(id_product)
+    FOREIGN KEY (product_product_id) REFERENCES p5.product(id_product),
+    FOREIGN KEY (substitute_product_id) REFERENCES p5.product(id_product)
     )ENGINE=INNODB;

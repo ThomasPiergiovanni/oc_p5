@@ -5,7 +5,7 @@ import database
 import research
 import record
 import reset
-import stop
+import abandon
 import initialisation
 
 
@@ -20,14 +20,15 @@ class Menu:
         \n 3 - Reinitiate the database \
         \n 4 - Quit the program \n")
 
-    def test(self, database_instance, tests_instance):
+    def verify(self, tests_instance):
         tests.Tests.test_integer(tests_instance, self.question)
+
+    def process (self, database_instance, tests_instance):
         if tests_instance.valid:
             Menu.actions(self, database_instance, tests_instance)
         else:
-            print ("Only numbers can be used. Retry ")
-            menu_instance = Menu()
-            Menu.select(self)
+            print("Only numbers can be used. Retry")
+            initialisation.Initialisation.initiate()
 
     def actions(self, database_instance, tests_instance) :
         self.question = int(self.question)
@@ -36,15 +37,9 @@ class Menu:
         elif self.question == 2:
             record.Record.get(database_instance)
         elif self.question == 3:
-             reset.Reset.reset(database_instance)
-             menu_instance = Menu()
-             Menu.select(self)
+            reset.Reset.reset(database_instance)
         elif self.question == 4:
-            stop_instance = stop.Stop()
-            stop.Stop.select(stop_instance)
-            stop.Stop.verify(stop_instance, tests_instance)
-            stop.Stop.process(stop_instance, tests_instance)
-
+            abandon.Abandon.abandon(tests_instance)
         else :
             print ("Only number from 1 to 4 can be used. Retry ")
             initialisation.Initialisation.initiate()
