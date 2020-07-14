@@ -30,6 +30,11 @@ class Categories:
             name, url)
             self.categories_list.append(category_instance)
 
+    def process (self, tests_instance):
+        Categories.show(categories_instance)
+        Categories.select(categories_instance)
+        Categories.verify(categories_instance, tests_instance)
+
     def show(self):
         print ("CATEGORIES:")
         sorted_categories = sorted(self.categories_list, key = lambda \
@@ -46,8 +51,6 @@ class Categories:
 
     def verify(self, tests_instance):
         tests.Tests.test_integer(tests_instance, self.question)
-
-    def process (self, tests_instance):
         if tests_instance.valid:
             Categories.actions(self)
         else:

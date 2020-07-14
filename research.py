@@ -17,11 +17,7 @@ class Research:
 
         substitutes_instance = substitutes.Substitutes()
 
-        categories.Categories.show(categories_instance)
-        categories.Categories.select(categories_instance)
-        categories.Categories.verify(categories_instance, tests_instance)
         categories.Categories.process(categories_instance, tests_instance)
-
 
         products.Products.show(products_instance, categories_instance)
         products.Products.select(products_instance, categories_instance)
