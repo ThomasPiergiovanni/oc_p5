@@ -41,10 +41,9 @@ class Menu:
              Menu.select(self)
         elif self.question == 4:
             stop_instance = stop.Stop()
-            print("here1")
             stop.Stop.select(stop_instance)
-            print("here2")
-            stop.Stop.test(stop_instance, tests_instance)
+            stop.Stop.verify(stop_instance, tests_instance)
+            stop.Stop.process(stop_instance, tests_instance)
 
         else :
             print ("Only number from 1 to 4 can be used. Retry ")
