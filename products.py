@@ -35,7 +35,7 @@ class Products():
         Products.organize(self, categories_instance)
         Products.show(self)
         Products.select(self)
-        Products.save(self)
+        Products.execute(self)
 
     def organize(self, categories_instance):
         print ("PRODUCTS:")
@@ -59,7 +59,7 @@ class Products():
         if tests_instance.valid:
             self.select_input_valid = True
 
-    def save(self):
+    def execute(self):
         if self.select_input_valid:
             self.question = int(self.question)
             if self.question <= len(self.products_list):
