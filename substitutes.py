@@ -7,11 +7,12 @@ import initialisation
 
 class Substitutes:
     def __init__(self):
-        self.substitutes_proposed_list=[]
-        self.substitutes_proposed_with_rank=[]
-        self.selected_substitute = 0
+        self.substitutes_proposed_list = []
+        self.sorted_substitutes = []
+        self.substitutes_proposed_with_rank = []
+        self.selected_substitute = None
         self.registration = False
-        self.substitutes_registered_list=[]
+        self.substitutes_registered_list = []
 
     def instanciate_substitute(self, database_instance):
         database_instance.cursor.execute ("SELECT * FROM p5.substitute")
@@ -25,10 +26,6 @@ class Substitutes:
 
 
     def filter(self, products_instance):
-        # selected_product_nutriscore = [elt.nutriscore_grade for elt in\
-        # products_instance.selected_products if elt.id_product ==\
-        # products_instance.selected_product]
-        # selected_product_nutriscore = selected_product_nutriscore [0]
         for elt in products_instance.selected_products:
             if elt.id_product != products_instance.selected_product.id_product and\
             elt.nutriscore_grade < products_instance.selected_product.nutriscore_grade:
@@ -37,10 +34,10 @@ class Substitutes:
     def show(self):
         if self.substitutes_proposed_list:
             print ("SUBSTITUTES:")
-            sorted_substitutes = sorted(self.substitutes_proposed_list, key = lambda \
+            self.sorted_substitutes = sorted(self.substitutes_proposed_list, key = lambda \
             product : product.nutriscore_grade)
             rank = 1
-            for elt in sorted_substitutes:
+            for elt in self.sorted_substitutes:
                 print (rank ," - ",elt.product_name, " - ", elt.nutriscore_grade)
                 substitutes_proposed_with_rank=(elt.id_product,\
                 elt.product_name, elt.nutriscore_grade, rank)
