@@ -22,20 +22,12 @@ class Research:
         self.substitutes_instance = substitutes.Substitutes()
 
     def research(self, database_instance, tests_instance):
-
         categories.Categories.process(self.categories_instance,\
         tests_instance)
-
         products.Products.process(self.products_instance,\
         self.categories_instance, tests_instance)
-
-        substitutes.Substitutes.filter(self.substitutes_instance,\
+        substitutes.Substitutes.process(self.substitutes_instance,\
         self.products_instance)
-        substitutes.Substitutes.show(self.substitutes_instance)
-        substitutes.Substitutes.select(self.substitutes_instance)
-        substitutes.Substitutes.register(self.substitutes_instance)
         database.Database.insert_substitute(database_instance,\
         self.products_instance, self.substitutes_instance)
-
         initialisation.Initialisation.initiate()
-

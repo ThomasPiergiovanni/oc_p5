@@ -67,6 +67,7 @@ class Database:
         if substitutes_instance.registration:
             statement = "INSERT INTO p5.substitute (product_product_id,\
             substitute_product_id) VALUES (%s, %s)"
-            value = [products_instance.selected_product, substitutes_instance.selected_substitute]
+            value = [products_instance.selected_product.id_product,\
+            substitutes_instance.selected_substitute.id_product]
             self.cursor.execute(statement, value)
             self.connection.commit() 
