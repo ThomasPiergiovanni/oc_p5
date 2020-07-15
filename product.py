@@ -10,3 +10,5 @@ class Product:
         self.category_id = category_id
         self.url = url
         self.stores = stores
+        self.temp_product_rank = None
+        self.temp_substitute_rank = None

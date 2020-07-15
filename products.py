@@ -40,7 +40,7 @@ class Products():
     def organize(self, categories_instance):
         print ("PRODUCTS:")
         for elt in self.products_list:
-            if elt.category_id == categories_instance.selected_category:
+            if elt.category_id == categories_instance.selected_category.id_category:
                 self.selected_products.append(elt)
                 self.sorted_products = sorted(self.selected_products, key = lambda \
                 product : product.product_name)

@@ -14,8 +14,7 @@ class Categories:
     def __init__(self):
         self.categories_list=[]
         self.question = None
-        self.categories_with_rank=[]
-        self.selected_category = 0 
+        self.selected_category = None 
 
     def instanciate_category(self, database_instance):
         database_instance.cursor.execute ("SELECT * FROM p5.category")
@@ -40,9 +39,8 @@ class Categories:
         category : category.name)
         rank = 1
         for elt in sorted_categories:
-            print (rank ," - ",elt.name)
-            category_with_rank=(elt.id_category, elt.name, rank)
-            self.categories_with_rank.append(category_with_rank)
+            elt.temp_rank = rank
+            print (elt.temp_rank ," - ",elt.name)
             rank += 1 
 
     def select(self):
@@ -59,11 +57,11 @@ class Categories:
 
     def actions(self):
         self.question = int(self.question)
-        if self.question <= len(self.categories_with_rank):
-            for elt in self.categories_with_rank:
-                if elt[2] == self.question:
-                    print ("You\'ve choosen the ", elt[1], "category") 
-                    self.selected_category = elt[0]
+        if self.question <= len(self.categories_list):
+            for elt in self.categories_list:
+                if elt.temp_rank == self.question:
+                    print ("You\'ve choosen the ", elt.name, "category") 
+                    self.selected_category = elt
         else:
             print ("Only numbers included in above list can be used. Retry")
             initialisation.Initialisation.initiate()

@@ -6,5 +6,6 @@ class Category:
         self.id_origin = id_origin
         self.name = name
         self.url = url
+        self.temp_rank = None
 
 
