@@ -32,7 +32,7 @@ class Categories:
     def process (self):
         Categories.show(self)
         Categories.select(self)
-        Categories.save(self)
+        Categories.execute(self)
 
     def show(self):
         print ("CATEGORIES:")
@@ -51,7 +51,7 @@ class Categories:
         if tests_instance.valid:
             self.select_input_valid = True
 
-    def save(self):
+    def execute(self):
         if self.select_input_valid:
             self.question = int(self.question)
             if self.question <= len(self.categories_list):
