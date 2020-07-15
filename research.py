@@ -21,7 +21,7 @@ class Research:
         database_instance)
         self.substitutes_instance = substitutes.Substitutes()
 
-    def research(self, database_instance, tests_instance):
+    def research(self, database_instance):
         categories.Categories.process(self.categories_instance)
         products.Products.process(self.products_instance,\
         self.categories_instance)
