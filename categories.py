@@ -5,7 +5,6 @@ import mysql.connector
 import config
 import category
 import products
-
 import tests
 
 import initialisation
@@ -15,6 +14,7 @@ class Categories:
         self.categories_list=[]
         self.sorted_categories= []
         self.question = None
+        self.select_input_valid = False
         self.selected_category = None 
 
     def instanciate_category(self, database_instance):
@@ -29,10 +29,10 @@ class Categories:
             name, url)
             self.categories_list.append(category_instance)
 
-    def process (self, tests_instance):
+    def process (self):
         Categories.show(self)
         Categories.select(self)
-        Categories.verify(self, tests_instance)
+        Categories.save(self)
 
     def show(self):
         print ("CATEGORIES:")
@@ -46,25 +46,24 @@ class Categories:
 
     def select(self):
         self.question= input("Which category you want to check products for?\n")
-
-    def verify(self, tests_instance):
+        tests_instance = tests.Tests()
         tests.Tests.test_integer(tests_instance, self.question)
         if tests_instance.valid:
-            Categories.actions(self)
+            self.select_input_valid = True
+
+    def save(self):
+        if self.select_input_valid:
+            self.question = int(self.question)
+            if self.question <= len(self.categories_list):
+                for elt in self.categories_list:
+                    if elt.temp_rank == self.question:
+                        print ("You\'ve choosen the ", elt.name, "category") 
+                        self.selected_category = elt
+            else:
+                print ("Only numbers included in above list can be used. Retry")
+                initialisation.Initialisation.initiate()
         else:
             print ("Only numbers can be used. Retry")
-            initialisation.Initialisation.initiate()
-            Categories.process(self, tests_instance)
-
-    def actions(self):
-        self.question = int(self.question)
-        if self.question <= len(self.categories_list):
-            for elt in self.categories_list:
-                if elt.temp_rank == self.question:
-                    print ("You\'ve choosen the ", elt.name, "category") 
-                    self.selected_category = elt
-        else:
-            print ("Only numbers included in above list can be used. Retry")
             initialisation.Initialisation.initiate()
 
 

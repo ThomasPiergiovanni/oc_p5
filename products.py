@@ -13,6 +13,7 @@ class Products():
         self.selected_products = []
         self.sorted_products = []
         self.question = None
+        self.select_input_valid = False
         self.selected_product = 0
 
     def instanciate_product(self, database_instance):
@@ -30,11 +31,11 @@ class Products():
             product_name, nutriscore_grade, category_id, url, stores)        
             self.products_list.append(product_instance)
 
-    def process (self, categories_instance, tests_instance):
+    def process (self, categories_instance):
         Products.organize(self, categories_instance)
         Products.show(self)
         Products.select(self)
-        Products.verify(self, tests_instance)
+        Products.save(self)
 
     def organize(self, categories_instance):
         print ("PRODUCTS:")
@@ -53,24 +54,24 @@ class Products():
 
     def select(self):
         self.question= input("Which product you want to find a substitute for?\n")
-
-    def verify(self, tests_instance):
-        tests.Tests.test_integer(tests_instance, self.question)
+        tests_instance = tests.Tests()
+        tests.Tests.test_string(tests_instance, self.question)
         if tests_instance.valid:
-            Products.actions(self)
+            self.select_input_valid = True
+
+    def save(self):
+        if self.select_input_valid:
+            self.question = int(self.question)
+            if self.question <= len(self.products_list):
+                for elt in self.products_list:
+                    if elt.temp_product_rank == self.question:
+                        print ("You\'ve choosen the \"", elt.product_name, "\" product") 
+                        self.selected_product = elt
+            else:
+                print ("Only numbers included in above list can be used. Retry ")
+                initialisation.Initialisation.initiate()
         else:
             print ("Only numbers can be used. Retry")
-            initialisation.Initialisation.initiate()
-
-    def actions(self):
-        self.question = int(self.question)
-        if self.question <= len(self.products_list):
-            for elt in self.products_list:
-                if elt.temp_product_rank == self.question:
-                    print ("You\'ve choosen the \"", elt.product_name, "\" product") 
-                    self.selected_product = elt
-        else:
-            print ("Only numbers included in above list can be used. Retry ")
             initialisation.Initialisation.initiate()
 
 
