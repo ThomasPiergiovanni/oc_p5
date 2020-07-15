@@ -32,9 +32,9 @@ class Substitutes:
         Substitutes.organize(self)
         Substitutes.show(self)
         Substitutes.select(self)
-        Substitutes.save_selection(self)
+        Substitutes.execute_selection(self)
         Substitutes.register(self)
-        Substitutes.save_registration(self)
+        Substitutes.execute_registration(self)
 
     def find(self, products_instance):
         for elt in products_instance.selected_products:
@@ -66,7 +66,7 @@ class Substitutes:
         if tests_instance.valid:
             self.select_input_valid = True
 
-    def save_selection(self):
+    def execute_selection(self):
         if self.select_input_valid:
             self.question = int(self.question)
             if self.question <= len(self.substitutes_proposed_list):
@@ -89,7 +89,7 @@ class Substitutes:
         if tests_instance.valid:
             self.register_input_valid = True
 
-    def save_registration(self):
+    def execute_registration(self):
         if self.register_input_valid:
             self.question = str(self.question)
             if self.question in "yY":
