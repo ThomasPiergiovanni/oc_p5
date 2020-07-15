@@ -17,7 +17,7 @@ class Stop:
             self.select_input_valid = True
 
     def execute(self): 
-        if self.select_input_valid:     
+        if self.select_input_valid: 
             self.question = str(self.question)
             if self.question in "yY":
                 sys.exit("Goodbye")

@@ -12,8 +12,7 @@ class Tests:
             self.valid = False
 
     def test_string(self, value):
-        try:
-            value = str(value)
+        if value.isalpha():
             self.valid = True
-        except:
+        else:
             self.valid = False
