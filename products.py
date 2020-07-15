@@ -12,7 +12,6 @@ class Products():
         self.products_list = []
         self.selected_products = []
         self.sorted_products = []
-        self.products_with_rank =[]
         self.question = None
         self.selected_product = 0
 
@@ -48,9 +47,8 @@ class Products():
     def show(self):
         rank = 1
         for elt in self.sorted_products:
-            print (rank ," - ",elt.product_name)
-            product_with_rank=(elt.id_product, elt.product_name, rank)
-            self.products_with_rank.append(product_with_rank)
+            elt.temp_product_rank = rank
+            print (elt.temp_product_rank ," - ",elt.product_name)
             rank += 1 
 
     def select(self):
@@ -66,11 +64,11 @@ class Products():
 
     def actions(self):
         self.question = int(self.question)
-        if self.question <= len(self.products_with_rank):
-            for elt in self.products_with_rank:
-                if elt[2] == self.question:
-                    print ("You\'ve choosen the \"", elt[1], "\" product") 
-                    self.selected_product = elt[0]
+        if self.question <= len(self.products_list):
+            for elt in self.products_list:
+                if elt.temp_product_rank == self.question:
+                    print ("You\'ve choosen the \"", elt.product_name, "\" product") 
+                    self.selected_product = elt
         else:
             print ("Only numbers included in above list can be used. Retry ")
             initialisation.Initialisation.initiate()

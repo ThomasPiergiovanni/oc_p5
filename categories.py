@@ -13,6 +13,7 @@ import initialisation
 class Categories:
     def __init__(self):
         self.categories_list=[]
+        self.sorted_categories= []
         self.question = None
         self.selected_category = None 
 
@@ -35,10 +36,10 @@ class Categories:
 
     def show(self):
         print ("CATEGORIES:")
-        sorted_categories = sorted(self.categories_list, key = lambda \
+        self.sorted_categories = sorted(self.categories_list, key = lambda \
         category : category.name)
         rank = 1
-        for elt in sorted_categories:
+        for elt in self.sorted_categories:
             elt.temp_rank = rank
             print (elt.temp_rank ," - ",elt.name)
             rank += 1 

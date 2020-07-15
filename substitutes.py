@@ -25,13 +25,13 @@ class Substitutes:
 
 
     def filter(self, products_instance):
-        selected_product_nutriscore = [elt.nutriscore_grade for elt in\
-        products_instance.selected_products if elt.id_product ==\
-        products_instance.selected_product]
-        selected_product_nutriscore = selected_product_nutriscore [0]
+        # selected_product_nutriscore = [elt.nutriscore_grade for elt in\
+        # products_instance.selected_products if elt.id_product ==\
+        # products_instance.selected_product]
+        # selected_product_nutriscore = selected_product_nutriscore [0]
         for elt in products_instance.selected_products:
-            if elt.id_product != products_instance.selected_product and\
-            elt.nutriscore_grade < selected_product_nutriscore:
+            if elt.id_product != products_instance.selected_product.id_product and\
+            elt.nutriscore_grade < products_instance.selected_product.nutriscore_grade:
                 self.substitutes_proposed_list.append(elt)
 
     def show(self):
