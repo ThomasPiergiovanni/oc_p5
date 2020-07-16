@@ -14,8 +14,7 @@ class Research:
 
     def instanciate(self, database_instance):
         self.categories_instance = categories.Categories()
-        categories.Categories.instanciate_category(self.categories_instance,\
-        database_instance)
+        categories.Categories.instanciate_category(self.categories_instance)
         self.products_instance = products.Products()
         products.Products.instanciate_product(self.products_instance,\
         database_instance)

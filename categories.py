@@ -2,6 +2,8 @@
 
 import mysql.connector
 
+from database import Database
+
 import config
 import category
 import products
@@ -11,15 +13,16 @@ import initialisation
 
 class Categories:
     def __init__(self):
+        self.database = Database()
         self.categories_list=[]
         self.sorted_categories= []
         self.question = None
         self.select_input_valid = False
         self.selected_category = None 
 
-    def instanciate_category(self, database_instance):
-        database_instance.cursor.execute ("SELECT * FROM p5.category")
-        selection = database_instance.cursor.fetchall()
+    def instanciate_category(self):
+        self.database.cursor.execute ("SELECT * FROM p5.category")
+        selection = self.database.cursor.fetchall()
         for elt in selection:
             id_category = elt[0]
             id_origin = elt[1]
