@@ -6,7 +6,7 @@ from database import Database
 from category import Category
 
 import config
-import category
+
 import products
 import tests
 
@@ -30,14 +30,14 @@ class Categories:
             id_origin = elt[1]
             name = elt[2]
             url = elt[3]
-            category_instance = Category(id_category, id_origin,\
+            category = Category(id_category, id_origin,\
             name, url)
-            self.categories_list.append(category_instance)
+            self.categories_list.append(category)
 
     def process (self):
-        Categories.show(self)
-        Categories.select(self)
-        Categories.execute(self)
+        self.show()
+        self.select()
+        self.execute()
 
     def show(self):
         print ("CATEGORIES:")
