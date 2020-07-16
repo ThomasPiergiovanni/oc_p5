@@ -3,6 +3,7 @@
 import mysql.connector
 
 from database import Database
+from category import Category
 
 import config
 import category
@@ -18,7 +19,8 @@ class Categories:
         self.sorted_categories= []
         self.question = None
         self.select_input_valid = False
-        self.selected_category = None 
+        self.selected_category = None
+        self.instanciate_category()
 
     def instanciate_category(self):
         self.database.cursor.execute ("SELECT * FROM p5.category")
@@ -28,7 +30,7 @@ class Categories:
             id_origin = elt[1]
             name = elt[2]
             url = elt[3]
-            category_instance = category.Category(id_category, id_origin,\
+            category_instance = Category(id_category, id_origin,\
             name, url)
             self.categories_list.append(category_instance)
 
