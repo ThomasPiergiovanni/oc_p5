@@ -55,7 +55,7 @@ class Products():
     def select(self):
         self.question= input("Which product you want to find a substitute for?\n")
         tests_instance = tests.Tests()
-        tests.Tests.test_string(tests_instance, self.question)
+        tests.Tests.test_integer(tests_instance, self.question)
         if tests_instance.valid:
             self.select_input_valid = True
 
