@@ -1,5 +1,6 @@
 #-*-coding:utf-8 -*
 
+from database import Database
 import substitute
 import database
 import research
@@ -8,6 +9,7 @@ import tests
 
 class Substitutes:
     def __init__(self):
+        self.database = Database()
         self.substitutes_proposed_list = []
         self.sorted_substitutes = []
         self.question = None
@@ -16,10 +18,11 @@ class Substitutes:
         self.register_input_valid = False
         self.registration = False
         self.substitutes_registered_list = []
+        self.instanciate_substitute()
 
-    def instanciate_substitute(self, database_instance):
-        database_instance.cursor.execute ("SELECT * FROM p5.substitute")
-        selection = database_instance.cursor.fetchall()
+    def instanciate_substitute(self):
+        self.database.cursor.execute ("SELECT * FROM p5.substitute")
+        selection = self.database.cursor.fetchall()
         for elt in selection:
             product_product_id= elt[0]
             substitute_product_id = elt[1]
@@ -28,13 +31,13 @@ class Substitutes:
             self.substitutes_registered_list.append(substitute_instance)    
 
     def process (self, products_instance):
-        Substitutes.find(self, products_instance)
-        Substitutes.organize(self)
-        Substitutes.show(self)
-        Substitutes.select(self)
-        Substitutes.execute_selection(self)
-        Substitutes.register(self)
-        Substitutes.execute_registration(self)
+        self.find(products_instance)
+        self.organize()
+        self.show()
+        self.select()
+        self.execute_selection()
+        self.register()
+        self.execute_registration()
 
     def find(self, products_instance):
         for elt in products_instance.selected_products:
