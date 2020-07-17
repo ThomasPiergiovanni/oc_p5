@@ -1,5 +1,6 @@
 #-*-coding:utf-8 -*
 
+from database import Database
 import config
 import product
 import tests
@@ -8,6 +9,7 @@ import initialisation
 
 class Products():
     def __init__(self):
+        self.database = Database()
         self.source_data = {}
         self.products_list = []
         self.selected_products = []
@@ -15,10 +17,11 @@ class Products():
         self.question = None
         self.select_input_valid = False
         self.selected_product = 0
+        self.instanciate_product()
 
-    def instanciate_product(self, database_instance):
-        database_instance.cursor.execute ("SELECT * FROM p5.product")
-        selection = database_instance.cursor.fetchall()   
+    def instanciate_product(self):
+        self.database.cursor.execute ("SELECT * FROM p5.product")
+        selection = self.database.cursor.fetchall()   
         for elt in selection:
             id_product = elt[0]
             id_origin = elt[1]
