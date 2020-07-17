@@ -1,23 +1,26 @@
 #-*-coding:utf-8 -*
 
-import categories
+from database import Database
+from categories import Categories
+from products import Products
+from substitutes import Substitutes
+
 import products
 import substitutes
 import compositions
 
 class Record:
-    def get(database_instance):
-        categories_instance = categories.Categories()
-        categories.Categories.instanciate_category(categories_instance, database_instance)
+    def __init__(self):
+        self.database = Database()
+        self.categories = Categories()
+        self.products = Products()
+        self.substitutes = Substitutes()
+        self.get()
 
-        products_instance = products.Products()
-        products.Products.instanciate_product(products_instance, database_instance)
-
-        substitutes_instance = substitutes.Substitutes()
-        substitutes.Substitutes.instanciate_substitute(substitutes_instance, database_instance)
+    def get(self):
 
         compositions_instance = compositions.Compositions()
         compositions.Compositions.instanciate_composition(compositions_instance,\
-        substitutes_instance, categories_instance, products_instance)
+        self.substitutes, self.categories, self.products)
         
         compositions.Compositions.show(compositions_instance)

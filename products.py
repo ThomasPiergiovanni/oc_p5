@@ -67,15 +67,12 @@ class Products():
         if self.select_input_valid:
             self.question = int(self.question)
             if self.question <= len(self.selected_products):
-                print(self.question)
-                print(len(self.selected_products))
                 for elt in self.selected_products:
                     if elt.temp_product_rank == self.question:
                         print ("You\'ve choosen the \"", elt.product_name, "\" product") 
                         self.selected_product = elt
             else:
                 print ("Only numbers included in above list can be used. Retry ")
-                # initialisation.Initialisation.initiate()
                 self.show()
                 self.select()
                 self.execute(categories)
@@ -84,7 +81,6 @@ class Products():
             self.show()
             self.select()
             self.execute(categories)
-            # initialisation.Initialisation.initiate()
 
 
 

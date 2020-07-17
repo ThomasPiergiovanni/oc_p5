@@ -35,7 +35,7 @@ class Menu:
             if self.question == 1:
                 research.Research()
             elif self.question == 2:
-                record.Record.get(database_instance)
+                record.Record()
             elif self.question == 3:
                 reset.Reset.reset(database_instance)
             elif self.question == 4:

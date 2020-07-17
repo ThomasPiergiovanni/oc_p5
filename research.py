@@ -11,6 +11,7 @@ class Research:
         self.categories.process()
         self.products = Products()
         self.products.process(self.categories)
-        self.substitutes = Substitutes(self.products)
+        self.substitutes = Substitutes()
+        self.substitutes.process(self.products)
         initialisation.Initialisation.initiate()
      
