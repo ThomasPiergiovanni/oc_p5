@@ -76,6 +76,7 @@ class Products():
         else:
             print ("Only numbers can be used. Retry")
             initialisation.Initialisation.initiate()
+            
 
 
        

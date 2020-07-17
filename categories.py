@@ -21,6 +21,7 @@ class Categories:
         self.select_input_valid = False
         self.selected_category = None
         self.instanciate_category()
+        self.process()
 
     def instanciate_category(self):
         self.database.cursor.execute ("SELECT * FROM p5.category")
