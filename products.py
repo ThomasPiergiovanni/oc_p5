@@ -32,10 +32,10 @@ class Products():
             self.products_list.append(product_instance)
 
     def process (self, categories_instance):
-        Products.organize(self, categories_instance)
-        Products.show(self)
-        Products.select(self)
-        Products.execute(self)
+        self.organize(categories_instance)
+        self.show()
+        self.select()
+        self.execute()
 
     def organize(self, categories_instance):
         print ("PRODUCTS:")
