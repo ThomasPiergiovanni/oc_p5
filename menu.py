@@ -15,8 +15,8 @@ class Menu:
         self.select_input_valid = False
 
     def process (self, database_instance):
-        Menu.select(self)
-        Menu.execute(self, database_instance)
+        self.select()
+        self.execute(database_instance)
 
     def select(self):
         self.question = input("What do you want to do (choose one of the bellow number)?\
@@ -33,8 +33,7 @@ class Menu:
         if self.select_input_valid:
             self.question = int(self.question)
             if self.question == 1:
-                research_instance = research.Research()
-                research.Research.research(research_instance, database_instance)
+                research.Research()
             elif self.question == 2:
                 record.Record.get(database_instance)
             elif self.question == 3:

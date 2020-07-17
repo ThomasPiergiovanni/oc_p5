@@ -1,13 +1,11 @@
 #-*-coding:utf-8 -*
 
 import mysql.connector
+import config
 
 from database import Database
 from category import Category
 
-import config
-
-import products
 import tests
 
 import initialisation

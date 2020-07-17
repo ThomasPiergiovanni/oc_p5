@@ -5,10 +5,9 @@ class Tests:
         self.valid = False
 
     def test_integer(self, value):
-        try:
-            value = int(value)
+        if value.isnumeric():
             self.valid = True
-        except:
+        else:
             self.valid = False
 
     def test_string(self, value):
