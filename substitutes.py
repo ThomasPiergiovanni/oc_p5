@@ -8,7 +8,7 @@ import initialisation
 import tests
 
 class Substitutes:
-    def __init__(self):
+    def __init__(self, products):
         self.database = Database()
         self.substitutes_proposed_list = []
         self.sorted_substitutes = []
@@ -19,6 +19,7 @@ class Substitutes:
         self.registration = False
         self.substitutes_registered_list = []
         self.instanciate_substitute()
+        self.process(products)
 
     def instanciate_substitute(self):
         self.database.cursor.execute ("SELECT * FROM p5.substitute")
@@ -30,8 +31,8 @@ class Substitutes:
             substitute_product_id)
             self.substitutes_registered_list.append(substitute_instance)    
 
-    def process (self, products_instance):
-        self.find(products_instance)
+    def process (self, products):
+        self.find(products)
         self.organize()
         self.show()
         self.select()

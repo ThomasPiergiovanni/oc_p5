@@ -8,7 +8,7 @@ import initialisation
 
 
 class Products():
-    def __init__(self):
+    def __init__(self, categories):
         self.database = Database()
         self.source_data = {}
         self.products_list = []
@@ -18,6 +18,7 @@ class Products():
         self.select_input_valid = False
         self.selected_product = 0
         self.instanciate_product()
+        self.process(categories)
 
     def instanciate_product(self):
         self.database.cursor.execute ("SELECT * FROM p5.product")
@@ -34,8 +35,8 @@ class Products():
             product_name, nutriscore_grade, category_id, url, stores)        
             self.products_list.append(product_instance)
 
-    def process (self, categories_instance):
-        self.organize(categories_instance)
+    def process (self, categories):
+        self.organize(categories)
         self.show()
         self.select()
         self.execute()
@@ -76,7 +77,7 @@ class Products():
         else:
             print ("Only numbers can be used. Retry")
             initialisation.Initialisation.initiate()
-            
+
 
 
        

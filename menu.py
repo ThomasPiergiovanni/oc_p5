@@ -34,7 +34,6 @@ class Menu:
             self.question = int(self.question)
             if self.question == 1:
                 research_instance = research.Research()
-                research.Research.instanciate(research_instance, database_instance)
                 research.Research.research(research_instance, database_instance)
             elif self.question == 2:
                 record.Record.get(database_instance)
