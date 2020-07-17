@@ -39,6 +39,7 @@ class Substitutes:
         self.execute_selection()
         self.register()
         self.execute_registration()
+        self.insert_substitute(products)
 
     def find(self, products_instance):
         for elt in products_instance.selected_products:
@@ -104,6 +105,17 @@ class Substitutes:
         else:
             print ("Only letter y/n can be used. Retry ")
             initialisation.Initialisation.initiate()
+
+    def insert_substitute(self, products):
+        if self.registration:
+            statement = "INSERT INTO p5.substitute (product_product_id,\
+            substitute_product_id) VALUES (%s, %s)"
+            value = [products.selected_product.id_product,\
+            self.selected_substitute.id_product]
+            self.database.cursor.execute(statement, value)
+            self.database.connection.commit()
+
+
 
 
 

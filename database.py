@@ -63,11 +63,11 @@ class Database:
         self.cursor.executemany(statement, value)
         self.connection.commit()
 
-    def insert_substitute(self,  products_instance, substitutes_instance):
-        if substitutes_instance.registration:
-            statement = "INSERT INTO p5.substitute (product_product_id,\
-            substitute_product_id) VALUES (%s, %s)"
-            value = [products_instance.selected_product.id_product,\
-            substitutes_instance.selected_substitute.id_product]
-            self.cursor.execute(statement, value)
-            self.connection.commit() 
+    # def insert_substitute(self,  products_instance, substitutes_instance):
+    #     if substitutes_instance.registration:
+    #         statement = "INSERT INTO p5.substitute (product_product_id,\
+    #         substitute_product_id) VALUES (%s, %s)"
+    #         value = [products_instance.selected_product.id_product,\
+    #         substitutes_instance.selected_substitute.id_product]
+    #         self.cursor.execute(statement, value)
+    #         self.connection.commit() 

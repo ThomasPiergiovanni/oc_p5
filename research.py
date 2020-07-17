@@ -14,8 +14,6 @@ class Research:
         self.substitutes = Substitutes(self.products)
 
     def research(self, database_instance):
-        # self.products.process(self.categories)
-        # self.substitutes.process(self.products)
-        database.Database.insert_substitute(database_instance,\
-        self.products, self.substitutes_instance)
+        # database.Database.insert_substitute(database_instance,\
+        # self.products, self.substitutes_instance)
         initialisation.Initialisation.initiate()
