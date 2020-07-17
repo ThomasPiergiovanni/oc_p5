@@ -8,7 +8,9 @@ class Research:
 
     def __init__(self):
         self.categories = Categories()
-        self.products = Products(self.categories)
+        self.categories.process()
+        self.products = Products()
+        self.products.process(self.categories)
         self.substitutes = Substitutes(self.products)
         initialisation.Initialisation.initiate()
      

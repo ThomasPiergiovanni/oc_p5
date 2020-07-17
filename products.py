@@ -1,6 +1,7 @@
 #-*-coding:utf-8 -*
 
 from database import Database
+from categories import Categories
 import config
 import product
 import tests
@@ -8,7 +9,7 @@ import initialisation
 
 
 class Products():
-    def __init__(self, categories):
+    def __init__(self):
         self.database = Database()
         self.source_data = {}
         self.products_list = []
@@ -18,7 +19,6 @@ class Products():
         self.select_input_valid = False
         self.selected_product = 0
         self.instanciate_product()
-        self.process(categories)
 
     def instanciate_product(self):
         self.database.cursor.execute ("SELECT * FROM p5.product")
@@ -39,17 +39,17 @@ class Products():
         self.organize(categories)
         self.show()
         self.select()
-        self.execute()
+        self.execute(categories)
 
-    def organize(self, categories_instance):
-        print ("PRODUCTS:")
+    def organize(self, categories):
         for elt in self.products_list:
-            if elt.category_id == categories_instance.selected_category.id_category:
+            if elt.category_id == categories.selected_category.id_category:
                 self.selected_products.append(elt)
                 self.sorted_products = sorted(self.selected_products, key = lambda \
                 product : product.product_name)
 
     def show(self):
+        print ("PRODUCTS:")
         rank = 1
         for elt in self.sorted_products:
             elt.temp_product_rank = rank
@@ -63,20 +63,28 @@ class Products():
         if tests_instance.valid:
             self.select_input_valid = True
 
-    def execute(self):
+    def execute(self, categories):
         if self.select_input_valid:
             self.question = int(self.question)
-            if self.question <= len(self.products_list):
-                for elt in self.products_list:
+            if self.question <= len(self.selected_products):
+                print(self.question)
+                print(len(self.selected_products))
+                for elt in self.selected_products:
                     if elt.temp_product_rank == self.question:
                         print ("You\'ve choosen the \"", elt.product_name, "\" product") 
                         self.selected_product = elt
             else:
                 print ("Only numbers included in above list can be used. Retry ")
-                initialisation.Initialisation.initiate()
+                # initialisation.Initialisation.initiate()
+                self.show()
+                self.select()
+                self.execute(categories)
         else:
             print ("Only numbers can be used. Retry")
-            initialisation.Initialisation.initiate()
+            self.show()
+            self.select()
+            self.execute(categories)
+            # initialisation.Initialisation.initiate()
 
 
 

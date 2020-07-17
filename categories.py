@@ -5,6 +5,7 @@ import config
 
 from database import Database
 from category import Category
+from tests import Tests
 
 import tests
 
@@ -16,10 +17,10 @@ class Categories:
         self.categories_list=[]
         self.sorted_categories= []
         self.question = None
+        self.tests = Tests()
         self.select_input_valid = False
         self.selected_category = None
         self.instanciate_category()
-        self.process()
 
     def instanciate_category(self):
         self.database.cursor.execute ("SELECT * FROM p5.category")
@@ -50,9 +51,8 @@ class Categories:
 
     def select(self):
         self.question= input("Which category you want to check products for?\n")
-        tests_instance = tests.Tests()
-        tests.Tests.test_integer(tests_instance, self.question)
-        if tests_instance.valid:
+        self.tests.test_integer(self.question)
+        if self.tests.valid:
             self.select_input_valid = True
 
     def execute(self):
