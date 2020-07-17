@@ -66,10 +66,11 @@ class Categories:
                         self.selected_category = elt
             else:
                 print ("Only numbers included in above list can be used. Retry")
-                initialisation.Initialisation.initiate()
+                self.process()
         else:
             print ("Only numbers can be used. Retry")
-            initialisation.Initialisation.initiate()
+            #initialisation.Initialisation.initiate()
+            self.process()
 
 
 

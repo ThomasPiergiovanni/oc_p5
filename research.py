@@ -12,7 +12,6 @@ class Research:
         self.products_instance = None
         self.substitutes_instance = None
 
-
     def instanciate(self, database_instance):
         self.products_instance = products.Products()
         products.Products.instanciate_product(self.products_instance,\
