@@ -51,7 +51,7 @@ class Substitutes:
             key = lambda product : product.nutriscore_grade)
         else: 
             print("There is no healthier substitute for that product")
-            initialisation.Initialisation.initiate()      
+            initialisation.Initialisation()     
 
     def show(self):
         print ("SUBSTITUTES:")
@@ -107,7 +107,7 @@ class Substitutes:
                 self.registration = True
                 print("Substitute product has been registered !") 
             elif self.question in "nN":
-                initialisation.Initialisation.initiate()
+                initialisation.Initialisation()
             else : 
                 print ("Only letter y/n can be used. Retry ")
                 self.register()

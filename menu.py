@@ -1,10 +1,10 @@
 #-*-coding:utf-8 -*
 
 from tests import Tests
-import research
-import record
-import reset
-import abandon
+from research import Research
+from record import Record
+from reset import Reset
+from abandon import Abandon
 import initialisation
 
 
@@ -31,13 +31,13 @@ class Menu:
         if self.select_input_valid:
             self.question = int(self.question)
             if self.question == 1:
-                research.Research()
+                Research()
             elif self.question == 2:
-                record.Record()
+                Record()
             elif self.question == 3:
-                reset.Reset()
+                Reset()
             elif self.question == 4:
-                abandon.Abandon()
+                Abandon()
             else :
                 print ("Only number from 1 to 4 can be used. Retry ")
                 initialisation.Initialisation()

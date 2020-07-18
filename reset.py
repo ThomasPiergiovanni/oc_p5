@@ -24,5 +24,5 @@ class Reset:
             self.download.products(category)
             self.database.insert_products(self.download, category)
         self.products = Products()
-        initialisation.Initialisation.initiate()
+        initialisation.Initialisation()
 

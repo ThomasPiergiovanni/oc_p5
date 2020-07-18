@@ -25,7 +25,7 @@ class Abandon:
             if self.question in "yY":
                 sys.exit("Goodbye")
             elif self.question in "nN":
-                initialisation.Initialisation.initiate()
+                initialisation.Initialisation()
             else :
                 print ("Only letter y/n can be used. Retry")
                 self.select()

@@ -65,7 +65,6 @@ class Categories:
                 self.process()
         else:
             print ("Only numbers can be used. Retry")
-            #initialisation.Initialisation.initiate()
             self.process()
 
 
