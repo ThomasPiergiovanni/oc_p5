@@ -1,12 +1,11 @@
 #-*-coding:utf-8 -*
 
+import config
+
 from database import Database
 from categories import Categories
 from product import Product
-import config
-import product
 from tests import Tests
-import initialisation
 
 
 class Products():

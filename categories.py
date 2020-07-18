@@ -1,15 +1,12 @@
 #-*-coding:utf-8 -*
 
-import mysql.connector
 import config
 
 from database import Database
 from category import Category
 from tests import Tests
 
-import tests
 
-import initialisation
 
 class Categories:
     def __init__(self):
