@@ -3,7 +3,7 @@
 import initialisation
 
 def main():
-    initialisation.Initialisation.initiate()
+    initialisation.Initialisation()
     
 if __name__=="__main__":
     main()

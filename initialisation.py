@@ -1,19 +1,18 @@
 #-*-coding:utf-8 -*
 
 
-import database
-import tests
-import menu
-import reset
+from database import Database
+from menu import Menu
+from reset import Reset
 
 class Initialisation:
-    def initiate():
-        database_instance = database.Database()
-        database.Database.check(database_instance)
-        if database_instance.status:
-            menu_instance = menu.Menu()
-            menu.Menu.select(menu_instance)
-            menu.Menu.execute(menu_instance, database_instance)
+    def __init__(self):
+        self.database = Database()
+        self.initiate()
+
+    def initiate(self):
+        self.database.check()
+        if self.database.status:
+            Menu()
         else:
-            reset.Reset()
-            Initialisation.inititate()
+            Reset()
