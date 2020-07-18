@@ -1,32 +1,33 @@
 #-*-coding:utf-8 -*
 
-import composition
+from composition import Composition
 import initialisation
 
 class Compositions:
-    def __init__(self):
+    def __init__(self, categories, products, substitutes):
         self.compositions_list=[]
+        self.instanciate_composition(categories, products, substitutes)
+        self.show()
 
-    def instanciate_composition(self,substitutes_instance, categories_instance, products_instance):
-        for substitute in substitutes_instance.substitutes_registered_list:
+    def instanciate_composition(self, categories, products, substitutes):
+        for substitute in substitutes.substitutes_registered_list:
 
             product  = [product for product in\
-            products_instance.products_list if product.id_product ==\
+            products.products_list if product.id_product ==\
             substitute.product_product_id]
 
             substitute = [product for product in\
-            products_instance.products_list if product.id_product ==\
+            products.products_list if product.id_product ==\
             substitute.substitute_product_id]
 
             category = [category for category in\
-            categories_instance.categories_list if category.id_category ==\
+            categories.categories_list if category.id_category ==\
             product[0].category_id]
 
-
-            composition_instance = composition.Composition(\
+            composition = Composition(\
             product[0], substitute[0], category [0])
 
-            self.compositions_list.append(composition_instance)
+            self.compositions_list.append(composition)
 
     def show(self):
         if self.compositions_list:
