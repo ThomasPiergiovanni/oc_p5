@@ -39,7 +39,7 @@ class Menu:
             elif self.question == 3:
                 reset.Reset.reset(database_instance)
             elif self.question == 4:
-                abandon.Abandon.abandon()
+                abandon.Abandon()
             else :
                 print ("Only number from 1 to 4 can be used. Retry ")
                 initialisation.Initialisation.initiate()

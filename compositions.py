@@ -24,8 +24,7 @@ class Compositions:
             categories.categories_list if category.id_category ==\
             product[0].category_id]
 
-            composition = Composition(\
-            product[0], substitute[0], category [0])
+            composition = Composition(product[0], substitute[0], category [0])
 
             self.compositions_list.append(composition)
 
