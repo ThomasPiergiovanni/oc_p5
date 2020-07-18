@@ -2,9 +2,10 @@
 
 from database import Database
 from categories import Categories
+from product import Product
 import config
 import product
-import tests
+from tests import Tests
 import initialisation
 
 
@@ -16,6 +17,7 @@ class Products():
         self.selected_products = []
         self.sorted_products = []
         self.question = None
+        self.tests = Tests()
         self.select_input_valid = False
         self.selected_product = 0
         self.instanciate_product()
@@ -31,9 +33,9 @@ class Products():
             category_id = elt[4]
             url = elt[5]
             stores = elt[6]
-            product_instance = product.Product(id_product, id_origin,\
+            product = Product(id_product, id_origin,\
             product_name, nutriscore_grade, category_id, url, stores)        
-            self.products_list.append(product_instance)
+            self.products_list.append(product)
 
     def process (self, categories):
         self.organize(categories)
@@ -58,9 +60,8 @@ class Products():
 
     def select(self):
         self.question= input("Which product you want to find a substitute for?\n")
-        tests_instance = tests.Tests()
-        tests.Tests.test_integer(tests_instance, self.question)
-        if tests_instance.valid:
+        self.tests.test_integer(self.question)
+        if self.tests.valid:
             self.select_input_valid = True
 
     def execute(self, categories):
