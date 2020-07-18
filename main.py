@@ -1,9 +1,9 @@
 #-*-coding:utf-8 -*
 
-import initialisation
+from initialisation import Initialisation
 
 def main():
-    initialisation.Initialisation()
+    Initialisation()
     
 if __name__=="__main__":
     main()

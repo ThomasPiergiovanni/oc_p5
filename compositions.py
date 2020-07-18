@@ -1,7 +1,7 @@
 #-*-coding:utf-8 -*
 
 from composition import Composition
-import initialisation
+import menu
 
 class Compositions:
     def __init__(self, categories, products, substitutes):
@@ -45,10 +45,10 @@ class Compositions:
                 "\n    Product name:", elt.product_product_name,\
                 "\n    Substitute name:", elt.substitute_product_name)
                 rank += 1
-            initialisation.Initialisation()
+            menu.Menu()
         else:
             print("No substitutes have been registered yet")
-            initialisation.Initialisation()
+            menu.Menu()
 
 
 

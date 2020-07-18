@@ -3,7 +3,7 @@
 from database import Database
 from substitute import Substitute
 from tests import Tests
-import initialisation
+import menu
 
 class Substitutes:
     def __init__(self):
@@ -51,7 +51,7 @@ class Substitutes:
             key = lambda product : product.nutriscore_grade)
         else: 
             print("There is no healthier substitute for that product")
-            initialisation.Initialisation()     
+            menu.Menu()     
 
     def show(self):
         print ("SUBSTITUTES:")
@@ -107,7 +107,7 @@ class Substitutes:
                 self.registration = True
                 print("Substitute product has been registered !") 
             elif self.question in "nN":
-                initialisation.Initialisation()
+                menu.Menu()
             else : 
                 print ("Only letter y/n can be used. Retry ")
                 self.register()

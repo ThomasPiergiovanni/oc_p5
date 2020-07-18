@@ -5,7 +5,6 @@ from research import Research
 from record import Record
 from reset import Reset
 from abandon import Abandon
-import initialisation
 
 
 class Menu:
@@ -40,9 +39,9 @@ class Menu:
                 Abandon()
             else :
                 print ("Only number from 1 to 4 can be used. Retry ")
-                initialisation.Initialisation()
+                Menu()
         else:
             print("Only numbers can be used. Retry")
-            initialisation.Initialisation()
+            Menu()
 
 

@@ -1,22 +1,23 @@
 #-*-coding:utf-8 -*
 
 import sys
-import initialisation
+from tests import Tests
+import menu
 import tests
 
 class Abandon:
     def __init__(self):
         self.question = None
         self.select_input_valid = False
+        self.tests = Tests()
         self.select()
         self.execute()
 
     def select(self):
         self.question = input("Do you really want to quit "\
         "the programm (y/n)?\n")
-        tests_instance = tests.Tests()
-        tests.Tests.test_string(tests_instance, self.question)
-        if tests_instance.valid:
+        self.tests.test_string(self.question)
+        if self.tests.valid:
             self.select_input_valid = True
 
     def execute(self): 
@@ -25,7 +26,7 @@ class Abandon:
             if self.question in "yY":
                 sys.exit("Goodbye")
             elif self.question in "nN":
-                initialisation.Initialisation()
+                menu.Menu()
             else :
                 print ("Only letter y/n can be used. Retry")
                 self.select()

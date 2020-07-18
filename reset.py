@@ -4,7 +4,7 @@ from database import Database
 from download import Download
 from categories import Categories
 from products import Products
-import initialisation
+import menu
 
 class Reset:
     def __init__(self):
@@ -24,5 +24,5 @@ class Reset:
             self.download.products(category)
             self.database.insert_products(self.download, category)
         self.products = Products()
-        initialisation.Initialisation()
+        menu.Menu()
 
