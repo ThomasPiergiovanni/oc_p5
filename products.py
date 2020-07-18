@@ -1,5 +1,6 @@
 #-*-coding:utf-8 -*
 
+from os import system
 import config
 
 from database import Database
@@ -10,6 +11,7 @@ from tests import Tests
 
 class Products():
     def __init__(self):
+        system("cls")
         self.database = Database()
         self.source_data = {}
         self.products_list = []
@@ -72,11 +74,13 @@ class Products():
                         print ("You\'ve choosen the \"", elt.product_name, "\" product") 
                         self.selected_product = elt
             else:
+                system("cls")
                 print ("Only numbers included in above list can be used. Retry ")
                 self.show()
                 self.select()
                 self.execute(categories)
         else:
+            system("cls")
             print ("Only numbers can be used. Retry")
             self.show()
             self.select()

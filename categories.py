@@ -1,5 +1,7 @@
 #-*-coding:utf-8 -*
 
+from os import system
+
 import config
 
 from database import Database
@@ -10,6 +12,7 @@ from tests import Tests
 
 class Categories:
     def __init__(self):
+        system("cls")
         self.database = Database()
         self.categories_list=[]
         self.sorted_categories= []
@@ -61,9 +64,11 @@ class Categories:
                         print ("You\'ve choosen the ", elt.name, "category") 
                         self.selected_category = elt
             else:
+                system("cls")
                 print ("Only numbers included in above list can be used. Retry")
                 self.process()
         else:
+            system("cls")
             print ("Only numbers can be used. Retry")
             self.process()
 

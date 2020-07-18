@@ -1,5 +1,7 @@
 #-*-coding:utf-8 -*
 
+from os import system
+
 from database import Database
 from substitute import Substitute
 from tests import Tests
@@ -7,6 +9,7 @@ import menu
 
 class Substitutes:
     def __init__(self):
+        system("cls")
         self.database = Database()
         self.substitutes_proposed_list = []
         self.sorted_substitutes = []
@@ -49,7 +52,8 @@ class Substitutes:
         if self.substitutes_proposed_list:
             self.sorted_substitutes = sorted(self.substitutes_proposed_list,\
             key = lambda product : product.nutriscore_grade)
-        else: 
+        else:
+            system("cls")
             print("There is no healthier substitute for that product")
             menu.Menu()     
 
@@ -78,6 +82,7 @@ class Substitutes:
                         "product as a substitute") 
                         self.selected_substitute = elt
             else:
+                system("cls")
                 print ("Only numbers included in above list can be used. Retry")
                 self.show()
                 self.select()
@@ -86,6 +91,7 @@ class Substitutes:
                 self.execute_registration()
                 self.insert_substitute(products)
         else:
+            system("cls")
             print ("Only numbers can be used. Retry")
             self.show()
             self.select()
@@ -107,13 +113,15 @@ class Substitutes:
                 self.registration = True
                 print("Substitute product has been registered !") 
             elif self.question in "nN":
-                menu.Menu()
-            else : 
+                menu.Menu() 
+            else: 
+                system("cls")
                 print ("Only letter y/n can be used. Retry ")
                 self.register()
                 self.execute_registration()
                 self.insert_substitute(products)
         else:
+            system("cls")
             print ("Only letter y/n can be used. Retry ")
             self.register()
             self.execute_registration()

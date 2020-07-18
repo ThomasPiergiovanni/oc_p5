@@ -1,4 +1,5 @@
 #-*-coding:utf-8 -*
+
 from categories import Categories
 from products import Products
 from substitutes import Substitutes
@@ -12,5 +13,5 @@ class Research:
         self.products.process(self.categories)
         self.substitutes = Substitutes()
         self.substitutes.process(self.products)
-        menu.Menu()
+
      

@@ -1,10 +1,13 @@
 #-*-coding:utf-8 -*
 
+from os import system
+
 from composition import Composition
 import menu
 
 class Compositions:
     def __init__(self, categories, products, substitutes):
+        system("cls")
         self.compositions_list=[]
         self.category = None
         self.product = None
@@ -45,8 +48,10 @@ class Compositions:
                 "\n    Product name:", elt.product_product_name,\
                 "\n    Substitute name:", elt.substitute_product_name)
                 rank += 1
+            system("pause")
             menu.Menu()
         else:
+            system("cls")
             print("No substitutes have been registered yet")
             menu.Menu()
 

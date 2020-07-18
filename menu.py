@@ -1,4 +1,5 @@
 #-*-coding:utf-8 -*
+from os import system
 
 from tests import Tests
 from research import Research
@@ -8,7 +9,8 @@ from abandon import Abandon
 
 
 class Menu:
-    def __init__(self): 
+    def __init__(self):
+        system("cls")
         self.question = None
         self.select_input_valid = False
         self.tests = Tests()
@@ -38,9 +40,11 @@ class Menu:
             elif self.question == 4:
                 Abandon()
             else :
+                system("cls")
                 print ("Only number from 1 to 4 can be used. Retry ")
                 Menu()
         else:
+            system("cls")
             print("Only numbers can be used. Retry")
             Menu()
 

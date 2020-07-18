@@ -1,4 +1,5 @@
 #-*-coding:utf-8 -*
+from os import system
 
 import sys
 from tests import Tests
@@ -7,6 +8,7 @@ import tests
 
 class Abandon:
     def __init__(self):
+        system("cls")
         self.question = None
         self.select_input_valid = False
         self.tests = Tests()
@@ -24,14 +26,17 @@ class Abandon:
         if self.select_input_valid: 
             self.question = str(self.question)
             if self.question in "yY":
+                system("cls")
                 sys.exit("Goodbye")
             elif self.question in "nN":
                 menu.Menu()
             else :
+                system("cls")
                 print ("Only letter y/n can be used. Retry")
                 self.select()
                 self.execute()
         else:
+            system("cls")
             print ("Only letters can be used. Retry")
             self.select()
             self.execute()
