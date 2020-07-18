@@ -11,5 +11,4 @@ class Record:
         self.categories = Categories()
         self.products = Products()
         self.substitutes = Substitutes()
-        Compositions(self.categories, self.products,\
-        self.substitutes)
+        Compositions(self.categories, self.products, self.substitutes)

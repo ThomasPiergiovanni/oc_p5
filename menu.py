@@ -37,7 +37,7 @@ class Menu:
             elif self.question == 2:
                 record.Record()
             elif self.question == 3:
-                reset.Reset.reset(database_instance)
+                reset.Reset()
             elif self.question == 4:
                 abandon.Abandon()
             else :

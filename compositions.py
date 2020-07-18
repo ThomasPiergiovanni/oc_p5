@@ -45,6 +45,7 @@ class Compositions:
                 "\n    Product name:", elt.product_product_name,\
                 "\n    Substitute name:", elt.substitute_product_name)
                 rank += 1
+            initialisation.Initialisation.initiate()
         else:
             print("No substitutes have been registered yet")
             initialisation.Initialisation.initiate()

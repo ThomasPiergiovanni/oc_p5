@@ -12,11 +12,14 @@ class Database:
 
     def check(self):
         querries = ("category","product")
-        for querry in querries:
-            self.cursor.execute("SELECT * FROM p5.%s"% querry)
-            self.cursor.fetchall()
-            if self.cursor.rowcount > 1:
-                self.status = True
+        try: 
+            for querry in querries:
+                self.cursor.execute("SELECT * FROM p5.%s"% querry)
+                self.cursor.fetchall()
+                if self.cursor.rowcount > 1:
+                    self.status = True
+        except:
+            self.status = False
 
     def create(self):
         with open(config.SQL_FILE, "r") as file:

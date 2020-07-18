@@ -1,25 +1,28 @@
 #-*-coding:utf-8 
 
-import database
-import download
-import categories
-import products
+from database import Database
+from download import Download
+from categories import Categories
+from products import Products
 import initialisation
 
 class Reset:
+    def __init__(self):
+        self.database = Database()
+        self.download = Download()
+        self.categories = None
+        self.products = None
+        self.reset()
 
-    def reset(database_instance):
-        database.Database.delete(database_instance)
-        database.Database.create(database_instance)
-        download_instance = download.Download()
-        download.Download.categories(download_instance)
-        database.Database.insert_categories(database_instance, download_instance)
-        categories_instance = categories.Categories()
-        categories.Categories.instanciate_category(categories_instance, database_instance)
-        for category in categories_instance.categories_list:
-            download.Download.products(download_instance, category)
-            database.Database.insert_products(database_instance, download_instance,category)
-        products_instance = products.Products()
-        products.Products.instanciate_product(products_instance, database_instance)
+    def reset(self):
+        self.database.delete()
+        self.database.create()
+        self.download.categories()
+        self.database.insert_categories(self.download)
+        self.categories = Categories()
+        for category in self.categories.categories_list:
+            self.download.products(category)
+            self.database.insert_products(self.download, category)
+        self.products = Products()
         initialisation.Initialisation.initiate()
 

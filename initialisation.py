@@ -15,5 +15,5 @@ class Initialisation:
             menu.Menu.select(menu_instance)
             menu.Menu.execute(menu_instance, database_instance)
         else:
-            reset.Reset.reset(database_instance)
+            reset.Reset()
             Initialisation.inititate()
