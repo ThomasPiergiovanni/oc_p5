@@ -47,8 +47,8 @@ class Substitutes:
 
     def organize(self):
         if self.substitutes_proposed_list:
-            self.sorted_substitutes = sorted(self.substitutes_proposed_list, key = lambda \
-            product : product.nutriscore_grade)
+            self.sorted_substitutes = sorted(self.substitutes_proposed_list,\
+            key = lambda product : product.nutriscore_grade)
         else: 
             print("There is no healthier substitute for that product")
             initialisation.Initialisation.initiate()      

@@ -1,7 +1,7 @@
 #-*-coding:utf-8 -*
 
 class Composition:
-    def __init__(self, product, substitute, category):
+    def __init__(self, category, product, substitute):
         self.product_product_id = product.id_product
         self.product_product_name = product.product_name
         self.product_nutriscore_grade = product.nutriscore_grade
