@@ -36,6 +36,7 @@ class Menu:
             elif self.question == 2:
                 Record()
             elif self.question == 3:
+                print("here11")
                 Reset()
             elif self.question == 4:
                 Abandon()
