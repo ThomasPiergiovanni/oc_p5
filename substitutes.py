@@ -74,12 +74,16 @@ class Substitutes:
 
     def execute_selection(self, products):
         if self.select_input_valid:
+            system("cls")
             self.question = int(self.question)
             if self.question <= len(self.substitutes_proposed_list):
                 for elt in self.substitutes_proposed_list:
                     if elt.temp_substitute_rank == self.question:
-                        print ("You\'ve choosen the ", elt.product_name,\
-                        "product as a substitute") 
+                        print ("You\'ve choosen the following substitute:",\
+                        "\n Product name:", elt.product_name,\
+                        "\n Nutriscore value:", elt.nutriscore_grade,\
+                        "\n Check product at:", elt.url,\
+                        "\n Sold in:", elt.stores) 
                         self.selected_substitute = elt
             else:
                 system("cls")
