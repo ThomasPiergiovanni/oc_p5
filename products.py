@@ -75,7 +75,7 @@ class Products():
                         self.selected_product = elt
             else:
                 system("cls")
-                print ("Only numbers included in above list can be used. Retry ")
+                print ("Only numbers included in above list can be used. Retry")
                 self.show()
                 self.select()
                 self.execute(categories)

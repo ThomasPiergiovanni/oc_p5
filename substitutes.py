@@ -80,10 +80,10 @@ class Substitutes:
                 for elt in self.substitutes_proposed_list:
                     if elt.temp_substitute_rank == self.question:
                         print ("You\'ve choosen the following substitute:",\
-                        "\n Product name:", elt.product_name,\
-                        "\n Nutriscore value:", elt.nutriscore_grade,\
-                        "\n Check product at:", elt.url,\
-                        "\n Sold in:", elt.stores) 
+                        "\n   - Product name:", elt.product_name,\
+                        "\n   - Nutriscore value:", elt.nutriscore_grade,\
+                        "\n   - Check product at:", elt.url,\
+                        "\n   - Sold in:", elt.stores) 
                         self.selected_substitute = elt
             else:
                 system("cls")
@@ -105,7 +105,7 @@ class Substitutes:
             self.insert_substitute(products)
 
     def register(self):
-        self.question= input("Do you want to register that choice (y/n)?\n")
+        self.question= input("Do you want to register that choice(y/n)?\n")
         self.tests.test_string(self.question)
         if self.tests.valid:
             self.register_input_valid = True
