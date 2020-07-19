@@ -11,7 +11,7 @@ from tests import Tests
 
 class Products():
     def __init__(self):
-        system("cls")
+        # system("cls")
         self.database = Database()
         self.source_data = {}
         self.products_list = []
@@ -24,6 +24,7 @@ class Products():
         self.instanciate_product()
 
     def instanciate_product(self):
+        self.database.open_cursor()
         self.database.cursor.execute ("SELECT * FROM p5.product")
         selection = self.database.cursor.fetchall()   
         for elt in selection:
@@ -37,6 +38,7 @@ class Products():
             product = Product(id_product, id_origin,\
             product_name, nutriscore_grade, category_id, url, stores)        
             self.products_list.append(product)
+        self.database.close_cursor()
 
     def process (self, categories):
         self.organize(categories)

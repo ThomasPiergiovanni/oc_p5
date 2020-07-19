@@ -10,7 +10,7 @@ from abandon import Abandon
 
 class Menu:
     def __init__(self):
-        system("cls")
+        # system("cls")
         self.question = None
         self.select_input_valid = False
         self.tests = Tests()
@@ -36,7 +36,6 @@ class Menu:
             elif self.question == 2:
                 Record()
             elif self.question == 3:
-                print("here11")
                 Reset()
             elif self.question == 4:
                 Abandon()

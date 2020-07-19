@@ -1,5 +1,7 @@
 #-*-coding:utf-8 -*
 
+import mysql.connector
+
 from os import system
 
 import config
@@ -12,7 +14,7 @@ from tests import Tests
 
 class Categories:
     def __init__(self):
-        system("cls")
+        # system("cls")
         self.database = Database()
         self.categories_list=[]
         self.sorted_categories= []
@@ -23,6 +25,7 @@ class Categories:
         self.instanciate_category()
 
     def instanciate_category(self):
+        self.database.open_cursor()
         self.database.cursor.execute ("SELECT * FROM p5.category")
         selection = self.database.cursor.fetchall()
         for elt in selection:
@@ -33,6 +36,7 @@ class Categories:
             category = Category(id_category, id_origin,\
             name, url)
             self.categories_list.append(category)
+        self.database.close_cursor()
 
     def process (self):
         self.show()

@@ -9,7 +9,7 @@ import menu
 
 class Substitutes:
     def __init__(self):
-        system("cls")
+        # system("cls")
         self.database = Database()
         self.substitutes_proposed_list = []
         self.sorted_substitutes = []
@@ -23,6 +23,7 @@ class Substitutes:
         self.instanciate_substitute()
   
     def instanciate_substitute(self):
+        self.database.open_cursor()
         self.database.cursor.execute ("SELECT * FROM p5.substitute")
         selection = self.database.cursor.fetchall()
         for elt in selection:
@@ -30,7 +31,8 @@ class Substitutes:
             substitute_product_id = elt[1]
             substitute = Substitute(product_product_id,\
             substitute_product_id)
-            self.substitutes_registered_list.append(substitute)    
+            self.substitutes_registered_list.append(substitute)
+        self.database.close_cursor()
 
     def process (self, products):
         self.find(products)
@@ -133,12 +135,14 @@ class Substitutes:
 
     def insert_substitute(self, products):
         if self.registration:
+            self.database.open_cursor()
             statement = "INSERT INTO p5.substitute (product_product_id,\
             substitute_product_id) VALUES (%s, %s)"
             value = [products.selected_product.id_product,\
             self.selected_substitute.id_product]
             self.database.cursor.execute(statement, value)
             self.database.connection.commit()
+            self.database.close_cursor()
 
 
 
