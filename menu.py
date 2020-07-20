@@ -9,8 +9,9 @@ from abandon import Abandon
 
 
 class Menu:
-    def __init__(self):
+    def __init__(self, database):
         # system("cls")
+        self.database = database
         self.question = None
         self.select_input_valid = False
         self.tests = Tests()
@@ -32,20 +33,20 @@ class Menu:
         if self.select_input_valid:
             self.question = int(self.question)
             if self.question == 1:
-                Research()
+                Research(self.database)
             elif self.question == 2:
-                Record()
+                Record(self.database)
             elif self.question == 3:
-                Reset()
+                Reset(self.database)
             elif self.question == 4:
                 Abandon()
             else :
                 system("cls")
                 print ("Only number from 1 to 4 can be used. Retry ")
-                Menu()
+                Menu(self.database)
         else:
             system("cls")
             print("Only numbers can be used. Retry")
-            Menu()
+            Menu(self.database)
 
 

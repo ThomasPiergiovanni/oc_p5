@@ -8,9 +8,9 @@ from tests import Tests
 import menu
 
 class Substitutes:
-    def __init__(self):
+    def __init__(self, database):
         # system("cls")
-        self.database = Database()
+        self.database = database
         self.substitutes_proposed_list = []
         self.sorted_substitutes = []
         self.question = None
@@ -57,7 +57,7 @@ class Substitutes:
         else:
             system("cls")
             print("There is no healthier substitute for that product")
-            menu.Menu()     
+            menu.Menu(self.database)     
 
     def show(self):
         print ("SUBSTITUTES:")
@@ -119,7 +119,7 @@ class Substitutes:
                 self.registration = True
                 print("Substitute product has been registered !") 
             elif self.question in "nN":
-                menu.Menu() 
+                menu.Menu(self.database) 
             else: 
                 system("cls")
                 print ("Only letter y/n can be used. Retry ")
@@ -143,6 +143,7 @@ class Substitutes:
             self.database.cursor.execute(statement, value)
             self.database.connection.commit()
             self.database.close_cursor()
+            menu.Menu(self.database)
 
 
 

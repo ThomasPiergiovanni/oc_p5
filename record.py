@@ -7,8 +7,8 @@ from compositions import Compositions
 
 
 class Record:
-    def __init__(self):
-        self.categories = Categories()
-        self.products = Products()
-        self.substitutes = Substitutes()
-        Compositions(self.categories, self.products, self.substitutes)
+    def __init__(self, database):
+        self.categories = Categories(database)
+        self.products = Products(database)
+        self.substitutes = Substitutes(database)
+        Compositions(self.categories, self.products, self.substitutes, database)

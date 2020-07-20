@@ -13,9 +13,9 @@ from tests import Tests
 
 
 class Categories:
-    def __init__(self):
+    def __init__(self, database):
         # system("cls")
-        self.database = Database()
+        self.database = database
         self.categories_list=[]
         self.sorted_categories= []
         self.question = None

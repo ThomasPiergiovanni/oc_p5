@@ -10,9 +10,9 @@ from tests import Tests
 
 
 class Products():
-    def __init__(self):
+    def __init__(self, database):
         # system("cls")
-        self.database = Database()
+        self.database = database
         self.source_data = {}
         self.products_list = []
         self.selected_products = []

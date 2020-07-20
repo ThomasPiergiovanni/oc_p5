@@ -12,6 +12,6 @@ class Initialisation:
     def initiate(self):
         self.database.check()
         if self.database.status:
-            Menu()
+            Menu(self.database)
         else:
-            Reset()
+            Reset(self.database)

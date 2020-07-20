@@ -6,8 +6,9 @@ from composition import Composition
 import menu
 
 class Compositions:
-    def __init__(self, categories, products, substitutes):
+    def __init__(self, categories, products, substitutes, database):
         system("cls")
+        self.database = database
         self.compositions_list=[]
         self.category = None
         self.product = None
@@ -49,11 +50,11 @@ class Compositions:
                 "\n    Substitute name:", elt.substitute_product_name)
                 rank += 1
             system("pause")
-            menu.Menu()
+            menu.Menu(self.database)
         else:
             system("cls")
             print("No substitutes have been registered yet")
-            menu.Menu()
+            menu.Menu(self.database)
 
 
 

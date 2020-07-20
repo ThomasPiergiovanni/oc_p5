@@ -6,12 +6,12 @@ from substitutes import Substitutes
 import menu
 
 class Research:
-    def __init__(self):
-        self.categories = Categories()
+    def __init__(self, database):
+        self.categories = Categories(database)
         self.categories.process()
-        self.products = Products()
+        self.products = Products(database)
         self.products.process(self.categories)
-        self.substitutes = Substitutes()
+        self.substitutes = Substitutes(database)
         self.substitutes.process(self.products)
 
      

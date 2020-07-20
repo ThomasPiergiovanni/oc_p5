@@ -5,12 +5,15 @@ import config
 
 class Database:
     def __init__(self):   
-        self.my_database = mysql.connector.connect\
+        self.connection = mysql.connector.connect\
         (host = config.HOST, user = config.USER, password = config.PASSWORD)
         self.status = False
 
+    def close_connection(self):
+        self.connection.close()
+
     def open_cursor(self):
-        self.cursor = self.my_database.cursor()
+        self.cursor = self.connection.cursor()
 
     def close_cursor(self):
         self.cursor.close()
@@ -31,23 +34,16 @@ class Database:
 
     def create(self):
         with open(config.SQL_FILE, "r") as file:
-            self.open_cursor()
             content = file.read()
             querries = content.split(";")
             for querry in querries:
                 self.cursor.execute(querry)
-            self.close_cursor()
 
     def delete(self):
-        if self.status == False:
-            self.open_cursor()
-            statement = "DROP DATABASE IF EXISTS p5;"
-            self.cursor.execute(statement)
-            self.my_database.commit()
-            self.close_cursor()
-
-            
-
+        statement = "DROP DATABASE IF EXISTS p5"
+        self.cursor.execute(statement)
+        self.connection.commit()
+        print ("here32")
 
     def insert_categories(self, download):
         self.open_cursor()
@@ -62,7 +58,7 @@ class Database:
             else:
                 pass
         self.cursor.executemany(statement, value)
-        self.my_database.commit()
+        self.connection.commit()
         self.close_cursor()
 
     def insert_products(self, category, download):
@@ -83,6 +79,6 @@ class Database:
                 print(f"The following error occurred: {error}")
                 pass
         self.cursor.executemany(statement, value)
-        self.my_database.commit()
+        self.connection.commit()
         self.close_cursor()
 

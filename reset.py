@@ -4,11 +4,12 @@ from database import Database
 from download import Download
 from categories import Categories
 from products import Products
+import initialisation
 import menu
 
 class Reset:
-    def __init__(self):
-        self.database = Database()
+    def __init__(self, database):
+        self.database = database
         self.download = Download()
         self.categories = None
         self.products = None
@@ -16,14 +17,17 @@ class Reset:
         
 
     def process(self):
+        self.database.open_cursor()
         self.database.delete()
+        self.database.close_cursor()
+        self.database.open_cursor()
         self.database.create()
         self.download.categories()
         self.database.insert_categories(self.download)
-        self.categories = Categories()
+        self.categories = Categories(self.database)
         for category in self.categories.categories_list:
             self.download.products(category)
             self.database.insert_products(category, self.download)
-        self.products = Products()
-        menu.Menu()
+        self.products = Products(self.database)
+        menu.Menu(self.database)
 
