@@ -10,8 +10,6 @@ class Database:
         self.connection = mysql.connector.connect\
         (host = config.HOST, user = config.USER,\
         password = config.PASSWORD)
-        self.para1 = None
-        self.para2 = None
         self.status = False
         self.source= {}
 
@@ -25,10 +23,10 @@ class Database:
         return statement
 
 
-    def download(self, endpoint, parameters):
+    def download(self, parameters):
         try:
-            response_api =requests.get(endpoint,\
-            headers = config.HEADER, params = parameters)
+            response_api =requests.get(parameters[0],\
+            headers = config.HEADER, params = parameters[1])
             self.source = response_api.json()
         except requests.HTTPError as http_error:
             print(f"HTTP error occurred: {http_error}")
@@ -56,40 +54,30 @@ class Database:
         self.connection.commit()
         self.close_cursor()
 
-    def execute_many(self, statement, values):
+    def execute_many(self, parameters):
         self.open_cursor()
-        self.cursor.executemany(statement, values)
+        self.cursor.executemany(parameters[0], parameters[1])
         self.connection.commit()
         self.close_cursor()
 
-    def verify (self, para1, para2):
+    def verify (self, parameters):
         try:
             self.open_cursor()
-            self.cursor.execute(para1)
+            self.cursor.execute(parameters[0])
             self.cursor.fetchall()
             if self.cursor.rowcount >= 1:
                 self.status = True
             self.close_cursor()
         except:
             self.status = False
-            print(para2)
+            print(parameters[1])
 
     def exists(self):
-        self.para1 = "SHOW DATABASES LIKE '%s'"% config.DATABASE_NAME
-        self.para2 = "No DB"
+        statement = "SHOW DATABASES LIKE '%s'"% config.DATABASE_NAME
+        message= "No DB"
+        parameters = [statement, message]
+        return parameters
 
-    def content(self):
-        querries = ("category","product")
-        try: 
-            for querry in querries:
-                self.open_cursor()
-                self.cursor.execute("SELECT * FROM %s"% querry)
-                self.cursor.fetchall()
-                if self.cursor.rowcount >= 1:
-                    self.status = True
-                self.close_cursor()
-        except:
-            self.status = False
-            print ("No or empty tables")
+
 
 

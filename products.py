@@ -22,13 +22,20 @@ class Products():
         self.select_input_valid = False
         self.selected_product = 0
 
+    def exists(self):
+        statement = "SELECT * FROM product"
+        message= "No or empty product tables"
+        parameters = [statement, message]
+        return parameters
+
     def source(self, category):
         endpoint = config.PRODUCTS_ENDPOINT
-        parameters = {
+        params = {
                 "action":"process", "tagtype_0": "categories",
                 "tag_contains_0":"contains", "tag_0":category.id_origin,
                 "json":1, "page":1, "page_size": config.PRODUCTS_AMOUNT}
-        return endpoint, parameters
+        parameters = [endpoint, params]
+        return parameters
 
     def create_table(self):
         statement = "CREATE TABLE IF NOT EXISTS product(\
@@ -60,7 +67,8 @@ class Products():
             except Exception as error:
                 print(f"The following error occurred: {error}")
                 pass
-        return statement, values
+        parameters = [statement, values]
+        return parameters
 
     def instanciate(self):
         self.database.open_cursor()

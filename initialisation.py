@@ -1,21 +1,26 @@
 #-*-coding:utf-8 -*
 
 from database import Database
+from categories import Categories
+from products import Products
 from menu import Menu
 from reset import Reset
 
 class Initialisation:
     def __init__(self):
         self.database = Database()
+        self.categories = Categories(self.database)
+        self.products = Products(self.database)
+
         self.initiate()
 
     def initiate(self):
-        self.database.exists()
-        self.database.verify(self.database.para1, self.database.para2)
-        print (self.database.status)
+        self.database.verify(self.database.exists())
         if self.database.status:
             self.database.execute_one(self.database.use())
-            self.database.content()
+            self.database.verify(self.categories.exists())
+            self.database.verify(self.products.exists())
+            # true n est pas correct
             if self.database.status:
                 Menu(self.database)
             else:

@@ -24,22 +24,17 @@ class Reset:
         self.database.execute_one(self.database.use())
 
     def reset_categories(self):
-        endpoint, parameters = self.categories.source()
-        self.database.download(endpoint, parameters)
+        self.database.download(self.categories.source())
         self.database.execute_one(self.categories.create_table())
-        self.categories.insert_in_table()
-        self.database.execute_many(self.categories.statement,\
-        self.categories.values)
+        self.database.execute_many(self.categories.insert_in_table())
         self.categories.instanciate()
 
     def reset_products(self):
         self.database.execute_one(self.products.create_table())
         for category in self.categories.categories_list:
-            endpoint, parameters = self.products.source(category)
-            self.database.download(endpoint, parameters)
+            self.database.download(self.products.source(category))
             self.database.execute_one(self.products.create_table())
-            statement, values = self.products.insert_in_table(category)
-            self.database.execute_many(statement, values)
+            self.database.execute_many(self.products.insert_in_table(category))
         self.products.instanciate()
 
     def reset_substitutes(self):

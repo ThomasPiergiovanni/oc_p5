@@ -16,8 +16,6 @@ class Categories:
     def __init__(self, database):
         # system("cls")
         self.database = database
-        self.statement = None
-        self.values = None
         self.categories_list=[]
         self.sorted_categories= []
         self.question = None
@@ -25,10 +23,17 @@ class Categories:
         self.select_input_valid = False
         self.selected_category = None
 
+    def exists(self):
+        statement = "SELECT * FROM category"
+        message= "No or empty category tables"
+        parameters = [statement, message]
+        return parameters
+
     def source(self):
         endpoint = config.CATEGORIES_ENDPOINT
-        parameters = {}
-        return endpoint, parameters
+        params= {}
+        parameters = [endpoint, params]
+        return parameters
 
     def create_table(self):
         statement = "CREATE TABLE IF NOT EXISTS category(\
@@ -42,16 +47,18 @@ class Categories:
 
 
     def insert_in_table(self):
-        self.statement = "INSERT INTO category (id_origin, name,\
+        statement = "INSERT INTO category (id_origin, name,\
         url) VALUES (%s, %s, %s)"
-        self.values = []
+        values = []
         for elt in self.database.source["tags"]:
             if elt["id"] in config.SELECTED_CATEGORIES and elt["name"] and\
             elt["url"]:
                 elt_string = (elt["id"], elt["name"], elt["url"])
-                self.values.append(elt_string)
+                values.append(elt_string)
             else:
                 pass
+        parameters = [statement, values]
+        return parameters
 
     def instanciate(self):
         self.database.open_cursor()
