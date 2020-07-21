@@ -38,7 +38,21 @@ class Categories:
             )ENGINE=INNODB;"
         return statement
 
-    def instanciate_category(self):
+
+    def insert_in_table(self):
+        statement = "INSERT INTO category (id_origin, name,\
+        url) VALUES (%s, %s, %s)"
+        values = []
+        for elt in self.database.source["tags"]:
+            if elt["id"] in config.SELECTED_CATEGORIES and elt["name"] and\
+            elt["url"]:
+                elt_string = (elt["id"], elt["name"], elt["url"])
+                values.append(elt_string)
+            else:
+                pass
+        return statement, values
+
+    def instanciate(self):
         self.database.open_cursor()
         self.database.cursor.execute ("SELECT * FROM category")
         selection = self.database.cursor.fetchall()

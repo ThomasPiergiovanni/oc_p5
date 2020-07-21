@@ -30,7 +30,7 @@ class Substitutes:
             )ENGINE=INNODB;"
         return statement
   
-    def instanciate_substitute(self):
+    def instanciate(self):
         self.database.open_cursor()
         self.database.cursor.execute ("SELECT * FROM substitute")
         selection = self.database.cursor.fetchall()

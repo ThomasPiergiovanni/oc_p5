@@ -46,6 +46,12 @@ class Database:
         self.connection.commit()
         self.close_cursor()
 
+    def execute_many(self, statement, values):
+        self.open_cursor()
+        self.cursor.executemany(statement, values)
+        self.connection.commit()
+        self.close_cursor()
+
     def exists(self):
         try:
             self.open_cursor()
@@ -80,42 +86,3 @@ class Database:
     def delete_db(self):
         statement = "DROP DATABASE IF EXISTS %s"% config.DATABASE_NAME
         return statement
-
-
-    def insert_categories(self):
-        self.open_cursor()
-        statement = "INSERT INTO category (id_origin, name,\
-        url) VALUES (%s, %s, %s)"
-        value = []
-        for elt in self.source["tags"]:
-            if elt["id"] in config.SELECTED_CATEGORIES and elt["name"] and\
-            elt["url"]:
-                elt_string = (elt["id"], elt["name"], elt["url"])
-                value.append(elt_string)
-            else:
-                pass
-        self.cursor.executemany(statement, value)
-        self.connection.commit()
-        self.close_cursor()
-
-    def insert_products(self, category):
-        self.open_cursor()
-        statement = "INSERT INTO product (id_origin, product_name,\
-        nutriscore_grade, category_id, url, stores)\
-        VALUES (%s, %s, %s, %s, %s, %s)"
-        value = []
-        for elt in self.source["products"]:
-            try: 
-                if elt["id"] and elt["product_name"] and\
-                elt["nutriscore_grade"] and elt["url"]:
-                    elt_string = (elt["id"], elt["product_name"],\
-                    elt["nutriscore_grade"], category.id_category,\
-                    elt["url"], elt["stores"])
-                    value.append(elt_string)
-            except Exception as error:
-                print(f"The following error occurred: {error}")
-                pass
-        self.cursor.executemany(statement, value)
-        self.connection.commit()
-        self.close_cursor()
-

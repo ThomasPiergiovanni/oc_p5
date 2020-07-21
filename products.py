@@ -44,20 +44,31 @@ class Products():
             )ENGINE=INNODB;"
         return statement
 
-    def instanciate_product(self):
+    def insert_in_table(self, category):
+        statement = "INSERT INTO product (id_origin, product_name,\
+        nutriscore_grade, category_id, url, stores)\
+        VALUES (%s, %s, %s, %s, %s, %s)"
+        values = []
+        for elt in self.database.source["products"]:
+            try: 
+                if elt["id"] and elt["product_name"] and\
+                elt["nutriscore_grade"] and elt["url"]:
+                    elt_string = (elt["id"], elt["product_name"],\
+                    elt["nutriscore_grade"], category.id_category,\
+                    elt["url"], elt["stores"])
+                    values.append(elt_string)
+            except Exception as error:
+                print(f"The following error occurred: {error}")
+                pass
+        return statement, values
+
+    def instanciate(self):
         self.database.open_cursor()
         self.database.cursor.execute ("SELECT * FROM product")
         selection = self.database.cursor.fetchall()   
         for elt in selection:
-            id_product = elt[0]
-            id_origin = elt[1]
-            product_name = elt[2]
-            nutriscore_grade = elt[3]
-            category_id = elt[4]
-            url = elt[5]
-            stores = elt[6]
-            product = Product(id_product, id_origin,\
-            product_name, nutriscore_grade, category_id, url, stores)        
+            product = Product(elt[0], elt[1],elt[2], elt[3], elt[4],\
+            elt[5], elt[6])        
             self.products_list.append(product)
         self.database.close_cursor()
 

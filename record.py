@@ -9,9 +9,9 @@ from compositions import Compositions
 class Record:
     def __init__(self, database):
         self.categories = Categories(database)
-        self.categories.instanciate_category()
+        self.categories.instanciate()
         self.products = Products(database)
-        self.products.instanciate_product()
+        self.products.instanciate()
         self.substitutes = Substitutes(database)
-        self.substitutes.instanciate_substitute()
+        self.substitutes.instanciate()
         Compositions(self.categories, self.products, self.substitutes, database)
