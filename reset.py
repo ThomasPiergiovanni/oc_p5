@@ -13,14 +13,15 @@ class Reset:
         self.download = Download()
         self.categories = None
         self.products = None
-        self.process()
+        # self.process()
         
 
     def process(self):
-        self.database.open_cursor()
-        self.database.delete()
-        self.database.close_cursor()
-        self.database.open_cursor()
+        statement = self.database.delete_db()
+        self.database.execute_one(statement)
+        statement = self.database.create_db()
+        self.database.execute_one(statement)
+        self.database.connection_to_db()
         self.database.create()
         self.download.categories()
         self.database.insert_categories(self.download)

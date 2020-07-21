@@ -25,7 +25,7 @@ class Products():
 
     def instanciate_product(self):
         self.database.open_cursor()
-        self.database.cursor.execute ("SELECT * FROM p5.product")
+        self.database.cursor.execute ("SELECT * FROM product")
         selection = self.database.cursor.fetchall()   
         for elt in selection:
             id_product = elt[0]

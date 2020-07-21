@@ -23,7 +23,7 @@ HEADER = {'User-Agent': 'ThomasApp - Web - Version 0.0'}
 # Mandatory : Yes.
 # Settings: project_5 (default).
 # Comments: Can be changed. If a database with that name already exist, it will be overwritten.
-DATABASE_NAME= "project_5"
+DATABASE_NAME= "project_6"
 
 # Description:Host server.
 # Mandatory : Yes.

@@ -26,7 +26,7 @@ class Categories:
 
     def instanciate_category(self):
         self.database.open_cursor()
-        self.database.cursor.execute ("SELECT * FROM p5.category")
+        self.database.cursor.execute ("SELECT * FROM category")
         selection = self.database.cursor.fetchall()
         for elt in selection:
             id_category = elt[0]

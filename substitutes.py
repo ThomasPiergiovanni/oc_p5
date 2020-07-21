@@ -24,7 +24,7 @@ class Substitutes:
   
     def instanciate_substitute(self):
         self.database.open_cursor()
-        self.database.cursor.execute ("SELECT * FROM p5.substitute")
+        self.database.cursor.execute ("SELECT * FROM substitute")
         selection = self.database.cursor.fetchall()
         for elt in selection:
             product_product_id= elt[0]
@@ -136,7 +136,7 @@ class Substitutes:
     def insert_substitute(self, products):
         if self.registration:
             self.database.open_cursor()
-            statement = "INSERT INTO p5.substitute (product_product_id,\
+            statement = "INSERT INTO substitute (product_product_id,\
             substitute_product_id) VALUES (%s, %s)"
             value = [products.selected_product.id_product,\
             self.selected_substitute.id_product]
