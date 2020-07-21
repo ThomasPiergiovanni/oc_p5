@@ -12,36 +12,20 @@ class Database:
         password = config.PASSWORD)
         self.status = False
         self.statement = None
-        self.source_categories = {}
-        self.source_products = {}
+        self.source= {}
 
-    def download_categories(self):
+
+    def download(self, endpoint, parameters):
         try:
-            response_api =requests.get(config.CATEGORIES_ENDPOINT,\
-            headers = config.HEADER )
-            self.source_categories = response_api.json()
-        except HTTPError as http_error:
+            response_api =requests.get(endpoint,\
+            headers = config.HEADER, params = parameters)
+            self.source = response_api.json()
+        except requests.HTTPError as http_error:
             print(f"HTTP error occurred: {http_error}")
         except Exception as other_error:
             print(f"Other error occurred: {other_error}")
         else:
-            print("HTTP call to API for categories successfull")
-
-    def download_products(self, category):
-        try:
-            params = {
-                "action":"process", "tagtype_0": "categories",
-                "tag_contains_0":"contains", "tag_0":category.id_origin,
-                "json":1, "page":1, "page_size": config.PRODUCTS_AMOUNT}
-            response_api =requests.get(config.PRODUCTS_ENDPOINT,\
-            headers = config.HEADER, params = params)
-            self.source_products = response_api.json()
-        except HTTPError as http_error:
-            print(f"HTTP error occurred: {http_error}")
-        except Exception as other_error:
-            print(f"Other error occurred: {other_error}")
-        else:
-            print(f"HTTP call to API for {category.id_origin} successfull")
+            print("HTTP call to API successfull")
 
     def set_db(self):
         self.statement = "USE %s"% config.DATABASE_NAME
@@ -103,7 +87,7 @@ class Database:
         statement = "INSERT INTO category (id_origin, name,\
         url) VALUES (%s, %s, %s)"
         value = []
-        for elt in self.source_categories["tags"]:
+        for elt in self.source["tags"]:
             if elt["id"] in config.SELECTED_CATEGORIES and elt["name"] and\
             elt["url"]:
                 elt_string = (elt["id"], elt["name"], elt["url"])
@@ -120,7 +104,7 @@ class Database:
         nutriscore_grade, category_id, url, stores)\
         VALUES (%s, %s, %s, %s, %s, %s)"
         value = []
-        for elt in self.source_products["products"]:
+        for elt in self.source["products"]:
             try: 
                 if elt["id"] and elt["product_name"] and\
                 elt["nutriscore_grade"] and elt["url"]:

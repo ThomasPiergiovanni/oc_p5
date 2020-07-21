@@ -13,6 +13,7 @@ CATEGORIES_ENDPOINT = "https://fr.openfoodfacts.org/categories.json"
 # Comments: Endpoint return the products categories list.
 PRODUCTS_ENDPOINT= "https://fr.openfoodfacts.org/cgi/search.pl"
 
+
 # Description:Headers.
 # Mandatory : Yes.
 # Settings: {'User-Agent': 'ThomasApp - Web - Version 0.0'} (default).

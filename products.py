@@ -22,6 +22,14 @@ class Products():
         self.select_input_valid = False
         self.selected_product = 0
 
+    def source(self, category):
+        endpoint = config.PRODUCTS_ENDPOINT
+        parameters = {
+                "action":"process", "tagtype_0": "categories",
+                "tag_contains_0":"contains", "tag_0":category.id_origin,
+                "json":1, "page":1, "page_size": config.PRODUCTS_AMOUNT}
+        return endpoint, parameters
+
     def create_table(self):
         statement = "CREATE TABLE IF NOT EXISTS product(\
             id_product SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,\

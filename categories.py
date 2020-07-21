@@ -23,6 +23,11 @@ class Categories:
         self.select_input_valid = False
         self.selected_category = None
 
+    def source(self):
+        endpoint = config.CATEGORIES_ENDPOINT
+        parameters = {}
+        return endpoint, parameters
+
     def create_table(self):
         statement = "CREATE TABLE IF NOT EXISTS category(\
             id_category SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,\
