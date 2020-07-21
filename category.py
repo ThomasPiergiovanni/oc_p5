@@ -7,5 +7,3 @@ class Category:
         self.name = name
         self.url = url
         self.temp_rank = None
-
-

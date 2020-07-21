@@ -12,8 +12,7 @@ class Initialisation:
     def initiate(self):
         self.database.exists()
         if self.database.status:
-            self.database.set_database()
-            self.database.execute_one(self.database.statement)
+            self.database.execute_one(self.database.set_db())
             self.database.content()
             if self.database.status:
                 Menu(self.database)

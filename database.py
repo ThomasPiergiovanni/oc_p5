@@ -43,7 +43,7 @@ class Database:
         else:
             print(f"HTTP call to API for {category.id_origin} successfull")
 
-    def set_database(self):
+    def set_db(self):
         self.statement = "USE %s"% config.DATABASE_NAME
         return self.statement
         
@@ -97,7 +97,7 @@ class Database:
         statement = "DROP DATABASE IF EXISTS %s"% config.DATABASE_NAME
         return statement
 
-    def create(self):
+    def create(self, *args):
         self.open_cursor()
         with open(config.SQL_FILE, "r") as file:
             content = file.read()

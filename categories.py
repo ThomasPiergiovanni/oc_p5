@@ -22,19 +22,24 @@ class Categories:
         self.tests = Tests()
         self.select_input_valid = False
         self.selected_category = None
-        self.instanciate_category()
+
+    def create_table(self):
+        statement = "CREATE TABLE IF NOT EXISTS category(\
+            id_category SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,\
+            id_origin VARCHAR(250) NOT NULL,\
+            name VARCHAR(250) NOT NULL,\
+            url LONGTEXT NOT NULL,\
+            PRIMARY KEY (id_category)\
+            )ENGINE=INNODB;"
+        return statement
 
     def instanciate_category(self):
         self.database.open_cursor()
         self.database.cursor.execute ("SELECT * FROM category")
         selection = self.database.cursor.fetchall()
         for elt in selection:
-            id_category = elt[0]
-            id_origin = elt[1]
-            name = elt[2]
-            url = elt[3]
-            category = Category(id_category, id_origin,\
-            name, url)
+            category = Category(elt[0], elt[1],\
+            elt[2], elt[3])
             self.categories_list.append(category)
         self.database.close_cursor()
 

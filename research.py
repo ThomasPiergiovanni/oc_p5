@@ -8,6 +8,7 @@ import menu
 class Research:
     def __init__(self, database):
         self.categories = Categories(database)
+        self.categories.instanciate_category()
         self.categories.process()
         self.products = Products(database)
         self.products.process(self.categories)
