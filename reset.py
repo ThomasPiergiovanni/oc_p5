@@ -10,10 +10,10 @@ import menu
 class Reset:
     def __init__(self, database):
         self.database = database
-        self.download = Download()
+        # self.download = Download()
         self.categories = None
         self.products = None
-        # self.process()
+        self.process()
         
 
     def process(self):
@@ -21,14 +21,15 @@ class Reset:
         self.database.execute_one(statement)
         statement = self.database.create_db()
         self.database.execute_one(statement)
-        self.database.connection_to_db()
+        self.database.execute_one(self.database.set_database())
+        
         self.database.create()
-        self.download.categories()
-        self.database.insert_categories(self.download)
+        self.database.download_categories()
+        self.database.insert_categories()
         self.categories = Categories(self.database)
         for category in self.categories.categories_list:
-            self.download.products(category)
-            self.database.insert_products(category, self.download)
+            self.database.download_products(category)
+            self.database.insert_products(category)
         self.products = Products(self.database)
         menu.Menu(self.database)
 
