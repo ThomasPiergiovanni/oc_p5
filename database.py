@@ -97,16 +97,6 @@ class Database:
         statement = "DROP DATABASE IF EXISTS %s"% config.DATABASE_NAME
         return statement
 
-    def create(self, *args):
-        self.open_cursor()
-        with open(config.SQL_FILE, "r") as file:
-            content = file.read()
-            querries = content.split(";")
-            for querry in querries:
-                self.cursor.execute(querry)
-        self.close_cursor()
-
-
 
     def insert_categories(self):
         self.open_cursor()

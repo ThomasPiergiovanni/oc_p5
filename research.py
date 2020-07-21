@@ -11,8 +11,10 @@ class Research:
         self.categories.instanciate_category()
         self.categories.process()
         self.products = Products(database)
+        self.products.instanciate_product()
         self.products.process(self.categories)
         self.substitutes = Substitutes(database)
+        self.substitutes.instanciate_substitute()
         self.substitutes.process(self.products)
 
      

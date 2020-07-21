@@ -20,7 +20,15 @@ class Substitutes:
         self.register_input_valid = False
         self.registration = False
         self.substitutes_registered_list = []
-        self.instanciate_substitute()
+
+    def create_table(self):
+        statement = "CREATE TABLE IF NOT EXISTS substitute(\
+            product_product_id SMALLINT UNSIGNED NOT NULL,\
+            substitute_product_id SMALLINT UNSIGNED NOT NULL,\
+            FOREIGN KEY (product_product_id) REFERENCES product(id_product),\
+            FOREIGN KEY (substitute_product_id) REFERENCES product(id_product)\
+            )ENGINE=INNODB;"
+        return statement
   
     def instanciate_substitute(self):
         self.database.open_cursor()

@@ -21,7 +21,20 @@ class Products():
         self.tests = Tests()
         self.select_input_valid = False
         self.selected_product = 0
-        self.instanciate_product()
+
+    def create_table(self):
+        statement = "CREATE TABLE IF NOT EXISTS product(\
+            id_product SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,\
+            id_origin VARCHAR(250) NOT NULL,\
+            product_name VARCHAR(250) NOT NULL,\
+            nutriscore_grade VARCHAR(250) NOT NULL,\
+            category_id SMALLINT UNSIGNED NOT NULL,\
+            url LONGTEXT NOT NULL,\
+            stores VARCHAR(250),\
+            PRIMARY KEY (id_product),\
+            FOREIGN KEY (category_id) REFERENCES category(id_category)\
+            )ENGINE=INNODB;"
+        return statement
 
     def instanciate_product(self):
         self.database.open_cursor()
