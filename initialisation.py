@@ -11,8 +11,10 @@ class Initialisation:
 
     def initiate(self):
         self.database.exists()
+        self.database.verify(self.database.para1, self.database.para2)
+        print (self.database.status)
         if self.database.status:
-            self.database.execute_one(self.database.set_db())
+            self.database.execute_one(self.database.use())
             self.database.content()
             if self.database.status:
                 Menu(self.database)

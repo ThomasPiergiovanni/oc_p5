@@ -1,6 +1,5 @@
 #-*-coding:utf-8 
 
-from database import Database
 from categories import Categories
 from products import Products
 from substitutes import Substitutes
@@ -20,16 +19,17 @@ class Reset:
         menu.Menu(self.database)
         
     def reset_database(self):
-        self.database.execute_one(self.database.delete_db())
-        self.database.execute_one(self.database.create_db())
-        self.database.execute_one(self.database.set_db())
+        self.database.execute_one(self.database.delete())
+        self.database.execute_one(self.database.create())
+        self.database.execute_one(self.database.use())
 
     def reset_categories(self):
         endpoint, parameters = self.categories.source()
         self.database.download(endpoint, parameters)
         self.database.execute_one(self.categories.create_table())
-        statement, values = self.categories.insert_in_table()
-        self.database.execute_many(statement, values)
+        self.categories.insert_in_table()
+        self.database.execute_many(self.categories.statement,\
+        self.categories.values)
         self.categories.instanciate()
 
     def reset_products(self):

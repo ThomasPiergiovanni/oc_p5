@@ -10,9 +10,19 @@ class Database:
         self.connection = mysql.connector.connect\
         (host = config.HOST, user = config.USER,\
         password = config.PASSWORD)
+        self.para1 = None
+        self.para2 = None
         self.status = False
-        self.statement = None
         self.source= {}
+
+    def create(self):
+        statement = "CREATE DATABASE IF NOT EXISTS %s CHARACTER\
+        SET 'utf8';"% config.DATABASE_NAME
+        return statement
+
+    def delete(self):
+        statement = "DROP DATABASE IF EXISTS %s"% config.DATABASE_NAME
+        return statement
 
 
     def download(self, endpoint, parameters):
@@ -27,9 +37,9 @@ class Database:
         else:
             print("HTTP call to API successfull")
 
-    def set_db(self):
-        self.statement = "USE %s"% config.DATABASE_NAME
-        return self.statement
+    def use(self):
+        statement = "USE %s"% config.DATABASE_NAME
+        return statement
         
     def close_connection_to_db(self):
         self.connection.close()
@@ -52,17 +62,21 @@ class Database:
         self.connection.commit()
         self.close_cursor()
 
-    def exists(self):
+    def verify (self, para1, para2):
         try:
             self.open_cursor()
-            self.cursor.execute("SHOW DATABASES LIKE '%s'"% config.DATABASE_NAME)
+            self.cursor.execute(para1)
             self.cursor.fetchall()
             if self.cursor.rowcount >= 1:
                 self.status = True
             self.close_cursor()
         except:
             self.status = False
-            print("No DB")
+            print(para2)
+
+    def exists(self):
+        self.para1 = "SHOW DATABASES LIKE '%s'"% config.DATABASE_NAME
+        self.para2 = "No DB"
 
     def content(self):
         querries = ("category","product")
@@ -78,11 +92,4 @@ class Database:
             self.status = False
             print ("No or empty tables")
 
-    def create_db(self):
-        statement = "CREATE DATABASE IF NOT EXISTS %s CHARACTER\
-        SET 'utf8';"% config.DATABASE_NAME
-        return statement
 
-    def delete_db(self):
-        statement = "DROP DATABASE IF EXISTS %s"% config.DATABASE_NAME
-        return statement
