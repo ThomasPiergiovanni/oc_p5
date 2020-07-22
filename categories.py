@@ -73,7 +73,13 @@ class Categories:
             self.categories_list.append(category)
         self.database.close_cursor()
 
-    def nominal_scenario (self):
+    def research_nominal_scenario(self):
+        self.instanciate()
+        self.show()
+        self.ask()
+        self.select()
+
+    def research_exception_scenario(self):
         self.show()
         self.ask()
         self.select()
@@ -105,11 +111,11 @@ class Categories:
             else:
                 system("cls")
                 print ("Only numbers included in above list can be used. Retry")
-                self.nominal_scenario()
+                self.research_exception_scenario()
         else:
             system("cls")
             print ("Only numbers can be used. Retry")
-            self.nominal_scenario()
+            self.research_exception_scenario()
 
 
 
