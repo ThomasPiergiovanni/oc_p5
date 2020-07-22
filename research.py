@@ -13,8 +13,8 @@ class Research:
         self.products = Products(database)
         self.products.instanciate()
         self.products.nominal_scenario(self.categories)
-        self.substitutes = Substitutes(database)
+        self.substitutes = Substitutes(database, self.products)
         self.substitutes.instanciate()
-        self.substitutes.nominal_scenario(self.products)
+        self.substitutes.nominal_scenario()
 
      
