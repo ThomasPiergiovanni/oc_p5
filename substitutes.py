@@ -47,24 +47,24 @@ class Substitutes:
         self.find()
         self.organize()
         self.show()
+        self.ask()
         self.select()
-        self.execute_selection()
-        self.register()
-        self.execute_registration()
-        self.insert_substitute()
+        self.ask_registration()
+        self.select_registration()
+        self.insert_in_table()
 
     def exception_scenario_one(self):
         self.show()
+        self.ask()
         self.select()
-        self.execute_selection()
-        self.register()
-        self.execute_registration()
-        self.insert_substitute()
+        self.ask_registration()
+        self.select_registration()
+        self.insert_in_table()
 
     def exception_scenario_two(self):
-        self.register()
-        self.execute_registration()
-        self.insert_substitute()
+        self.ask_registration()
+        self.select_registration()
+        self.insert_in_table()
 
     def find(self):
         for elt in self.products.selected_products:
@@ -79,6 +79,7 @@ class Substitutes:
         else:
             system("cls")
             print("There is no healthier substitute for that product")
+            system("pause")
             menu.Menu(self.database)     
 
     def show(self):
@@ -90,13 +91,13 @@ class Substitutes:
             " - ", elt.nutriscore_grade)
             rank += 1
 
-    def select(self):
+    def ask(self):
         self.question= input("Which substitute you want to choose?\n")
         self.tests.test_integer(self.question)
         if self.tests.valid:
             self.select_input_valid = True
 
-    def execute_selection(self):
+    def select(self):
         if self.select_input_valid:
             system("cls")
             self.question = int(self.question)
@@ -119,13 +120,13 @@ class Substitutes:
             print ("Only numbers can be used. Retry")
             self.exception_scenario_one()
 
-    def register(self):
+    def ask_registration(self):
         self.question= input("Do you want to register that choice(y/n)?\n")
         self.tests.test_string(self.question)
         if self.tests.valid:
             self.register_input_valid = True
 
-    def execute_registration(self):
+    def select_registration(self):
         if self.register_input_valid:
             self.question = str(self.question)
             if self.question in "yY":
@@ -142,7 +143,7 @@ class Substitutes:
             print ("Only letter y/n can be used. Retry ")
             self.exception_scenario_two()
 
-    def insert_substitute(self):
+    def insert_in_table(self):
         if self.registration:
             self.database.open_cursor()
             statement = "INSERT INTO substitute (product_product_id,\
