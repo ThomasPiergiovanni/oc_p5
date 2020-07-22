@@ -10,7 +10,7 @@ class Initialisation:
     def __init__(self):
         self.database = Database()
         self.categories = Categories(self.database)
-        self.products = Products(self.database)
+        self.products = Products(self.categories)
         self.initiate()
 
     def initiate(self):

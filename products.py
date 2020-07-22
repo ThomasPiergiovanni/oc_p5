@@ -10,9 +10,10 @@ from tests import Tests
 
 
 class Products():
-    def __init__(self, database):
+    def __init__(self, categories):
         # system("cls")
-        self.database = database
+        self.database = categories.database
+        self.categories = categories
         self.source_data = {}
         self.products_list = []
         self.selected_products = []
@@ -28,11 +29,11 @@ class Products():
         parameters = [statement, message]
         return parameters
 
-    def source(self, category):
+    def source(self):
         endpoint = config.PRODUCTS_ENDPOINT
         params = {
                 "action":"process", "tagtype_0": "categories",
-                "tag_contains_0":"contains", "tag_0":category.id_origin,
+                "tag_contains_0":"contains", "tag_0":self.categories.id_origin,
                 "json":1, "page":1, "page_size": config.PRODUCTS_AMOUNT}
         parameters = [endpoint, params]
         return parameters
@@ -51,7 +52,7 @@ class Products():
             )ENGINE=INNODB;"
         return statement
 
-    def insert_in_table(self, category):
+    def insert_in_table(self):
         statement = "INSERT INTO product (id_origin, product_name,\
         nutriscore_grade, category_id, url, stores)\
         VALUES (%s, %s, %s, %s, %s, %s)"
@@ -61,7 +62,7 @@ class Products():
                 if elt["id"] and elt["product_name"] and\
                 elt["nutriscore_grade"] and elt["url"]:
                     elt_string = (elt["id"], elt["product_name"],\
-                    elt["nutriscore_grade"], category.id_category,\
+                    elt["nutriscore_grade"], self.categories.id_category,\
                     elt["url"], elt["stores"])
                     values.append(elt_string)
             except Exception as error:
@@ -80,23 +81,23 @@ class Products():
             self.products_list.append(product)
         self.database.close_cursor()
 
-    def nominal_scenario(self, categories):
-        self.organize(categories)
+    def nominal_scenario(self):
+        self.organize()
         self.show()
         self.select()
-        self.execute(categories)
+        self.execute()
 
-    def excecption_scenario(self, categories):
+    def excecption_scenario(self):
         self.show()
         self.select()
-        self.execute(categories)
+        self.execute()
 
-    def organize(self, categories):
+    def organize(self):
         for elt in self.products_list:
-            if elt.category_id == categories.selected_category.id_category:
+            if elt.category_id == self.categories.selected_category.id_category:
                 self.selected_products.append(elt)
-                self.sorted_products = sorted(self.selected_products, key = lambda \
-                product : product.product_name)
+                self.sorted_products = sorted(self.selected_products,\
+                key = lambda product : product.product_name)
 
     def show(self):
         print ("PRODUCTS:")
@@ -112,7 +113,7 @@ class Products():
         if self.tests.valid:
             self.select_input_valid = True
 
-    def execute(self, categories):
+    def execute(self):
         if self.select_input_valid:
             self.question = int(self.question)
             if self.question <= len(self.selected_products):
@@ -123,11 +124,11 @@ class Products():
             else:
                 system("cls")
                 print ("Only numbers included in above list can be used. Retry")
-                self.excecption_scenario(categories)
+                self.excecption_scenario()
         else:
             system("cls")
             print ("Only numbers can be used. Retry")
-            self.excecption_scenario(categories)
+            self.excecption_scenario()
 
 
 

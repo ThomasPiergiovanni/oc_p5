@@ -8,9 +8,9 @@ from tests import Tests
 import menu
 
 class Substitutes:
-    def __init__(self, database, products):
+    def __init__(self, products):
         # system("cls")
-        self.database = database
+        self.database = products.database
         self.products = products
         self.substitutes_proposed_list = []
         self.sorted_substitutes = []
@@ -36,10 +36,7 @@ class Substitutes:
         self.database.cursor.execute ("SELECT * FROM substitute")
         selection = self.database.cursor.fetchall()
         for elt in selection:
-            product_product_id= elt[0]
-            substitute_product_id = elt[1]
-            substitute = Substitute(product_product_id,\
-            substitute_product_id)
+            substitute = Substitute(elt[0],elt[1])
             self.substitutes_registered_list.append(substitute)
         self.database.close_cursor()
 

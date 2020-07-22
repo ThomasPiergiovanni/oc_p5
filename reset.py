@@ -10,7 +10,7 @@ class Reset:
     def __init__(self, database):
         self.database = database
         self.categories = Categories(self.database)
-        self.products = Products(self.database)
+        self.products = Products(self.categories)
         self.substitutes = Substitutes (self.database)
         self.reset_database()
         self.reset_categories()

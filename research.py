@@ -7,13 +7,14 @@ import menu
 
 class Research:
     def __init__(self, database):
-        self.categories = Categories(database)
+        self.database = database
+        self.categories = Categories(self.database)
         self.categories.instanciate()
         self.categories.nominal_scenario()
-        self.products = Products(database)
+        self.products = Products(self.categories)
         self.products.instanciate()
-        self.products.nominal_scenario(self.categories)
-        self.substitutes = Substitutes(database, self.products)
+        self.products.nominal_scenario()
+        self.substitutes = Substitutes(self.products)
         self.substitutes.instanciate()
         self.substitutes.nominal_scenario()
 
