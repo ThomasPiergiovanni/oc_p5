@@ -18,7 +18,7 @@ class Reset:
         self.reset_substitutes()
         menu.Menu(self.database)
         
-    def reset_database(self):
+    def reset_database(self, database):
         self.database.execute_one(self.database.delete())
         self.database.execute_one(self.database.create())
         self.database.execute_one(self.database.use())
@@ -35,7 +35,7 @@ class Reset:
             self.database.download(self.products.source(category))
             self.database.execute_one(self.products.create_table())
             self.database.execute_many(self.products.insert_in_table(category))
-        self.products.instanciate()
+        # self.products.instanciate()
 
     def reset_substitutes(self):
         self.database.execute_one(self.substitutes.create_table())

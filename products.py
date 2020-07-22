@@ -80,8 +80,13 @@ class Products():
             self.products_list.append(product)
         self.database.close_cursor()
 
-    def process (self, categories):
+    def nominal_scenario(self, categories):
         self.organize(categories)
+        self.show()
+        self.select()
+        self.execute(categories)
+
+    def excecption_scenario(self, categories):
         self.show()
         self.select()
         self.execute(categories)
@@ -118,15 +123,12 @@ class Products():
             else:
                 system("cls")
                 print ("Only numbers included in above list can be used. Retry")
-                self.show()
-                self.select()
-                self.execute(categories)
+                self.excecption_scenario(categories)
         else:
             system("cls")
             print ("Only numbers can be used. Retry")
-            self.show()
-            self.select()
-            self.execute(categories)
+            self.excecption_scenario(categories)
+
 
 
 

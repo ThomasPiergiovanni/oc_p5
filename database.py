@@ -22,7 +22,6 @@ class Database:
         statement = "DROP DATABASE IF EXISTS %s"% config.DATABASE_NAME
         return statement
 
-
     def download(self, parameters):
         try:
             response_api =requests.get(parameters[0],\
@@ -60,7 +59,7 @@ class Database:
         self.connection.commit()
         self.close_cursor()
 
-    def verify (self, parameters):
+    def verify(self, parameters):
         try:
             self.open_cursor()
             self.cursor.execute(parameters[0])

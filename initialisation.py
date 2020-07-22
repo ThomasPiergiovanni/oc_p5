@@ -11,7 +11,6 @@ class Initialisation:
         self.database = Database()
         self.categories = Categories(self.database)
         self.products = Products(self.database)
-
         self.initiate()
 
     def initiate(self):
