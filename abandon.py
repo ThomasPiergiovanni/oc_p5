@@ -7,8 +7,9 @@ import menu
 import tests
 
 class Abandon:
-    def __init__(self):
+    def __init__(self, database):
         system("cls")
+        self.database = database
         self.question = None
         self.select_input_valid = False
         self.tests = Tests()
@@ -29,7 +30,7 @@ class Abandon:
                 system("cls")
                 sys.exit("Goodbye")
             elif self.question in "nN":
-                menu.Menu()
+                menu.Menu(self.database)
             else :
                 system("cls")
                 print ("Only letter y/n can be used. Retry")

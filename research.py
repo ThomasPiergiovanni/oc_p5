@@ -15,6 +15,6 @@ class Research:
         self.products.nominal_scenario(self.categories)
         self.substitutes = Substitutes(database)
         self.substitutes.instanciate()
-        self.substitutes.process(self.products)
+        self.substitutes.nominal_scenario(self.products)
 
      

@@ -42,14 +42,27 @@ class Substitutes:
             self.substitutes_registered_list.append(substitute)
         self.database.close_cursor()
 
-    def process (self, products):
+    def nominal_scenario(self, products):
         self.find(products)
         self.organize()
         self.show()
         self.select()
         self.execute_selection(products)
         self.register()
-        self.execute_registration()
+        self.execute_registration(products)
+        self.insert_substitute(products)
+
+    def exception_scenario_one(self, products):
+        self.show()
+        self.select()
+        self.execute_selection(products)
+        self.register()
+        self.execute_registration(products)
+        self.insert_substitute(products)
+
+    def exception_scenario_two(self, products):
+        self.register()
+        self.execute_registration(products)
         self.insert_substitute(products)
 
     def find(self, products):
@@ -98,21 +111,12 @@ class Substitutes:
             else:
                 system("cls")
                 print ("Only numbers included in above list can be used. Retry")
-                self.show()
-                self.select()
-                self.execute_selection(products)
-                self.register()
-                self.execute_registration()
-                self.insert_substitute(products)
+                self.exception_scenario_one(products)
+
         else:
             system("cls")
             print ("Only numbers can be used. Retry")
-            self.show()
-            self.select()
-            self.execute_selection(products)
-            self.register()
-            self.execute_registration()
-            self.insert_substitute(products)
+            self.exception_scenario_one(products)
 
     def register(self):
         self.question= input("Do you want to register that choice(y/n)?\n")
@@ -120,7 +124,7 @@ class Substitutes:
         if self.tests.valid:
             self.register_input_valid = True
 
-    def execute_registration(self):
+    def execute_registration(self, products):
         if self.register_input_valid:
             self.question = str(self.question)
             if self.question in "yY":
@@ -131,15 +135,11 @@ class Substitutes:
             else: 
                 system("cls")
                 print ("Only letter y/n can be used. Retry ")
-                self.register()
-                self.execute_registration()
-                self.insert_substitute(products)
+                self.exception_scenario_two(products)
         else:
             system("cls")
             print ("Only letter y/n can be used. Retry ")
-            self.register()
-            self.execute_registration()
-            self.insert_substitute(products)
+            self.exception_scenario_two(products)
 
     def insert_substitute(self, products):
         if self.registration:
