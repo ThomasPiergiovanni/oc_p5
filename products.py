@@ -29,6 +29,12 @@ class Products():
         parameters = [statement, message]
         return parameters
 
+    def reset_nominal_scenario(self):
+        self.database.execute_one(self.create_table())
+        for category in self.categories.categories_list:
+            self.database.download(self.source(category))
+            self.database.execute_many(self.insert_in_table(category))
+
     def source(self, category):
         endpoint = config.PRODUCTS_ENDPOINT
         params = {

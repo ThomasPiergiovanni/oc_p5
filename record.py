@@ -10,8 +10,8 @@ class Record:
     def __init__(self, database):
         self.categories = Categories(database)
         self.categories.instanciate()
-        self.products = Products(database)
+        self.products = Products(self.categories)
         self.products.instanciate()
-        self.substitutes = Substitutes(database)
+        self.substitutes = Substitutes(self.products)
         self.substitutes.instanciate()
         Compositions(self.categories, self.products, self.substitutes, database)

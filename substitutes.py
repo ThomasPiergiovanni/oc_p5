@@ -22,6 +22,9 @@ class Substitutes:
         self.registration = False
         self.substitutes_registered_list = []
 
+    def reset_nominal_scenario(self):
+        self.database.execute_one(self.create_table())
+
     def create_table(self):
         statement = "CREATE TABLE IF NOT EXISTS substitute(\
             product_product_id SMALLINT UNSIGNED NOT NULL,\
