@@ -23,8 +23,6 @@ class Products():
         self.select_input_valid = False
         self.selected_product = 0
 
-
-
     def reset_nominal_scenario(self):
         self.database.execute_one(self.create_table())
         for category in self.categories.categories_list:
@@ -48,16 +46,7 @@ class Products():
         message= "No or empty product tables"
         parameters = [statement, message]
         return parameters
-
-    def source(self, category):
-        endpoint = config.PRODUCTS_ENDPOINT
-        params = {
-                "action":"process", "tagtype_0": "categories",
-                "tag_contains_0":"contains", "tag_0":category.id_origin,
-                "json":1, "page":1, "page_size": config.PRODUCTS_AMOUNT}
-        parameters = [endpoint, params]
-        return parameters
-
+        
     def create_table(self):
         statement = "CREATE TABLE IF NOT EXISTS product(\
             id_product SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,\
@@ -71,6 +60,15 @@ class Products():
             FOREIGN KEY (category_id) REFERENCES category(id_category)\
             )ENGINE=INNODB;"
         parameters =[statement, None]
+        return parameters
+
+    def source(self, category):
+        endpoint = config.PRODUCTS_ENDPOINT
+        params = {
+                "action":"process", "tagtype_0": "categories",
+                "tag_contains_0":"contains", "tag_0":category.id_origin,
+                "json":1, "page":1, "page_size": config.PRODUCTS_AMOUNT}
+        parameters = [endpoint, params]
         return parameters
 
     def insert_in_table(self,category):

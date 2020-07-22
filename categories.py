@@ -7,8 +7,6 @@ from category import Category
 from tests import Tests
 import config
 
-
-
 class Categories:
     def __init__(self, database):
         # system("cls")
@@ -59,7 +57,6 @@ class Categories:
             )ENGINE=INNODB;"
         parameters =[statement, None]
         return parameters
-
 
     def insert_in_table(self):
         statement = "INSERT INTO category (id_origin, name,\
