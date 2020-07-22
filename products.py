@@ -29,11 +29,11 @@ class Products():
         parameters = [statement, message]
         return parameters
 
-    def source(self):
+    def source(self, category):
         endpoint = config.PRODUCTS_ENDPOINT
         params = {
                 "action":"process", "tagtype_0": "categories",
-                "tag_contains_0":"contains", "tag_0":self.categories.id_origin,
+                "tag_contains_0":"contains", "tag_0":category.id_origin,
                 "json":1, "page":1, "page_size": config.PRODUCTS_AMOUNT}
         parameters = [endpoint, params]
         return parameters
@@ -52,17 +52,17 @@ class Products():
             )ENGINE=INNODB;"
         return statement
 
-    def insert_in_table(self):
+    def insert_in_table(self,category):
         statement = "INSERT INTO product (id_origin, product_name,\
         nutriscore_grade, category_id, url, stores)\
         VALUES (%s, %s, %s, %s, %s, %s)"
         values = []
-        for elt in self.database.source["products"]:
+        for elt in self.categories.database.source["products"]:
             try: 
                 if elt["id"] and elt["product_name"] and\
                 elt["nutriscore_grade"] and elt["url"]:
                     elt_string = (elt["id"], elt["product_name"],\
-                    elt["nutriscore_grade"], self.categories.id_category,\
+                    elt["nutriscore_grade"], category.id_category,\
                     elt["url"], elt["stores"])
                     values.append(elt_string)
             except Exception as error:

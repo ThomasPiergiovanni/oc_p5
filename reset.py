@@ -11,9 +11,9 @@ class Reset:
         self.database = database
         self.categories = Categories(self.database)
         self.products = Products(self.categories)
-        self.substitutes = Substitutes (self.database)
-        self.reset_database()
-        self.reset_categories()
+        self.substitutes = Substitutes (self.products)
+        self.reset_database(self.database)
+        self.categories.reset_nominal_scenario()
         self.reset_products()
         self.reset_substitutes()
         menu.Menu(self.database)
@@ -23,11 +23,11 @@ class Reset:
         self.database.execute_one(self.database.create())
         self.database.execute_one(self.database.use())
 
-    def reset_categories(self):
-        self.database.download(self.categories.source())
-        self.database.execute_one(self.categories.create_table())
-        self.database.execute_many(self.categories.insert_in_table())
-        self.categories.instanciate()
+    # def reset_categories(self):
+    #     self.database.download(self.categories.source())
+    #     self.database.execute_one(self.categories.create_table())
+    #     self.database.execute_many(self.categories.insert_in_table())
+    #     self.categories.instanciate()
 
     def reset_products(self):
         self.database.execute_one(self.products.create_table())

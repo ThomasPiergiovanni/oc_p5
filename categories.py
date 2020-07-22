@@ -1,14 +1,11 @@
 #-*-coding:utf-8 -*
 
+from os import system
 import mysql.connector
 
-from os import system
-
-import config
-
-from database import Database
 from category import Category
 from tests import Tests
+import config
 
 
 
@@ -28,6 +25,12 @@ class Categories:
         message= "No or empty category tables"
         parameters = [statement, message]
         return parameters
+
+    def reset_nominal_scenario(self):
+        self.database.download(self.source())
+        self.database.execute_one(self.create_table())
+        self.database.execute_many(self.insert_in_table())
+        self.instanciate()
 
     def source(self):
         endpoint = config.CATEGORIES_ENDPOINT
@@ -72,8 +75,8 @@ class Categories:
 
     def nominal_scenario (self):
         self.show()
+        self.ask()
         self.select()
-        self.execute()
 
     def show(self):
         print ("CATEGORIES:")
@@ -85,13 +88,13 @@ class Categories:
             print (elt.temp_rank ," - ",elt.name)
             rank += 1 
 
-    def select(self):
+    def ask(self):
         self.question= input("Which category you want to check products for?\n")
         self.tests.test_integer(self.question)
         if self.tests.valid:
             self.select_input_valid = True
 
-    def execute(self):
+    def select(self):
         if self.select_input_valid:
             self.question = int(self.question)
             if self.question <= len(self.categories_list):
