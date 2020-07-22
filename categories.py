@@ -20,17 +20,28 @@ class Categories:
         self.select_input_valid = False
         self.selected_category = None
 
-    def exists(self):
-        statement = "SELECT * FROM category"
-        message= "No or empty category tables"
-        parameters = [statement, message]
-        return parameters
-
     def reset_nominal_scenario(self):
         self.database.download(self.source())
         self.database.execute_one(self.create_table())
         self.database.execute_many(self.insert_in_table())
         self.instanciate()
+
+    def research_nominal_scenario(self):
+        self.instanciate()
+        self.show()
+        self.ask()
+        self.select()
+
+    def research_exception_scenario(self):
+        self.show()
+        self.ask()
+        self.select()
+
+    def exists(self):
+        statement = "SELECT * FROM category"
+        message= "No or empty category tables"
+        parameters = [statement, message]
+        return parameters
 
     def source(self):
         endpoint = config.CATEGORIES_ENDPOINT
@@ -72,17 +83,6 @@ class Categories:
             elt[2], elt[3])
             self.categories_list.append(category)
         self.database.close_cursor()
-
-    def research_nominal_scenario(self):
-        self.instanciate()
-        self.show()
-        self.ask()
-        self.select()
-
-    def research_exception_scenario(self):
-        self.show()
-        self.ask()
-        self.select()
 
     def show(self):
         print ("CATEGORIES:")

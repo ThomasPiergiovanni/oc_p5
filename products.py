@@ -23,17 +23,31 @@ class Products():
         self.select_input_valid = False
         self.selected_product = 0
 
-    def exists(self):
-        statement = "SELECT * FROM product"
-        message= "No or empty product tables"
-        parameters = [statement, message]
-        return parameters
+
 
     def reset_nominal_scenario(self):
         self.database.execute_one(self.create_table())
         for category in self.categories.categories_list:
             self.database.download(self.source(category))
             self.database.execute_many(self.insert_in_table(category))
+
+    def research_nominal_scenario(self):
+        self.instanciate()
+        self.organize()
+        self.show()
+        self.ask()
+        self.select()
+
+    def research_exception_scenario(self):
+        self.show()
+        self.ask()
+        self.select()
+
+    def exists(self):
+        statement = "SELECT * FROM product"
+        message= "No or empty product tables"
+        parameters = [statement, message]
+        return parameters
 
     def source(self, category):
         endpoint = config.PRODUCTS_ENDPOINT
@@ -87,17 +101,6 @@ class Products():
             self.products_list.append(product)
         self.database.close_cursor()
 
-    def nominal_scenario(self):
-        self.organize()
-        self.show()
-        self.ask()
-        self.select()
-
-    def excecption_scenario(self):
-        self.show()
-        self.ask()
-        self.select()
-
     def organize(self):
         for elt in self.products_list:
             if elt.category_id == self.categories.selected_category.id_category:
@@ -130,11 +133,11 @@ class Products():
             else:
                 system("cls")
                 print ("Only numbers included in above list can be used. Retry")
-                self.excecption_scenario()
+                self.research_exception_scenario()
         else:
             system("cls")
             print ("Only numbers can be used. Retry")
-            self.excecption_scenario()
+            self.research_exception_scenario()
 
 
 
