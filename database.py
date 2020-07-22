@@ -13,6 +13,11 @@ class Database:
         self.status = False
         self.source= {}
 
+    def reset_nominal_scenario(self):
+        self.execute_one(self.delete())
+        self.execute_one(self.create())
+        self.execute_one(self.use())
+
     def create(self):
         statement = "CREATE DATABASE IF NOT EXISTS %s CHARACTER\
         SET 'utf8';"% config.DATABASE_NAME
