@@ -24,7 +24,7 @@ class Substitutes:
 
     def reset_nominal_scenario(self):
         self.database.execute_one(self.create_table())
-
+        
     def create_table(self):
         statement = "CREATE TABLE IF NOT EXISTS substitute(\
             product_product_id SMALLINT UNSIGNED NOT NULL,\
@@ -32,7 +32,28 @@ class Substitutes:
             FOREIGN KEY (product_product_id) REFERENCES product(id_product),\
             FOREIGN KEY (substitute_product_id) REFERENCES product(id_product)\
             )ENGINE=INNODB;"
-        return statement
+        parameters =[statement, None]
+        return parameters
+
+    # def insert_in_table(self):
+    #     if self.registration:
+    #         self.database.open_cursor()
+    #         statement = "INSERT INTO substitute (product_product_id,\
+    #         substitute_product_id) VALUES (%s, %s)"
+    #         value = [self.products.selected_product.id_product,\
+    #         self.selected_substitute.id_product]
+    #         self.database.cursor.execute(statement, value)
+    #         self.database.connection.commit()
+    #         self.database.close_cursor()
+    #         menu.Menu(self.database)
+    def insert_in_table(self):
+        if self.registration:
+            statement = "INSERT INTO substitute (product_product_id,\
+            substitute_product_id) VALUES (%s, %s)"
+            values = [self.products.selected_product.id_product,\
+            self.selected_substitute.id_product]
+            parameters = [statement, values]
+            return parameters
   
     def instanciate(self):
         self.database.open_cursor()
@@ -52,7 +73,11 @@ class Substitutes:
         self.select()
         self.ask_registration()
         self.select_registration()
-        self.insert_in_table()
+        self.database.execute_one(self.insert_in_table())
+        self.research_scenario_end()
+
+    def research_scenario_end(self):
+        menu.Menu(self.database) 
 
     def research_exception_scenario_one(self):
         self.show()
@@ -60,12 +85,14 @@ class Substitutes:
         self.select()
         self.ask_registration()
         self.select_registration()
-        self.insert_in_table()
+        self.database.execute_one(self.insert_in_table())
+        self.research_scenario_end()
 
     def research_exception_scenario_two(self):
         self.ask_registration()
         self.select_registration()
-        self.insert_in_table()
+        self.database.execute_one(self.insert_in_table())
+        self.research_scenario_end()
 
     def find(self):
         for elt in self.products.selected_products:
@@ -81,7 +108,7 @@ class Substitutes:
             system("cls")
             print("There is no healthier substitute for that product")
             system("pause")
-            menu.Menu(self.database)     
+            self.research_scenario_end()     
 
     def show(self):
         print ("SUBSTITUTES:")
@@ -133,7 +160,7 @@ class Substitutes:
                 self.registration = True
                 print("Substitute product has been registered !") 
             elif self.question in "nN":
-                menu.Menu(self.database) 
+                self.research_scenario_end() 
             else: 
                 system("cls")
                 print ("Only letter y/n can be used. Retry ")
@@ -143,17 +170,7 @@ class Substitutes:
             print ("Only letter y/n can be used. Retry ")
             self.research_exception_scenario_two()
 
-    def insert_in_table(self):
-        if self.registration:
-            self.database.open_cursor()
-            statement = "INSERT INTO substitute (product_product_id,\
-            substitute_product_id) VALUES (%s, %s)"
-            value = [self.products.selected_product.id_product,\
-            self.selected_substitute.id_product]
-            self.database.cursor.execute(statement, value)
-            self.database.connection.commit()
-            self.database.close_cursor()
-            menu.Menu(self.database)
+
 
 
 

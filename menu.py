@@ -10,7 +10,7 @@ from abandon import Abandon
 
 class Menu:
     def __init__(self, database):
-        # system("cls")
+        system("cls")
         self.database = database
         self.question = None
         self.select_input_valid = False

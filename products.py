@@ -70,7 +70,8 @@ class Products():
             PRIMARY KEY (id_product),\
             FOREIGN KEY (category_id) REFERENCES category(id_category)\
             )ENGINE=INNODB;"
-        return statement
+        parameters =[statement, None]
+        return parameters
 
     def insert_in_table(self,category):
         statement = "INSERT INTO product (id_origin, product_name,\

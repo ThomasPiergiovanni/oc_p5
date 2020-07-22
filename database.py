@@ -21,11 +21,13 @@ class Database:
     def create(self):
         statement = "CREATE DATABASE IF NOT EXISTS %s CHARACTER\
         SET 'utf8';"% config.DATABASE_NAME
-        return statement
+        parameters =[statement, None]
+        return parameters
 
     def delete(self):
         statement = "DROP DATABASE IF EXISTS %s"% config.DATABASE_NAME
-        return statement
+        parameters =[statement, None]
+        return parameters
 
     def download(self, parameters):
         try:
@@ -41,7 +43,8 @@ class Database:
 
     def use(self):
         statement = "USE %s"% config.DATABASE_NAME
-        return statement
+        parameters =[statement, None]
+        return parameters
         
     def close_connection_to_db(self):
         self.connection.close()
@@ -52,9 +55,9 @@ class Database:
     def close_cursor(self):
         self.cursor.close()
 
-    def execute_one(self, statement):
+    def execute_one(self, parameters):
         self.open_cursor()
-        self.cursor.execute(statement)
+        self.cursor.execute(parameters[0], parameters[1])
         self.connection.commit()
         self.close_cursor()
 

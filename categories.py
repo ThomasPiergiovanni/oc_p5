@@ -57,7 +57,8 @@ class Categories:
             url LONGTEXT NOT NULL,\
             PRIMARY KEY (id_category)\
             )ENGINE=INNODB;"
-        return statement
+        parameters =[statement, None]
+        return parameters
 
 
     def insert_in_table(self):
