@@ -9,7 +9,7 @@ class Research:
     def __init__(self, database):
         self.categories = Categories(database)
         self.categories.instanciate()
-        self.categories.process()
+        self.categories.nominal_scenario()
         self.products = Products(database)
         self.products.instanciate()
         self.products.nominal_scenario(self.categories)

@@ -70,7 +70,7 @@ class Categories:
             self.categories_list.append(category)
         self.database.close_cursor()
 
-    def process (self):
+    def nominal_scenario (self):
         self.show()
         self.select()
         self.execute()
@@ -102,11 +102,11 @@ class Categories:
             else:
                 system("cls")
                 print ("Only numbers included in above list can be used. Retry")
-                self.process()
+                self.nominal_scenario()
         else:
             system("cls")
             print ("Only numbers can be used. Retry")
-            self.process()
+            self.nominal_scenario()
 
 
 
