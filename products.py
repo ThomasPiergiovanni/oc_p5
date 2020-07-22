@@ -90,13 +90,13 @@ class Products():
     def nominal_scenario(self):
         self.organize()
         self.show()
+        self.ask()
         self.select()
-        self.execute()
 
     def excecption_scenario(self):
         self.show()
+        self.ask()
         self.select()
-        self.execute()
 
     def organize(self):
         for elt in self.products_list:
@@ -113,13 +113,13 @@ class Products():
             print (elt.temp_product_rank ," - ",elt.product_name)
             rank += 1 
 
-    def select(self):
+    def ask(self):
         self.question= input("Which product you want to find a substitute for?\n")
         self.tests.test_integer(self.question)
         if self.tests.valid:
             self.select_input_valid = True
 
-    def execute(self):
+    def select(self):
         if self.select_input_valid:
             self.question = int(self.question)
             if self.question <= len(self.selected_products):

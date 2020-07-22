@@ -18,7 +18,3 @@ class Reset:
         self.substitutes.reset_nominal_scenario()
         menu.Menu(self.database)
         
-
-
-        
-
