@@ -43,7 +43,8 @@ class Substitutes:
             self.substitutes_registered_list.append(substitute)
         self.database.close_cursor()
 
-    def nominal_scenario(self):
+    def research_nominal_scenario(self):
+        self.instanciate()
         self.find()
         self.organize()
         self.show()
@@ -53,7 +54,7 @@ class Substitutes:
         self.select_registration()
         self.insert_in_table()
 
-    def exception_scenario_one(self):
+    def research_exception_scenario_one(self):
         self.show()
         self.ask()
         self.select()
@@ -61,7 +62,7 @@ class Substitutes:
         self.select_registration()
         self.insert_in_table()
 
-    def exception_scenario_two(self):
+    def research_exception_scenario_two(self):
         self.ask_registration()
         self.select_registration()
         self.insert_in_table()
@@ -113,12 +114,11 @@ class Substitutes:
             else:
                 system("cls")
                 print ("Only numbers included in above list can be used. Retry")
-                self.exception_scenario_one()
-
+                self.research_exception_scenario_one()
         else:
             system("cls")
             print ("Only numbers can be used. Retry")
-            self.exception_scenario_one()
+            self.research_exception_scenario_one()
 
     def ask_registration(self):
         self.question= input("Do you want to register that choice(y/n)?\n")
@@ -137,11 +137,11 @@ class Substitutes:
             else: 
                 system("cls")
                 print ("Only letter y/n can be used. Retry ")
-                self.exception_scenario_two()
+                self.research_exception_scenario_two()
         else:
             system("cls")
             print ("Only letter y/n can be used. Retry ")
-            self.exception_scenario_two()
+            self.research_exception_scenario_two()
 
     def insert_in_table(self):
         if self.registration:

@@ -13,7 +13,6 @@ class Research:
         self.products = Products(self.categories)
         self.products.research_nominal_scenario()
         self.substitutes = Substitutes(self.products)
-        self.substitutes.instanciate()
-        self.substitutes.nominal_scenario()
+        self.substitutes.research_nominal_scenario()
 
      
