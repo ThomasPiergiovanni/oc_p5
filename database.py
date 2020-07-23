@@ -29,10 +29,12 @@ class Database:
             if self.status:
                 self.menu.menu_nominal_scenario()
             else:
-                Reset()
+                self.initialization_exception_scenario()
         else:
-            Reset()
+            self.initialization_exception_scenario()
 
+    def initialization_exception_scenario(self):
+        Reset()
 
     def reset_nominal_scenario(self):
         self.execute_one(self.delete())

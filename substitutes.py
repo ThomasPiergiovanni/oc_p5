@@ -91,7 +91,7 @@ class Substitutes:
             self.research_scenario_end()     
 
     def show(self):
-        print("You're looking for susbtitute for \"",\
+        print("You're looking for substitute for product \"",\
         self.products.selected_product.product_name,"(",\
         self.products.selected_product.nutriscore_grade.capitalize(),")","\"")
         print ("SUBSTITUTES (Nutriscore):")
@@ -116,11 +116,11 @@ class Substitutes:
                 for elt in self.substitutes_proposed_list:
                     if elt.temp_substitute_rank == self.question:
                         print ("You\'ve choosen the following substitute:",\
-                        "\n   - Product name:", "\"",elt.product_name,"\"",\
-                        "\n   - Nutriscore value:","\"",\
-                        elt.nutriscore_grade.capitalize(),"\"",\
-                        "\n   - Check product at:","\"", elt.url,"\"",\
-                        "\n   - Sold in:","\"", elt.stores,"\"") 
+                        "\n   - Product name:", elt.product_name,\
+                        "\n   - Nutriscore value:",\
+                        elt.nutriscore_grade.capitalize(),\
+                        "\n   - Check product at:", elt.url,\
+                        "\n   - Sold in:", elt.stores) 
                         self.selected_substitute = elt
             else:
                 print ("Only numbers included in above list can be used. Retry")

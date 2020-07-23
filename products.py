@@ -107,6 +107,8 @@ class Products():
                 key = lambda product : product.product_name)
 
     def show(self):
+        print("You're looking for products in category \"",\
+        self.categories.selected_category.name,"\"")
         print ("PRODUCTS (Nutriscore):")
         rank = 1
         for elt in self.sorted_products:
