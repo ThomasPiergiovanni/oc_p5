@@ -6,7 +6,7 @@ from products import Products
 from menu import Menu
 from reset import Reset
 
-class Initialisation:
+class Initialization:
     def __init__(self):
         self.database = Database()
         self.categories = Categories(self.database)
@@ -26,3 +26,4 @@ class Initialisation:
                 Reset(self.database)
         else:
             Reset(self.database)
+

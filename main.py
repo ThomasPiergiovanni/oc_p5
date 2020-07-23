@@ -1,12 +1,12 @@
 #-*-coding:utf-8 -*
 """Main module
 """
-from initialisation import Initialisation
+from initialization import Initialization
 
 def main():
     """Method initalizing the programm
     """
-    Initialisation()
+    Initialization()
 
 if __name__ == "__main__":
     main()
