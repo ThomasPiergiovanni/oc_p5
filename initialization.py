@@ -12,7 +12,6 @@ class Initialization:
         self.categories = Categories(self.database)
         self.products = Products(self.categories)
         self.menu = Menu(self.database)
-        # self.initialization_nominal_scenario()
 
     def initialization_nominal_scenario(self):
         self.database.initialization_nominal_scenario()

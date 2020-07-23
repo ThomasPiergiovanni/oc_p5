@@ -28,14 +28,32 @@ class Database:
         self.execute_one(self.create())
         self.execute_one(self.use())
 
-    def create(self):
-        statement = "CREATE DATABASE IF NOT EXISTS %s CHARACTER\
-        SET 'utf8';"% config.DATABASE_NAME
-        parameters =[statement, None]
+    def verify(self, parameters):
+        try:
+            self.open_cursor()
+            self.cursor.execute(parameters[0])
+            self.cursor.fetchall()
+            if self.cursor.rowcount >= 1:
+                self.status = True
+            self.close_cursor()
+        except:
+            self.status = False
+            print(parameters[1])
+
+    def exists(self):
+        statement = "SHOW DATABASES LIKE '%s'"% config.DATABASE_NAME
+        message= "No DB"
+        parameters = [statement, message]
         return parameters
 
     def delete(self):
         statement = "DROP DATABASE IF EXISTS %s"% config.DATABASE_NAME
+        parameters =[statement, None]
+        return parameters
+
+    def create(self):
+        statement = "CREATE DATABASE IF NOT EXISTS %s CHARACTER\
+        SET 'utf8';"% config.DATABASE_NAME
         parameters =[statement, None]
         return parameters
 
@@ -76,25 +94,3 @@ class Database:
         self.cursor.executemany(parameters[0], parameters[1])
         self.connection.commit()
         self.close_cursor()
-
-    def verify(self, parameters):
-        try:
-            self.open_cursor()
-            self.cursor.execute(parameters[0])
-            self.cursor.fetchall()
-            if self.cursor.rowcount >= 1:
-                self.status = True
-            self.close_cursor()
-        except:
-            self.status = False
-            print(parameters[1])
-
-    def exists(self):
-        statement = "SHOW DATABASES LIKE '%s'"% config.DATABASE_NAME
-        message= "No DB"
-        parameters = [statement, message]
-        return parameters
-
-
-
-
