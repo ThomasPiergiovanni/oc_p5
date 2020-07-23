@@ -9,12 +9,13 @@ class Compositions:
     def __init__(self, categories, products, substitutes, database):
         system("cls")
         self.database = database
+        self.categories = categories
         self.compositions_list=[]
         self.category = None
         self.product = None
         self.substitute = None
         self.menu = menu.Menu(database)
-        self.instanciate_composition(categories, products, substitutes)
+        self.instanciate_composition(products, substitutes)
         self.show()
 
     def get_product(self, substitute, products):
@@ -27,17 +28,17 @@ class Compositions:
             products.products_list if product.id_product ==\
             substitute.substitute_product_id]
 
-    def get_category(self, categories, product):
+    def get_category(self, product):
             self.category = [category for category in\
-            categories.categories_list if category.id_category ==\
+            self.categories.categories_list if category.id_category ==\
             product[0].category_id]
 
-    def instanciate_composition(self, categories, products, substitutes):
+    def instanciate_composition(self,products, substitutes):
         for substitute in substitutes.substitutes_registered_list:
 
             self.get_product(substitute, products)
             self.get_substitute(substitute, products)
-            self.get_category(categories, self.product)
+            self.get_category(self.product)
             composition = Composition(self.category[0], self.product[0],\
             self.substitute[0])
             self.compositions_list.append(composition)
