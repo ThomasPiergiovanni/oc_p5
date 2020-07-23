@@ -14,4 +14,5 @@ class Record:
         self.products.instanciate()
         self.substitutes = Substitutes(self.products)
         self.substitutes.instanciate()
-        Compositions(self.categories, self.products, self.substitutes, database)
+        self.compositions = Compositions(self.categories, self.products, self.substitutes, database)
+        self.compositions.record_nominal_scenario()
