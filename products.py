@@ -11,7 +11,7 @@ from tests import Tests
 
 class Products():
     def __init__(self, categories):
-        # system("cls")
+        system("cls")
         self.database = categories.database
         self.categories = categories
         self.source_data = {}
@@ -108,11 +108,12 @@ class Products():
                 key = lambda product : product.product_name)
 
     def show(self):
-        print ("PRODUCTS:")
+        print ("PRODUCTS (Nutriscore):")
         rank = 1
         for elt in self.sorted_products:
             elt.temp_product_rank = rank
-            print (elt.temp_product_rank ," - ",elt.product_name)
+            print (elt.temp_product_rank ," - ",elt.product_name,"(",\
+            elt.nutriscore_grade.capitalize(),")")
             rank += 1 
 
     def ask(self):
@@ -127,7 +128,8 @@ class Products():
             if self.question <= len(self.selected_products):
                 for elt in self.selected_products:
                     if elt.temp_product_rank == self.question:
-                        print ("You\'ve choosen the \"", elt.product_name, "\" product") 
+                        print ("You\'ve choosen the \"", elt.product_name,\
+                        "\" product") 
                         self.selected_product = elt
             else:
                 system("cls")

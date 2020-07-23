@@ -10,16 +10,17 @@ from abandon import Abandon
 
 class Menu:
     def __init__(self, database):
-        system("cls")
         self.database = database
         self.question = None
         self.select_input_valid = False
         self.tests = Tests()
+
+    def menu_nominal_scenario(self):
+        system("cls")
+        self.ask()
         self.select()
-        self.execute()
 
-
-    def select(self):
+    def ask(self):
         self.question = input("What do you want to do (choose one of the bellow number)?\
         \n 1 - Search for healthier food substitute \
         \n 2 - See your saved substitutes\
@@ -29,7 +30,7 @@ class Menu:
         if self.tests.valid:
             self.select_input_valid = True
 
-    def execute(self) :
+    def select(self) :
         if self.select_input_valid:
             self.question = int(self.question)
             if self.question == 1:
@@ -43,10 +44,10 @@ class Menu:
             else :
                 system("cls")
                 print ("Only number from 1 to 4 can be used. Retry ")
-                Menu(self.database)
+                self.menu_nominal_scenario()
         else:
             system("cls")
             print("Only numbers can be used. Retry")
-            Menu(self.database)
+            self.menu_nominal_scenario()
 
 

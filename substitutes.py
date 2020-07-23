@@ -9,9 +9,10 @@ import menu
 
 class Substitutes:
     def __init__(self, products):
-        # system("cls")
+        system("cls")
         self.database = products.database
         self.products = products
+        self.menu = menu.Menu(self.database)
         self.substitutes_proposed_list = []
         self.sorted_substitutes = []
         self.question = None
@@ -53,7 +54,8 @@ class Substitutes:
         self.research_scenario_end()
 
     def research_scenario_end(self):
-        menu.Menu(self.database) 
+        system("pause")
+        self.menu.menu_nominal_scenario()
 
     def create_table(self):
         statement = "CREATE TABLE IF NOT EXISTS substitute(\
@@ -87,16 +89,18 @@ class Substitutes:
         else:
             system("cls")
             print("There is no healthier substitute for that product")
-            system("pause")
             self.research_scenario_end()     
 
     def show(self):
-        print ("SUBSTITUTES:")
+        print("You're looking for susbtitute for \"",\
+        self.products.selected_product.product_name,"(",\
+        self.products.selected_product.nutriscore_grade.capitalize(),")","\"")
+        print ("SUBSTITUTES (Nutriscore):")
         rank = 1
         for elt in self.sorted_substitutes:
             elt.temp_substitute_rank = rank
-            print (elt.temp_substitute_rank ," - ",elt.product_name,\
-            " - ", elt.nutriscore_grade)
+            print (elt.temp_substitute_rank ," - ",elt.product_name,"(",\
+            elt.nutriscore_grade.capitalize(),")")
             rank += 1
 
     def ask(self):
@@ -113,13 +117,13 @@ class Substitutes:
                 for elt in self.substitutes_proposed_list:
                     if elt.temp_substitute_rank == self.question:
                         print ("You\'ve choosen the following substitute:",\
-                        "\n   - Product name:", elt.product_name,\
-                        "\n   - Nutriscore value:", elt.nutriscore_grade,\
-                        "\n   - Check product at:", elt.url,\
-                        "\n   - Sold in:", elt.stores) 
+                        "\n   - Product name:", "\"",elt.product_name,"\"",\
+                        "\n   - Nutriscore value:","\"",\
+                        elt.nutriscore_grade.capitalize(),"\"",\
+                        "\n   - Check product at:","\"", elt.url,"\"",\
+                        "\n   - Sold in:","\"", elt.stores,"\"") 
                         self.selected_substitute = elt
             else:
-                system("cls")
                 print ("Only numbers included in above list can be used. Retry")
                 self.research_exception_scenario_one()
         else:
@@ -135,14 +139,15 @@ class Substitutes:
 
     def select_registration(self):
         if self.register_input_valid:
+            system("cls")
             self.question = str(self.question)
             if self.question in "yY":
                 self.registration = True
-                print("Substitute product has been registered !") 
+                print("Substitute product has been registered!") 
             elif self.question in "nN":
+                print("Substitute product hasn't been registered") 
                 self.research_scenario_end() 
             else: 
-                system("cls")
                 print ("Only letter y/n can be used. Retry ")
                 self.research_exception_scenario_two()
         else:

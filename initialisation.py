@@ -11,6 +11,7 @@ class Initialisation:
         self.database = Database()
         self.categories = Categories(self.database)
         self.products = Products(self.categories)
+        self.menu = Menu(self.database)
         self.initiate()
 
     def initiate(self):
@@ -19,9 +20,8 @@ class Initialisation:
             self.database.execute_one(self.database.use())
             self.database.verify(self.categories.exists())
             self.database.verify(self.products.exists())
-            # true n est pas correct
             if self.database.status:
-                Menu(self.database)
+                self.menu.menu_nominal_scenario()
             else:
                 Reset(self.database)
         else:

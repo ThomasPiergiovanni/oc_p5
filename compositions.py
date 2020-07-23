@@ -13,6 +13,7 @@ class Compositions:
         self.category = None
         self.product = None
         self.substitute = None
+        self.menu = menu.Menu(database)
         self.instanciate_composition(categories, products, substitutes)
         self.show()
 
@@ -50,11 +51,11 @@ class Compositions:
                 "\n    Substitute name:", elt.substitute_product_name)
                 rank += 1
             system("pause")
-            menu.Menu(self.database)
+            self.menu.menu_nominal_scenario()
         else:
             system("cls")
             print("No substitutes have been registered yet")
-            menu.Menu(self.database)
+            self.menu.menu_nominal_scenario()
 
 
 

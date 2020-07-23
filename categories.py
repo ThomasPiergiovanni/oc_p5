@@ -9,7 +9,7 @@ import config
 
 class Categories:
     def __init__(self, database):
-        # system("cls")
+        system("cls")
         self.database = database
         self.categories_list=[]
         self.sorted_categories= []
