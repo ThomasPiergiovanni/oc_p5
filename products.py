@@ -22,6 +22,9 @@ class Products():
         self.select_input_valid = False
         self.selected_product = 0
 
+    def initialization_nominal_scenario(self):
+        self.database.verify(self.exists())
+
     def reset_nominal_scenario(self):
         self.database.execute_one(self.create_table())
         for category in self.categories.categories_list:

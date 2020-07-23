@@ -4,19 +4,12 @@ import requests
 import mysql.connector
 
 import config
-from categories import Categories
-from products import Products
-from menu import Menu
-from reset import Reset
 
 class Database:
     def __init__(self): 
         self.connection = mysql.connector.connect\
         (host = config.HOST, user = config.USER,\
         password = config.PASSWORD)
-        self.categories = Categories(self)
-        self.products = Products(self.categories)
-        self.menu = Menu(self)
         self.status = False
         self.source= {}
 
@@ -24,17 +17,11 @@ class Database:
         self.verify(self.exists())
         if self.status:
             self.execute_one(self.use())
-            self.verify(self.categories.exists())
-            self.verify(self.products.exists())
-            if self.status:
-                self.menu.menu_nominal_scenario()
-            else:
-                self.initialization_exception_scenario()
         else:
             self.initialization_exception_scenario()
 
     def initialization_exception_scenario(self):
-        Reset()
+        Reset()      
 
     def reset_nominal_scenario(self):
         self.execute_one(self.delete())

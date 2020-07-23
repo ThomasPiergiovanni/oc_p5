@@ -18,6 +18,9 @@ class Categories:
         self.select_input_valid = False
         self.selected_category = None
 
+    def initialization_nominal_scenario(self):
+        self.database.verify(self.exists())
+
     def reset_nominal_scenario(self):
         self.database.download(self.source())
         self.database.execute_one(self.create_table())
