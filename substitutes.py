@@ -2,7 +2,6 @@
 
 from os import system
 
-from database import Database
 from substitute import Substitute
 from tests import Tests
 import menu

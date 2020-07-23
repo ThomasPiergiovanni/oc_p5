@@ -3,7 +3,6 @@
 from os import system
 import config
 
-from database import Database
 from categories import Categories
 from product import Product
 from tests import Tests
