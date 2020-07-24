@@ -1,12 +1,12 @@
 #-*-coding:utf-8 -*
-"""Research module
+"""Research module.
 """
 from categories import Categories
 from products import Products
 from substitutes import Substitutes
 
 class Research:
-    """Research class
+    """Research class.
     """
     def __init__(self, database):
         self.database = database

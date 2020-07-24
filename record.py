@@ -1,5 +1,6 @@
 #-*-coding:utf-8 -*
-
+"""Record module.
+"""
 from categories import Categories
 from products import Products
 from substitutes import Substitutes
@@ -7,6 +8,8 @@ from compositions import Compositions
 
 
 class Record:
+    """Record class (i.e. substitute register).
+    """
     def __init__(self, database):
         self.categories = Categories(database)
         self.categories.instanciate()

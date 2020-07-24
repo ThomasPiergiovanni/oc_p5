@@ -1,5 +1,5 @@
 #-*-coding:utf-8 -*
-"""Database module
+"""Database module.
 """
 import requests
 import mysql.connector
@@ -7,7 +7,7 @@ import mysql.connector
 import config
 
 class Database:
-    """Database class
+    """Database class.
     """
     def __init__(self):
         self.connection = mysql.connector.connect\
