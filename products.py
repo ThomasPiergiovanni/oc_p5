@@ -28,6 +28,7 @@ class Products():
     def reset_nominal_scenario(self):
         self.database.execute_one(self.create_table())
         for category in self.categories.categories_list:
+            self.tests = Tests()
             self.database.download(self.source(category))
             self.database.execute_many(self.insert_in_table(category))
 
@@ -35,11 +36,13 @@ class Products():
         self.instanciate()
         self.organize()
         self.show()
+        self.tests = Tests()
         self.ask()
         self.select()
 
     def research_exception_scenario(self):
         self.show()
+        self.tests = Tests()
         self.ask()
         self.select()
 
@@ -78,17 +81,22 @@ class Products():
         nutriscore_grade, category_id, url, stores)\
         VALUES (%s, %s, %s, %s, %s, %s)"
         values = []
-        for elt in self.categories.database.source["products"]:
-            try: 
-                if elt["id"] and elt["product_name"] and\
-                elt["nutriscore_grade"] and elt["url"]:
-                    elt_string = (elt["id"], elt["product_name"],\
-                    elt["nutriscore_grade"], category.id_category,\
-                    elt["url"], elt["stores"])
-                    values.append(elt_string)
-            except Exception as error:
-                print(f"The following error occurred: {error}")
-                pass
+        self.tests.test_consistency(self.categories.database.source["products"],\
+        category)
+        # for elt in self.categories.database.source["products"]:
+            # self.tests.test_consistency(elt, category)
+   
+        #     try: 
+        #         if elt["id"] and elt["product_name"] and\
+        #         elt["nutriscore_grade"] and elt["url"]:
+        #             elt_string = (elt["id"], elt["product_name"],\
+        #             elt["nutriscore_grade"], category.id_category,\
+        #             elt["url"], elt["stores"])
+        #             values.append(elt_string)
+        #     except Exception as error:
+        #         print(f"The following error occurred: {error}")
+        #         pass
+        values = self.tests.consistent_products
         parameters = [statement, values]
         return parameters
 
