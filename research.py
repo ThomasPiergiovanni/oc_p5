@@ -1,11 +1,13 @@
 #-*-coding:utf-8 -*
-
+"""Research module
+"""
 from categories import Categories
 from products import Products
 from substitutes import Substitutes
-import menu
 
 class Research:
+    """Research class
+    """
     def __init__(self, database):
         self.database = database
         self.categories = Categories(self.database)
@@ -14,5 +16,3 @@ class Research:
         self.products.research_nominal_scenario()
         self.substitutes = Substitutes(self.products)
         self.substitutes.research_nominal_scenario()
-
-     

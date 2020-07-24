@@ -2,7 +2,6 @@
 """Database module
 """
 import requests
-
 import mysql.connector
 
 import config
