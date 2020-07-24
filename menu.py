@@ -31,7 +31,8 @@ class Menu:
     def ask(self):
         """Method that propose the menu options to the user.
         """
-        self.question = input("What do you want to do (choose one of the bellow number)?\
+        self.question = input("What do you want to do \
+        (choose one of the bellow number)?\
         \n 1 - Search for healthier food substitute \
         \n 2 - See your saved substitutes\
         \n 3 - Reinitiate the database \
@@ -41,7 +42,7 @@ class Menu:
             self.select_input_valid = True
 
     def select(self):
-        """Method that starts the user selected option.
+        """Method that starts the selected option.
         """
         if self.select_input_valid:
             self.question = int(self.question)
