@@ -81,22 +81,10 @@ class Products():
         nutriscore_grade, category_id, url, stores)\
         VALUES (%s, %s, %s, %s, %s, %s)"
         values = []
-        self.tests.test_consistency(self.categories.database.source["products"],\
-        category)
-        # for elt in self.categories.database.source["products"]:
-            # self.tests.test_consistency(elt, category)
-   
-        #     try: 
-        #         if elt["id"] and elt["product_name"] and\
-        #         elt["nutriscore_grade"] and elt["url"]:
-        #             elt_string = (elt["id"], elt["product_name"],\
-        #             elt["nutriscore_grade"], category.id_category,\
-        #             elt["url"], elt["stores"])
-        #             values.append(elt_string)
-        #     except Exception as error:
-        #         print(f"The following error occurred: {error}")
-        #         pass
-        values = self.tests.consistent_products
+        self.tests.test_consistency(\
+        self.categories.database.source["products"],category)
+        self.tests.test_duplicate(self.tests.consistent_products)
+        values = self.tests.unique_products
         parameters = [statement, values]
         return parameters
 

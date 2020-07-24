@@ -3,7 +3,8 @@
 class Tests:
     def __init__(self):
         self.valid = False
-        self.consistent_products =[]
+        self.consistent_products = []
+        self.unique_products = []
 
     def test_integer(self, value):
         if value.isnumeric():
@@ -29,3 +30,10 @@ class Tests:
             except Exception as error:
                 print(f"The following error occurred: {error}")
                 pass
+    def test_duplicate (self, products):
+        for product in products:
+            unique_pairs = []
+            pair = (product[0], product[3])
+            if pair not in unique_pairs:
+                unique_pairs.append(pair)
+                self.unique_products.append(product)
