@@ -23,4 +23,4 @@ class Initialization:
             self.initialization_exception_scenario()
 
     def initialization_exception_scenario(self):
-        Reset()
+        Reset(self.database)

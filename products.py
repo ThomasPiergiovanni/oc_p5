@@ -62,7 +62,8 @@ class Products():
             url LONGTEXT NOT NULL,\
             stores VARCHAR(250),\
             PRIMARY KEY (id_product),\
-            FOREIGN KEY (category_id) REFERENCES category(id_category)\
+            FOREIGN KEY (category_id) REFERENCES category(id_category),\
+            CONSTRAINT unique_product_per_cat UNIQUE (id_origin, category_id)\
             )ENGINE=INNODB;"
         parameters =[statement, None]
         return parameters
