@@ -4,7 +4,7 @@
 from initialization import Initialization
 
 def main():
-    """Method initalizing the programm
+    """Method lauching the programm
     """
     initialization = Initialization()
     initialization.initialization_nominal_scenario()

@@ -28,7 +28,7 @@ class Tests:
                     product["url"], product["stores"])
                     self.consistent_products.append(consistent_product)
             except Exception as error:
-                print(f"The following error occurred: {error}")
+                # print(f"The following error occurred: {error}")
                 pass
     def test_duplicate (self, products):
         for product in products:
