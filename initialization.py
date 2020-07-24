@@ -1,5 +1,5 @@
 #-*-coding:utf-8 -*
-"""Initilization module
+"""Initilization module.
 """
 from database import Database
 from categories import Categories
@@ -8,7 +8,7 @@ from menu import Menu
 from reset import Reset
 
 class Initialization:
-    """Initilization class
+    """Initilization class.
     """
     def __init__(self):
         self.database = Database()
@@ -18,7 +18,7 @@ class Initialization:
 
     def initialization_nominal_scenario(self):
         """Method that starts the programm initilaization
-        nominal scenario
+        nominal scenario.
         """
         self.database.initialization_nominal_scenario()
         self.categories.initialization_nominal_scenario()
@@ -30,7 +30,7 @@ class Initialization:
 
     def initialization_exception_scenario(self):
         """Method that starts the programm initialization
-        exception senario
+        exception senario.
         """
         Reset(self.database)
         
