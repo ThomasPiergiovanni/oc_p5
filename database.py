@@ -16,12 +16,7 @@ class Database:
     def initialization_nominal_scenario(self):
         self.verify(self.exists())
         if self.status:
-            self.execute_one(self.use())
-        else:
-            self.initialization_exception_scenario()
-
-    def initialization_exception_scenario(self):
-        Reset()      
+            self.execute_one(self.use())    
 
     def reset_nominal_scenario(self):
         self.execute_one(self.delete())

@@ -18,7 +18,7 @@ class Initialization:
 
     def initialization_nominal_scenario(self):
         """Method that starts the programm initilaization
-        nominal senario
+        nominal scenario
         """
         self.database.initialization_nominal_scenario()
         self.categories.initialization_nominal_scenario()
