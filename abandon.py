@@ -4,6 +4,7 @@
 from os import system
 from sys import exit
 
+import menu
 from tests import Tests
 
 class Abandon:
@@ -12,10 +13,10 @@ class Abandon:
     def __init__(self, database):
         system("cls")
         self.database = database
+        self.menu = menu.Menu(self.database)
         self.question = None
         self.select_input_valid = False
         self.tests = Tests()
-        # self.menu = menu.Menu(self.database)
         self.abandon_nominal_scenario()
 
     def abandon_nominal_scenario(self):
@@ -44,8 +45,6 @@ class Abandon:
                 system("cls")
                 exit("Goodbye")
             elif self.question in "nN":
-                from menu import Menu
-                self.menu = Menu(self.database)
                 self.menu.menu_nominal_scenario()
             else:
                 system("cls")

@@ -3,6 +3,7 @@
 """
 from os import system
 
+import menu
 from substitute import Substitute
 from tests import Tests
 
@@ -12,6 +13,7 @@ class Substitutes:
     def __init__(self, products):
         system("cls")
         self.database = products.database
+        self.menu = menu.Menu(self.database)
         self.products = products
         self.substitutes_proposed_list = []
         self.sorted_substitutes = []
@@ -70,8 +72,6 @@ class Substitutes:
         scenario.
         """
         system("pause")
-        from menu import Menu
-        self.menu = Menu(self.database)
         self.menu.menu_nominal_scenario()
 
     def create_table(self):
