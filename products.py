@@ -159,7 +159,7 @@ substitute for?\n")
             self.select_input_valid = True
 
     def select(self):
-        """Method that starts the selected option.
+        """Method that starts the selected product option.
         """
         if self.select_input_valid:
             self.question = int(self.question)

@@ -5,7 +5,6 @@ from os import system
 from sys import exit
 
 from tests import Tests
-# import menu
 
 class Abandon:
     """Abandon class.
