@@ -1,6 +1,9 @@
 #-*-coding:utf-8 -*
-
+"""Product module.
+"""
 class Product:
+    """Product class.
+    """
     def __init__(self, id_product, id_origin, product_name,\
     nutriscore_grade, category_id, url, stores):
         self.id_product = id_product

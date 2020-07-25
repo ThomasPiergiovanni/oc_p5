@@ -3,9 +3,10 @@
 """
 from os import system
 
+import config
 from category import Category
 from tests import Tests
-import config
+
 
 class Categories:
     """Categories class.
