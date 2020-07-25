@@ -1,6 +1,9 @@
 #-*-coding:utf-8 -*
-
+"""Composition module.
+"""
 class Composition:
+    """Composition class.
+    """
     def __init__(self, category, product, substitute):
         self.product_product_id = product.id_product
         self.product_product_name = product.product_name
