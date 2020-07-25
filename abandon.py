@@ -2,10 +2,10 @@
 """Abandon module.
 """
 from os import system
-import sys
+from sys import exit
 
 from tests import Tests
-import menu
+# import menu
 
 class Abandon:
     """Abandon class.
@@ -16,7 +16,7 @@ class Abandon:
         self.question = None
         self.select_input_valid = False
         self.tests = Tests()
-        self.menu = menu.Menu(self.database)
+        # self.menu = menu.Menu(self.database)
         self.abandon_nominal_scenario()
 
     def abandon_nominal_scenario(self):
@@ -43,8 +43,10 @@ class Abandon:
             self.question = str(self.question)
             if self.question in "yY":
                 system("cls")
-                sys.exit("Goodbye")
+                exit("Goodbye")
             elif self.question in "nN":
+                from menu import Menu
+                self.menu = Menu(self.database)
                 self.menu.menu_nominal_scenario()
             else:
                 system("cls")
