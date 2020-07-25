@@ -203,4 +203,4 @@ class Substitutes:
             values = [self.products.selected_product.id_product,\
             self.selected_substitute.id_product]
             parameters = [statement, values]
-            return parameters
+        return parameters
