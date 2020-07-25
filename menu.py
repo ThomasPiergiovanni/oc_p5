@@ -3,7 +3,7 @@
 """
 from os import system
 
-from abandon import Abandon
+from programm.structure.abandon import Abandon
 from record import Record
 from research import Research
 from reset import Reset
