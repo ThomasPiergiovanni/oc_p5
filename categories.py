@@ -5,7 +5,7 @@ from os import system
 
 import config
 from category import Category
-from tests import Tests
+from programm.admin.tests import Tests
 
 
 class Categories:

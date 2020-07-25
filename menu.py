@@ -7,7 +7,7 @@ from abandon import Abandon
 from record import Record
 from research import Research
 from reset import Reset
-from tests import Tests
+from programm.admin.tests import Tests
 
 class Menu:
     """Menu class.

@@ -5,7 +5,7 @@ from os import system
 
 import config
 from product import Product
-from tests import Tests
+from programm.admin.tests import Tests
 
 class Products():
     """Products class.
