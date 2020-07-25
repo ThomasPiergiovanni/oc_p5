@@ -23,18 +23,24 @@ class Menu:
         nominal scenario.
         """
         system("cls")
+        self.show()
         self.ask()
         self.select()
 
-    def ask(self):
+    def show(self):
         """Method that propose the menu options to the user.
         """
-        self.question = input("What do you want to do \
-        (choose one of the bellow number)?\
+        print("MENU:\
         \n 1 - Search for healthier food substitute \
         \n 2 - See your saved substitutes\
         \n 3 - Reinitiate the database \
-        \n 4 - Quit the program \n")
+        \n 4 - Quit the program")
+
+    def ask(self):
+        """Method that ask for menu's option selection to the user.
+        """
+        self.question = input("What do you want to do \
+(choose one of the above number)?\n")
         self.tests.test_integer(self.question)
         if self.tests.valid:
             self.select_input_valid = True

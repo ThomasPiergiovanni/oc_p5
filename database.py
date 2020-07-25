@@ -48,7 +48,7 @@ class Database:
 
     def exists(self):
         """Method that provides the sql statement and
-        messages for database verification.
+        message for database verification.
         """
         statement = "SHOW DATABASES LIKE '%s'"% config.DATABASE_NAME
         message = "No DB"

@@ -6,7 +6,8 @@ from products import Products
 from substitutes import Substitutes
 
 class Research:
-    """Research class.
+    """Research class(i.e. Search, find and register a product
+    substitute).
     """
     def __init__(self, database):
         self.database = database
