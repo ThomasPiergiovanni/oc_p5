@@ -4,7 +4,7 @@
 from os import system
 
 import menu
-from composition import Composition
+from programm.content.composition import Composition
 
 class Compositions:
     """Compositions class.
