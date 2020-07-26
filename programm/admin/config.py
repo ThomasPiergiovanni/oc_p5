@@ -3,12 +3,12 @@
 """
 
 # DESCRIPTION: OpenFoodFacts (OFF) API categories list endpoint. It returns
-# the list per country.
+# the catgories list per country.
 # MANDATORY: Yes.
 # DEFAULT SETTINGS: "https://fr.openfoodfacts.org/categories.json".
-# COMMENTS: Default endpoint return data for France. To change the country,
-# use the appropriate  ISO-3166-1 Alpha 2 code and replace it in the endpoint
-# (e.g. "https://es.openfoodfacts.org/categories.json").
+# CUSTOM SETTINGS: To change the country, use the appropriate  ISO-3166-1 
+# Alpha 2 code and replace it in the endpoint(e.g.
+# "https://es.openfoodfacts.org/categories.json" for spain).
 # For more information, please check "https://documenter.getpostman.com/view/
 # 8470508/SVtN3Wzy?version=latest#intro".
 CATEGORIES_ENDPOINT = "https://fr.openfoodfacts.org/categories.json"
@@ -17,10 +17,9 @@ CATEGORIES_ENDPOINT = "https://fr.openfoodfacts.org/categories.json"
 # It return the product research functionality per country.
 # MANDATORY: Yes.
 # DEFAULT SETTINGS: "https://fr.openfoodfacts.org/cgi/search.pl".
-# COMMENTS: Default endpoint provide research for product in France.
-# To change the country, use the appropriate  ISO-3166-1 Alpha 2 code
-# and replace it in the endpoint (e.g. "https://es.openfoodfacts.org/
-# cgi/search.pl").
+# CUSTOM SETTINGS: To change the country, use the appropriate  ISO-3166-1
+# Alpha 2 code and replace it in the endpoint (e.g.
+# "https://es.openfoodfacts.org/cgi/search.pl").
 # For more information, please check "https://documenter.getpostman.com/view/
 # 8470508/SVtN3Wzy?version=latest#intro".
 PRODUCTS_ENDPOINT = "https://fr.openfoodfacts.org/cgi/search.pl"
@@ -29,7 +28,7 @@ PRODUCTS_ENDPOINT = "https://fr.openfoodfacts.org/cgi/search.pl"
 # its name and version number.
 # MANDATORY : Yes.
 # DEFAULT SETTINGS: {'User-Agent': 'HealthyProductApp - Web - Version 0.0'}.
-# COMMENTS: Settings can be changed but must kee the following structure
+# CUSTOM SETTINGS: Settings can be changed but must keep the following structure
 # {'User-Agent': 'your informations'}.
 # For more informations, please check "https://documenter.getpostman.
 # com/view/8470508/SVtN3Wzy?version=latest#intro".
@@ -45,7 +44,7 @@ DATABASE_NAME = "HPA"
 # DESCRIPTION: Host name i.e. The server on which MySQL is running.
 # MANDATORY : Yes.
 # DEFAULT SETTINGS: "localhost".
-# COMMENTS: Can be changed.Can be an IP adress as well if the MySQL server 
+# CUSTOM SETTINGS: Can be changed.Can be an IP adress as well if the MySQL server 
 # is not the local machine.
 # For more informations, please check "https://dev.mysql.
 # com/doc/connector-python/en/".
@@ -54,9 +53,9 @@ HOST = "localhost"
 # DESCRIPTION: The user name used to authenticate with the MySQL server.
 # MANDATORY : Yes.
 # DEFAULT SETTINGS: "root".
-# COMMENTS: Can be changed but user must have at least the following
-# MySQL privileges CREATE, DROP, EXECUTE, INSERT, REFERENCES,
-# SELECT, SHOW DATABASE.
+# CUSTOM SETTINGS: User must have at least the following MySQL
+# privileges CREATE, DROP, EXECUTE, INSERT, REFERENCES, SELECT,
+# and SHOW DATABASE.
 # For more informations, please check "https://dev.mysql.
 # com/doc/connector-python/en/".
 # For more informations specifically on privileges, please check
@@ -66,7 +65,7 @@ USER = "root"
 # DESCRIPTION: The password to authenticate the user with the MySQL server.
 # MANDATORY: Yes.
 # DEFAULT SETTINGS: root.
-# COMMENTS: Must be the password of the user corresponding account.
+# CUSTOM SETTINGS: Must be the password of the user corresponding account.
 # For more informations, please check "https://dev.mysql.
 # com/doc/connector-python/en/".
 PASSWORD = "root"
@@ -75,9 +74,8 @@ PASSWORD = "root"
 # MANDATORY: Yes.
 # DEFAULT SETTINGS: ["en:snacks", "en:desserts", "en:breads",
 # "en:breakfast-cereals", "en:meals"].
-# COMMENTS: Categories can be changed. Value to use can be found in
-# "https://world.openfoodfacts.org/categories.json" under
-# "tags:n(catgory number):id:"
+# CUSTOM SETTINGS: Categories can be changed. Value to use can be found in
+# "https://world.openfoodfacts.org/categories.json" in the category "tags" "id".
 # For more information, please check "https://documenter.getpostman.com/view/
 # 8470508/SVtN3Wzy?version=latest#intro".
 SELECTED_CATEGORIES = ["en:snacks", "en:desserts", "en:breads",\
@@ -86,11 +84,11 @@ SELECTED_CATEGORIES = ["en:snacks", "en:desserts", "en:breads",\
 # DESCRIPTION: Amount of product to get from OFF API per product category.
 # MANDATORY : Yes.
 # DEFAULT SETTINGS: 1000.
-# COMMENTS: Can be changed but should not exceed 2000 to avoid upload failure.
+# CUSTOM SETTINGS: Can be changed but should not exceed 2000 to avoid upload failure.
 PRODUCTS_AMOUNT = 10
 
-# DESCRIPTION: Message display when user input number is out of range.
+# DESCRIPTION: Message displayed when user input number is out of range.
 # MANDATORY : Yes.
 # DEFAULT SETTINGS: "Only numbers included in above list can be used. Retry"
-# COMMENTS: Message can be changed but should keep sense.
+# CUSTOM SETTINGS: Message can be changed but should keep sense.
 OUT_OF_RANGE = "Only numbers included in the list can be used. Retry"
