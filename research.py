@@ -1,7 +1,7 @@
 #-*-coding:utf-8 -*
 """Research module.
 """
-from categories import Categories
+from programm.content.categories import Categories
 from products import Products
 from substitutes import Substitutes
 

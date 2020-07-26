@@ -4,7 +4,7 @@
 import requests
 import mysql.connector
 
-import config
+from programm.admin import config
 
 class Database:
     """Database class.

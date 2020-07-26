@@ -3,7 +3,7 @@
 """
 from os import system
 
-import programm.admin.config
+from programm.admin import config
 from product import Product
 from programm.admin.tests import Tests
 

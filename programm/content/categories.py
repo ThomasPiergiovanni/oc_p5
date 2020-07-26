@@ -3,7 +3,7 @@
 """
 from os import system
 
-import programm.admin.config
+from programm.admin import config
 from programm.admin.tests import Tests
 from programm.content.category import Category
 

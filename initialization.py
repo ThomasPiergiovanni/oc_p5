@@ -2,7 +2,7 @@
 """Initialization module.
 """
 from programm.admin.database import Database
-from categories import Categories
+from programm.content.categories import Categories
 from products import Products
 from menu import Menu
 from reset import Reset

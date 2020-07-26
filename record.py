@@ -1,7 +1,7 @@
 #-*-coding:utf-8 -*
 """Record module.
 """
-from categories import Categories
+from programm.content.categories import Categories
 from products import Products
 from substitutes import Substitutes
 from compositions import Compositions
