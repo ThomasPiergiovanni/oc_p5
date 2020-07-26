@@ -3,7 +3,7 @@
 """
 from os import system
 
-import menu
+from programm.structure import menu
 from programm.content.substitute import Substitute
 from programm.admin.tests import Tests
 

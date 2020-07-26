@@ -4,7 +4,7 @@
 from programm.content.categories import Categories
 from programm.content.products import Products
 from programm.content.substitutes import Substitutes
-import menu
+from programm.structure import menu
 
 class Reset:
     """Reset class.

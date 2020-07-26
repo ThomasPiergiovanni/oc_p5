@@ -4,7 +4,7 @@
 from os import system
 from sys import exit
 
-import menu
+from programm.structure import menu
 from programm.admin.tests import Tests
 
 class Abandon:

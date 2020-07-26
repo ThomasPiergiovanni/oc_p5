@@ -4,7 +4,7 @@
 from programm.admin.database import Database
 from programm.content.categories import Categories
 from programm.content.products import Products
-from menu import Menu
+from programm.structure import menu
 from programm.structure.reset import Reset
 
 class Initialization:
@@ -14,7 +14,7 @@ class Initialization:
         self.database = Database()
         self.categories = Categories(self.database)
         self.products = Products(self.categories)
-        self.menu = Menu(self.database)
+        self.menu = menu.Menu(self.database)
 
     def initialization_nominal_scenario(self):
         """Method that starts the programm initialization

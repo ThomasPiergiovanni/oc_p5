@@ -3,7 +3,7 @@
 """
 from os import system
 
-import menu
+from programm.structure import menu
 from programm.content.composition import Composition
 
 class Compositions:
