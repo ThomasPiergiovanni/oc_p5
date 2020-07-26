@@ -5,7 +5,7 @@ from programm.admin.database import Database
 from programm.content.categories import Categories
 from programm.content.products import Products
 from menu import Menu
-from reset import Reset
+from programm.structure.reset import Reset
 
 class Initialization:
     """Initialization class.
