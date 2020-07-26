@@ -4,9 +4,8 @@
 from os import system
 
 import programm.admin.config
-from category import Category
 from programm.admin.tests import Tests
-
+from programm.content.category import Category
 
 class Categories:
     """Categories class.
