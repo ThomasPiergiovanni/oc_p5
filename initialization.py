@@ -1,7 +1,7 @@
 #-*-coding:utf-8 -*
 """Initialization module.
 """
-from database import Database
+from programm.admin.database import Database
 from categories import Categories
 from products import Products
 from menu import Menu
