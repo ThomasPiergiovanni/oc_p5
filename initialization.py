@@ -3,7 +3,7 @@
 """
 from programm.admin.database import Database
 from programm.content.categories import Categories
-from products import Products
+from programm.content.products import Products
 from menu import Menu
 from reset import Reset
 

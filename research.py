@@ -2,7 +2,7 @@
 """Research module.
 """
 from programm.content.categories import Categories
-from products import Products
+from programm.content.products import Products
 from substitutes import Substitutes
 
 class Research:
