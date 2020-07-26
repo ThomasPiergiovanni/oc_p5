@@ -4,7 +4,7 @@
 from os import system
 
 import menu
-from substitute import Substitute
+from programm.content.substitute import Substitute
 from programm.admin.tests import Tests
 
 class Substitutes:
