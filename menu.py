@@ -5,7 +5,7 @@ from os import system
 
 from programm.structure.abandon import Abandon
 from programm.structure.record import Record
-from research import Research
+from programm.structure.research import Research
 from reset import Reset
 from programm.admin.tests import Tests
 
