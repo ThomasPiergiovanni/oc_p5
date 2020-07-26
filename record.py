@@ -4,7 +4,7 @@
 from programm.content.categories import Categories
 from programm.content.products import Products
 from programm.content.substitutes import Substitutes
-from compositions import Compositions
+from programm.content.compositions import Compositions
 
 
 class Record:
