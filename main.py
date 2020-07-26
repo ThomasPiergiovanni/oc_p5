@@ -1,7 +1,7 @@
 #-*-coding:utf-8 -*
 """Main module.
 """
-from initialization import Initialization
+from programm.initialization import Initialization
 
 def main():
     """Method lauching the programm.
