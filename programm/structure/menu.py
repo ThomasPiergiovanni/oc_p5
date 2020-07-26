@@ -3,6 +3,7 @@
 """
 from os import system
 
+from programm.admin import config
 from programm.structure.abandon import Abandon
 from programm.structure.record import Record
 from programm.structure.research import Research
@@ -22,7 +23,6 @@ class Menu:
         """Method that starts the menu
         nominal scenario.
         """
-        system("cls")
         self.show()
         self.ask()
         self.select()
@@ -60,7 +60,7 @@ class Menu:
                 Abandon(self.database)
             else:
                 system("cls")
-                print("Only number from 1 to 4 can be used. Retry ")
+                print(config.OUT_OF_RANGE)
                 self.menu_nominal_scenario()
         else:
             system("cls")

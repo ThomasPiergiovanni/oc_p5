@@ -171,7 +171,7 @@ substitute for?\n")
                         self.selected_product = elt
             else:
                 system("cls")
-                print("Only numbers included in above list can be used. Retry")
+                print(config.OUT_OF_RANGE)
                 self.research_exception_scenario()
         else:
             system("cls")

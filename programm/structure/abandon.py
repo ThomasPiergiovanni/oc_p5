@@ -45,6 +45,7 @@ class Abandon:
                 system("cls")
                 exit("Goodbye")
             elif self.question in "nN":
+                system("cls")
                 self.menu.menu_nominal_scenario()
             else:
                 system("cls")

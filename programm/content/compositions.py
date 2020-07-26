@@ -33,6 +33,7 @@ class Compositions:
         scenario.
         """
         system("pause")
+        system("cls")
         self.menu.menu_nominal_scenario()
 
     def get_product(self, substitute):

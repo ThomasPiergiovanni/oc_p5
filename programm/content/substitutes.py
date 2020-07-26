@@ -3,6 +3,7 @@
 """
 from os import system
 
+from programm.admin import config
 from programm.structure import menu
 from programm.content.substitute import Substitute
 from programm.admin.tests import Tests
@@ -72,6 +73,7 @@ class Substitutes:
         scenario.
         """
         system("pause")
+        system("cls")
         self.menu.menu_nominal_scenario()
 
     def create_table(self):
@@ -158,7 +160,7 @@ class Substitutes:
                         "\n   - Sold in:", elt.stores)
                         self.selected_substitute = elt
             else:
-                print("Only numbers included in above list can be used. Retry")
+                print(config.OUT_OF_RANGE)
                 self.research_exception_scenario_one()
         else:
             system("cls")
@@ -186,6 +188,7 @@ class Substitutes:
                 print("Substitute product hasn't been registered")
                 self.research_scenario_end()
             else:
+                system("cls")
                 print("Only letter y/n can be used. Retry")
                 self.research_exception_scenario_two()
         else:

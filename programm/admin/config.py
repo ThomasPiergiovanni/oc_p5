@@ -45,8 +45,8 @@ DATABASE_NAME = "HPA"
 # DESCRIPTION: Host name i.e. The server on which MySQL is running.
 # MANDATORY : Yes.
 # DEFAULT SETTINGS: "localhost".
-# COMMENTS: Can be an IP adress as well if the MySQL server is not the
-# local machine.
+# COMMENTS: Can be changed.Can be an IP adress as well if the MySQL server 
+# is not the local machine.
 # For more informations, please check "https://dev.mysql.
 # com/doc/connector-python/en/".
 HOST = "localhost"
@@ -66,7 +66,7 @@ USER = "root"
 # DESCRIPTION: The password to authenticate the user with the MySQL server.
 # MANDATORY: Yes.
 # DEFAULT SETTINGS: root.
-# COMMENTS: None.
+# COMMENTS: Must be the password of the user corresponding account.
 # For more informations, please check "https://dev.mysql.
 # com/doc/connector-python/en/".
 PASSWORD = "root"
@@ -86,5 +86,11 @@ SELECTED_CATEGORIES = ["en:snacks", "en:desserts", "en:breads",\
 # DESCRIPTION: Amount of product to get from OFF API per product category.
 # MANDATORY : Yes.
 # DEFAULT SETTINGS: 1000.
-# COMMENTS: Should not exceed 2000 to avoid upload failure.
+# COMMENTS: Can be changed but should not exceed 2000 to avoid upload failure.
 PRODUCTS_AMOUNT = 10
+
+# DESCRIPTION: Message display when user input number is out of range.
+# MANDATORY : Yes.
+# DEFAULT SETTINGS: "Only numbers included in above list can be used. Retry"
+# COMMENTS: Message can be changed but should keep sense.
+OUT_OF_RANGE = "Only numbers included in the list can be used. Retry"
