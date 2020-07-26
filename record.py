@@ -3,7 +3,7 @@
 """
 from programm.content.categories import Categories
 from programm.content.products import Products
-from substitutes import Substitutes
+from programm.content.substitutes import Substitutes
 from compositions import Compositions
 
 
