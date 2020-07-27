@@ -4,6 +4,7 @@
 from os import system
 from sys import exit
 
+from programm.admin import config
 from programm.structure import menu
 from programm.admin.tests import Tests
 
@@ -15,7 +16,6 @@ class Abandon:
         self.database = database
         self.menu = menu.Menu(self.database)
         self.question = None
-        self.select_input_valid = False
         self.tests = Tests()
         self.abandon_nominal_scenario()
 
@@ -33,13 +33,11 @@ class Abandon:
         self.question = input("Do you really want to quit "\
         "the programm (y/n)?\n")
         self.tests.test_string(self.question)
-        if self.tests.valid:
-            self.select_input_valid = True
 
     def select(self):
         """Method that starts the selected option.
         """
-        if self.select_input_valid:
+        if self.tests.valid:
             self.question = str(self.question)
             if self.question in "yY":
                 system("cls")
@@ -49,9 +47,9 @@ class Abandon:
                 self.menu.menu_nominal_scenario()
             else:
                 system("cls")
-                print("Only letter y/n can be used. Retry")
+                print(config.MESSAGE_YN)
                 self.abandon_nominal_scenario()
         else:
             system("cls")
-            print("Only letters can be used. Retry")
+            print(config.MESSAGE_YN)
             self.abandon_nominal_scenario()

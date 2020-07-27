@@ -1,1 +1,5 @@
 99_other/
+__pycache__/
+programm/admin/__pycache__/
+programm/content/__pycache__/
+programm/structure/__pycache__/

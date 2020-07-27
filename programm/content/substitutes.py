@@ -20,9 +20,7 @@ class Substitutes:
         self.sorted_substitutes = []
         self.question = None
         self.tests = Tests()
-        self.select_input_valid = False
         self.selected_substitute = None
-        self.register_input_valid = False
         self.registration = False
         self.substitutes_registered_list = []
 
@@ -140,13 +138,11 @@ class Substitutes:
         """
         self.question = input("Which substitute you want to choose?\n")
         self.tests.test_integer(self.question)
-        if self.tests.valid:
-            self.select_input_valid = True
 
     def select(self):
         """Method that starts the selected substitute option.
         """
-        if self.select_input_valid:
+        if self.tests.valid:
             system("cls")
             self.question = int(self.question)
             if self.question <= len(self.substitutes_proposed_list):
@@ -160,11 +156,11 @@ class Substitutes:
                         "\n   - Sold in:", elt.stores)
                         self.selected_substitute = elt
             else:
-                print(config.OUT_OF_RANGE)
+                print(config.MESSAGE_OOR)
                 self.research_exception_scenario_one()
         else:
             system("cls")
-            print("Only numbers can be used. Retry")
+            print(config.MESSAGE_OOR)
             self.research_exception_scenario_one()
 
     def ask_registration(self):
@@ -172,13 +168,11 @@ class Substitutes:
         """
         self.question = input("Do you want to register that choice(y/n)?\n")
         self.tests.test_string(self.question)
-        if self.tests.valid:
-            self.register_input_valid = True
 
     def select_registration(self):
         """Method that starts the selected registration option.
         """
-        if self.register_input_valid:
+        if self.tests.valid:
             system("cls")
             self.question = str(self.question)
             if self.question in "yY":
@@ -189,11 +183,11 @@ class Substitutes:
                 self.research_scenario_end()
             else:
                 system("cls")
-                print("Only letter y/n can be used. Retry")
+                print(config.MESSAGE_YN)
                 self.research_exception_scenario_two()
         else:
             system("cls")
-            print("Only letter y/n can be used. Retry")
+            print(config.MESSAGE_YN)
             self.research_exception_scenario_two()
 
     def insert_in_table(self):

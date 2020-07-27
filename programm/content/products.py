@@ -155,13 +155,11 @@ class Products():
         self.question = input("Which product you want to find a \
 substitute for?\n")
         self.tests.test_integer(self.question)
-        if self.tests.valid:
-            self.select_input_valid = True
 
     def select(self):
         """Method that starts the selected product option.
         """
-        if self.select_input_valid:
+        if self.tests.valid:
             self.question = int(self.question)
             if self.question <= len(self.selected_products):
                 for elt in self.selected_products:
@@ -171,9 +169,9 @@ substitute for?\n")
                         self.selected_product = elt
             else:
                 system("cls")
-                print(config.OUT_OF_RANGE)
+                print(config.MESSAGE_OOR)
                 self.research_exception_scenario()
         else:
             system("cls")
-            print("Only numbers can be used. Retry")
+            print(config.MESSAGE_OOR)
             self.research_exception_scenario()

@@ -131,13 +131,11 @@ class Categories:
         self.question = input("Which category you want to\
 check products for?\n")
         self.tests.test_integer(self.question)
-        if self.tests.valid:
-            self.select_input_valid = True
 
     def select(self):
         """Method that starts the selected category option.
         """
-        if self.select_input_valid:
+        if self.tests.valid:
             self.question = int(self.question)
             if self.question <= len(self.categories_list):
                 for elt in self.categories_list:
@@ -146,9 +144,9 @@ check products for?\n")
                         self.selected_category = elt
             else:
                 system("cls")
-                print(config.OUT_OF_RANGE)
+                print(config.MESSAGE_OOR)
                 self.research_exception_scenario()
         else:
             system("cls")
-            print("Only numbers can be used. Retry")
+            print(config.MESSAGE_OOR)
             self.research_exception_scenario()

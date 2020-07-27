@@ -17,6 +17,7 @@ class Tests:
         else:
             self.valid = False
 
+
     def test_string(self, value):
         """Method that test if is an alphabetic character
         """

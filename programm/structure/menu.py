@@ -42,13 +42,11 @@ class Menu:
         self.question = input("What do you want to do \
 (choose one of the above number)?\n")
         self.tests.test_integer(self.question)
-        if self.tests.valid:
-            self.select_input_valid = True
 
     def select(self):
         """Method that starts the selected option.
         """
-        if self.select_input_valid:
+        if self.tests.valid:
             self.question = int(self.question)
             if self.question == 1:
                 Research(self.database)
@@ -60,9 +58,9 @@ class Menu:
                 Abandon(self.database)
             else:
                 system("cls")
-                print(config.OUT_OF_RANGE)
+                print(config.MESSAGE_OOR)
                 self.menu_nominal_scenario()
         else:
             system("cls")
-            print("Only numbers can be used. Retry")
+            print(config.MESSAGE_OOR)
             self.menu_nominal_scenario()
