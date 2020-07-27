@@ -4,31 +4,32 @@
 from os import system
 
 from programm.admin import config
-from programm.structure.abandon import Abandon
-from programm.structure.record import Record
-from programm.structure.research import Research
-from programm.structure.reset import Reset
-from programm.admin.tests import Tests
+# from programm.structure.abandon import Abandon
+# from programm.structure.record import Record
+# from programm.structure.research import Research
+# from programm.structure.reset import Reset
+# from programm.admin.tests import Tests
 
 class Menu:
     """Menu class.
     """
-    def __init__(self, database):
-        self.database = database
+    def __init__(self):
         self.question = None
-        self.tests = Tests()
 
-    def menu_nominal_scenario(self):
+    def menu_nominal_scenario(self, database, tests, categories, products,\
+    substitutes, compositions):
         """Method that starts the menu
         nominal scenario.
         """
         self.show()
         self.ask()
-        self.select()
-
+        self.select(database, tests, categories, products,\
+        substitutes, compositions)
+        
     def show(self):
         """Method that propose the menu options to the user.
         """
+        system("cls")
         print("MENU:\
         \n 1 - Search for healthier food substitute \
         \n 2 - See your saved substitutes\
@@ -40,26 +41,30 @@ class Menu:
         """
         self.question = input("What do you want to do \
 (choose one of the above number)?\n")
-        self.tests.test_integer(self.question)
 
-    def select(self):
+    def select(self, database, tests, categories, products,\
+    substitutes, compositions):
         """Method that starts the selected option.
         """
-        if self.tests.valid:
+        if tests.test_integer(self.question):
             self.question = int(self.question)
             if self.question == 1:
-                Research(self.database)
-            elif self.question == 2:
-                Record(self.database)
-            elif self.question == 3:
-                Reset(self.database)
-            elif self.question == 4:
-                Abandon(self.database)
+                system("cls")
+                categories.research(database, tests, products,\
+                substitutes)
+            # elif self.question == 2:
+            #     Record(database)
+            # elif self.question == 3:
+            #     Reset(database)
+            # elif self.question == 4:
+            #     Abandon(database)
             else:
                 system("cls")
                 print(config.MESSAGE_OOR)
-                self.menu_nominal_scenario()
+                self.menu_nominal_scenario(database, tests, categories, products,\
+                substitutes, compositions)
         else:
             system("cls")
             print(config.MESSAGE_OOR)
-            self.menu_nominal_scenario()
+            self.menu_nominal_scenario(database, tests, categories, products,\
+            substitutes, compositions)

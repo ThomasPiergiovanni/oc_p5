@@ -6,20 +6,18 @@ from os import system
 from programm.admin import config
 from programm.structure import menu
 from programm.content.substitute import Substitute
-from programm.admin.tests import Tests
 
 class Substitutes:
     """Substitutes class.
     """
-    def __init__(self, products):
+    def __init__(self,):
         system("cls")
-        self.database = products.database
-        self.menu = menu.Menu(self.database)
-        self.products = products
+        self.database = None
+        self.tests = None
+        self.selected_products = None
+        self.selected_product = None
         self.substitutes_proposed_list = []
-        self.sorted_substitutes = []
         self.question = None
-        self.tests = Tests()
         self.selected_substitute = None
         self.registration = False
         self.substitutes_registered_list = []
@@ -30,20 +28,7 @@ class Substitutes:
         """
         self.database.execute_one(self.create_table())
 
-    def research_nominal_scenario(self):
-        """Method that starts the substitutes research
-        nominal scenario.
-        """
-        self.instanciate()
-        self.find()
-        self.organize()
-        self.show()
-        self.ask()
-        self.select()
-        self.ask_registration()
-        self.select_registration()
-        self.database.execute_one(self.insert_in_table())
-        self.research_scenario_end()
+
 
     def research_exception_scenario_one(self):
         """Method that starts the substitutes research
@@ -72,6 +57,7 @@ class Substitutes:
         """
         system("pause")
         system("cls")
+        self.menu = menu.Menu()
         self.menu.menu_nominal_scenario()
 
     def create_table(self):
@@ -87,47 +73,65 @@ class Substitutes:
         parameters = [statement, None]
         return parameters
 
-    def instanciate(self):
+    def instanciate(self, database):
         """Method that create the substitutes instances.
         """
-        self.database.open_cursor()
-        self.database.cursor.execute("SELECT * FROM substitute")
-        selection = self.database.cursor.fetchall()
+        database.open_cursor()
+        database.cursor.execute("SELECT * FROM substitute")
+        selection = database.cursor.fetchall()
         for elt in selection:
             substitute = Substitute(elt[0], elt[1])
             self.substitutes_registered_list.append(substitute)
-        self.database.close_cursor()
+        database.close_cursor()
+
+    def research(self, database, tests, products, product):
+        """Method that starts the substitutes research
+        nominal scenario.
+        """
+        self.database = database
+        self.tests = tests
+        self.selected_products = products
+        self.selected_product = product
+        self.find()
+        self.organize()
+        self.show(product)
+        self.ask()
+        self.select(tests)
+        self.ask_registration()
+        self.select_registration(tests)
+        database.execute_one(self.insert_in_table())
+        self.research_scenario_end()
 
     def find(self):
         """Method that find a substitute to the product.
         """
-        for elt in self.products.selected_products:
-            if elt.id_product != self.products.selected_product.id_product and\
-            elt.nutriscore_grade <\
-            self.products.selected_product.nutriscore_grade:
+        for elt in self.products:
+            if elt.id_product != self.product.id_product and\
+            elt.nutriscore_grade < self.product.nutriscore_grade:
                 self.substitutes_proposed_list.append(elt)
+        self.sort()
 
-    def organize(self):
+    def sort(self):
         """Method that sorts, for dispaly purposes, the substitutes
         by product nutriscore grade.
         """
         if self.substitutes_proposed_list:
-            self.sorted_substitutes = sorted(self.substitutes_proposed_list,\
+            self.substitutes_proposed_list = sorted(self.substitutes_proposed_list,\
             key=lambda product: product.nutriscore_grade)
         else:
             system("cls")
             print("There is no healthier substitute for that product")
-            self.research_scenario_end()
+            self.menu.menu_nominal_scenario()
 
-    def show(self):
+    def show(self, product):
         """Method that propose the substitutes options to the user.
         """
         print("You're looking for substitute for product \"",\
-        self.products.selected_product.product_name, "(",\
-        self.products.selected_product.nutriscore_grade.capitalize(), ")", "\"")
+        product.product_name, "(",\
+        product.nutriscore_grade.capitalize(), ")", "\"")
         print("SUBSTITUTES (Nutriscore):")
         rank = 1
-        for elt in self.sorted_substitutes:
+        for elt in self.substitutes_proposed_list:
             elt.temp_substitute_rank = rank
             print(elt.temp_substitute_rank, " - ", elt.product_name, "(",\
             elt.nutriscore_grade.capitalize(), ")")
@@ -137,12 +141,11 @@ class Substitutes:
         """Method that ask for substitute's option selection to the user.
         """
         self.question = input("Which substitute you want to choose?\n")
-        self.tests.test_integer(self.question)
 
-    def select(self):
+    def select(self, tests):
         """Method that starts the selected substitute option.
         """
-        if self.tests.valid:
+        if tests.test_integer(self.question):
             system("cls")
             self.question = int(self.question)
             if self.question <= len(self.substitutes_proposed_list):
@@ -167,12 +170,11 @@ class Substitutes:
         """Method that ask for substitute registartion's option selection to the user.
         """
         self.question = input("Do you want to register that choice(y/n)?\n")
-        self.tests.test_string(self.question)
 
-    def select_registration(self):
+    def select_registration(self, tests):
         """Method that starts the selected registration option.
         """
-        if self.tests.valid:
+        if tests.test_string(self.question):
             system("cls")
             self.question = str(self.question)
             if self.question in "yY":

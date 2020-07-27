@@ -17,6 +17,8 @@ class Tests:
         else:
             self.valid = False
 
+        return self.valid
+
 
     def test_string(self, value):
         """Method that test if is an alphabetic character
@@ -25,6 +27,7 @@ class Tests:
             self.valid = True
         else:
             self.valid = False
+        return self.valid
 
     def test_consistency(self, products, category):
         """Method that test if input product got values for

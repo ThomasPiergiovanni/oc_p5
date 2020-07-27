@@ -10,17 +10,15 @@ from programm.admin.tests import Tests
 class Products():
     """Products class.
     """
-    def __init__(self, categories):
-        system("cls")
-        self.database = categories.database
-        self.categories = categories
+    def __init__(self):
+        self.database = None
+        self.tests = None
+        self.substitutes = None
+        self.selected_category = None
         self.source_data = {}
         self.products_list = []
         self.selected_products = []
-        self.sorted_products = []
         self.question = None
-        self.tests = Tests()
-        self.select_input_valid = False
         self.selected_product = 0
 
     def initialization_nominal_scenario(self):
@@ -38,26 +36,6 @@ class Products():
             self.tests = Tests()
             self.database.download(self.source(category))
             self.database.execute_many(self.insert_in_table(category))
-
-    def research_nominal_scenario(self):
-        """Method that starts the products research
-        nominal scenario.
-        """
-        self.instanciate()
-        self.organize()
-        self.show()
-        self.tests = Tests()
-        self.ask()
-        self.select()
-
-    def research_exception_scenario(self):
-        """Method that starts the products research
-        exception scenario.
-        """
-        self.show()
-        self.tests = Tests()
-        self.ask()
-        self.select()
 
     def exists(self):
         """Method that provides the sql statement and
@@ -114,64 +92,73 @@ class Products():
         parameters = [statement, values]
         return parameters
 
-    def instanciate(self):
+    def instanciate(self, database):
         """Method that create the products instances.
         """
-        self.database.open_cursor()
-        self.database.cursor.execute("SELECT * FROM product")
-        selection = self.database.cursor.fetchall()
+        database.open_cursor()
+        database.cursor.execute("SELECT * FROM product")
+        selection = database.cursor.fetchall()
         for elt in selection:
             product = Product(elt[0], elt[1], elt[2], elt[3], elt[4],\
             elt[5], elt[6])
             self.products_list.append(product)
-        self.database.close_cursor()
+        database.close_cursor()
 
-    def organize(self):
+    def research(self, database, tests, substitutes, selected_category):
         """Method that sorts, for dispaly purposes, the products
         by product name.
         """
+        self.database = database
+        self.tests = tests
+        self.substitutes = substitutes
+        self.selected_category = selected_category
         for elt in self.products_list:
-            if elt.category_id == self.categories.selected_category.id_category:
+            if elt.category_id == self.selected_category.id_category:
                 self.selected_products.append(elt)
-                self.sorted_products = sorted(self.selected_products,\
+                self.selected_products = sorted(self.selected_products,\
                 key=lambda product: product.product_name)
+        self.show()
 
+    def find(self);
+    
     def show(self):
         """Method that propose the products options to the user.
         """
+        system("cls")
         print("You're looking for products in category \"",\
-        self.categories.selected_category.name, "\"")
+        self.selected_category.name, "\"")
         print("PRODUCTS (Nutriscore):")
         rank = 1
-        for elt in self.sorted_products:
+        for elt in self.selected_products:
             elt.temp_product_rank = rank
             print(elt.temp_product_rank, " - ", elt.product_name, "(",\
             elt.nutriscore_grade.capitalize(), ")")
             rank += 1
+        self.ask()
 
     def ask(self):
         """Method that ask for products's option selection to the user.
         """
         self.question = input("Which product you want to find a \
 substitute for?\n")
-        self.tests.test_integer(self.question)
+        self.select()
 
     def select(self):
         """Method that starts the selected product option.
         """
-        if self.tests.valid:
+        system("cls")
+        if self.tests.test_integer(self.question):
             self.question = int(self.question)
             if self.question <= len(self.selected_products):
                 for elt in self.selected_products:
                     if elt.temp_product_rank == self.question:
-                        print("You\'ve choosen the \"", elt.product_name,\
-                        "\" product")
                         self.selected_product = elt
+                        self.substitutes.research(self.database,\
+                        self.tests, self.selected_products,\
+                        self.selected_product)
             else:
-                system("cls")
                 print(config.MESSAGE_OOR)
-                self.research_exception_scenario()
+                self.show()
         else:
-            system("cls")
             print(config.MESSAGE_OOR)
-            self.research_exception_scenario()
+            self.show()
