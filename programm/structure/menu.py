@@ -16,7 +16,6 @@ class Menu:
     def __init__(self, database):
         self.database = database
         self.question = None
-        self.select_input_valid = False
         self.tests = Tests()
 
     def menu_nominal_scenario(self):

@@ -35,11 +35,11 @@ class Engin:
         self.database.execute_one(self.database.use())
         if self.database.verify(self.categories.exists()) and\
         self.database.verify(self.products.exists()):
-            self.initiate_loops()
+            self.start_loops()
         else:
             Reset(self.database)
 
-    def initiate_loops(self):
+    def start_loops(self):
         """Method that initiate the programm loops..
         """
         self.menu = menu.Menu(self.database)
