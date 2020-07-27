@@ -16,14 +16,6 @@ class Database:
         self.status = False
         self.source = {}
 
-    def initialization_nominal_scenario(self):
-        """Method that starts the database initialization
-        nominal scenario.
-        """
-        self.verify(self.exists())
-        if self.status:
-            self.execute_one(self.use())
-
     def reset_nominal_scenario(self):
         """Method that starts the database reset
         nominal scenario.
@@ -45,6 +37,8 @@ class Database:
         except:
             self.status = False
             print(parameters[1])
+
+        return self.status
 
     def exists(self):
         """Method that provides the sql statement and

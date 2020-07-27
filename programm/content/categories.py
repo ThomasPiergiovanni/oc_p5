@@ -57,8 +57,7 @@ class Categories:
         message for categories verification.
         """
         statement = "SELECT * FROM category"
-        message = "No or empty category tables"
-        parameters = [statement, message]
+        parameters = [statement, None]
         return parameters
 
     def source(self):
