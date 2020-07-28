@@ -21,21 +21,20 @@ class Products():
         self.question = None
         self.selected_product = None
 
-    def initialization_nominal_scenario(self):
-        """Method that starts the products initialization
-        nominal scenario.
-        """
-        self.database.verify(self.exists())
-
-    def reset_nominal_scenario(self):
+    def reset(self, engin):
         """Method that starts the products reset
         nominal scenario.
         """
+        self.engin = engin
+        self.tests = engin.tests
+        self.database = engin.database
+        self.categories = engin.categories
+        self.substitutes = engin.substitutes
         self.database.execute_one(self.create_table())
         for category in self.categories.categories_list:
-            self.tests = Tests()
             self.database.download(self.source(category))
             self.database.execute_many(self.insert_in_table(category))
+        self.substitutes.reset(self.engin)
 
     def exists(self):
         """Method that provides the sql statement and
@@ -85,8 +84,8 @@ class Products():
         nutriscore_grade, category_id, url, stores)\
         VALUES (%s, %s, %s, %s, %s, %s)"
         values = []
-        self.tests.test_consistency(\
-        self.categories.database.source["products"], category)
+        self.tests.test_consistency( self.database.source["products"],\
+        category)
         self.tests.test_duplicate(self.tests.consistent_products)
         values = self.tests.unique_products
         parameters = [statement, values]

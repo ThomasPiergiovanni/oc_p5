@@ -19,6 +19,7 @@ class Menu:
         nominal scenario.
         """
         self.engin = engin
+        self.database = engin.database
         self.tests = engin.tests
         self.categories = engin.categories
         self.compositions = engin.compositions
@@ -53,8 +54,8 @@ class Menu:
                 self.categories.research(self.engin)
             elif self.question == 2:
                 self.compositions.start_record(self.engin)
-            # elif self.question == 3:
-            #     Reset(database)
+            elif self.question == 3:
+                self.database.reset(self.engin)
             elif self.question == 4:
                 self.abandon.start_abandon(self.engin)
             else:

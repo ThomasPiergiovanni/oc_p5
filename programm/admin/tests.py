@@ -27,13 +27,14 @@ class Tests:
             self.valid = True
         else:
             self.valid = False
-            
+
         return self.valid
 
     def test_consistency(self, products, category):
         """Method that test if input product got values for
         the specified attributes
         """
+        self.consistent_products.clear()
         for product in products:
             try:
                 if product["id"] and product["product_name"] and\
@@ -48,6 +49,7 @@ class Tests:
     def test_duplicate(self, products):
         """Method that test if input products are unique per id and category.
         """
+        self.unique_products.clear()
         for product in products:
             unique_pairs = []
             pair = (product[0], product[3])

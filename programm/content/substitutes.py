@@ -4,13 +4,12 @@
 from os import system
 
 from programm.admin import config
-from programm.structure import menu
 from programm.content.substitute import Substitute
 
 class Substitutes:
     """Substitutes class.
     """
-    def __init__(self,):
+    def __init__(self):
         system("cls")
         self.engin = None
         self.database = None
@@ -23,6 +22,14 @@ class Substitutes:
         self.selected_substitute = None
         self.registration = False
         self.substitutes_registered_list = []
+
+    def reset(self, engin):
+        self.engin = engin
+        self.database = engin.database 
+        self.menu = engin.menu
+        self.database.execute_one(self.create_table())
+        self.engin.refresh_datas()
+        self.menu.start_menu(self.engin)
 
     def create_table(self):
         """Method that provides the sql statement for
@@ -110,8 +117,8 @@ class Substitutes:
     def select(self):
         """Method that starts the selected substitute option.
         """
+        system("cls")
         if self.tests.test_integer(self.question):
-            system("cls")
             self.question = int(self.question)
             if self.question <= len(self.selected_substitutes):
                 for elt in self.selected_substitutes:
@@ -128,7 +135,6 @@ class Substitutes:
                 print(config.MESSAGE_OOR)
                 self.show()
         else:
-            system("cls")
             print(config.MESSAGE_OOR)
             self.show()
 

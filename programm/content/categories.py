@@ -18,14 +18,18 @@ class Categories:
         self.question = None
         self.selected_category = None
 
-    def reset_nominal_scenario(self):
+    def reset(self, engin):
         """Method that starts the categories reset
         nominal scenario.
         """
+        self.engin = engin
+        self.database = engin.database
+        self.products = engin.products
         self.database.download(self.source())
         self.database.execute_one(self.create_table())
         self.database.execute_many(self.insert_in_table())
-        self.instanciate()
+        self.set_categories_list(self.database)
+        self.products.reset(self.engin)
 
     def exists(self):
         """Method that provides the sql statement and

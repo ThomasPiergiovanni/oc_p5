@@ -32,7 +32,7 @@ class Engin:
         if self.database.verify(self.database.exists()):
             self.initialize_datas()
         else:
-            Reset(self.database)
+            self.database.reset(self)
 
 
     def initialize_datas(self):
@@ -51,8 +51,7 @@ class Engin:
             
         else:
             print("bug")
-            pass
-            # Reset(self.database)
+            self.database.reset(self)
 
     def refresh_datas(self):
         self.categories.set_categories_list(self.database)

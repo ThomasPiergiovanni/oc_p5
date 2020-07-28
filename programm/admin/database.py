@@ -16,13 +16,16 @@ class Database:
         self.status = False
         self.source = {}
 
-    def reset_nominal_scenario(self):
+    def reset(self, engin):
         """Method that starts the database reset
         nominal scenario.
         """
+        self.engin = engin
+        self.categories = engin.categories
         self.execute_one(self.delete())
         self.execute_one(self.create())
         self.execute_one(self.use())
+        self.categories.reset(self.engin)
 
     def verify(self, parameters):
         """Method that verify the truth of an sql statement.
