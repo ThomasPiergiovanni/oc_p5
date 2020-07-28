@@ -1,20 +1,20 @@
 #-*-coding:utf-8 -*
-"""Compositions module.
+"""Records module.
 """
 from os import system
 
-from programm.model.composition import Composition
+from programm.model.record import Record
 
-class Compositions:
-    """Compositions class.
+class Records:
+    """Records class.
     """
     def __init__(self):
         system("cls")
-        self.compositions_list = []
+        self.records_list = []
 
 
-    def start_record(self, engin):
-        """Method that starts the compositions record
+    def watch(self, engin):
+        """Method that starts the records record
         nominal scenario.
         """
         self.engin = engin
@@ -44,10 +44,10 @@ class Compositions:
         self.categories.categories_list if category.id_category ==\
         product[0].category_id]
 
-    def set_compositions_list(self, engin):
-        """Method that create the compositions instances.
+    def set_records_list(self, engin):
+        """Method that create the records instances.
         """
-        self.compositions_list.clear()
+        self.records_list.clear()
         self.categories = engin.categories
         self.products = engin.products
         self.substitutes = engin.substitutes
@@ -55,18 +55,18 @@ class Compositions:
             self.get_product(substitute)
             self.get_substitute(substitute)
             self.get_category(self.product)
-            composition = Composition(self.category[0], self.product[0],\
+            record = Record(self.category[0], self.product[0],\
             self.substitute[0])
-            self.compositions_list.append(composition)
+            self.records_list.append(record)
 
     def show(self):
         """Method that shows the composed elements to the user.
         """
         system("cls")
-        if self.compositions_list:
+        if self.records_list:
             print("Products & registered substitutes:")
             rank = 1
-            for elt in self.compositions_list:
+            for elt in self.records_list:
                 print(rank, "."\
                 "\n    Product name:", elt.product_product_name,\
                 "(", elt.product_nutriscore_grade.capitalize(), ")",\

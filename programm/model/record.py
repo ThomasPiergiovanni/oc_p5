@@ -1,8 +1,8 @@
 #-*-coding:utf-8 -*
-"""Composition module.
+"""Record module.
 """
-class Composition:
-    """Composition class.
+class Record:
+    """Record class.
     """
     def __init__(self, category, product, substitute):
         self.product_product_id = product.id_product

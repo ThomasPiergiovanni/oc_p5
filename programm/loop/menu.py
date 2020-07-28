@@ -19,7 +19,7 @@ class Menu:
         self.database = engin.database
         self.tests = engin.tests
         self.categories = engin.categories
-        self.compositions = engin.compositions
+        self.records = engin.records
         self.abandon = engin.abandon
         self.show()
 
@@ -50,11 +50,11 @@ class Menu:
                 system("cls")
                 self.categories.research(self.engin)
             elif self.question == 2:
-                self.compositions.start_record(self.engin)
+                self.records.watch(self.engin)
             elif self.question == 3:
                 self.database.reset(self.engin)
             elif self.question == 4:
-                self.abandon.start_abandon(self.engin)
+                self.abandon.abandon(self.engin)
             else:
                 system("cls")
                 print(config.MESSAGE_OOR)

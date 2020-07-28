@@ -16,7 +16,7 @@ class Abandon:
         self.menu = None
         self.question = None
 
-    def start_abandon(self, engin):
+    def abandon(self, engin):
         """Method that starts the programm abandon
         nominal scenario.
         """

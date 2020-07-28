@@ -6,7 +6,7 @@ from programm.admin.tests import Tests
 from programm.loop import menu
 from programm.loop.loops.abandon import Abandon
 from programm.loop.loops.categories import Categories
-from programm.loop.loops.compositions import Compositions
+from programm.loop.loops.records import Records
 from programm.loop.loops.products import Products
 from programm.loop.loops.substitutes import Substitutes
 
@@ -21,7 +21,7 @@ class Engin:
         self.categories = Categories()
         self.products = Products()
         self.substitutes = Substitutes()
-        self.compositions = Compositions()
+        self.records = Records()
         self.abandon = Abandon()
 
     def initialize_database(self):
@@ -46,7 +46,7 @@ class Engin:
             self.categories.set_categories_list(self.database)
             self.products.set_products_list(self.database)
             self.substitutes.set_substitutes_list(self.database)
-            self.compositions.set_compositions_list(self)
+            self.records.set_records_list(self)
             self.start_loops()
             
         else:
@@ -57,7 +57,7 @@ class Engin:
         self.categories.set_categories_list(self.database)
         self.products.set_products_list(self.database)
         self.substitutes.set_substitutes_list(self.database)
-        self.compositions.set_compositions_list(self)
+        self.records.set_records_list(self)
 
     def start_loops(self):
         """Method that initiate the programm loops..
