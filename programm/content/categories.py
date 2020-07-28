@@ -4,17 +4,16 @@
 from os import system
 
 from programm.admin import config
-# from programm.admin.tests import Tests
 from programm.content.category import Category
 
 class Categories:
     """Categories class.
     """
     def __init__(self):
+        self.egin = None
         self.database = None
         self.tests = None
         self.products = None
-        self.substitutes = None
         self.categories_list = []
         self.question = None
         self.selected_category = None
@@ -76,7 +75,7 @@ class Categories:
         parameters = [statement, values]
         return parameters
 
-    def instanciate(self, database):
+    def set_categories_list(self, database):
         """Method that create the categories instances.
         """
         database.open_cursor()
@@ -88,11 +87,10 @@ class Categories:
             self.categories_list.append(category)
         database.close_cursor()
 
-    def research(self, database, tests, products, substitutes):
-        self.database = database
-        self.tests = tests
-        self.products = products
-        self.substitutes = substitutes
+    def research(self, engin):
+        self.engin = engin
+        self.tests = engin.tests
+        self.products = engin.products
         self.sort()
 
     def sort(self):
@@ -129,8 +127,7 @@ check products for?\n")
                 for elt in self.categories_list:
                     if elt.temp_rank == self.question:
                         self.selected_category = elt
-                        self.products.research(self.database, self.tests,\
-                        self.substitutes, self.selected_category)
+                        self.products.research(self.engin)
             else:
                 print(config.MESSAGE_OOR)
                 self.show()

@@ -11,6 +11,7 @@ class Products():
     """Products class.
     """
     def __init__(self):
+        self.egin = None
         self.database = None
         self.tests = None
         self.substitutes = None
@@ -104,18 +105,14 @@ class Products():
             self.products_list.append(product)
         database.close_cursor()
 
-    def research(self, database, tests, substitutes, selected_category):
+    def research(self, engin):
         """Method that sorts, for dispaly purposes, the products
         by product name.
         """
-        self.database = database
-        self.tests = tests
-        self.substitutes = substitutes
-        self.selected_category = selected_category
-        for elt in self.products_list:
-            if elt.category_id == self.selected_category.id_category:
-                self.selected_products.append(elt)
-
+        self.engin = engin
+        self.tests = engin.tests
+        self.substitutes = engin.substitutes
+        self.selected_category = engin.categories.selected_category
         self.find()
 
     def find(self):
@@ -161,9 +158,7 @@ substitute for?\n")
                 for elt in self.selected_products:
                     if elt.temp_product_rank == self.question:
                         self.selected_product = elt
-                        self.substitutes.research(self.database,\
-                        self.tests, self.selected_products,\
-                        self.selected_product)
+                        self.substitutes.research(self.engin)
             else:
                 print(config.MESSAGE_OOR)
                 self.show()
