@@ -43,7 +43,7 @@ class Engin:
         self.database.verify(self.products.exists()):
             self.categories.set_categories_list(self.database)
             self.products.set_products_list(self.database)
-            self.substitutes.instanciate(self.database)
+            self.substitutes.set_substitutes_list(self.database)
             self.compositions.instanciate(self.categories, self.products,\
             self.substitutes)
             self.start_loops()

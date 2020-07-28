@@ -115,6 +115,7 @@ class Products():
         self.find()
 
     def find(self):
+        self.selected_products.clear()
         for elt in self.products_list:
             if elt.category_id == self.selected_category.id_category:
                 self.selected_products.append(elt)

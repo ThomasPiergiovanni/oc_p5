@@ -12,11 +12,13 @@ class Substitutes:
     """
     def __init__(self,):
         system("cls")
+        self.engin = None
         self.database = None
         self.tests = None
+        self.menu = None
         self.selected_products = None
         self.selected_product = None
-        self.substitutes_proposed_list = []
+        self.selected_substitutes = []
         self.question = None
         self.selected_substitute = None
         self.registration = False
@@ -27,38 +29,6 @@ class Substitutes:
         nominal scenario.
         """
         self.database.execute_one(self.create_table())
-
-
-
-    def research_exception_scenario_one(self):
-        """Method that starts the substitutes research
-        1st exception scenario.
-        """
-        self.show()
-        self.ask()
-        self.select()
-        self.ask_registration()
-        self.select_registration()
-        self.database.execute_one(self.insert_in_table())
-        self.research_scenario_end()
-
-    def research_exception_scenario_two(self):
-        """Method that starts the substitutes research
-        2nd exception scenario.
-        """
-        self.ask_registration()
-        self.select_registration()
-        self.database.execute_one(self.insert_in_table())
-        self.research_scenario_end()
-
-    def research_scenario_end(self):
-        """Method that starts the end of the substitutes research
-        scenario.
-        """
-        system("pause")
-        system("cls")
-        self.menu = menu.Menu()
-        self.menu.menu_nominal_scenario()
 
     def create_table(self):
         """Method that provides the sql statement for
@@ -73,7 +43,7 @@ class Substitutes:
         parameters = [statement, None]
         return parameters
 
-    def instanciate(self, database):
+    def set_substitutes_list(self, database):
         """Method that create the substitutes instances.
         """
         database.open_cursor()
@@ -84,72 +54,72 @@ class Substitutes:
             self.substitutes_registered_list.append(substitute)
         database.close_cursor()
 
-    def research(self, database, tests, products, product):
+    def research(self, engin):
         """Method that starts the substitutes research
         nominal scenario.
         """
-        self.database = database
-        self.tests = tests
-        self.selected_products = products
-        self.selected_product = product
+        self.engin = engin
+        self.database = engin.database
+        self.tests = engin.tests
+        self.menu = engin.menu
+        self.selected_products = engin.products.selected_products
+        self.selected_product = engin.products.selected_product
         self.find()
-        self.organize()
-        self.show(product)
-        self.ask()
-        self.select(tests)
-        self.ask_registration()
-        self.select_registration(tests)
-        database.execute_one(self.insert_in_table())
-        self.research_scenario_end()
 
     def find(self):
         """Method that find a substitute to the product.
         """
-        for elt in self.products:
-            if elt.id_product != self.product.id_product and\
-            elt.nutriscore_grade < self.product.nutriscore_grade:
-                self.substitutes_proposed_list.append(elt)
+        self.selected_substitutes.clear()
+        for elt in self.selected_products:
+            if elt.id_product != self.selected_product.id_product and\
+            elt.nutriscore_grade < self.selected_product.nutriscore_grade:
+                self.selected_substitutes.append(elt)
         self.sort()
 
     def sort(self):
         """Method that sorts, for dispaly purposes, the substitutes
         by product nutriscore grade.
         """
-        if self.substitutes_proposed_list:
-            self.substitutes_proposed_list = sorted(self.substitutes_proposed_list,\
+        if self.selected_substitutes:
+            self.selected_substitutes = sorted(self.selected_substitutes,\
             key=lambda product: product.nutriscore_grade)
+            self.show()
         else:
             system("cls")
             print("There is no healthier substitute for that product")
-            self.menu.menu_nominal_scenario()
+            self.menu.start_menu(self.engin)
 
-    def show(self, product):
+
+    def show(self):
         """Method that propose the substitutes options to the user.
         """
+        system("cls")
         print("You're looking for substitute for product \"",\
-        product.product_name, "(",\
-        product.nutriscore_grade.capitalize(), ")", "\"")
+        self.selected_product.product_name, "(",\
+        self.selected_product.nutriscore_grade.capitalize(), ")", "\"")
         print("SUBSTITUTES (Nutriscore):")
         rank = 1
-        for elt in self.substitutes_proposed_list:
+        for elt in self.selected_substitutes:
             elt.temp_substitute_rank = rank
             print(elt.temp_substitute_rank, " - ", elt.product_name, "(",\
             elt.nutriscore_grade.capitalize(), ")")
             rank += 1
+        self.ask()
 
     def ask(self):
         """Method that ask for substitute's option selection to the user.
         """
         self.question = input("Which substitute you want to choose?\n")
+        self.select()
 
-    def select(self, tests):
+    def select(self):
         """Method that starts the selected substitute option.
         """
-        if tests.test_integer(self.question):
+        if self.tests.test_integer(self.question):
             system("cls")
             self.question = int(self.question)
-            if self.question <= len(self.substitutes_proposed_list):
-                for elt in self.substitutes_proposed_list:
+            if self.question <= len(self.selected_substitutes):
+                for elt in self.selected_substitutes:
                     if elt.temp_substitute_rank == self.question:
                         print("You\'ve choosen the following substitute:",\
                         "\n   - Product name:", elt.product_name,\
@@ -158,39 +128,44 @@ class Substitutes:
                         "\n   - Check product at:", elt.url,\
                         "\n   - Sold in:", elt.stores)
                         self.selected_substitute = elt
+                        self.ask_registration()
             else:
                 print(config.MESSAGE_OOR)
-                self.research_exception_scenario_one()
+                self.show()
         else:
             system("cls")
             print(config.MESSAGE_OOR)
-            self.research_exception_scenario_one()
+            self.show()
 
     def ask_registration(self):
         """Method that ask for substitute registartion's option selection to the user.
         """
         self.question = input("Do you want to register that choice(y/n)?\n")
+        self.select_registration()
 
-    def select_registration(self, tests):
+    def select_registration(self):
         """Method that starts the selected registration option.
         """
-        if tests.test_string(self.question):
+        if self.tests.test_string(self.question):
             system("cls")
             self.question = str(self.question)
             if self.question in "yY":
                 self.registration = True
                 print("Substitute product has been registered!")
+                system("pause")
+                self.insert_in_table()
+                self.menu.start_menu(self.engin)
             elif self.question in "nN":
                 print("Substitute product hasn't been registered")
-                self.research_scenario_end()
+                system("pause")
+                self.menu.start_menu(self.engin)
             else:
-                system("cls")
                 print(config.MESSAGE_YN)
-                self.research_exception_scenario_two()
+                self.ask_registration()
         else:
             system("cls")
             print(config.MESSAGE_YN)
-            self.research_exception_scenario_two()
+            self.ask_registration()
 
     def insert_in_table(self):
         """Method that provides the sql statement for
@@ -199,7 +174,8 @@ class Substitutes:
         if self.registration:
             statement = "INSERT INTO substitute (product_product_id,\
             substitute_product_id) VALUES (%s, %s)"
-            values = [self.products.selected_product.id_product,\
+            values = [self.selected_product.id_product,\
             self.selected_substitute.id_product]
             parameters = [statement, values]
         return parameters
+
