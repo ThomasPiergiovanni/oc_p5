@@ -19,7 +19,7 @@ class Products():
         self.products_list = []
         self.selected_products = []
         self.question = None
-        self.selected_product = 0
+        self.selected_product = None
 
     def initialization_nominal_scenario(self):
         """Method that starts the products initialization

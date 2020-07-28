@@ -4,11 +4,9 @@
 from os import system
 
 from programm.admin import config
-# from programm.structure.abandon import Abandon
 # from programm.structure.record import Record
-# from programm.structure.research import Research
 # from programm.structure.reset import Reset
-# from programm.admin.tests import Tests
+
 
 class Menu:
     """Menu class.
@@ -23,6 +21,7 @@ class Menu:
         self.engin = engin
         self.tests = engin.tests
         self.categories = engin.categories
+        self.abandon = engin.abandon
         self.show()
 
     def show(self):
@@ -55,8 +54,8 @@ class Menu:
             #     Record(database)
             # elif self.question == 3:
             #     Reset(database)
-            # elif self.question == 4:
-            #     Abandon(database)
+            elif self.question == 4:
+                self.abandon.start_abandon(self.engin)
             else:
                 system("cls")
                 print(config.MESSAGE_OOR)

@@ -7,6 +7,7 @@ from programm.content.categories import Categories
 from programm.content.products import Products
 from programm.content.substitutes import Substitutes
 from programm.content.compositions import Compositions
+from programm.structure.abandon import Abandon
 from programm.structure import menu
 # from programm.structure.reset import Reset
 
@@ -21,6 +22,7 @@ class Engin:
         self.products = Products()
         self.substitutes = Substitutes()
         self.compositions = Compositions()
+        self.abandon = Abandon()
 
     def initialize_database(self):
         """Method that initialize the database. If it exist, 
