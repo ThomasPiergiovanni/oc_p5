@@ -16,16 +16,15 @@ class Menu:
     def __init__(self):
         self.question = None
 
-    def menu_nominal_scenario(self, database, tests, categories, products,\
-    substitutes, compositions):
+    def start_menu(self, engin):
         """Method that starts the menu
         nominal scenario.
         """
+        self.engin = engin
+        self.tests = engin.tests
+        self.categories = engin.categories
         self.show()
-        self.ask()
-        self.select(database, tests, categories, products,\
-        substitutes, compositions)
-        
+
     def show(self):
         """Method that propose the menu options to the user.
         """
@@ -35,23 +34,23 @@ class Menu:
         \n 2 - See your saved substitutes\
         \n 3 - Reinitiate the database \
         \n 4 - Quit the program")
+        self.ask()
 
     def ask(self):
         """Method that ask for menu's option selection to the user.
         """
         self.question = input("What do you want to do \
 (choose one of the above number)?\n")
+        self.select()
 
-    def select(self, database, tests, categories, products,\
-    substitutes, compositions):
+    def select(self):
         """Method that starts the selected option.
         """
-        if tests.test_integer(self.question):
+        if self.tests.test_integer(self.question):
             self.question = int(self.question)
             if self.question == 1:
                 system("cls")
-                categories.research(database, tests, products,\
-                substitutes)
+                self.categories.research(self.engin)
             # elif self.question == 2:
             #     Record(database)
             # elif self.question == 3:
@@ -61,10 +60,8 @@ class Menu:
             else:
                 system("cls")
                 print(config.MESSAGE_OOR)
-                self.menu_nominal_scenario(database, tests, categories, products,\
-                substitutes, compositions)
+                self.start_menu(self.engin)
         else:
             system("cls")
             print(config.MESSAGE_OOR)
-            self.menu_nominal_scenario(database, tests, categories, products,\
-            substitutes, compositions)
+            self.start_menu(self.engin)

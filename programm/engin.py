@@ -21,7 +21,6 @@ class Engin:
         self.products = Products()
         self.substitutes = Substitutes()
         self.compositions = Compositions()
-        self.initialize_database()
 
     def initialize_database(self):
         """Method that initialize the database. If it exist, 
@@ -49,7 +48,6 @@ class Engin:
             self.substitutes)
             self.start_loops()
             
-
         else:
             print("bug")
             pass
@@ -58,8 +56,6 @@ class Engin:
     def start_loops(self):
         """Method that initiate the programm loops..
         """
-        self.menu.menu_nominal_scenario(self.database, self.tests,\
-        self.categories, self.products, self.substitutes,\
-        self.compositions)
+        self.menu.start_menu(self)
 
         

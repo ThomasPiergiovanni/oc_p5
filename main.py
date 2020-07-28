@@ -6,7 +6,8 @@ from programm.engin import Engin
 def main():
     """Method lauching the programm.
     """
-    Engin()
+    engin = Engin()
+    engin.initialize_database()
 
 if __name__ == "__main__":
     main()

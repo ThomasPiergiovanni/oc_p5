@@ -115,12 +115,20 @@ class Products():
         for elt in self.products_list:
             if elt.category_id == self.selected_category.id_category:
                 self.selected_products.append(elt)
-                self.selected_products = sorted(self.selected_products,\
-                key=lambda product: product.product_name)
+
+        self.find()
+
+    def find(self):
+        for elt in self.products_list:
+            if elt.category_id == self.selected_category.id_category:
+                self.selected_products.append(elt)
+        self.sort()
+
+    def sort (self):
+        self.selected_products = sorted(self.selected_products,\
+        key=lambda product: product.product_name)
         self.show()
 
-    def find(self);
-    
     def show(self):
         """Method that propose the products options to the user.
         """
