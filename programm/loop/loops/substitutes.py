@@ -89,6 +89,7 @@ class Substitutes:
         else:
             system("cls")
             print("There is no healthier substitute for that product")
+            system("pause")
             self.menu.start_menu(self.engin)
 
 

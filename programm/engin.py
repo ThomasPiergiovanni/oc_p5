@@ -3,7 +3,7 @@
 """
 from programm.admin.database import Database
 from programm.admin.tests import Tests
-from programm.loop import menu
+from programm.loop.menu import Menu
 from programm.loop.loops.abandon import Abandon
 from programm.loop.loops.categories import Categories
 from programm.loop.loops.records import Records
@@ -17,7 +17,8 @@ class Engin:
     def __init__(self):
         self.database = Database()
         self.tests = Tests()
-        self.menu = menu.Menu()
+        # self.menu = menu.Menu()
+        self.menu = Menu()
         self.categories = Categories()
         self.products = Products()
         self.substitutes = Substitutes()
