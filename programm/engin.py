@@ -46,14 +46,19 @@ class Engin:
             self.categories.set_categories_list(self.database)
             self.products.set_products_list(self.database)
             self.substitutes.set_substitutes_list(self.database)
-            self.compositions.instanciate(self.categories, self.products,\
-            self.substitutes)
+            self.compositions.set_compositions_list(self)
             self.start_loops()
             
         else:
             print("bug")
             pass
             # Reset(self.database)
+
+    def refresh_datas(self):
+        self.categories.set_categories_list(self.database)
+        self.products.set_products_list(self.database)
+        self.substitutes.set_substitutes_list(self.database)
+        self.compositions.set_compositions_list(self)
 
     def start_loops(self):
         """Method that initiate the programm loops..

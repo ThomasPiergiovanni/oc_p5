@@ -27,6 +27,7 @@ class Tests:
             self.valid = True
         else:
             self.valid = False
+            
         return self.valid
 
     def test_consistency(self, products, category):

@@ -24,12 +24,6 @@ class Substitutes:
         self.registration = False
         self.substitutes_registered_list = []
 
-    def reset_nominal_scenario(self):
-        """Method that starts the substitutes initialization
-        nominal scenario.
-        """
-        self.database.execute_one(self.create_table())
-
     def create_table(self):
         """Method that provides the sql statement for
         substitutes creation.
@@ -46,6 +40,7 @@ class Substitutes:
     def set_substitutes_list(self, database):
         """Method that create the substitutes instances.
         """
+        self.substitutes_registered_list.clear()
         database.open_cursor()
         database.cursor.execute("SELECT * FROM substitute")
         selection = database.cursor.fetchall()
@@ -151,9 +146,10 @@ class Substitutes:
             self.question = str(self.question)
             if self.question in "yY":
                 self.registration = True
+                self.database.execute_one(self.insert_in_table())
+                self.engin.refresh_datas()
                 print("Substitute product has been registered!")
                 system("pause")
-                self.insert_in_table()
                 self.menu.start_menu(self.engin)
             elif self.question in "nN":
                 print("Substitute product hasn't been registered")

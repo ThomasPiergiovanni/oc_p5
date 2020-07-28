@@ -95,6 +95,7 @@ class Products():
     def set_products_list(self, database):
         """Method that create the products instances.
         """
+        self.products_list.clear()
         database.open_cursor()
         database.cursor.execute("SELECT * FROM product")
         selection = database.cursor.fetchall()

@@ -78,6 +78,7 @@ class Categories:
     def set_categories_list(self, database):
         """Method that create the categories instances.
         """
+        self.categories_list.clear()
         database.open_cursor()
         database.cursor.execute("SELECT * FROM category")
         selection = database.cursor.fetchall()
