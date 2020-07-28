@@ -4,7 +4,7 @@
 from os import system
 
 from programm.admin import config
-from programm.content.category import Category
+from programm.model.category import Category
 
 class Categories:
     """Categories class.

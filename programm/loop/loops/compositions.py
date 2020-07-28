@@ -3,7 +3,7 @@
 """
 from os import system
 
-from programm.content.composition import Composition
+from programm.model.composition import Composition
 
 class Compositions:
     """Compositions class.

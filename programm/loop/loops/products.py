@@ -4,7 +4,7 @@
 from os import system
 
 from programm.admin import config
-from programm.content.product import Product
+from programm.model.product import Product
 
 class Products():
     """Products class.

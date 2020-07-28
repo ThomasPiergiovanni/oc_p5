@@ -3,13 +3,13 @@
 """
 from programm.admin.database import Database
 from programm.admin.tests import Tests
-from programm.content.categories import Categories
-from programm.content.products import Products
-from programm.content.substitutes import Substitutes
-from programm.content.compositions import Compositions
-from programm.structure.abandon import Abandon
-from programm.structure import menu
-# from programm.structure.reset import Reset
+from programm.loop import menu
+from programm.loop.loops.abandon import Abandon
+from programm.loop.loops.categories import Categories
+from programm.loop.loops.compositions import Compositions
+from programm.loop.loops.products import Products
+from programm.loop.loops.substitutes import Substitutes
+
 
 class Engin:
     """Engin class.

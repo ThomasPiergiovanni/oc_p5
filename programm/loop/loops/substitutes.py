@@ -4,7 +4,7 @@
 from os import system
 
 from programm.admin import config
-from programm.content.substitute import Substitute
+from programm.model.substitute import Substitute
 
 class Substitutes:
     """Substitutes class.

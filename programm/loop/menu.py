@@ -4,9 +4,6 @@
 from os import system
 
 from programm.admin import config
-# from programm.structure.record import Record
-# from programm.structure.reset import Reset
-
 
 class Menu:
     """Menu class.
