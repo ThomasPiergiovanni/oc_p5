@@ -5,7 +5,6 @@ from os import system
 
 from programm.admin import config
 from programm.content.product import Product
-from programm.admin.tests import Tests
 
 class Products():
     """Products class.
@@ -93,7 +92,7 @@ class Products():
         parameters = [statement, values]
         return parameters
 
-    def instanciate(self, database):
+    def set_products_list(self, database):
         """Method that create the products instances.
         """
         database.open_cursor()
