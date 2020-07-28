@@ -181,4 +181,3 @@ class Substitutes:
             self.selected_substitute.id_product]
             parameters = [statement, values]
         return parameters
-
