@@ -10,9 +10,10 @@ class Products():
     """Products class.
     """
     def __init__(self):
-        self.egin = None
+        self.engin = None
         self.database = None
         self.tests = None
+        self.categories = None
         self.substitutes = None
         self.selected_category = None
         self.source_data = {}
@@ -22,12 +23,12 @@ class Products():
         self.selected_product = None
 
     def reset(self, engin):
-        """Method that starts the products reset
-        nominal scenario.
+        """Method that resets products into the database
+        (i.e. download data, create table and insert data into table).
         """
         self.engin = engin
-        self.tests = engin.tests
         self.database = engin.database
+        self.tests = engin.tests
         self.categories = engin.categories
         self.substitutes = engin.substitutes
         self.database.execute_one(self.create_table())
@@ -37,8 +38,8 @@ class Products():
         self.substitutes.reset(self.engin)
 
     def exists(self):
-        """Method that provides the sql statement and
-        message for products verification.
+        """Method that provides the sql statement
+        for products existance verification into DB.
         """
         statement = "SELECT * FROM product"
         message = "No or empty product tables"
@@ -46,8 +47,8 @@ class Products():
         return parameters
 
     def source(self, category):
-        """Method that provides the appropriate settings
-        for products download.
+        """Method that provides the appropriate settings to
+        the OFF API for products download.
         """
         endpoint = config.PRODUCTS_ENDPOINT
         params = {
@@ -59,7 +60,7 @@ class Products():
 
     def create_table(self):
         """Method that provides the sql statement for
-        products creation.
+        products creation into DB.
         """
         statement = "CREATE TABLE IF NOT EXISTS product(\
             id_product SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,\
@@ -78,13 +79,13 @@ class Products():
 
     def insert_in_table(self, category):
         """Method that provides the sql statement for
-        products insertion.
+        products insertion into DB.
         """
         statement = "INSERT INTO product (id_origin, product_name,\
         nutriscore_grade, category_id, url, stores)\
         VALUES (%s, %s, %s, %s, %s, %s)"
         values = []
-        self.tests.test_consistency( self.database.source["products"],\
+        self.tests.test_consistency(self.database.source["products"],\
         category)
         self.tests.test_duplicate(self.tests.consistent_products)
         values = self.tests.unique_products
@@ -92,7 +93,7 @@ class Products():
         return parameters
 
     def set_products_list(self, database):
-        """Method that create the products instances.
+        """Method that create the products' list.
         """
         self.products_list.clear()
         database.open_cursor()
@@ -105,8 +106,7 @@ class Products():
         database.close_cursor()
 
     def research(self, engin):
-        """Method that sorts, for dispaly purposes, the products
-        by product name.
+        """Method that starts the products research loop.
         """
         self.engin = engin
         self.tests = engin.tests
@@ -115,21 +115,26 @@ class Products():
         self.find()
 
     def find(self):
+        """Method that find and store in a list products that
+        belong to the pre-selected catgeory.
+        """
         self.selected_products.clear()
         for elt in self.products_list:
             if elt.category_id == self.selected_category.id_category:
                 self.selected_products.append(elt)
         self.sort()
 
-    def sort (self):
+    def sort(self):
+        """Method that sorts the wanted category products
+        per product name.
+        """
         self.selected_products = sorted(self.selected_products,\
         key=lambda product: product.product_name)
         self.show()
 
     def show(self):
-        """Method that propose the products options to the user.
+        """Method that propose the products' options to the user.
         """
-        system("cls")
         print("You're looking for products in category \"",\
         self.selected_category.name, "\"")
         print("PRODUCTS (Nutriscore):")
@@ -142,16 +147,17 @@ class Products():
         self.ask()
 
     def ask(self):
-        """Method that ask for products's option selection to the user.
+        """Method that ask to select a product option to the user.
         """
         self.question = input("Which product you want to find a \
 substitute for?\n")
+        system("cls")
         self.select()
 
     def select(self):
-        """Method that starts the selected product option.
+        """Method that, for the selected product, starts the
+        substitutes research loop.
         """
-        system("cls")
         if self.tests.test_integer(self.question):
             self.question = int(self.question)
             if self.question <= len(self.selected_products):

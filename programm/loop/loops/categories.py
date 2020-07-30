@@ -19,7 +19,7 @@ class Categories:
         self.selected_category = None
 
     def reset(self, engin):
-        """Method that resets categories into the databse
+        """Method that resets categories into the database
         (i.e. download data, create table and insert data into table).
         """
         self.engin = engin
@@ -64,7 +64,7 @@ class Categories:
 
     def insert_in_table(self):
         """Method that provides the sql statement for
-        categories insertion into DB..
+        categories insertion into DB.
         """
         statement = "INSERT INTO category(id_origin, name,\
         url) VALUES(%s, %s, %s)"
@@ -128,7 +128,7 @@ check products for?\n")
 
     def select(self):
         """Method that, for the selected category, starts the
-        product research loop.
+        products research loop.
         """
         if self.tests.test_integer(self.question):
             self.question = int(self.question)
