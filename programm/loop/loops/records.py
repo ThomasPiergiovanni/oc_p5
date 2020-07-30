@@ -9,43 +9,51 @@ class Records:
     """Records class.
     """
     def __init__(self):
-        system("cls")
+        self.engin = None
+        self.menu = None
+        self.categories = None
+        self.products = None
+        self.substitutes = None
+        self.category = None
+        self.product = None
+        self.substitute = None
         self.records_list = []
 
 
     def watch(self, engin):
-        """Method that starts the records record
-        nominal scenario.
+        """Method that starts records watch.
         """
         self.engin = engin
         self.menu = engin.menu
         self.show()
 
     def get_product(self, substitute):
-        """Method that get the product based on the recorded product id
-        scenario.
+        """Method that get the entire product information by joining
+        substitute's product_product_id and product's id_product.
         """
         self.product = [product for product in\
         self.products.products_list if product.id_product ==\
         substitute.product_product_id]
 
     def get_substitute(self, substitute):
-        """Method that get the substitute product based on the recorded
-        product id scenario.
+        """Method that get the entire substituted product informations
+        by joining substitute's substitute_product_id and product's
+        id_product.
         """
         self.substitute = [product for product in\
         self.products.products_list if product.id_product ==\
         substitute.substitute_product_id]
 
     def get_category(self, product):
-        """Method that get the category based on product category id.
+        """Method that get the product category informations by joining
+        product's category_id and category's id_category.
         """
         self.category = [category for category in\
         self.categories.categories_list if category.id_category ==\
         product[0].category_id]
 
     def set_records_list(self, engin):
-        """Method that create the records instances.
+        """Method that create the records' list.
         """
         self.records_list.clear()
         self.categories = engin.categories
@@ -60,9 +68,8 @@ class Records:
             self.records_list.append(record)
 
     def show(self):
-        """Method that shows the composed elements to the user.
+        """Method that propose/show the records to the user.
         """
-        system("cls")
         if self.records_list:
             print("Products & registered substitutes:")
             rank = 1
@@ -73,9 +80,11 @@ class Records:
                 "\n    Substitute name:", elt.substitute_product_name,\
                 "(", elt.substitute_nutriscore_grade.capitalize(), ")")
                 rank += 1
-            system("pause")    
+            system("pause")
+            system("cls")
             self.menu.start(self.engin)
         else:
             print("No substitutes have been registered yet")
             system("pause")
+            system("cls")
             self.menu.start(self.engin)

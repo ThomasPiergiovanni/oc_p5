@@ -92,9 +92,9 @@ class Substitutes:
             key=lambda product: product.nutriscore_grade)
             self.show()
         else:
-            system("cls")
-            print("There is no healthier substitute for that product")
+            print("There is no healthier substitute for that product.")
             system("pause")
+            system("cls")
             self.menu.start(self.engin)
 
 
