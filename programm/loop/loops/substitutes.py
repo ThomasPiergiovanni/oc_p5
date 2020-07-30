@@ -28,7 +28,7 @@ class Substitutes:
         self.database = engin.database 
         self.menu = engin.menu
         self.database.execute_one(self.create_table())
-        self.engin.initialize_datas()
+        self.engin.set_datas()
         self.menu.start_menu(self.engin)
 
     def create_table(self):
@@ -154,7 +154,7 @@ class Substitutes:
             if self.question in "yY":
                 self.registration = True
                 self.database.execute_one(self.insert_in_table())
-                self.engin.initialize_datas()
+                self.engin.set_datas()
                 print("Substitute product has been registered!")
                 system("pause")
                 self.menu.start_menu(self.engin)
