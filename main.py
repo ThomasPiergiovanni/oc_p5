@@ -4,7 +4,7 @@
 from programm.engin import Engin
 
 def main():
-    """Method lauching the programm.
+    """Main method launching the programm.
     """
     engin = Engin()
     engin.initialize_database()

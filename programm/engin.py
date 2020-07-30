@@ -31,7 +31,13 @@ class Engin:
         and its componnent are created.
         """
         if self.database.verify(self.database.exists()):
-            self.initialize_datas()
+            self.database.execute_one(self.database.use())
+            if self.database.verify(self.categories.exists()) and\
+            self.database.verify(self.products.exists()):
+                self.initialize_datas()
+                self.start_loops()
+            else:
+                self.database.reset(self)
         else:
             self.database.reset(self)
 
@@ -41,25 +47,11 @@ class Engin:
         the programm continues. If they don't, the database is droped
         and recreated along with the datas.
         """
-        self.database.execute_one(self.database.use())
-        if self.database.verify(self.categories.exists()) and\
-        self.database.verify(self.products.exists()):
-            self.categories.set_categories_list(self.database)
-            self.products.set_products_list(self.database)
-            self.substitutes.set_substitutes_list(self.database)
-            self.records.set_records_list(self)
-            self.start_loops()
-            
-        else:
-            print("bug")
-            self.database.reset(self)
-
-    def refresh_datas(self):
         self.categories.set_categories_list(self.database)
         self.products.set_products_list(self.database)
         self.substitutes.set_substitutes_list(self.database)
         self.records.set_records_list(self)
-
+            
     def start_loops(self):
         """Method that initiate the programm loops..
         """
