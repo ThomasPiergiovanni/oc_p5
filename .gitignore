@@ -2,5 +2,6 @@
 __pycache__/
 programm/__pycache__/
 programm/admin/__pycache__/
-programm/content/__pycache__/
-programm/structure/__pycache__/
+programm/loop/__pycache__/
+programm/model/__pycache__/
+programm/loop/loops/__pycache__/
