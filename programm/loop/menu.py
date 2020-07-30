@@ -9,11 +9,16 @@ class Menu:
     """Menu class.
     """
     def __init__(self):
+        self.engin = None
+        self.database = None
+        self.tests = None
+        self.categories = None
+        self.records = None
+        self.abandon = None
         self.question = None
 
     def start_menu(self, engin):
-        """Method that starts the menu
-        nominal scenario.
+        """Method that starts the menu loop.
         """
         self.engin = engin
         self.database = engin.database
@@ -24,7 +29,7 @@ class Menu:
         self.show()
 
     def show(self):
-        """Method that propose the menu options to the user.
+        """Method that proposes the menus' options to the user.
         """
         system("cls")
         print("MENU:\
@@ -35,19 +40,19 @@ class Menu:
         self.ask()
 
     def ask(self):
-        """Method that ask for menu's option selection to the user.
+        """Method that ask to select a menu option to the user.
         """
         self.question = input("What do you want to do \
 (choose one of the above number)?\n")
         self.select()
 
     def select(self):
-        """Method that starts the selected option.
+        """Method that starts the selected option loop.
         """
+        system("cls")
         if self.tests.test_integer(self.question):
             self.question = int(self.question)
             if self.question == 1:
-                system("cls")
                 self.categories.research(self.engin)
             elif self.question == 2:
                 self.records.watch(self.engin)
@@ -56,10 +61,8 @@ class Menu:
             elif self.question == 4:
                 self.abandon.abandon(self.engin)
             else:
-                system("cls")
                 print(config.MESSAGE_OOR)
                 self.start_menu(self.engin)
         else:
-            system("cls")
             print(config.MESSAGE_OOR)
             self.start_menu(self.engin)
