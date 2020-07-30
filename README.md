@@ -27,7 +27,7 @@ This program requires the following components:
 
 ### 3.6. Deactivate a virtual environnement.
 
-### 3.7. Uninstall
+### 3.7. Uninstall.
 
 ## 4. Settings.
 
