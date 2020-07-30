@@ -93,7 +93,7 @@ class Categories:
         database.close_cursor()
 
     def research(self, engin):
-        """Method that starts the categories research loop.
+        """Method that starts the categories research.
         """
         self.engin = engin
         self.tests = engin.tests
@@ -128,7 +128,7 @@ check products for?\n")
 
     def select(self):
         """Method that, for the selected category, starts the
-        products research loop.
+        products research.
         """
         if self.tests.test_integer(self.question):
             self.question = int(self.question)

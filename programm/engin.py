@@ -43,7 +43,7 @@ class Engin:
             self.database.reset(self)
 
     def set_datas(self):
-        """Method that sets datas them into their
+        """Method that sets datas into their
         respective list.
         """
         self.categories.set_categories_list(self.database)

@@ -106,7 +106,7 @@ class Products():
         database.close_cursor()
 
     def research(self, engin):
-        """Method that starts the products research loop.
+        """Method that starts the products research.
         """
         self.engin = engin
         self.tests = engin.tests
@@ -126,7 +126,7 @@ class Products():
 
     def sort(self):
         """Method that sorts the wanted category products
-        per product name.
+        per products name.
         """
         self.selected_products = sorted(self.selected_products,\
         key=lambda product: product.product_name)
@@ -156,7 +156,7 @@ substitute for?\n")
 
     def select(self):
         """Method that, for the selected product, starts the
-        substitutes research loop.
+        substitutes research.
         """
         if self.tests.test_integer(self.question):
             self.question = int(self.question)

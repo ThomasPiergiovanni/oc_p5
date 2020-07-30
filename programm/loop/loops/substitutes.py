@@ -24,8 +24,12 @@ class Substitutes:
         self.substitutes_registered_list = []
 
     def reset(self, engin):
+        """Method that resets substitutes into the database
+        (i.e. create table) and re-set all datas (i.e. reset
+        all datas into their respective list).
+        """
         self.engin = engin
-        self.database = engin.database 
+        self.database = engin.database
         self.menu = engin.menu
         self.database.execute_one(self.create_table())
         self.engin.set_datas()
@@ -33,7 +37,7 @@ class Substitutes:
 
     def create_table(self):
         """Method that provides the sql statement for
-        substitutes creation.
+        substitutes creation into DB.
         """
         statement = "CREATE TABLE IF NOT EXISTS substitute(\
             product_product_id SMALLINT UNSIGNED NOT NULL,\
@@ -45,7 +49,7 @@ class Substitutes:
         return parameters
 
     def set_substitutes_list(self, database):
-        """Method that create the substitutes instances.
+        """Method that create the substitutes' list.
         """
         self.substitutes_registered_list.clear()
         database.open_cursor()
@@ -57,8 +61,7 @@ class Substitutes:
         database.close_cursor()
 
     def research(self, engin):
-        """Method that starts the substitutes research
-        nominal scenario.
+        """Method that starts the substitutes research.
         """
         self.engin = engin
         self.database = engin.database
@@ -69,7 +72,9 @@ class Substitutes:
         self.find()
 
     def find(self):
-        """Method that find a substitute to the product.
+        """Method that find and store in a list, substitutes that
+        belong to the same category as the pre-selected product but
+        that have a better nutriticore.
         """
         self.selected_substitutes.clear()
         for elt in self.selected_products:
@@ -79,8 +84,8 @@ class Substitutes:
         self.sort()
 
     def sort(self):
-        """Method that sorts, for dispaly purposes, the substitutes
-        by product nutriscore grade.
+        """Method that sorts the wanted product substitutes
+        per substitutes name.
         """
         if self.selected_substitutes:
             self.selected_substitutes = sorted(self.selected_substitutes,\
@@ -94,9 +99,8 @@ class Substitutes:
 
 
     def show(self):
-        """Method that propose the substitutes options to the user.
+        """Method that propose the substitutes' options to the user.
         """
-        system("cls")
         print("You're looking for substitute for product \"",\
         self.selected_product.product_name, "(",\
         self.selected_product.nutriscore_grade.capitalize(), ")", "\"")
@@ -110,15 +114,16 @@ class Substitutes:
         self.ask()
 
     def ask(self):
-        """Method that ask for substitute's option selection to the user.
+        """Method that ask to select a substitute option to the user.
         """
         self.question = input("Which substitute you want to choose?\n")
+        system("cls")
         self.select()
 
     def select(self):
-        """Method that starts the selected substitute option.
+        """Method that, for the selected substitutes, starts the
+        substitutes registration.
         """
-        system("cls")
         if self.tests.test_integer(self.question):
             self.question = int(self.question)
             if self.question <= len(self.selected_substitutes):
@@ -140,16 +145,17 @@ class Substitutes:
             self.show()
 
     def ask_registration(self):
-        """Method that ask for substitute registartion's option selection to the user.
+        """Method that ask to register substitutes to the user.
         """
         self.question = input("Do you want to register that choice(y/n)?\n")
+        system("cls")
         self.select_registration()
 
     def select_registration(self):
-        """Method that starts the selected registration option.
+        """Method that starts the selected option (i.e. register the
+        substitute or not).
         """
         if self.tests.test_string(self.question):
-            system("cls")
             self.question = str(self.question)
             if self.question in "yY":
                 self.registration = True
@@ -166,13 +172,12 @@ class Substitutes:
                 print(config.MESSAGE_YN)
                 self.ask_registration()
         else:
-            system("cls")
             print(config.MESSAGE_YN)
             self.ask_registration()
 
     def insert_in_table(self):
         """Method that provides the sql statement for
-        substitute insertion.
+        substitute insertion into DB.
         """
         if self.registration:
             statement = "INSERT INTO substitute (product_product_id,\
