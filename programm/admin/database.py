@@ -10,6 +10,8 @@ class Database:
     """Database class.
     """
     def __init__(self):
+        self.engin = None
+        self.categories = None
         self.connection = mysql.connector.connect\
         (host=config.HOST, user=config.USER, password=config.PASSWORD)
         self.cursor = None
@@ -17,8 +19,7 @@ class Database:
         self.source = {}
 
     def reset(self, engin):
-        """Method that starts the database reset
-        nominal scenario.
+        """Method that resets the database (i.e. drop, create and use DB).
         """
         self.engin = engin
         self.categories = engin.categories
@@ -28,7 +29,8 @@ class Database:
         self.categories.reset(self.engin)
 
     def verify(self, parameters):
-        """Method that verify the truth of an sql statement.
+        """Method that verify the truth of a given sql statement (provided
+        by various modules methods) and returns a boolean.
         """
         try:
             self.open_cursor()
@@ -44,8 +46,8 @@ class Database:
         return self.status
 
     def exists(self):
-        """Method that provides the sql statement and
-        message for database verification.
+        """Method that provides the sql statement
+        for DB existance verification.
         """
         statement = "SHOW DATABASES LIKE '%s'"% config.DATABASE_NAME
         message = "No DB"
@@ -54,7 +56,7 @@ class Database:
 
     def delete(self):
         """Method that provides the sql statement for
-        database deletion.
+        DB deletion.
         """
         statement = "DROP DATABASE IF EXISTS %s"% config.DATABASE_NAME
         parameters = [statement, None]
@@ -62,7 +64,7 @@ class Database:
 
     def create(self):
         """Method that provides the sql statement for
-        database creation.
+        DB creation.
         """
         statement = "CREATE DATABASE IF NOT EXISTS %s CHARACTER\
         SET 'utf8';"% config.DATABASE_NAME
@@ -70,7 +72,8 @@ class Database:
         return parameters
 
     def download(self, parameters):
-        """Method that get the parameterized data from the API.
+        """Method that makes a parameterized (provided
+        by categories and products modules methods) request to OFF API.
         """
         try:
             response_api = requests.get(parameters[0],\
@@ -81,20 +84,15 @@ class Database:
         except Exception as other_error:
             print(f"Other error occurred: {other_error}")
         else:
-            print("HTTP call to API successfull")
+            print("HTTP request to \"", parameters[0], "\" successfull")
 
     def use(self):
-        """Method that gives the appropriate database to use for
-        the program.
+        """Method that sets the appropriate database to use for
+        the programm.
         """
         statement = "USE %s"% config.DATABASE_NAME
         parameters = [statement, None]
         return parameters
-
-    def close_connection_to_db(self):
-        """Method that close the connection to the database.
-        """
-        self.connection.close()
 
     def open_cursor(self):
         """Method that open a connection cursor.
@@ -107,7 +105,8 @@ class Database:
         self.cursor.close()
 
     def execute_one(self, parameters):
-        """Method that execute a sql statement once.
+        """Method that execute a sql statement (provided
+        by various modules methods) once.
         """
         self.open_cursor()
         self.cursor.execute(parameters[0], parameters[1])
@@ -115,7 +114,8 @@ class Database:
         self.close_cursor()
 
     def execute_many(self, parameters):
-        """Method that execute a sql statement multiple times.
+        """Method that execute a sql statement (provided
+        by various modules methods) multiple times.
         """
         self.open_cursor()
         self.cursor.executemany(parameters[0], parameters[1])
