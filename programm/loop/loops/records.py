@@ -74,8 +74,8 @@ class Records:
                 "(", elt.substitute_nutriscore_grade.capitalize(), ")")
                 rank += 1
             system("pause")    
-            self.menu.start_menu(self.engin)
+            self.menu.start(self.engin)
         else:
             print("No substitutes have been registered yet")
             system("pause")
-            self.menu.start_menu(self.engin)
+            self.menu.start(self.engin)

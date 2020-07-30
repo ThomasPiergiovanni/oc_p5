@@ -54,5 +54,5 @@ class Engin:
     def start_loop(self):
         """Method that start the Menu loop(i.e. the main loop).
         """
-        self.menu.start_menu(self)
+        self.menu.start(self)
        

@@ -29,7 +29,7 @@ class Substitutes:
         self.menu = engin.menu
         self.database.execute_one(self.create_table())
         self.engin.set_datas()
-        self.menu.start_menu(self.engin)
+        self.menu.start(self.engin)
 
     def create_table(self):
         """Method that provides the sql statement for
@@ -90,7 +90,7 @@ class Substitutes:
             system("cls")
             print("There is no healthier substitute for that product")
             system("pause")
-            self.menu.start_menu(self.engin)
+            self.menu.start(self.engin)
 
 
     def show(self):
@@ -157,11 +157,11 @@ class Substitutes:
                 self.engin.set_datas()
                 print("Substitute product has been registered!")
                 system("pause")
-                self.menu.start_menu(self.engin)
+                self.menu.start(self.engin)
             elif self.question in "nN":
                 print("Substitute product hasn't been registered")
                 system("pause")
-                self.menu.start_menu(self.engin)
+                self.menu.start(self.engin)
             else:
                 print(config.MESSAGE_YN)
                 self.ask_registration()

@@ -17,7 +17,7 @@ class Menu:
         self.abandon = None
         self.question = None
 
-    def start_menu(self, engin):
+    def start(self, engin):
         """Method that starts the menu loop.
         """
         self.engin = engin
@@ -59,10 +59,10 @@ class Menu:
             elif self.question == 3:
                 self.database.reset(self.engin)
             elif self.question == 4:
-                self.abandon.abandon(self.engin)
+                self.abandon.start(self.engin)
             else:
                 print(config.MESSAGE_OOR)
-                self.start_menu(self.engin)
+                self.start(self.engin)
         else:
             print(config.MESSAGE_OOR)
-            self.start_menu(self.engin)
+            self.start(self.engin)

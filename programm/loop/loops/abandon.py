@@ -16,9 +16,8 @@ class Abandon:
         self.menu = None
         self.question = None
 
-    def abandon(self, engin):
-        """Method that starts the programm abandon
-        nominal scenario.
+    def start(self, engin):
+        """Method that starts the abandon loop.
         """
         self.engin = engin
         self.database = engin.database
@@ -27,8 +26,8 @@ class Abandon:
         self.ask()
 
     def ask(self):
-        """Method that propose the abandon confirmation
-        options to the user.
+        """Method that ask to confirm programm abandon
+        to the user.
         """
         system("cls")
         self.question = input("Do you really want to quit "\
@@ -36,7 +35,8 @@ class Abandon:
         self.select()
 
     def select(self):
-        """Method that starts the selected option.
+        """Method that starts the selected option (i.e. leave
+        the programm or not).
         """
         system("cls")
         if self.tests.test_string(self.question):
@@ -44,7 +44,7 @@ class Abandon:
             if self.question in "yY":
                 exit("Goodbye")
             elif self.question in "nN":
-                self.menu.start_menu(self.engin)
+                self.menu.start(self.engin)
             else:
                 print(config.MESSAGE_YN)
                 self.ask()
