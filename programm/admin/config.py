@@ -6,7 +6,7 @@
 # the catgories list per country.
 # MANDATORY: Yes.
 # DEFAULT SETTINGS: "https://fr.openfoodfacts.org/categories.json".
-# CUSTOM SETTINGS: To change the country, use the appropriate  ISO-3166-1 
+# CUSTOM SETTINGS: To change the country, use the appropriate  ISO-3166-1
 # Alpha 2 code and replace it in the endpoint(e.g.
 # "https://es.openfoodfacts.org/categories.json" for spain).
 # For more information, please check "https://documenter.getpostman.com/view/
@@ -28,8 +28,8 @@ PRODUCTS_ENDPOINT = "https://fr.openfoodfacts.org/cgi/search.pl"
 # its name and version number.
 # MANDATORY : Yes.
 # DEFAULT SETTINGS: {'User-Agent': 'HealthyProductApp - Web - Version 0.0'}.
-# CUSTOM SETTINGS: Settings can be changed but must keep the following structure
-# {'User-Agent': 'your informations'}.
+# CUSTOM SETTINGS: Settings can be changed but must keep the following
+# structure{'User-Agent': 'your informations'}.
 # For more informations, please check "https://documenter.getpostman.
 # com/view/8470508/SVtN3Wzy?version=latest#intro".
 HEADER = {'User-Agent': 'HealthyProductApp - Web - Version 0.0'}
@@ -44,8 +44,8 @@ DATABASE_NAME = "HPA"
 # DESCRIPTION: Host name i.e. The server on which MySQL is running.
 # MANDATORY : Yes.
 # DEFAULT SETTINGS: "localhost".
-# CUSTOM SETTINGS: Can be changed.Can be an IP adress as well if the MySQL server 
-# is not the local machine.
+# CUSTOM SETTINGS: Can be changed.Can be an IP adress as well if the
+#  MySQL serveris not the local machine.
 # For more informations, please check "https://dev.mysql.
 # com/doc/connector-python/en/".
 HOST = "localhost"
@@ -75,7 +75,8 @@ PASSWORD = "root"
 # DEFAULT SETTINGS: ["en:snacks", "en:desserts", "en:breads",
 # "en:breakfast-cereals", "en:meals"].
 # CUSTOM SETTINGS: Categories can be changed. Value to use can be found in
-# "https://world.openfoodfacts.org/categories.json" in the category "tags" "id".
+# "https://world.openfoodfacts.org/categories.json" in the
+# category "tags" "id".
 # For more information, please check "https://documenter.getpostman.com/view/
 # 8470508/SVtN3Wzy?version=latest#intro".
 SELECTED_CATEGORIES = ["en:snacks", "en:desserts", "en:breads",\
@@ -84,7 +85,8 @@ SELECTED_CATEGORIES = ["en:snacks", "en:desserts", "en:breads",\
 # DESCRIPTION: Amount of product to get from OFF API per product category.
 # MANDATORY : Yes.
 # DEFAULT SETTINGS: 1000.
-# CUSTOM SETTINGS: Can be changed but should not exceed 2000 to avoid upload failure.
+# CUSTOM SETTINGS: Can be changed but should not exceed 2000 to avoid
+# upload failure.
 PRODUCTS_AMOUNT = 10
 
 # DESCRIPTION: Message displayed when user input number is out of range.
@@ -94,7 +96,7 @@ PRODUCTS_AMOUNT = 10
 MESSAGE_OOR = "Only numbers included in the list can be used. Retry"
 
 # DESCRIPTION: Message displayed when user input should
-#  be "y"(yes) or "n" (no) and is not.
+# be "y"(yes) or "n" (no) and is not.
 # MANDATORY : Yes.
 # DEFAULT SETTINGS: "Only numbers included in above list can be used. Retry"
 # CUSTOM SETTINGS: Message can be changed but should keep sense.
