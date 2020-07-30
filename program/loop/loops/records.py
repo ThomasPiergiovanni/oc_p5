@@ -3,7 +3,7 @@
 """
 from os import system
 
-from programm.model.record import Record
+from program.model.record import Record
 
 class Records:
     """Records class.

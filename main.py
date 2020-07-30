@@ -1,10 +1,10 @@
 #-*-coding:utf-8 -*
 """Main module.
 """
-from programm.engin import Engin
+from program.engin import Engin
 
 def main():
-    """Main method launching the programm.
+    """Main method launching the program.
     """
     engin = Engin()
     engin.initialize_database()

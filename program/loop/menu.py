@@ -3,7 +3,7 @@
 """
 from os import system
 
-from programm.admin import config
+from program.admin import config
 
 class Menu:
     """Menu class.

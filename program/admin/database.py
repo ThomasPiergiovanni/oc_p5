@@ -4,7 +4,7 @@
 import requests
 import mysql.connector
 
-from programm.admin import config
+from program.admin import config
 
 class Database:
     """Database class.
@@ -88,7 +88,7 @@ class Database:
 
     def use(self):
         """Method that sets the appropriate database to use for
-        the programm.
+        the program.
         """
         statement = "USE %s"% config.DATABASE_NAME
         parameters = [statement, None]

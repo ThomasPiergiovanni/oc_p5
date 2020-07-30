@@ -4,7 +4,7 @@
 from os import system
 from sys import exit
 
-from programm.admin import config
+from program.admin import config
 
 class Abandon:
     """Abandon class.
@@ -26,17 +26,17 @@ class Abandon:
         self.ask()
 
     def ask(self):
-        """Method that ask to confirm programm abandon
+        """Method that ask to confirm program abandon
         to the user.
         """
         self.question = input("Do you really want to quit "\
-        "the programm (y/n)?\n")
+        "the program (y/n)?\n")
         system("cls")
         self.select()
 
     def select(self):
         """Method that starts the selected option (i.e. leave
-        the programm or not).
+        the program or not).
         """
         if self.tests.test_string(self.question):
             self.question = str(self.question)

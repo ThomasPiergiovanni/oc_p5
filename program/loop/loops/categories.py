@@ -3,8 +3,8 @@
 """
 from os import system
 
-from programm.admin import config
-from programm.model.category import Category
+from program.admin import config
+from program.model.category import Category
 
 class Categories:
     """Categories class.

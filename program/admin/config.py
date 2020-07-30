@@ -1,5 +1,5 @@
 #-*-coding:utf-8 -*
-"""Programm configuration file
+"""Program configuration file
 """
 
 # DESCRIPTION: OpenFoodFacts (OFF) API categories list endpoint. It returns

@@ -3,8 +3,8 @@
 """
 from os import system
 
-from programm.admin import config
-from programm.model.product import Product
+from program.admin import config
+from program.model.product import Product
 
 class Products():
     """Products class.

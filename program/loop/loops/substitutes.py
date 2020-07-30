@@ -3,8 +3,8 @@
 """
 from os import system
 
-from programm.admin import config
-from programm.model.substitute import Substitute
+from program.admin import config
+from program.model.substitute import Substitute
 
 class Substitutes:
     """Substitutes class.
