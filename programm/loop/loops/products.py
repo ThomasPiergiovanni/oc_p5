@@ -87,7 +87,6 @@ class Products():
         values = []
         self.tests.test_consistency(self.database.source["products"],\
         category)
-        self.tests.test_duplicate(self.tests.consistent_products)
         values = self.tests.unique_products
         parameters = [statement, values]
         return parameters

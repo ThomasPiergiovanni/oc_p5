@@ -16,7 +16,6 @@ class Tests:
             self.valid = True
         else:
             self.valid = False
-
         return self.valid
 
 
@@ -27,12 +26,11 @@ class Tests:
             self.valid = True
         else:
             self.valid = False
-
         return self.valid
 
     def test_consistency(self, products, category):
-        """Method that test if input product got values for
-        the specified attributes
+        """Method that filter-in only OFF API products that got values for
+        id, product_name, nutriscore_grade and url attributes.
         """
         self.consistent_products.clear()
         for product in products:
@@ -43,14 +41,16 @@ class Tests:
                     product["product_name"], product["nutriscore_grade"],\
                     category.id_category, product["url"], product["stores"])
                     self.consistent_products.append(consistent_product)
-            except Exception as error:
-                # print(f"The following error occurred: {error}")
+            except:
                 pass
-    def test_duplicate(self, products):
-        """Method that test if input products are unique per id and category.
+        self.test_duplicate()
+
+    def test_duplicate(self):
+        """Method that filter-in only OFF API products that are
+        unique per id and id_category.
         """
         self.unique_products.clear()
-        for product in products:
+        for product in self.consistent_products:
             unique_pairs = []
             pair = (product[0], product[3])
             if pair not in unique_pairs:
