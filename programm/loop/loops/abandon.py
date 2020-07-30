@@ -29,22 +29,22 @@ class Abandon:
         """Method that ask to confirm programm abandon
         to the user.
         """
-        system("cls")
         self.question = input("Do you really want to quit "\
         "the programm (y/n)?\n")
+        system("cls")
         self.select()
 
     def select(self):
         """Method that starts the selected option (i.e. leave
         the programm or not).
         """
-        system("cls")
         if self.tests.test_string(self.question):
             self.question = str(self.question)
             if self.question in "yY":
                 exit("Goodbye")
             elif self.question in "nN":
                 self.menu.start(self.engin)
+                system("cls")
             else:
                 print(config.MESSAGE_YN)
                 self.ask()

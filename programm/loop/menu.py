@@ -44,12 +44,12 @@ class Menu:
         """
         self.question = input("What do you want to do \
 (choose one of the above number)?\n")
+        system("cls")
         self.select()
 
     def select(self):
         """Method that starts the selected option loop.
         """
-        system("cls")
         if self.tests.test_integer(self.question):
             self.question = int(self.question)
             if self.question == 1:

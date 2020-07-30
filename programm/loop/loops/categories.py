@@ -10,7 +10,7 @@ class Categories:
     """Categories class.
     """
     def __init__(self):
-        self.egin = None
+        self.engin = None
         self.database = None
         self.tests = None
         self.products = None
@@ -19,8 +19,8 @@ class Categories:
         self.selected_category = None
 
     def reset(self, engin):
-        """Method that starts the categories reset
-        nominal scenario.
+        """Method that resets categories into the databse
+        (i.e. download data, create table and insert data into table).
         """
         self.engin = engin
         self.database = engin.database
@@ -32,16 +32,16 @@ class Categories:
         self.products.reset(self.engin)
 
     def exists(self):
-        """Method that provides the sql statement and
-        message for categories verification.
+        """Method that provides the sql statement
+        for categories existance verification into DB.
         """
         statement = "SELECT * FROM category"
         parameters = [statement, None]
         return parameters
 
     def source(self):
-        """Method that provides the appropriate settings
-        for categories download.
+        """Method that provides the appropriate settings to
+        the OFF API for categories download.
         """
         endpoint = config.CATEGORIES_ENDPOINT
         params = {}
@@ -50,7 +50,7 @@ class Categories:
 
     def create_table(self):
         """Method that provides the sql statement for
-        categories creation.
+        categories creation into DB.
         """
         statement = "CREATE TABLE IF NOT EXISTS category(\
             id_category SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,\
@@ -64,7 +64,7 @@ class Categories:
 
     def insert_in_table(self):
         """Method that provides the sql statement for
-        categories insertion.
+        categories insertion into DB..
         """
         statement = "INSERT INTO category(id_origin, name,\
         url) VALUES(%s, %s, %s)"
@@ -80,7 +80,7 @@ class Categories:
         return parameters
 
     def set_categories_list(self, database):
-        """Method that create the categories instances.
+        """Method that create the categories' list.
         """
         self.categories_list.clear()
         database.open_cursor()
@@ -93,20 +93,23 @@ class Categories:
         database.close_cursor()
 
     def research(self, engin):
+        """Method that starts the categories research loop.
+        """
         self.engin = engin
         self.tests = engin.tests
         self.products = engin.products
         self.sort()
 
     def sort(self):
+        """Method that sorts the categories' list per name.
+        """
         self.categories_list = sorted(self.categories_list, key=lambda \
         category: category.name)
         self.show()
 
     def show(self):
-        """Method that propose the categories options to the user.
+        """Method that propose the categories' options to the user.
         """
-        system("cls")
         print("CATEGORIES:")
         rank = 1
         for elt in self.categories_list:
@@ -116,16 +119,17 @@ class Categories:
         self.ask()
 
     def ask(self):
-        """Method that ask for category's option selection to the user.
+        """Method that ask to select a category option to the user.
         """
         self.question = input("Which category you want to \
 check products for?\n")
+        system("cls")
         self.select()
 
     def select(self):
-        """Method that starts the selected category option.
+        """Method that, for the selected category, starts the
+        product research loop.
         """
-        system("cls")
         if self.tests.test_integer(self.question):
             self.question = int(self.question)
             if self.question <= len(self.categories_list):
@@ -137,6 +141,5 @@ check products for?\n")
                 print(config.MESSAGE_OOR)
                 self.show()
         else:
-            system("cls")
             print(config.MESSAGE_OOR)
             self.show()
