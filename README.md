@@ -33,28 +33,28 @@ In order to avoid system conflicts:
 2. Activate the virtual envrionment.
 > source env/Scripts/activate
 
-Documentation is also available on [python offical website](https://www.python.org/).
+Documentation is also available on the [python offical website](https://www.python.org/).
 
 ### 3.4. MySQL server install.
 
 Make sure to have MySQL server installed. If not you can download it from the [MySQL official website](https://www.mysql.com/).
 
-### 3.4. MySQL server start.
+### 3.5. MySQL server start.
 
 Make sure to have MySQL server running. Please refer to the [MySQL official website](https://www.mysql.com/) for this.
 
-### 3.5. Use "HealthierProductApplication".
+### 3.6. Use "HealthierProductApplication".
 
 The programm is now ready to use. You can start it using **main.py** with your bash.
-> python3 launch.py
+> python3 main.py
 
 
-### 3.6. Deactivate a virtual environnement.
+### 3.7. Deactivate the virtual environnement.
 
 Once you're done using the programm, you should leave the virtual environement. Simply type the following statement in your bash.
 > deactivate
 
-### 3.7. Uninstall.
+### 3.8. Uninstall.
 
 If you want to uninstall the program, simply delete the complete repository form your device.
 
@@ -64,17 +64,17 @@ Changing settings can be done to the following constants in **program/admin/conf
 
 ### 4.1. CATGEORIES_ENDPOINT
 
-**DESCRIPTION**: OpenFoodFacts (OFF) API categories list endpoint. It returns the categories list per country.
-**MANDATORY**: Yes.
-**DEFAULT SETTINGS**: "https://fr.openfoodfacts.org/categories.json".
-**CUSTOM SETTINGS**: To use the application with product references from another country than France, use the appropriate ISO-3166-1 Alpha 2 code and replace it in the endpoint (e.g. "https://es.openfoodfacts.org/categories.json" for Spain).
+**DESCRIPTION**: OpenFoodFacts (OFF) API categories list endpoint. It returns the categories list per country.  
+**MANDATORY**: Yes.  
+**DEFAULT SETTINGS**: "https://fr.openfoodfacts.org/categories.json".  
+**CUSTOM SETTINGS**: To use the application with product references from another country than France, use the appropriate ISO-3166-1 Alpha 2 code and replace it in the endpoint (e.g. "https://es.openfoodfacts.org/categories.json" for Spain).  
 For more information, please check "https://documenter.getpostman.com/view/8470508/SVtN3Wzy?version=latest#intro".
 
 ### 4.2. PRODUCTS_ENDPOINT
-**DESCRIPTION**: OFF API products research functionality endpoint. It returns the product research functionality per country.
-**MANDATORY**: Yes.
-**DEFAULT SETTINGS**: "https://fr.openfoodfacts.org/cgi/search.pl".
-**CUSTOM SETTINGS**: To use the application with product references from another country than France, use the appropriate ISO-3166-1 Alpha 2 code and replace it in the endpoint (e.g. "https://es.openfoodfacts.org/cgi/search.pl").
+**DESCRIPTION**: OFF API products research functionality endpoint. It returns the product research functionality per country.  
+**MANDATORY**: Yes.  
+**DEFAULT SETTINGS**: "https://fr.openfoodfacts.org/cgi/search.pl".  
+**CUSTOM SETTINGS**: To use the application with product references from another country than France, use the appropriate ISO-3166-1 Alpha 2 code and replace it in the endpoint (e.g. "https://es.openfoodfacts.org/cgi/search.pl").  
 For more information, please check "https://documenter.getpostman.com/view/8470508/SVtN3Wzy?version=latest#intro".
 ## 5. User guide.
 
