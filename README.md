@@ -36,7 +36,7 @@ Make sure to have MySQL server installed. If not you can download it from the [M
 ### 3.5. MySQL server start.
 Make sure to have MySQL server running. Please refer to the [MySQL official website](https://www.mysql.com/) for this.
 
-### 3.6. Use "HealthierProductApplication".
+### 3.6. Use "HealthyProductApp".
 The programm is now ready to use. You can start it using **main.py** with your bash.
 > python3 main.py
 
@@ -62,6 +62,44 @@ Changing settings can be done to the following constants in **program/admin/conf
 **MANDATORY**: Yes.  
 **DEFAULT SETTINGS**: "ht<span>tps://</span>fr.openfoodfacts.org/cgi/search.pl".  
 **CUSTOM SETTINGS**: To use the application with product references from another country than France, use the appropriate ISO-3166-1 Alpha 2 code and replace it in the endpoint (e.g. "ht<span>tps://</span>es.openfoodfacts.org/cgi/search.pl"). For more information, please check [OFF API official documentation](https://documenter.getpostman.com/view/8470508/SVtN3Wzy?version=latest#intro).
+
+### 4.3. HEADER
+**DESCRIPTION**: Headers, i.e. the application general informations, among other, its name and version number.
+**MANDATORY**: Yes.
+**DEFAULT SETTINGS**: {'User-Agent': 'HealthyProductApp - Web - Version 0.0'}.
+**CUSTOM SETTINGS**: Iy ou modify this app this settings must be changed but keeping the following structure {'User-Agent': 'your information'}. For more information, please check [OFF API official documentation](https://documenter.getpostman.com/view/8470508/SVtN3Wzy?version=latest#intro).
+
+### 4.4. DATABASE_NAME
+**DESCRIPTION**: The database name to use when connecting with the MySQL server.
+**MANDATORY**: Yes.
+**DEFAULT SETTINGS**: "HPA" (HealthyProductApp).
+**CUSTOM SETTINGS**: Can be changed. Note that if a database using that name already exists, it will be overwritten.
+
+### 4.5. HOST
+**DESCRIPTION**: Host name i.e. The server on which MySQL is running.
+**MANDATORY**: Yes.
+**DEFAULT SETTINGS**: "localhost".
+**CUSTOM SETTINGS**: Can be changed if different. Can be an IP address as well if the MySQL server is not the local machine. For more information, please check [MySQL connector API official website](https://dev.mysql.com/doc/connector-python/en/).
+
+### 4.6. USER
+**DESCRIPTION**: The user name used to authenticate with the MySQL server.
+**MANDATORY**: Yes.
+**DEFAULT SETTINGS**: "root".
+**CUSTOM SETTINGS**: User must have at least the following MySQL privileges CREATE, DROP, EXECUTE, INSERT, REFERENCES, SELECT, and SHOW DATABASE. For more information, please check [MySQL connector API official website](https://dev.mysql.com/doc/connector-python/en/). For more information specifically on privileges, please check [MySQL official website](https://www.mysql.com/).
+
+### 4.7. PASSWORD
+**DESCRIPTION**: The password to authenticate the user with the MySQL server.
+**MANDATORY**: Yes.
+**DEFAULT SETTINGS**: root.
+**CUSTOM SETTINGS**: Must be the password of the user corresponding account.
+For more information, please check [MySQL connector API official website](https://dev.mysql.com/doc/connector-python/en/).
+
+### 4.8. SELECTED_CATEGORIES
+**DESCRIPTION**: OFF API products categories type used in the application.
+**MANDATORY**: Yes.
+**DEFAULT SETTINGS**: ["en:snacks", "en:desserts", "en:breads", "en:breakfast-cereals", "en:meals"].
+**CUSTOM SETTINGS**: Categories can be changed. Available values to use can be found on  "https://world.openfoodfacts.org/categories.json" in the
+category "tags"/"id". For more information, please check [OFF API official documentation](https://documenter.getpostman.com/view/8470508/SVtN3Wzy?version=latest#intro).
 
 ## 5. User guide.
 
