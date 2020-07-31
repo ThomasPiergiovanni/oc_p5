@@ -6,9 +6,7 @@
 This program is named **"HealthyProductApp"**. It consists of offering to "Pur Beurre", a French restaurant in Montmartre Paris, a solution for finding healthier food substitutes to products one is usually consuming. After having selected the product the user wants to find substitute for, the program presents to him/her a list of healthier substitutes. The user can then select a substitute and decide to record/register its choice for later review..
 
 ## 2. Prerequisite.
-
 This program requires the following components:
-
 * python 3
 * requests==2.24.0
 * mysql-connector-python==8.0.20
@@ -16,15 +14,12 @@ This program requires the following components:
 ## 3. Installation.
 
 ### 3.1. Download.
-
 Download/clone this repository on your system, at the location that suits you best. 
 
 ### 3.2. Python 3 install.
-
 Make sure you have Python 3 installed. If not, you can download it and install it from the [python offical website](https://www.python.org/). You'll find the necessary documentation there.
 
 ### 3.3. Create & activate a virtual environnement (recommended).
-
 In order to avoid system conflicts:
 
 1. Go into your local repository and create a virtual environment using venv package.
@@ -36,34 +31,27 @@ In order to avoid system conflicts:
 Documentation is also available on the [python offical website](https://www.python.org/).
 
 ### 3.4. MySQL server install.
-
 Make sure to have MySQL server installed. If not you can download it from the [MySQL official website](https://www.mysql.com/).
 
 ### 3.5. MySQL server start.
-
 Make sure to have MySQL server running. Please refer to the [MySQL official website](https://www.mysql.com/) for this.
 
 ### 3.6. Use "HealthierProductApplication".
-
 The programm is now ready to use. You can start it using **main.py** with your bash.
 > python3 main.py
 
 
 ### 3.7. Deactivate the virtual environnement.
-
 Once you're done using the programm, you should leave the virtual environement. Simply type the following statement in your bash.
 > deactivate
 
 ### 3.8. Uninstall.
-
 If you want to uninstall the program, simply delete the complete repository form your device.
 
 ## 4. Settings.
-
 Changing settings can be done to the following constants in **program/admin/config.py** file.
 
 ### 4.1. CATGEORIES_ENDPOINT
-
 **DESCRIPTION**: OpenFoodFacts (OFF) API categories list endpoint. It returns the categories list per country.  
 **MANDATORY**: Yes.  
 **DEFAULT SETTINGS**: "ht<span>tps://</span>fr.openfoodfacts.org/categories.json".  
