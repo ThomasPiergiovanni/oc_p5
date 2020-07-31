@@ -6,7 +6,8 @@
 # the categories list per country.
 # MANDATORY: Yes.
 # DEFAULT SETTINGS: "https://fr.openfoodfacts.org/categories.json".
-# CUSTOM SETTINGS: To change the country, use the appropriate ISO-3166-1
+# CUSTOM SETTINGS: To use the application with product references from
+# another country than France, use the appropriate ISO-3166-1
 # Alpha 2 code and replace it in the endpoint (e.g.
 # "https://es.openfoodfacts.org/categories.json" for Spain).
 # For more information, please check "https://documenter.getpostman.com/view/
@@ -17,7 +18,8 @@ CATEGORIES_ENDPOINT = "https://fr.openfoodfacts.org/categories.json"
 # It returns the product research functionality per country.
 # MANDATORY: Yes.
 # DEFAULT SETTINGS: "https://fr.openfoodfacts.org/cgi/search.pl".
-# CUSTOM SETTINGS: To change the country, use the appropriate ISO-3166-1
+# CUSTOM SETTINGS: To use the application with product references from
+# another country than France, use the appropriate ISO-3166-1
 # Alpha 2 code and replace it in the endpoint (e.g.
 # "https://es.openfoodfacts.org/cgi/search.pl").
 # For more information, please check "https://documenter.getpostman.com/view/
