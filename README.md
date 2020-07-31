@@ -118,7 +118,7 @@ This program provide the following functionalities:
 * The user can re-initiate the database in order to get the latests datas from OFF API.
 
 ### 5.2. How to.
-* Start the program running **main.py** (using the bash). Note, that the first time the program is used, the system will proceed to datas upload and database initialization.
+* Start the program running **main.py** (using the bash). 
 * Select one of the options proposed in the and navigate as proposed by the system:
     * 1 - Search for healthier food substitute.
     * 2 - See your saved substitutes.
@@ -126,3 +126,4 @@ This program provide the following functionalities:
     * 4 - Quit the program.  
 * Use keyboard numbers to make your choice.
 * Use keyboards "y"/ "n" letters to confirm some decisions.
+*NB: the first time the program is used, the system will proceed to datas upload and database initialization*.
