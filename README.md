@@ -125,5 +125,7 @@ This program provide the following functionalities:
     * 3 - Reinitiate the database.
     * 4 - Quit the program.  
 * Use keyboard numbers to make your choice.
-* Use keyboards "y"/ "n" letters to confirm some decisions.  
+* Use keyboards "y"/ "n" letters to confirm some decisions.
+
+  
 *NB: the first time the program is used, the system will proceed to datas upload and database initialization*.
