@@ -67,13 +67,13 @@ Changing settings can be done to the following constants in **program/admin/conf
 **DESCRIPTION**: OpenFoodFacts (OFF) API categories list endpoint. It returns the categories list per country.  
 **MANDATORY**: Yes.  
 **DEFAULT SETTINGS**: "ht<span>tps://</span>fr.openfoodfacts.org/categories.json".  
-**CUSTOM SETTINGS**: To use the application with product references from another country than France, use the appropriate ISO-3166-1 Alpha 2 code and replace it in the endpoint (e.g. "https://es.openfoodfacts.org/categories.json" for Spain). For more information, please check "https://documenter.getpostman.com/view/8470508/SVtN3Wzy?version=latest#intro".
+**CUSTOM SETTINGS**: To use the application with product references from another country than France, use the appropriate ISO-3166-1 Alpha 2 code and replace it in the endpoint (e.g. "ht<span>tps://</span>es.openfoodfacts.org/categories.json" for Spain). For more information, please check "https://documenter.getpostman.com/view/8470508/SVtN3Wzy?version=latest#intro".
 
 ### 4.2. PRODUCTS_ENDPOINT
 **DESCRIPTION**: OFF API products research functionality endpoint. It returns the product research functionality per country.  
 **MANDATORY**: Yes.  
-**DEFAULT SETTINGS**: "https://fr.openfoodfacts.org/cgi/search.pl".  
-**CUSTOM SETTINGS**: To use the application with product references from another country than France, use the appropriate ISO-3166-1 Alpha 2 code and replace it in the endpoint (e.g. "https://es.openfoodfacts.org/cgi/search.pl"). For more information, please check "https://documenter.getpostman.com/view/8470508/SVtN3Wzy?version=latest#intro".
+**DEFAULT SETTINGS**: "ht<span>tps://</span>fr.openfoodfacts.org/cgi/search.pl".  
+**CUSTOM SETTINGS**: To use the application with product references from another country than France, use the appropriate ISO-3166-1 Alpha 2 code and replace it in the endpoint (e.g. "ht<span>tps://</span>es.openfoodfacts.org/cgi/search.pl"). For more information, please check "https://documenter.getpostman.com/view/8470508/SVtN3Wzy?version=latest#intro".
 
 ## 5. User guide.
 
