@@ -30,8 +30,8 @@ PRODUCTS_ENDPOINT = "https://fr.openfoodfacts.org/cgi/search.pl"
 # its name and version number.
 # MANDATORY: Yes.
 # DEFAULT SETTINGS: {'User-Agent': 'HealthyProductApp - Web - Version 0.0'}.
-# CUSTOM SETTINGS: Settings can be changed but must keep the following
-# structure {'User-Agent': 'your information'}.
+# CUSTOM SETTINGS: Iy ou modify this app this settings must be changed but keeping
+# the following structure {'User-Agent': 'your information'}.
 # For more information, please check "https://documenter.getpostman.
 # com/view/8470508/SVtN3Wzy?version=latest#intro".
 HEADER = {'User-Agent': 'HealthyProductApp - Web - Version 0.0'}
@@ -39,14 +39,14 @@ HEADER = {'User-Agent': 'HealthyProductApp - Web - Version 0.0'}
 # DESCRIPTION: The database name to use when connecting with the MySQL server.
 # MANDATORY: Yes.
 # DEFAULT SETTINGS: "HPA" (HealthyProduuctApp).
-# COMMENTS: Can be changed. Note that if a database using that name already
+# CUSTOM SETTINGS: Database name can be changed. Note that if a database using that name already
 # exists, it will be overwritten.
 DATABASE_NAME = "HPA"
 
 # DESCRIPTION: Host name i.e. The server on which MySQL is running.
 # MANDATORY: Yes.
 # DEFAULT SETTINGS: "localhost".
-# CUSTOM SETTINGS: Can be changed. Can be an IP address as well if the
+# CUSTOM SETTINGS: Can be changed if different. Can be an IP address as well if the
 # MySQL server is not the local machine.
 # For more information, please check "https://dev.mysql.
 # com/doc/connector-python/en/".
@@ -94,12 +94,12 @@ PRODUCTS_AMOUNT = 10
 # DESCRIPTION: Message displayed when user input number is out of range.
 # MANDATORY: Yes.
 # DEFAULT SETTINGS: "Only numbers included in above list can be used. Retry"
-# CUSTOM SETTINGS: Message can be changed but should keep sense.
+# CUSTOM SETTINGS: Cannot be changed.
 MESSAGE_OOR = "Only numbers included in the list can be used. Retry"
 
 # DESCRIPTION: Message displayed when user input should
 # be "y"(yes) or "n" (no) and is not.
 # MANDATORY: Yes.
 # DEFAULT SETTINGS: "Only numbers included in above list can be used. Retry"
-# CUSTOM SETTINGS: Message can be changed but should keep sense.
+# CUSTOM SETTINGS: Cannot be changed.
 MESSAGE_YN = "Answer must be y/n . Retry"

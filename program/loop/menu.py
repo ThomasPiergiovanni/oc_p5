@@ -33,10 +33,10 @@ class Menu:
         """
         system("cls")
         print("MENU:\
-        \n 1 - Search for healthier food substitute \
-        \n 2 - See your saved substitutes\
-        \n 3 - Reinitiate the database \
-        \n 4 - Quit the program")
+        \n 1 - Search for healthier food substitute. \
+        \n 2 - See your saved substitutes.\
+        \n 3 - Reinitiate the database. \
+        \n 4 - Quit the program.")
         self.ask()
 
     def ask(self):
