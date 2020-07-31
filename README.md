@@ -91,7 +91,7 @@ Changing settings can be done to the following constants in **program/admin/conf
 **DESCRIPTION**: The password to authenticate the user with the MySQL server.  
 **MANDATORY**: Yes.  
 **DEFAULT SETTINGS**: root.  
-**CUSTOM SETTINGS**: Must be the password of the user corresponding account.
+**CUSTOM SETTINGS**: Must be the password of the user's corresponding account.
 For more information, please check [MySQL connector API official website](https://dev.mysql.com/doc/connector-python/en/).
 
 ### 4.8. SELECTED_CATEGORIES.
@@ -109,190 +109,21 @@ category "tags"/"id". For more information, please check [OFF API official docum
 
 ## 5. User guide.
 
-### 5.1. Objective.
+### 5.1. Program functionalities
+This program provide the following functionalities:
+* The user can select a product and the system returns back a list of substititutes (of the same catagory) having a better nutriscore grade (A-E).
+* The user can see details about the selected substitute (e.g. nutriscore, stores where to buy it and the url with all details about the product). 
+* The user can save its research. The system will stores the pair (product & substitute) into the database.
+* The user can see its recorded product & substitute.
+* The user can re-initiate the database in order to get the latests datas from OFF.
 
 ### 5.2. How to.
-
-
-
-
-## API OFF
-
-### Endpoints
-
-Products catgeories:
-
-    https://fr-en.openfoodfacts.org/categories.json
-
-Products per category:
-
-    https://fr-en.openfoodfacts.org/category/*.json
-
-Countries taxonomy:
-
-    https://fr-en.openfoodfacts.org/data/taxonomies/countries.json
-
-
-### DB Model
-
-[link](https://drive.google.com/drive/folders/1AgDhnDVAao_IKeIPdGskjCfVUt9Q0sc9)
-
-#### OFF Data Description
-
-##### Class category:
-
-* id :
-    * Descritpion: product id
-
-Example:
-
-    "id": "en:plant-based-foods-and-beverages",
-
-* name :
-    * Descritpion: category name
-
-* url :
-    * Descritpion: category url
-
-* products :
-    * Descritpion: count of product in category 
-
-##### Class product:
-
-* \_id:
-    * Descritpion: product id
-
-Exemple (Fromage, Comté):
-
-    "_id": "2454495041334",
-
-* id: (TO CHECK if \_id or id)
-    * Descritpion: product id
-
-Exemple (Fromage, Comté):
-
-    "id": 2454495041334,  -- meme str que "_id" et "code"
-
-
-* code:
-    * Descritpion: barcode of the product.
-
-Example (Fromage, Comté):
-
-    "code": "2454495041334",
-
-* url
-    * Descritpion: url of the product page
-
-Example:
-
-    "url": "https://fr-en.openfoodfacts.org/product/2454495041334/comte",
-
-* product_name:
-
-    * Descritpion: product name
-    * Status: mandatory - OK
-
-Example (Fromage, Comté):
-
-    "product_name": "Comté",
-
-* categories:
-    * Descritpion: categories of the product
-
-Example:
-    
-      "categories": "Produits laitiers,Produits fermentés,Produits laitiers fermentés,Fromages,Frais,Fromages de France,Fromages de chèvre,Fromages à pâte molle à croûte naturelle,Fromages au lait cru,Rocamadour,en:aoc-cheeses,en:labeled-cheeses",
-
-* categories_tags:
-    * Descritpion: catgories tag
-
-Example:
-
-    "categories_tags": [
-        "en:dairies",
-        "en:fermented-foods",
-        "en:fermented-milk-products",
-        "en:cheeses",
-        "en:cooked-pressed-cheeses",
-        "en:french-cheeses",
-        "fr:comte",
-        "en:aoc-cheeses",
-        "en:labeled-cheeses"
-    ],
-
-* countries:
-    * Descritpion: list of countries where the product is sold
-
-
-Example:
-
-    "countries": "France",
-
-* countries_tags:
-    * Descritpion: countries tag
-
-Example:
-
-    "countries_tags": [
-        "en:france"
-    ],
-
-* nutrition_grades:
-    * Descritpion: nutrition grade ('a' to 'e')
-
-Example (Fromage, Rocamadour):
-
-    "nutrition_grades": "d",
-
-* nutriscore_grade
-    * Descritpion: nutrition grade ('a' to 'e')
-
-Example (Fromage, Rocamadour):
-
-    "nutriscore_grade": "d",
-
-* nutrition_score_beverage:
-    * Descritpion: nutrition score for beverages?
-
-Example (Fromage, Rocamadour):
-
-    "nutrition_score_beverage": 0,
-
-* stores:
-    * Descritpion: distributor name
-    
-* purchase_places:
-    * Descritpion: country, state and/or city where the product can be purchased
-
-Example (fromage, emmental):
-
-    "purchase_places": "",
-
-ou
-
-    "purchase_places": "FRANCE,Saint-Ouen,Etréchy",
-
-* purchase_places_tags:
-    * Descritpion: purchased place tag
- 
-### Notes - TO DELETE
-
-You can retrieve a list of products that belong to a specific category. For example, "cheeses":
-
-    https://world.openfoodfacts.org/category/cheeses.json
-    https://fr-en.openfoodfacts.org/category/cheeses.json
-
-    GET https://fr-en.openfoodfacts.org/category/pizzas.json
-
-Usefull endpoints:
-
-Categories à récupérer:
-
-    https://fr.openfoodfacts.org/categories.json
-
-Puis une fois les categories récupérée
-
-    https://fr.openfoodfacts.org/categorie/fromages.json
-
-    https://us.openfoodfacts.org/api/v0/product/ 
+* Start the programm running **main.py** (using the bash). Note, that the first time the programm is used, the system will proceed to datas upload and database initialization.
+* Select one of the options proposed in the menu:
+    * 1 - Search for healthier food substitute.
+    * 2 - See your saved substitutes.
+    * 3 - Reinitiate the database.
+    * 4 - Quit the program.  
+Navigate into those section as proposed by the suystem.
+* Use keyboard numbers to make your choice.
+* Use keyboards "y"/ "n" letters to confirm some decisions.
