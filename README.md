@@ -113,17 +113,16 @@ category "tags"/"id". For more information, please check [OFF API official docum
 This program provide the following functionalities:
 * The user can select a product and the system returns back a list of substititutes (of the same catagory) having a better nutriscore grade (A-E).
 * The user can see details about the selected substitute (e.g. nutriscore, stores where to buy it and the url with all details about the product). 
-* The user can save its research. The system will stores the pair (product & substitute) into the database.
-* The user can see its recorded product & substitute.
-* The user can re-initiate the database in order to get the latests datas from OFF.
+* The user can save its research. The system will store the pair (product & substitute) into the database.
+* The user can see its recorded products & substitutes.
+* The user can re-initiate the database in order to get the latests datas from OFF API.
 
 ### 5.2. How to.
-* Start the programm running **main.py** (using the bash). Note, that the first time the programm is used, the system will proceed to datas upload and database initialization.
-* Select one of the options proposed in the menu:
+* Start the program running **main.py** (using the bash). Note, that the first time the program is used, the system will proceed to datas upload and database initialization.
+* Select one of the options proposed in the and navigate as proposed by the system:
     * 1 - Search for healthier food substitute.
     * 2 - See your saved substitutes.
     * 3 - Reinitiate the database.
     * 4 - Quit the program.  
-Navigate into those section as proposed by the suystem.
 * Use keyboard numbers to make your choice.
 * Use keyboards "y"/ "n" letters to confirm some decisions.
