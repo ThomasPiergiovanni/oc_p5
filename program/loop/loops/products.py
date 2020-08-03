@@ -10,7 +10,7 @@ class Products():
     """Products class.
     """
     def __init__(self):
-        self.engin = None
+        self.engine = None
         self.database = None
         self.tests = None
         self.categories = None
@@ -22,20 +22,20 @@ class Products():
         self.question = None
         self.selected_product = None
 
-    def reset(self, engin):
+    def reset(self, engine):
         """Method that resets products into the database
         (i.e. download data, create table and insert data into table).
         """
-        self.engin = engin
-        self.database = engin.database
-        self.tests = engin.tests
-        self.categories = engin.categories
-        self.substitutes = engin.substitutes
+        self.engine = engine
+        self.database = engine.database
+        self.tests = engine.tests
+        self.categories = engine.categories
+        self.substitutes = engine.substitutes
         self.database.execute_one(self.create_table())
         for category in self.categories.categories_list:
             self.database.download(self.source(category))
             self.database.execute_many(self.insert_in_table(category))
-        self.substitutes.reset(self.engin)
+        self.substitutes.reset(self.engine)
 
     def exists(self):
         """Method that provides the sql statement
@@ -104,13 +104,13 @@ class Products():
             self.products_list.append(product)
         database.close_cursor()
 
-    def research(self, engin):
+    def research(self, engine):
         """Method that starts the products research.
         """
-        self.engin = engin
-        self.tests = engin.tests
-        self.substitutes = engin.substitutes
-        self.selected_category = engin.categories.selected_category
+        self.engine = engine
+        self.tests = engine.tests
+        self.substitutes = engine.substitutes
+        self.selected_category = engine.categories.selected_category
         self.find()
 
     def find(self):
@@ -163,7 +163,7 @@ substitute for?\n")
                 for elt in self.selected_products:
                     if elt.temp_product_rank == self.question:
                         self.selected_product = elt
-                        self.substitutes.research(self.engin)
+                        self.substitutes.research(self.engine)
             else:
                 print(config.MESSAGE_OOR)
                 self.show()

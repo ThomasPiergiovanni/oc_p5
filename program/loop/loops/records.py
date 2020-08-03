@@ -9,7 +9,7 @@ class Records:
     """Records class.
     """
     def __init__(self):
-        self.engin = None
+        self.engine = None
         self.menu = None
         self.categories = None
         self.products = None
@@ -20,11 +20,11 @@ class Records:
         self.records_list = []
 
 
-    def watch(self, engin):
+    def watch(self, engine):
         """Method that starts records watch.
         """
-        self.engin = engin
-        self.menu = engin.menu
+        self.engine = engine
+        self.menu = engine.menu
         self.show()
 
     def get_product(self, substitute):
@@ -52,13 +52,13 @@ class Records:
         self.categories.categories_list if category.id_category ==\
         product[0].category_id]
 
-    def set_records_list(self, engin):
+    def set_records_list(self, engine):
         """Method that create the records' list.
         """
         self.records_list.clear()
-        self.categories = engin.categories
-        self.products = engin.products
-        self.substitutes = engin.substitutes
+        self.categories = engine.categories
+        self.products = engine.products
+        self.substitutes = engine.substitutes
         for substitute in self.substitutes.substitutes_registered_list:
             self.get_product(substitute)
             self.get_substitute(substitute)
@@ -82,9 +82,9 @@ class Records:
                 rank += 1
             system("pause")
             system("cls")
-            self.menu.start(self.engin)
+            self.menu.start(self.engine)
         else:
             print("No substitutes have been registered yet")
             system("pause")
             system("cls")
-            self.menu.start(self.engin)
+            self.menu.start(self.engine)

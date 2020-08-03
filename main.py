@@ -1,13 +1,12 @@
 #-*-coding:utf-8 -*
 """Main module.
 """
-from program.engin import Engin
+from program.engine import Engine
 
 def main():
     """Main method launching the program.
     """
-    engin = Engin()
-    engin.initialize_database()
+    engine = Engine()
 
 if __name__ == "__main__":
     main()

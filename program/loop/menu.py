@@ -9,7 +9,7 @@ class Menu:
     """Menu class.
     """
     def __init__(self):
-        self.engin = None
+        self.engine = None
         self.database = None
         self.tests = None
         self.categories = None
@@ -17,15 +17,15 @@ class Menu:
         self.abandon = None
         self.question = None
 
-    def start(self, engin):
+    def start(self, engine):
         """Method that starts the menu loop.
         """
-        self.engin = engin
-        self.database = engin.database
-        self.tests = engin.tests
-        self.categories = engin.categories
-        self.records = engin.records
-        self.abandon = engin.abandon
+        self.engine = engine
+        self.database = engine.database
+        self.tests = engine.tests
+        self.categories = engine.categories
+        self.records = engine.records
+        self.abandon = engine.abandon
         self.show()
 
     def show(self):
@@ -53,16 +53,16 @@ class Menu:
         if self.tests.test_integer(self.question):
             self.question = int(self.question)
             if self.question == 1:
-                self.categories.research(self.engin)
+                self.categories.research(self.engine)
             elif self.question == 2:
-                self.records.watch(self.engin)
+                self.records.watch(self.engine)
             elif self.question == 3:
-                self.database.reset(self.engin)
+                self.database.reset(self.engine)
             elif self.question == 4:
-                self.abandon.start(self.engin)
+                self.abandon.start(self.engine)
             else:
                 print(config.MESSAGE_OOR)
-                self.start(self.engin)
+                self.start(self.engine)
         else:
             print(config.MESSAGE_OOR)
-            self.start(self.engin)
+            self.start(self.engine)

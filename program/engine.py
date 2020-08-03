@@ -1,5 +1,5 @@
 #-*-coding:utf-8 -*
-"""Engin module.
+"""Engine module.
 """
 from program.admin.database import Database
 from program.admin.tests import Tests
@@ -10,8 +10,8 @@ from program.loop.loops.products import Products
 from program.loop.loops.substitutes import Substitutes
 from program.loop.menu import Menu
 
-class Engin:
-    """Engin class.
+class Engine:
+    """Engine class.
     """
     def __init__(self):
         self.database = Database()
@@ -22,6 +22,7 @@ class Engin:
         self.substitutes = Substitutes()
         self.records = Records()
         self.abandon = Abandon()
+        self.initialize_database()
 
     def initialize_database(self):
         """Method that initialize the database. It checks if

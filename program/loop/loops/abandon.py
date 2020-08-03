@@ -10,19 +10,19 @@ class Abandon:
     """Abandon class.
     """
     def __init__(self):
-        self.engin = None
+        self.engine = None
         self.database = None
         self.tests = None
         self.menu = None
         self.question = None
 
-    def start(self, engin):
+    def start(self, engine):
         """Method that starts the abandon loop.
         """
-        self.engin = engin
-        self.database = engin.database
-        self.tests = engin.tests
-        self.menu = engin.menu
+        self.engine = engine
+        self.database = engine.database
+        self.tests = engine.tests
+        self.menu = engine.menu
         self.ask()
 
     def ask(self):
@@ -43,7 +43,7 @@ class Abandon:
             if self.question in "yY":
                 exit("Goodbye")
             elif self.question in "nN":
-                self.menu.start(self.engin)
+                self.menu.start(self.engine)
                 system("cls")
             else:
                 print(config.MESSAGE_YN)

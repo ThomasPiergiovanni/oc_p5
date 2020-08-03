@@ -10,7 +10,7 @@ class Database:
     """Database class.
     """
     def __init__(self):
-        self.engin = None
+        self.engine = None
         self.categories = None
         self.connection = mysql.connector.connect\
         (host=config.HOST, user=config.USER, password=config.PASSWORD)
@@ -18,15 +18,15 @@ class Database:
         self.status = False
         self.source = {}
 
-    def reset(self, engin):
+    def reset(self, engine):
         """Method that resets the database (i.e. drop, create and use DB).
         """
-        self.engin = engin
-        self.categories = engin.categories
+        self.engine = engine
+        self.categories = engine.categories
         self.execute_one(self.delete())
         self.execute_one(self.create())
         self.execute_one(self.use())
-        self.categories.reset(self.engin)
+        self.categories.reset(self.engine)
 
     def verify(self, parameters):
         """Method that verify the truth of a given sql statement (provided

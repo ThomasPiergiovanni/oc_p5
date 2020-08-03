@@ -11,7 +11,7 @@ class Substitutes:
     """
     def __init__(self):
         system("cls")
-        self.engin = None
+        self.engine = None
         self.database = None
         self.tests = None
         self.menu = None
@@ -23,17 +23,17 @@ class Substitutes:
         self.registration = False
         self.substitutes_registered_list = []
 
-    def reset(self, engin):
+    def reset(self, engine):
         """Method that resets substitutes into the database
         (i.e. create table) and re-set all datas (i.e. reset
         all datas into their respective list).
         """
-        self.engin = engin
-        self.database = engin.database
-        self.menu = engin.menu
+        self.engine = engine
+        self.database = engine.database
+        self.menu = engine.menu
         self.database.execute_one(self.create_table())
-        self.engin.set_datas()
-        self.menu.start(self.engin)
+        self.engine.set_datas()
+        self.menu.start(self.engine)
 
     def create_table(self):
         """Method that provides the sql statement for
@@ -60,15 +60,15 @@ class Substitutes:
             self.substitutes_registered_list.append(substitute)
         database.close_cursor()
 
-    def research(self, engin):
+    def research(self, engine):
         """Method that starts the substitutes research.
         """
-        self.engin = engin
-        self.database = engin.database
-        self.tests = engin.tests
-        self.menu = engin.menu
-        self.selected_products = engin.products.selected_products
-        self.selected_product = engin.products.selected_product
+        self.engine = engine
+        self.database = engine.database
+        self.tests = engine.tests
+        self.menu = engine.menu
+        self.selected_products = engine.products.selected_products
+        self.selected_product = engine.products.selected_product
         self.find()
 
     def find(self):
@@ -95,7 +95,7 @@ class Substitutes:
             print("There is no healthier substitute for that product.")
             system("pause")
             system("cls")
-            self.menu.start(self.engin)
+            self.menu.start(self.engine)
 
 
     def show(self):
@@ -160,14 +160,14 @@ class Substitutes:
             if self.question in "yY":
                 self.registration = True
                 self.database.execute_one(self.insert_in_table())
-                self.engin.set_datas()
+                self.engine.set_datas()
                 print("Substitute product has been registered!")
                 system("pause")
-                self.menu.start(self.engin)
+                self.menu.start(self.engine)
             elif self.question in "nN":
                 print("Substitute product hasn't been registered")
                 system("pause")
-                self.menu.start(self.engin)
+                self.menu.start(self.engine)
             else:
                 print(config.MESSAGE_YN)
                 self.ask_registration()

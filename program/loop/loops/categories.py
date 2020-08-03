@@ -10,7 +10,7 @@ class Categories:
     """Categories class.
     """
     def __init__(self):
-        self.engin = None
+        self.engine = None
         self.database = None
         self.tests = None
         self.products = None
@@ -18,18 +18,18 @@ class Categories:
         self.question = None
         self.selected_category = None
 
-    def reset(self, engin):
+    def reset(self, engine):
         """Method that resets categories into the database
         (i.e. download data, create table and insert data into table).
         """
-        self.engin = engin
-        self.database = engin.database
-        self.products = engin.products
+        self.engine = engine
+        self.database = engine.database
+        self.products = engine.products
         self.database.download(self.source())
         self.database.execute_one(self.create_table())
         self.database.execute_many(self.insert_in_table())
         self.set_categories_list(self.database)
-        self.products.reset(self.engin)
+        self.products.reset(self.engine)
 
     def exists(self):
         """Method that provides the sql statement
@@ -92,12 +92,12 @@ class Categories:
             self.categories_list.append(category)
         database.close_cursor()
 
-    def research(self, engin):
+    def research(self, engine):
         """Method that starts the categories research.
         """
-        self.engin = engin
-        self.tests = engin.tests
-        self.products = engin.products
+        self.engine = engine
+        self.tests = engine.tests
+        self.products = engine.products
         self.sort()
 
     def sort(self):
@@ -136,7 +136,7 @@ check products for?\n")
                 for elt in self.categories_list:
                     if elt.temp_rank == self.question:
                         self.selected_category = elt
-                        self.products.research(self.engin)
+                        self.products.research(self.engine)
             else:
                 print(config.MESSAGE_OOR)
                 self.show()
