@@ -5,9 +5,8 @@ from sys import exit as leave_program
 import requests
 import mysql.connector
 
-
-from program.admin.config import HOST, USER, PASSWORD, DATABASE_NAME,\
-HEADER
+from program.admin.config import HEADER
+from program.admin.env import HOST, USER, PASSWORD, DATABASE_NAME
 
 class Database:
     """Database class.
