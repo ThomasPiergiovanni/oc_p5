@@ -1,7 +1,7 @@
 # P5 - Utilisez les données publiques d'Open Food Facts
 
 ## 1. Introduction.
-This program is named **"HealthyProductApp"**. It consists of offering to "Pur Beurre", a French restaurant in Montmartre Paris, a solution for finding healthier food substitutes to products one is usually consuming. After having selected the product the user wants to find substitute for, the program presents to him/her a list of healthier substitutes. The user can then select a substitute and decide to record/register its choice for later review..
+This program is named **"HealthyProductApp"**. It consists of offering to "Pur Beurre", a French restaurant in Montmartre Paris, a solution for finding healthier food substitutes to products one is usually consuming. After having selected the product the user wants to find substitute for, the program presents to him/her a list of healthier substitutes. The user can then select a substitute and decide to record/register its choice for later review.
 
 ## 2. Prerequisite.
 This program requires the following components:
@@ -15,18 +15,18 @@ This program requires the following components:
 Download/clone this repository on your system, at the location that suits you best. 
 
 ### 3.2. Python 3 install.
-Make sure you have Python 3 installed. If not, you can download it and install it from the [python offical website](https://www.python.org/). You'll find the necessary documentation there.
+Make sure you have Python 3 installed. If not, you can download it and install it from the [python official website](https://www.python.org/). You will find the necessary documentation there.
 
-### 3.3. Create & activate a virtual environnement (recommended).
+### 3.3. Create & activate a virtual environment (recommended).
 In order to avoid system conflicts:
 
 1. Go into your local repository and create a virtual environment using venv package.
 > python3 -m venv env
 
-2. Activate the virtual envrionment.
+2. Activate the virtual environment.
 > source env/Scripts/activate
 
-Documentation is also available on the [python offical website](https://www.python.org/).
+Documentation is also available on the [python official website](https://www.python.org/).
 
 ### 3.4. MySQL server install.
 Make sure to have MySQL server installed. If not you can download it from the [MySQL official website](https://www.mysql.com/).
@@ -35,17 +35,17 @@ Make sure to have MySQL server installed. If not you can download it from the [M
 Make sure to have MySQL server running. Please refer to the [MySQL official website](https://www.mysql.com/) for this.
 
 ### 3.6. Application mandatory settings.
-1. Rename env.py.example.txt file into env.py
-2. Change all constants with the approporiate value into env.py(e.g. the appropirate DB_NAME, DB_USER_NAME, etc.)
-For more informations details on application setting, check the detailed section bellow.
+1. Rename**env.py.example.txt** file into **env.py**
+2. Change all constants with the appropriate value into **env.py** (e.g. the appropriate DB_NAME, DB_USER_NAME, etc.).  
+For more information details on application setting, check *4.1. env.py* section first. bellow.
 
 ### 3.7. Use "HealthyProductApp".
-The programm is now ready to use. You can start it using **main.py** with your bash.
+The program is now ready to use. You can start it using **main.py** with your bash.
 > python3 main.py
 
 
-### 3.8. Deactivate the virtual environnement.
-Once you're done using the programm, you should leave the virtual environement. Simply type the following statement in your bash.
+### 3.8. Deactivate the virtual environment.
+Once you're done using the program, you should leave the virtual environment. Simply type the following statement in your bash.
 > deactivate
 
 ### 3.9. Uninstall.
@@ -53,7 +53,7 @@ If you want to uninstall the program, simply delete the complete repository form
 
 ## 4. Settings.
 
-* Changing settings must be done in **program/admin/env.py** file. Make sure to read *3.6. Application mandoatory settings* section first.
+* Changing settings must be done in **program/admin/env.py** file. Make sure to read *3.6. Application mandatory settings* section first.
 * Changing settings can be done to the following constants in **program/admin/config.py** file.
 
 ### 4.1. env.py.
@@ -98,10 +98,10 @@ For more information, please check [MySQL connector API official website](https:
 **CUSTOM SETTINGS**: To use the application with product references from another country than France, use the appropriate ISO-3166-1 Alpha 2 code and replace it in the endpoint (e.g. "ht<span>tps://</span>es.openfoodfacts.org/cgi/search.pl"). For more information, please check [OFF API official documentation](https://documenter.getpostman.com/view/8470508/SVtN3Wzy?version=latest#intro).
 
 #### 4.2.3. HEADER.
-**DESCRIPTION**: Headers, i.e. the application general informations, among other, its name and version number.  
+**DESCRIPTION**: Headers, i.e. the application general information, among other, its name and version number.  
 **MANDATORY**: Yes.  
 **DEFAULT SETTINGS**: {'User-Agent': 'HealthyProductApp - Web - Version 0.0'}.  
-**CUSTOM SETTINGS**: Iy ou modify this app this settings must be changed but keeping the following structure {'User-Agent': 'your information'}. For more information, please check [OFF API official documentation](https://documenter.getpostman.com/view/8470508/SVtN3Wzy?version=latest#intro).
+**CUSTOM SETTINGS**: If you modify this app this settings must be changed but keeping the following structure {'User-Agent': 'your information'}. For more information, please check [OFF API official documentation](https://documenter.getpostman.com/view/8470508/SVtN3Wzy?version=latest#intro).
 
 #### 4.2.4. SELECTED_CATEGORIES.
 **DESCRIPTION**: OFF API products categories type used in the application.  
@@ -120,11 +120,11 @@ category "tags"/"id". For more information, please check [OFF API official docum
 
 ### 5.1. Program functionalities
 This program provide the following functionalities:
-* The user can select a product and the system returns back a list of substititutes (of the same catagory) having a better nutriscore grade (A-E).
+* The user can select a product and the system returns back a list of substitutes (of the same category) having a better nutriscore grade (A-E).
 * The user can see details about the selected substitute (e.g. nutriscore, stores where to buy it and the url with all details about the product). 
 * The user can save its research. The system will store the pair (product & substitute) into the database.
 * The user can see its recorded products & substitutes.
-* The user can re-initiate the database in order to get the latests datas from OFF API.
+* The user can re-initiate the database in order to get the latest data from OFF API.
 
 ### 5.2. How to.
 * Start the program running **main.py** (using the bash). 
@@ -137,4 +137,4 @@ This program provide the following functionalities:
 * Use keyboards "y"/ "n" letters to confirm some decisions.
 
   
-*NB: the first time the program is used, the system will proceed to datas upload and database initialization*.
+*NB: the first time the program is used, the system will proceed to data upload and database initialization*.
