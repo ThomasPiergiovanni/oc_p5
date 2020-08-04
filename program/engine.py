@@ -26,8 +26,7 @@ class Engine:
 
     def initialize_database(self):
         """Method that initialize the database. It checks if
-        the DB exists and if its tables categories
-        and products are populated.
+        the DB exists and  its tables exists.
         - If it does, the program "datas" are strored into a list and the
         Menu program is started.
         - If it don't, the database and its componnents are created.
@@ -36,8 +35,12 @@ class Engine:
             self.database.execute_one(self.database.use())
             if self.database.verify(self.categories.exists()) and\
             self.database.verify(self.products.exists()):
-                self.set_datas()
-                self.start_loop()
+                if self.database.verify(self.categories.populated()) and\
+                self.database.verify(self.products.populated()):
+                    self.set_datas()
+                    self.start_loop()
+                else:
+                    self.database.reset(self)
             else:
                 self.database.reset(self)
         else:

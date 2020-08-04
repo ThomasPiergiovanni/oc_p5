@@ -33,6 +33,14 @@ class Categories:
 
     def exists(self):
         """Method that provides the sql statement
+        for category table existance verification into DB.
+        """
+        statement = "SHOW TABLES LIKE 'category'"
+        parameters = [statement, None]
+        return parameters
+
+    def populated(self):
+        """Method that provides the sql statement
         for categories existance verification into DB.
         """
         statement = "SELECT * FROM category"

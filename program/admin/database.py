@@ -4,7 +4,8 @@
 import requests
 import mysql.connector
 
-from program.admin import config
+from program.admin.config import HOST, USER, PASSWORD, DATABASE_NAME,\
+HEADER
 
 class Database:
     """Database class.
@@ -13,7 +14,7 @@ class Database:
         self.engine = None
         self.categories = None
         self.connection = mysql.connector.connect\
-        (host=config.HOST, user=config.USER, password=config.PASSWORD)
+        (host=HOST, user=USER, password=PASSWORD)
         self.cursor = None
         self.status = False
         self.source = {}
@@ -32,42 +33,42 @@ class Database:
         """Method that verify the truth of a given sql statement (provided
         by various modules methods) and returns a boolean.
         """
-        try:
-            self.open_cursor()
-            self.cursor.execute(parameters[0])
-            self.cursor.fetchall()
-            if self.cursor.rowcount >= 1:
-                self.status = True
-            self.close_cursor()
-        except:
+        self.open_cursor()
+        self.cursor.execute(parameters[0])
+        self.cursor.fetchall()
+        if self.cursor.rowcount >= 1:
+            self.status = True
+        else:
             self.status = False
-            print(parameters[1])
-
+        self.close_cursor()
         return self.status
 
-    def exists(self):
+    @classmethod
+    def exists(cls):
         """Method that provides the sql statement
         for DB existance verification.
         """
-        statement = "SHOW DATABASES LIKE '%s'"% config.DATABASE_NAME
+        statement = "SHOW DATABASES LIKE '%s'"% DATABASE_NAME
         message = "No DB"
         parameters = [statement, message]
         return parameters
 
-    def delete(self):
+    @classmethod
+    def delete(cls):
         """Method that provides the sql statement for
         DB deletion.
         """
-        statement = "DROP DATABASE IF EXISTS %s"% config.DATABASE_NAME
+        statement = "DROP DATABASE IF EXISTS %s"% DATABASE_NAME
         parameters = [statement, None]
         return parameters
 
-    def create(self):
+    @classmethod
+    def create(cls):
         """Method that provides the sql statement for
         DB creation.
         """
         statement = "CREATE DATABASE IF NOT EXISTS %s CHARACTER\
-        SET 'utf8';"% config.DATABASE_NAME
+        SET 'utf8';"% DATABASE_NAME
         parameters = [statement, None]
         return parameters
 
@@ -77,7 +78,7 @@ class Database:
         """
         try:
             response_api = requests.get(parameters[0],\
-            headers=config.HEADER, params=parameters[1])
+            headers=HEADER, params=parameters[1])
             self.source = response_api.json()
         except requests.HTTPError as http_error:
             print(f"HTTP error occurred: {http_error}")
@@ -86,11 +87,20 @@ class Database:
         else:
             print("HTTP request to \"", parameters[0], "\" successfull")
 
-    def use(self):
+        # response_api = requests.get(parameters[0],\
+        # headers=HEADER, params=parameters[1])
+        # self.source = response_api.json()
+        # if not response_api:
+        #     print ("An error occured. Please try later or contact APP owner")
+        # else:
+        #     print("HTTP request to \"", parameters[0], "\" successfull")
+
+    @classmethod
+    def use(cls):
         """Method that sets the appropriate database to use for
         the program.
         """
-        statement = "USE %s"% config.DATABASE_NAME
+        statement = "USE %s"% DATABASE_NAME
         parameters = [statement, None]
         return parameters
 
@@ -98,6 +108,11 @@ class Database:
         """Method that open a connection cursor.
         """
         self.cursor = self.connection.cursor()
+
+    def open_cursor_b(self):
+        """Method that open a connection cursor.
+        """
+        self.cursor = self.connection.cursor(buffered=True)
 
     def close_cursor(self):
         """Method that close a connection cursor.

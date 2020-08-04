@@ -39,11 +39,19 @@ class Products():
 
     def exists(self):
         """Method that provides the sql statement
+        for product table verification into DB.
+        """
+        statement = "SHOW TABLES LIKE 'product'"
+        message = "No or empty product tables"
+        parameters = [statement, message]
+        return parameters
+
+    def populated(self):
+        """Method that provides the sql statement
         for products existance verification into DB.
         """
         statement = "SELECT * FROM product"
-        message = "No or empty product tables"
-        parameters = [statement, message]
+        parameters = [statement, None]
         return parameters
 
     def source(self, category):
