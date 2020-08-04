@@ -1,7 +1,5 @@
 # P5 - Utilisez les données publiques d'Open Food Facts
 
-*UNDER CONSTRUCTION*
-
 ## 1. Introduction.
 This program is named **"HealthyProductApp"**. It consists of offering to "Pur Beurre", a French restaurant in Montmartre Paris, a solution for finding healthier food substitutes to products one is usually consuming. After having selected the product the user wants to find substitute for, the program presents to him/her a list of healthier substitutes. The user can then select a substitute and decide to record/register its choice for later review..
 
