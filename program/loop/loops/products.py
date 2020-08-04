@@ -3,7 +3,7 @@
 """
 from os import system
 
-from program.admin import config
+from program.admin.config import PRODUCTS_ENDPOINT, PRODUCTS_AMOUNT, MESSAGE_OOR
 from program.model.product import Product
 
 class Products():
@@ -37,16 +37,17 @@ class Products():
             self.database.execute_many(self.insert_in_table(category))
         self.substitutes.reset(self.engine)
 
-    def exists(self):
+    @classmethod
+    def exists(cls):
         """Method that provides the sql statement
         for product table verification into DB.
         """
         statement = "SHOW TABLES LIKE 'product'"
-        message = "No or empty product tables"
-        parameters = [statement, message]
+        parameters = [statement, None]
         return parameters
 
-    def populated(self):
+    @classmethod
+    def populated(cls):
         """Method that provides the sql statement
         for products existance verification into DB.
         """
@@ -54,19 +55,21 @@ class Products():
         parameters = [statement, None]
         return parameters
 
-    def source(self, category):
+    @classmethod
+    def source(cls, category):
         """Method that provides the appropriate settings to
         the OFF API for products download.
         """
-        endpoint = config.PRODUCTS_ENDPOINT
+        endpoint = PRODUCTS_ENDPOINT
         params = {
             "action":"process", "tagtype_0": "categories",
             "tag_contains_0":"contains", "tag_0":category.id_origin,
-            "json":1, "page":1, "page_size": config.PRODUCTS_AMOUNT}
+            "json":1, "page":1, "page_size": PRODUCTS_AMOUNT}
         parameters = [endpoint, params]
         return parameters
 
-    def create_table(self):
+    @classmethod
+    def create_table(cls):
         """Method that provides the sql statement for
         products creation into DB.
         """
@@ -173,8 +176,8 @@ substitute for?\n")
                         self.selected_product = elt
                         self.substitutes.research(self.engine)
             else:
-                print(config.MESSAGE_OOR)
+                print(MESSAGE_OOR)
                 self.show()
         else:
-            print(config.MESSAGE_OOR)
+            print(MESSAGE_OOR)
             self.show()

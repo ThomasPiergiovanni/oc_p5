@@ -2,9 +2,9 @@
 """Abandon module.
 """
 from os import system
-from sys import exit
+from sys import exit as leave_program
 
-from program.admin import config
+from program.admin.config import MESSAGE_YN
 
 class Abandon:
     """Abandon class.
@@ -41,13 +41,13 @@ class Abandon:
         if self.tests.test_string(self.question):
             self.question = str(self.question)
             if self.question in "yY":
-                exit("Goodbye")
+                leave_program("Goodbye")
             elif self.question in "nN":
                 self.menu.start(self.engine)
                 system("cls")
             else:
-                print(config.MESSAGE_YN)
+                print(MESSAGE_YN)
                 self.ask()
         else:
-            print(config.MESSAGE_YN)
+            print(MESSAGE_YN)
             self.ask()

@@ -1,8 +1,10 @@
 #-*-coding:utf-8 -*
 """Database module.
 """
+from sys import exit as leave_program
 import requests
 import mysql.connector
+
 
 from program.admin.config import HOST, USER, PASSWORD, DATABASE_NAME,\
 HEADER
@@ -49,8 +51,7 @@ class Database:
         for DB existance verification.
         """
         statement = "SHOW DATABASES LIKE '%s'"% DATABASE_NAME
-        message = "No DB"
-        parameters = [statement, message]
+        parameters = [statement, None]
         return parameters
 
     @classmethod
@@ -80,20 +81,8 @@ class Database:
             response_api = requests.get(parameters[0],\
             headers=HEADER, params=parameters[1])
             self.source = response_api.json()
-        except requests.HTTPError as http_error:
-            print(f"HTTP error occurred: {http_error}")
-        except Exception as other_error:
-            print(f"Other error occurred: {other_error}")
-        else:
-            print("HTTP request to \"", parameters[0], "\" successfull")
-
-        # response_api = requests.get(parameters[0],\
-        # headers=HEADER, params=parameters[1])
-        # self.source = response_api.json()
-        # if not response_api:
-        #     print ("An error occured. Please try later or contact APP owner")
-        # else:
-        #     print("HTTP request to \"", parameters[0], "\" successfull")
+        except:
+            leave_program("An error occured. Please try later or contact APP owner")
 
     @classmethod
     def use(cls):

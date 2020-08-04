@@ -34,7 +34,8 @@ class Engine:
         if self.database.verify(self.database.exists()):
             self.database.execute_one(self.database.use())
             if self.database.verify(self.categories.exists()) and\
-            self.database.verify(self.products.exists()):
+            self.database.verify(self.products.exists()) and\
+            self.database.verify(self.substitutes.exists()):
                 if self.database.verify(self.categories.populated()) and\
                 self.database.verify(self.products.populated()):
                     self.set_datas()

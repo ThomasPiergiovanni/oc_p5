@@ -3,7 +3,7 @@
 """
 from os import system
 
-from program.admin import config
+from program.admin.config import MESSAGE_OOR, MESSAGE_YN
 from program.model.substitute import Substitute
 
 class Substitutes:
@@ -35,15 +35,25 @@ class Substitutes:
         self.engine.set_datas()
         self.menu.start(self.engine)
 
-    def create_table(self):
+    @classmethod
+    def exists(cls):
+        """Method that provides the sql statement
+        for product table verification into DB.
+        """
+        statement = "SHOW TABLES LIKE 'substitute'"
+        parameters = [statement, None]
+        return parameters
+
+    @classmethod
+    def create_table(cls):
         """Method that provides the sql statement for
         substitutes creation into DB.
         """
         statement = "CREATE TABLE IF NOT EXISTS substitute(\
-            product_product_id SMALLINT UNSIGNED NOT NULL,\
-            substitute_product_id SMALLINT UNSIGNED NOT NULL,\
-            FOREIGN KEY (product_product_id) REFERENCES product(id_product),\
-            FOREIGN KEY (substitute_product_id) REFERENCES product(id_product)\
+            product_id SMALLINT UNSIGNED NOT NULL,\
+            substitute_id SMALLINT UNSIGNED NOT NULL,\
+            FOREIGN KEY (product_id) REFERENCES product(id_product),\
+            FOREIGN KEY (substitute_id) REFERENCES product(id_product)\
             )ENGINE=INNODB;"
         parameters = [statement, None]
         return parameters
@@ -138,10 +148,10 @@ class Substitutes:
                         self.selected_substitute = elt
                         self.ask_registration()
             else:
-                print(config.MESSAGE_OOR)
+                print(MESSAGE_OOR)
                 self.show()
         else:
-            print(config.MESSAGE_OOR)
+            print(MESSAGE_OOR)
             self.show()
 
     def ask_registration(self):
@@ -169,10 +179,10 @@ class Substitutes:
                 system("pause")
                 self.menu.start(self.engine)
             else:
-                print(config.MESSAGE_YN)
+                print(MESSAGE_YN)
                 self.ask_registration()
         else:
-            print(config.MESSAGE_YN)
+            print(MESSAGE_YN)
             self.ask_registration()
 
     def insert_in_table(self):
@@ -180,8 +190,8 @@ class Substitutes:
         substitute insertion into DB.
         """
         if self.registration:
-            statement = "INSERT INTO substitute (product_product_id,\
-            substitute_product_id) VALUES (%s, %s)"
+            statement = "INSERT INTO substitute (product_id,\
+            substitute_id) VALUES (%s, %s)"
             values = [self.selected_product.id_product,\
             self.selected_substitute.id_product]
             parameters = [statement, values]

@@ -33,7 +33,7 @@ class Records:
         """
         self.product = [product for product in\
         self.products.products_list if product.id_product ==\
-        substitute.product_product_id]
+        substitute.product_id]
 
     def get_substitute(self, substitute):
         """Method that get the entire substituted product informations
@@ -42,7 +42,7 @@ class Records:
         """
         self.substitute = [product for product in\
         self.products.products_list if product.id_product ==\
-        substitute.substitute_product_id]
+        substitute.substitute_id]
 
     def get_category(self, product):
         """Method that get the product category informations by joining

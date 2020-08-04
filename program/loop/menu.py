@@ -3,7 +3,7 @@
 """
 from os import system
 
-from program.admin import config
+from program.admin.config import MESSAGE_OOR
 
 class Menu:
     """Menu class.
@@ -61,8 +61,8 @@ class Menu:
             elif self.question == 4:
                 self.abandon.start(self.engine)
             else:
-                print(config.MESSAGE_OOR)
+                print(MESSAGE_OOR)
                 self.start(self.engine)
         else:
-            print(config.MESSAGE_OOR)
+            print(MESSAGE_OOR)
             self.start(self.engine)

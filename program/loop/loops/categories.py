@@ -3,7 +3,8 @@
 """
 from os import system
 
-from program.admin import config
+from program.admin.config import CATEGORIES_ENDPOINT, SELECTED_CATEGORIES,\
+MESSAGE_OOR
 from program.model.category import Category
 
 class Categories:
@@ -31,7 +32,8 @@ class Categories:
         self.set_categories_list(self.database)
         self.products.reset(self.engine)
 
-    def exists(self):
+    @classmethod
+    def exists(cls):
         """Method that provides the sql statement
         for category table existance verification into DB.
         """
@@ -39,7 +41,8 @@ class Categories:
         parameters = [statement, None]
         return parameters
 
-    def populated(self):
+    @classmethod
+    def populated(cls):
         """Method that provides the sql statement
         for categories existance verification into DB.
         """
@@ -47,16 +50,18 @@ class Categories:
         parameters = [statement, None]
         return parameters
 
-    def source(self):
+    @classmethod
+    def source(cls):
         """Method that provides the appropriate settings to
         the OFF API for categories download.
         """
-        endpoint = config.CATEGORIES_ENDPOINT
+        endpoint = CATEGORIES_ENDPOINT
         params = {}
         parameters = [endpoint, params]
         return parameters
 
-    def create_table(self):
+    @classmethod
+    def create_table(cls):
         """Method that provides the sql statement for
         categories creation into DB.
         """
@@ -78,7 +83,7 @@ class Categories:
         url) VALUES(%s, %s, %s)"
         values = []
         for elt in self.database.source["tags"]:
-            if elt["id"] in config.SELECTED_CATEGORIES and elt["name"] and\
+            if elt["id"] in SELECTED_CATEGORIES and elt["name"] and\
             elt["url"]:
                 elt_string = (elt["id"], elt["name"], elt["url"])
                 values.append(elt_string)
@@ -146,8 +151,8 @@ check products for?\n")
                         self.selected_category = elt
                         self.products.research(self.engine)
             else:
-                print(config.MESSAGE_OOR)
+                print(MESSAGE_OOR)
                 self.show()
         else:
-            print(config.MESSAGE_OOR)
+            print(MESSAGE_OOR)
             self.show()
