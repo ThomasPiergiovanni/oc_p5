@@ -129,10 +129,10 @@ This program provide the following functionalities:
 ### 5.2. How to.
 * Start the program running **main.py** (using the bash). 
 * Select one of the options proposed in the and navigate as proposed by the system:
-* 1 - Search for healthier food substitute.
-* 2 - See your saved substitutes.
-* 3 - Reinitiate the database.
-* 4 - Quit the program.
+    * 1 - Search for healthier food substitute.
+    * 2 - See your saved substitutes.
+    * 3 - Reinitiate the database.
+    * 4 - Quit the program.
 * Use keyboard numbers to make your choice.
 * Use keyboards "y"/ "n" letters to confirm some decisions.
 
