@@ -3,9 +3,9 @@
 """
 from os import system
 
-from program.admin.config import CATEGORIES_ENDPOINT, SELECTED_CATEGORIES,\
+from admin.config import CATEGORIES_ENDPOINT, SELECTED_CATEGORIES,\
 MESSAGE_OOR
-from program.model.category import Category
+from model.category import Category
 
 class Categories:
     """Categories class.

@@ -3,8 +3,8 @@
 """
 from os import system
 
-from program.admin.config import PRODUCTS_ENDPOINT, PRODUCTS_AMOUNT, MESSAGE_OOR
-from program.model.product import Product
+from admin.config import PRODUCTS_ENDPOINT, PRODUCTS_AMOUNT, MESSAGE_OOR
+from model.product import Product
 
 class Products():
     """Products class.

@@ -1,8 +1,6 @@
 99_other/
-program/admin/env.py
+admin/env.py
 __pycache__/
-program/__pycache__/
-program/admin/__pycache__/
-program/loop/__pycache__/
-program/model/__pycache__/
-program/loop/loops/__pycache__/
+admin/__pycache__/
+loop/__pycache__/
+model/__pycache__/

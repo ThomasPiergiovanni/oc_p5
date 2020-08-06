@@ -1,7 +1,7 @@
 #-*-coding:utf-8 -*
 """Main module.
 """
-from program.engine import Engine
+from engine import Engine
 
 def main():
     """Main method launching the program.

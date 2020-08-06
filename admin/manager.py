@@ -6,8 +6,8 @@ from sys import exit as leave_program
 import requests
 import mysql.connector
 
-from program.admin.config import HEADER
-from program.admin.env import HOST, USER, PASSWORD, DATABASE_NAME
+from admin.config import HEADER
+from admin.env import HOST, USER, PASSWORD, DATABASE_NAME
 
 class Manager:
     """Manager class.
@@ -28,8 +28,16 @@ class Manager:
             response_api = requests.get(parameters[0],\
             headers=HEADER, params=parameters[1])
             self.source = response_api.json()
-        except:
-            leave_program("An error occured. Please try later or contact APP owner")
+        except requests.ConnectionError as cnx_error:
+            print("A connection error occured. Please try later or \
+contact APP owner")
+            leave_program()
+        except requests.Timeout as tmo_error:
+            print("A connectionn timeout error occured. Please try later or\
+contact APP owner")
+            leave_program()
+
+
 
     def open_cursor(self):
         """Method that open a connection cursor.

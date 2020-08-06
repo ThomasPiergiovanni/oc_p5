@@ -47,12 +47,12 @@ class Tests:
 
     def test_duplicate(self):
         """Method that filter-in only OFF API products that are
-        unique per id and id_category.
+        unique per name and id_category.
         """
         self.unique_products.clear()
+        product_tuples_list = []
         for product in self.consistent_products:
-            unique_pairs = []
-            pair = (product[0], product[3])
-            if pair not in unique_pairs:
-                unique_pairs.append(pair)
+            product_tuple = (product[1], product[3])
+            if product_tuple not in product_tuples_list:
+                product_tuples_list.append(product_tuple)
                 self.unique_products.append(product)

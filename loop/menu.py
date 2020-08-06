@@ -3,7 +3,7 @@
 """
 from os import system
 
-from program.admin.config import MESSAGE_OOR
+from admin.config import MESSAGE_OOR
 
 class Menu:
     """Menu class.

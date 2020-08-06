@@ -2,7 +2,7 @@
 """Database module.
 """
 
-from program.admin.env import DATABASE_NAME
+from admin.env import DATABASE_NAME
 
 class Database:
     """Database class.

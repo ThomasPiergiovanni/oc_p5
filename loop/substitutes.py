@@ -3,8 +3,8 @@
 """
 from os import system
 
-from program.admin.config import MESSAGE_OOR, MESSAGE_YN
-from program.model.substitute import Substitute
+from admin.config import MESSAGE_OOR, MESSAGE_YN
+from model.substitute import Substitute
 
 class Substitutes:
     """Substitutes class.
