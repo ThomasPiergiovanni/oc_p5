@@ -12,7 +12,7 @@ class Substitutes:
     def __init__(self):
         system("cls")
         self.engine = None
-        self.database = None
+        self.manager = None
         self.tests = None
         self.menu = None
         self.selected_products = None
@@ -29,9 +29,9 @@ class Substitutes:
         all datas into their respective list).
         """
         self.engine = engine
-        self.database = engine.database
+        self.manager = engine.manager
         self.menu = engine.menu
-        self.database.execute_one(self.create_table())
+        self.manager.execute_one(self.create_table())
         self.engine.set_datas()
         self.menu.start(self.engine)
 
@@ -58,23 +58,23 @@ class Substitutes:
         parameters = [statement, None]
         return parameters
 
-    def set_substitutes_list(self, database):
+    def set_substitutes_list(self, manager):
         """Method that create the substitutes' list.
         """
         self.substitutes_registered_list.clear()
-        database.open_cursor()
-        database.cursor.execute("SELECT * FROM substitute")
-        selection = database.cursor.fetchall()
+        manager.open_cursor()
+        manager.cursor.execute("SELECT * FROM substitute")
+        selection = manager.cursor.fetchall()
         for elt in selection:
             substitute = Substitute(elt[0], elt[1])
             self.substitutes_registered_list.append(substitute)
-        database.close_cursor()
+        manager.close_cursor()
 
     def research(self, engine):
         """Method that starts the substitutes research.
         """
         self.engine = engine
-        self.database = engine.database
+        self.manager = engine.manager
         self.tests = engine.tests
         self.menu = engine.menu
         self.selected_products = engine.products.selected_products
@@ -169,7 +169,7 @@ class Substitutes:
             self.question = str(self.question)
             if self.question in "yY":
                 self.registration = True
-                self.database.execute_one(self.insert_in_table())
+                self.manager.execute_one(self.insert_in_table())
                 self.engine.set_datas()
                 print("Substitute product has been registered!")
                 system("pause")

@@ -12,7 +12,7 @@ class Categories:
     """
     def __init__(self):
         self.engine = None
-        self.database = None
+        self.manager = None
         self.tests = None
         self.products = None
         self.categories_list = []
@@ -24,12 +24,12 @@ class Categories:
         (i.e. download data, create table and insert data into table).
         """
         self.engine = engine
-        self.database = engine.database
+        self.manager = engine.manager
         self.products = engine.products
-        self.database.download(self.source())
-        self.database.execute_one(self.create_table())
-        self.database.execute_many(self.insert_in_table())
-        self.set_categories_list(self.database)
+        self.manager.download(self.source())
+        self.manager.execute_one(self.create_table())
+        self.manager.execute_many(self.insert_in_table())
+        self.set_categories_list(self.manager)
         self.products.reset(self.engine)
 
     @classmethod
@@ -82,7 +82,7 @@ class Categories:
         statement = "INSERT INTO category(id_origin, name,\
         url) VALUES(%s, %s, %s)"
         values = []
-        for elt in self.database.source["tags"]:
+        for elt in self.manager.source["tags"]:
             if elt["id"] in SELECTED_CATEGORIES and elt["name"] and\
             elt["url"]:
                 elt_string = (elt["id"], elt["name"], elt["url"])
@@ -92,18 +92,18 @@ class Categories:
         parameters = [statement, values]
         return parameters
 
-    def set_categories_list(self, database):
+    def set_categories_list(self, manager):
         """Method that create the categories' list.
         """
         self.categories_list.clear()
-        database.open_cursor()
-        database.cursor.execute("SELECT * FROM category")
-        selection = database.cursor.fetchall()
+        manager.open_cursor()
+        manager.cursor.execute("SELECT * FROM category")
+        selection = manager.cursor.fetchall()
         for elt in selection:
             category = Category(elt[0], elt[1],\
             elt[2], elt[3])
             self.categories_list.append(category)
-        database.close_cursor()
+        manager.close_cursor()
 
     def research(self, engine):
         """Method that starts the categories research.

@@ -11,8 +11,9 @@ class Products():
     """
     def __init__(self):
         self.engine = None
-        self.database = None
+        self.manager = None
         self.tests = None
+        self.database = None
         self.categories = None
         self.substitutes = None
         self.selected_category = None
@@ -27,14 +28,14 @@ class Products():
         (i.e. download data, create table and insert data into table).
         """
         self.engine = engine
-        self.database = engine.database
+        self.manager = engine.manager
         self.tests = engine.tests
         self.categories = engine.categories
         self.substitutes = engine.substitutes
-        self.database.execute_one(self.create_table())
+        self.manager.execute_one(self.create_table())
         for category in self.categories.categories_list:
-            self.database.download(self.source(category))
-            self.database.execute_many(self.insert_in_table(category))
+            self.manager.download(self.source(category))
+            self.manager.execute_many(self.insert_in_table(category))
         self.substitutes.reset(self.engine)
 
     @classmethod
@@ -96,24 +97,24 @@ class Products():
         nutriscore_grade, category_id, url, stores)\
         VALUES (%s, %s, %s, %s, %s, %s)"
         values = []
-        self.tests.test_consistency(self.database.source["products"],\
+        self.tests.test_consistency(self.manager.source["products"],\
         category)
         values = self.tests.unique_products
         parameters = [statement, values]
         return parameters
 
-    def set_products_list(self, database):
+    def set_products_list(self, manager):
         """Method that create the products' list.
         """
         self.products_list.clear()
-        database.open_cursor()
-        database.cursor.execute("SELECT * FROM product")
-        selection = database.cursor.fetchall()
+        manager.open_cursor()
+        manager.cursor.execute("SELECT * FROM product")
+        selection = manager.cursor.fetchall()
         for elt in selection:
             product = Product(elt[0], elt[1], elt[2], elt[3], elt[4],\
             elt[5], elt[6])
             self.products_list.append(product)
-        database.close_cursor()
+        manager.close_cursor()
 
     def research(self, engine):
         """Method that starts the products research.

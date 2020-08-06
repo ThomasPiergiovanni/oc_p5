@@ -10,8 +10,8 @@ class Menu:
     """
     def __init__(self):
         self.engine = None
-        self.database = None
         self.tests = None
+        self.database = None
         self.categories = None
         self.records = None
         self.abandon = None
@@ -21,8 +21,8 @@ class Menu:
         """Method that starts the menu loop.
         """
         self.engine = engine
-        self.database = engine.database
         self.tests = engine.tests
+        self.database = engine.database
         self.categories = engine.categories
         self.records = engine.records
         self.abandon = engine.abandon

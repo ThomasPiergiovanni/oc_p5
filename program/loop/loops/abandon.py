@@ -11,7 +11,7 @@ class Abandon:
     """
     def __init__(self):
         self.engine = None
-        self.database = None
+        self.manager = None
         self.tests = None
         self.menu = None
         self.question = None
@@ -20,7 +20,7 @@ class Abandon:
         """Method that starts the abandon loop.
         """
         self.engine = engine
-        self.database = engine.database
+        self.manager = engine.manager
         self.tests = engine.tests
         self.menu = engine.menu
         self.ask()
