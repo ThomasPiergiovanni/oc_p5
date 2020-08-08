@@ -1,6 +1,8 @@
-#-*-coding:utf-8 -*
+# -*-coding:utf-8 -*
 """Record module.
 """
+
+
 class Record:
     """Record class.
     """

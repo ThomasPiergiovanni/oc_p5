@@ -1,6 +1,8 @@
-#-*-coding:utf-8 -*
+# -*-coding:utf-8 -*
 """Substitute module.
 """
+
+
 class Substitute:
     """Substitute class.
     """
