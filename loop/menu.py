@@ -1,9 +1,10 @@
-#-*-coding:utf-8 -*
+# -*-coding:utf-8 -*
 """Menu module
 """
 from os import system
 
 from configuration.config import MESSAGE_OOR
+
 
 class Menu:
     """Menu class.
@@ -32,18 +33,20 @@ class Menu:
         """Method that proposes the menus' options to the user.
         """
         system("cls")
-        print("MENU:\
-        \n 1 - Search for healthier food substitute. \
-        \n 2 - See your saved substitutes.\
-        \n 3 - Reinitiate the database. \
-        \n 4 - Quit the program.")
+        print("Menu:"
+              "\n 1 - Chercher des produits alimentaires de substitution"
+              " plus sain."
+              "\n 2 - Regarder les substituts déja enregistrés."
+              "\n 3 - Ré-initialiser la base de données."
+              "\n 4 - Quitter le programme.")
         self.ask()
 
     def ask(self):
         """Method that ask to select a menu option to the user.
         """
-        self.question = input("What do you want to do \
-(choose one of the above number)?\n")
+        self.question = input("Que voulez-vous faire"
+                              " (Entrez le nombre correspondant à votre"
+                              " choix)?\n")
         system("cls")
         self.select()
 
