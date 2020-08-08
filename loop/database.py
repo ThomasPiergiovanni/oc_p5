@@ -1,4 +1,4 @@
-#-*-coding:utf-8 -*
+# -*-coding:utf-8 -*
 """Database module.
 """
 from sys import exit as leave_program
@@ -9,6 +9,7 @@ import mysql.connector
 from configuration.config import HEADER
 from configuration.env import HOST, USER, PASSWORD, DATABASE_NAME
 
+
 class Database:
     """Database class.
     """
@@ -16,8 +17,9 @@ class Database:
         self.engine = None
         self.categories = None
         self.source = {}
-        self.connection = mysql.connector.connect\
-        (host=HOST, user=USER, password=PASSWORD)
+        self.connection = mysql.connector.connect(
+                        host=HOST, user=USER,
+                        password=PASSWORD)
         self.cursor = None
         self.status = False
 
@@ -36,7 +38,7 @@ class Database:
         """Method that provides the sql statement
         for DB existance verification.
         """
-        statement = "SHOW DATABASES LIKE '%s'"% DATABASE_NAME
+        statement = "SHOW DATABASES LIKE '%s'" % DATABASE_NAME
         parameters = [statement, None]
         return parameters
 
@@ -45,7 +47,7 @@ class Database:
         """Method that provides the sql statement for
         DB deletion.
         """
-        statement = "DROP DATABASE IF EXISTS %s"% DATABASE_NAME
+        statement = "DROP DATABASE IF EXISTS %s" % DATABASE_NAME
         parameters = [statement, None]
         return parameters
 
@@ -55,7 +57,7 @@ class Database:
         DB creation.
         """
         statement = "CREATE DATABASE IF NOT EXISTS %s CHARACTER\
-        SET 'utf8';"% DATABASE_NAME
+        SET 'utf8';" % DATABASE_NAME
         parameters = [statement, None]
         return parameters
 
@@ -64,7 +66,7 @@ class Database:
         """Method that sets the appropriate database to use for
         the program.
         """
-        statement = "USE %s"% DATABASE_NAME
+        statement = "USE %s" % DATABASE_NAME
         parameters = [statement, None]
         return parameters
 
@@ -73,8 +75,9 @@ class Database:
         by categories and products modules methods) request to OFF API.
         """
         try:
-            response_api = requests.get(parameters[0],\
-            headers=HEADER, params=parameters[1])
+            response_api = requests.get(
+                         parameters[0], headers=HEADER,
+                         params=parameters[1])
             self.source = response_api.json()
         except requests.ConnectionError:
             print("A connection error occured. Please try later or \

@@ -4,8 +4,9 @@
 from os import system
 
 from configuration.config import CATEGORIES_ENDPOINT, SELECTED_CATEGORIES,\
-MESSAGE_OOR
+    MESSAGE_OOR
 from model.category import Category
+
 
 class Categories:
     """Categories class.
@@ -84,7 +85,7 @@ class Categories:
         values = []
         for elt in self.database.source["tags"]:
             if elt["id"] in SELECTED_CATEGORIES and elt["name"] and\
-            elt["url"]:
+                    elt["url"]:
                 elt_string = (elt["id"], elt["name"], elt["url"])
                 values.append(elt_string)
             else:
@@ -100,8 +101,8 @@ class Categories:
         database.cursor.execute("SELECT * FROM category")
         selection = database.cursor.fetchall()
         for elt in selection:
-            category = Category(elt[0], elt[1],\
-            elt[2], elt[3])
+            category = Category(
+                     elt[0], elt[1], elt[2], elt[3])
             self.categories_list.append(category)
         database.close_cursor()
 
@@ -116,14 +117,15 @@ class Categories:
     def sort(self):
         """Method that sorts the categories' list per name.
         """
-        self.categories_list = sorted(self.categories_list, key=lambda \
-        category: category.name)
+        self.categories_list = sorted(
+                             self.categories_list, key=lambda
+                             category: category.name)
         self.show()
 
     def show(self):
         """Method that propose the categories' options to the user.
         """
-        print("CATEGORIES:")
+        print("Catégories:")
         rank = 1
         for elt in self.categories_list:
             elt.temp_rank = rank
@@ -134,8 +136,8 @@ class Categories:
     def ask(self):
         """Method that ask to select a category option to the user.
         """
-        self.question = input("Which catégorie you want to \
-check products for?\n")
+        self.question = input("Quelle catégorie de produits voulez-vous"
+                              " choisir?\n")
         system("cls")
         self.select()
 

@@ -1,10 +1,11 @@
-#-*-coding:utf-8 -*
+# -*-coding:utf-8 -*
 """Abandon module.
 """
 from os import system
 from sys import exit as leave_program
 
 from configuration.config import MESSAGE_YN
+
 
 class Abandon:
     """Abandon class.
@@ -27,8 +28,8 @@ class Abandon:
         """Method that ask to confirm program abandon
         to the user.
         """
-        self.question = input("Do you really want to quit "\
-        "the program (y/n)?\n")
+        self.question = input("Voulez-vous vraiment quitter "
+                              "le programme (o/n)?\n")
         system("cls")
         self.select()
 
@@ -38,8 +39,8 @@ class Abandon:
         """
         if self.tests.test_string(self.question):
             self.question = str(self.question)
-            if self.question in "yY":
-                leave_program("Goodbye")
+            if self.question in "oO":
+                leave_program("Au revoir!")
             elif self.question in "nN":
                 self.menu.start(self.engine)
                 system("cls")
