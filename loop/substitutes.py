@@ -1,10 +1,11 @@
-#-*-coding:utf-8 -*
+# -*-coding:utf-8 -*
 """Substitutes module.
 """
 from os import system
 
 from configuration.config import MESSAGE_OOR, MESSAGE_YN
 from model.substitute import Substitute
+
 
 class Substitutes:
     """Substitutes class.
@@ -87,8 +88,9 @@ class Substitutes:
         """
         self.selected_substitutes.clear()
         for elt in self.selected_products:
-            if elt.id_product != self.selected_product.id_product and\
-            elt.nutriscore_grade < self.selected_product.nutriscore_grade:
+            if elt.id_product != self.selected_product.id_product and \
+                    elt.nutriscore_grade < \
+                    self.selected_product.nutriscore_grade:
                 self.selected_substitutes.append(elt)
         self.sort()
 
@@ -97,35 +99,37 @@ class Substitutes:
         per substitutes name.
         """
         if self.selected_substitutes:
-            self.selected_substitutes = sorted(self.selected_substitutes,\
-            key=lambda product: product.nutriscore_grade)
+            self.selected_substitutes = sorted(
+                self.selected_substitutes,
+                key=lambda product: product.nutriscore_grade)
             self.show()
         else:
-            print("There is no healthier substitute for that product.")
+            print("Il n'y a pas de substitut plus sain pour ce produit.")
             system("pause")
             system("cls")
             self.menu.start(self.engine)
 
-
     def show(self):
         """Method that propose the substitutes' options to the user.
         """
-        print("You're looking for substitute for product \"",\
-        self.selected_product.product_name, "(",\
-        self.selected_product.nutriscore_grade.capitalize(), ")", "\"")
-        print("SUBSTITUTES (Nutriscore):")
+        print(
+            "Vous cherchez un substitut pour le produit \"",
+            self.selected_product.product_name, "(",
+            self.selected_product.nutriscore_grade.capitalize(), ")", "\"")
+        print("Substituts (Nutriscore):")
         rank = 1
         for elt in self.selected_substitutes:
             elt.temp_substitute_rank = rank
-            print(elt.temp_substitute_rank, " - ", elt.product_name, "(",\
-            elt.nutriscore_grade.capitalize(), ")")
+            print(
+                elt.temp_substitute_rank, " - ", elt.product_name, "(",
+                elt.nutriscore_grade.capitalize(), ")")
             rank += 1
         self.ask()
 
     def ask(self):
         """Method that ask to select a substitute option to the user.
         """
-        self.question = input("Which substitute you want to choose?\n")
+        self.question = input("Quel substituts choisissez vous?\n")
         system("cls")
         self.select()
 
@@ -138,12 +142,13 @@ class Substitutes:
             if self.question <= len(self.selected_substitutes):
                 for elt in self.selected_substitutes:
                     if elt.temp_substitute_rank == self.question:
-                        print("You\'ve choosen the following substitute:",\
-                        "\n   - Product name:", elt.product_name,\
-                        "\n   - Nutriscore value:",\
-                        elt.nutriscore_grade.capitalize(),\
-                        "\n   - Check product at:", elt.url,\
-                        "\n   - Sold in:", elt.stores)
+                        print(
+                            "Vous avez choisi le substitut suivant:",
+                            "\n   - Nom du produit:", elt.product_name,
+                            "\n   - Nutriscore:",
+                            elt.nutriscore_grade.capitalize(),
+                            "\n   - Infos disponibles sur:", elt.url,
+                            "\n   - Vendu chez:", elt.stores)
                         self.selected_substitute = elt
                         self.ask_registration()
             else:
@@ -156,7 +161,7 @@ class Substitutes:
     def ask_registration(self):
         """Method that ask to register substitutes to the user.
         """
-        self.question = input("Do you want to register that choice(y/n)?\n")
+        self.question = input("Voulez-vous enregistrer votre choix(o/n)?\n")
         system("cls")
         self.select_registration()
 
@@ -166,15 +171,15 @@ class Substitutes:
         """
         if self.tests.test_string(self.question):
             self.question = str(self.question)
-            if self.question in "yY":
+            if self.question in "oO":
                 self.registration = True
                 self.database.execute_one(self.insert_in_table())
                 self.engine.set_datas()
-                print("Substitute product has been registered!")
+                print("Le substitut a été enregistré!")
                 system("pause")
                 self.menu.start(self.engine)
             elif self.question in "nN":
-                print("Substitute product hasn't been registered")
+                print("Le substitut n\'a pas été enregistré.")
                 system("pause")
                 self.menu.start(self.engine)
             else:
@@ -189,9 +194,10 @@ class Substitutes:
         substitute insertion into DB.
         """
         if self.registration:
-            statement = "INSERT INTO substitute (product_id,\
-            substitute_id) VALUES (%s, %s)"
-            values = [self.selected_product.id_product,\
-            self.selected_substitute.id_product]
+            statement = "INSERT INTO substitute (\
+                product_id, substitute_id) VALUES (%s, %s)"
+            values = [
+                self.selected_product.id_product,
+                self.selected_substitute.id_product]
             parameters = [statement, values]
         return parameters

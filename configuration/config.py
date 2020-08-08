@@ -59,11 +59,12 @@ PRODUCTS_AMOUNT = 10
 # MANDATORY: Yes.
 # DEFAULT SETTINGS: "Only numbers included in above list can be used. Retry"
 # CUSTOM SETTINGS: Cannot be changed.
-MESSAGE_OOR = "Only numbers included in the list can be used. Retry"
+MESSAGE_OOR = "Seulement des nombres inclus dans la liste peuvent être \
+    utilisés. Ré-essayez"
 
 # DESCRIPTION: Message displayed when user input should
 # be "y"(yes) or "n" (no) and is not.
 # MANDATORY: Yes.
 # DEFAULT SETTINGS: "Only numbers included in above list can be used. Retry"
 # CUSTOM SETTINGS: Cannot be changed.
-MESSAGE_YN = "Answer must be y/n . Retry"
+MESSAGE_YN = "La réponse doit être o/n uniquement . Ré-essayez"

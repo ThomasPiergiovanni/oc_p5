@@ -151,7 +151,7 @@ class Products:
             "Vous cherchez un produit dans la catégorie \"",
             self.selected_category.name, "\"")
         print(
-            "PRODUCTS (Nutriscore):")
+            "Produit (Nutriscore):")
         rank = 1
         for elt in self.selected_products:
             elt.temp_product_rank = rank
@@ -165,7 +165,7 @@ class Products:
         """Method that ask to select a product option to the user.
         """
         self.question = input(
-            "Which product you want to find a substitute for?\n")
+            "Pour quel produit cherchez-vous un substitut?\n")
         system("cls")
         self.select()
 
