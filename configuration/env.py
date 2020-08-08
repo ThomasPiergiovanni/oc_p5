@@ -1,18 +1,18 @@
-#-*-coding:utf-8 -*
+# -*-coding:utf-8 -*
 """Program configuration file containing sensible information
 """
 # DESCRIPTION: The database name to use when connecting with the MySQL server.
 # MANDATORY: Yes.
 # DEFAULT SETTINGS: "HPA" (HealthyProduuctApp).
-# CUSTOM SETTINGS: Database name can be changed. Note that if a database using that name already
-# exists, it will be overwritten.
+# CUSTOM SETTINGS: Database name can be changed. Note that if
+# a database using that name already exists, it will be overwritten.
 DATABASE_NAME = "HPA"
 
 # DESCRIPTION: Host name i.e. The server on which MySQL is running.
 # MANDATORY: Yes.
 # DEFAULT SETTINGS: "localhost".
-# CUSTOM SETTINGS: Can be changed if different. Can be an IP address as well if the
-# MySQL server is not the local machine.
+# CUSTOM SETTINGS: Can be changed if different. Can be an IP
+# address as well if the MySQL server is not the local machine.
 # For more information, please check "https://dev.mysql.
 # com/doc/connector-python/en/".
 HOST = "localhost"
