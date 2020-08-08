@@ -41,7 +41,7 @@ class Tests:
                     product["product_name"], product["nutriscore_grade"],\
                     category.id_category, product["url"], product["stores"])
                     self.consistent_products.append(consistent_product)
-            except:
+            except KeyError:
                 pass
         self.test_duplicate()
 

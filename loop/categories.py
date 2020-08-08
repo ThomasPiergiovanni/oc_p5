@@ -1,9 +1,9 @@
-#-*-coding:utf-8 -*
+# -*-coding:utf-8 -*
 """Categories module.
 """
 from os import system
 
-from admin.config import CATEGORIES_ENDPOINT, SELECTED_CATEGORIES,\
+from configuration.config import CATEGORIES_ENDPOINT, SELECTED_CATEGORIES,\
 MESSAGE_OOR
 from model.category import Category
 
@@ -134,7 +134,7 @@ class Categories:
     def ask(self):
         """Method that ask to select a category option to the user.
         """
-        self.question = input("Which category you want to \
+        self.question = input("Which catégorie you want to \
 check products for?\n")
         system("cls")
         self.select()

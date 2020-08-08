@@ -1,4 +1,4 @@
-#-*-coding:utf-8 -*
+# -*-coding:utf-8 -*
 """Program configuration file
 """
 
@@ -30,8 +30,8 @@ PRODUCTS_ENDPOINT = "https://fr.openfoodfacts.org/cgi/search.pl"
 # its name and version number.
 # MANDATORY: Yes.
 # DEFAULT SETTINGS: {'User-Agent': 'HealthyProductApp - Web - Version 0.0'}.
-# CUSTOM SETTINGS: Iy ou modify this app this settings must be changed but keeping
-# the following structure {'User-Agent': 'your information'}.
+# CUSTOM SETTINGS: Iy ou modify this app this settings must be changed but
+# keeping the following structure {'User-Agent': 'your information'}.
 # For more information, please check "https://documenter.getpostman.
 # com/view/8470508/SVtN3Wzy?version=latest#intro".
 HEADER = {'User-Agent': 'HealthyProductApp - Web - Version 0.0'}
@@ -45,8 +45,8 @@ HEADER = {'User-Agent': 'HealthyProductApp - Web - Version 0.0'}
 # category "tags" "id".
 # For more information, please check "https://documenter.getpostman.com/view/
 # 8470508/SVtN3Wzy?version=latest#intro".
-SELECTED_CATEGORIES = ["en:snacks", "en:desserts", "en:breads",\
-"en:breakfast-cereals", "en:meals"]
+SELECTED_CATEGORIES = ["en:snacks", "en:desserts", "en:breads",
+                       "en:breakfast-cereals", "en:meals"]
 
 # DESCRIPTION: Amount of product to get from OFF API per product category.
 # MANDATORY: Yes.

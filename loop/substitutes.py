@@ -3,14 +3,13 @@
 """
 from os import system
 
-from admin.config import MESSAGE_OOR, MESSAGE_YN
+from configuration.config import MESSAGE_OOR, MESSAGE_YN
 from model.substitute import Substitute
 
 class Substitutes:
     """Substitutes class.
     """
     def __init__(self):
-        system("cls")
         self.engine = None
         self.database = None
         self.tests = None

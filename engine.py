@@ -1,7 +1,7 @@
-#-*-coding:utf-8 -*
+# -*-coding:utf-8 -*
 """Engine module.
 """
-from admin.tests import Tests
+from verification.tests import Tests
 from loop.abandon import Abandon
 from loop.database import Database
 from loop.categories import Categories
@@ -9,6 +9,7 @@ from loop.records import Records
 from loop.products import Products
 from loop.substitutes import Substitutes
 from loop.menu import Menu
+
 
 class Engine:
     """Engine class.
@@ -33,11 +34,11 @@ class Engine:
         """
         if self.database.verify(self.database.exists()):
             self.database.execute_one(self.database.use())
-            if self.database.verify(self.categories.exists()) and\
-            self.database.verify(self.products.exists()) and\
-            self.database.verify(self.substitutes.exists()):
+            if self.database.verify(self.categories.exists()) and \
+                    self.database.verify(self.products.exists()) and \
+                    self.database.verify(self.substitutes.exists()):
                 if self.database.verify(self.categories.populated()) and\
-                self.database.verify(self.products.populated()):
+                        self.database.verify(self.products.populated()):
                     self.set_datas()
                     self.start_loop()
                 else:
@@ -60,4 +61,3 @@ class Engine:
         """Method that start the Menu loop(i.e. the main loop).
         """
         self.menu.start(self)
-       

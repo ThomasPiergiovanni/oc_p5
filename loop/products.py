@@ -3,10 +3,10 @@
 """
 from os import system
 
-from admin.config import PRODUCTS_ENDPOINT, PRODUCTS_AMOUNT, MESSAGE_OOR
+from configuration.config import PRODUCTS_ENDPOINT, PRODUCTS_AMOUNT, MESSAGE_OOR
 from model.product import Product
 
-class Products():
+class Products:
     """Products class.
     """
     def __init__(self):

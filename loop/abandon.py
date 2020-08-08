@@ -4,7 +4,7 @@
 from os import system
 from sys import exit as leave_program
 
-from admin.config import MESSAGE_YN
+from configuration.config import MESSAGE_YN
 
 class Abandon:
     """Abandon class.
