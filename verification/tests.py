@@ -1,6 +1,8 @@
-#-*-coding:utf-8 -*
+# -*-coding:utf-8 -*
 """Tests module.
 """
+
+
 class Tests:
     """Tests class.
     """
@@ -18,7 +20,6 @@ class Tests:
             self.valid = False
         return self.valid
 
-
     def test_string(self, value):
         """Method that test if is an alphabetic character
         """
@@ -35,11 +36,12 @@ class Tests:
         self.consistent_products.clear()
         for product in products:
             try:
-                if product["id"] and product["product_name"] and\
-                    product["nutriscore_grade"] and product["url"]:
-                    consistent_product = (product["id"],\
-                    product["product_name"], product["nutriscore_grade"],\
-                    category.id_category, product["url"], product["stores"])
+                if product["id"] and product["product_name"] and \
+                        product["nutriscore_grade"] and product["url"]:
+                    consistent_product = (
+                        product["id"], product["product_name"],
+                        product["nutriscore_grade"], category.id_category,
+                        product["url"], product["stores"])
                     self.consistent_products.append(consistent_product)
             except KeyError:
                 pass
