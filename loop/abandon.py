@@ -28,8 +28,9 @@ class Abandon:
         """Method that ask to confirm program abandon
         to the user.
         """
-        self.question = input("Voulez-vous vraiment quitter "
-                              "le programme (o/n)?\n")
+        self.question = input(
+            "Voulez-vous vraiment quitter "
+            "le programme (o/n)?\n")
         system("cls")
         self.select()
 

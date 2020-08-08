@@ -33,20 +33,22 @@ class Menu:
         """Method that proposes the menus' options to the user.
         """
         system("cls")
-        print("Menu:"
-              "\n 1 - Chercher des produits alimentaires de substitution"
-              " plus sain."
-              "\n 2 - Regarder les substituts déja enregistrés."
-              "\n 3 - Ré-initialiser la base de données."
-              "\n 4 - Quitter le programme.")
+        print(
+            "Menu:"
+            "\n 1 - Chercher des produits alimentaires de substitution"
+            " plus sain."
+            "\n 2 - Regarder les substituts déja enregistrés."
+            "\n 3 - Ré-initialiser la base de données."
+            "\n 4 - Quitter le programme.")
         self.ask()
 
     def ask(self):
         """Method that ask to select a menu option to the user.
         """
-        self.question = input("Que voulez-vous faire"
-                              " (Entrez le nombre correspondant à votre"
-                              " choix)?\n")
+        self.question = input(
+            "Que voulez-vous faire"
+            " (Entrez le nombre correspondant à votre"
+            " choix)?\n")
         system("cls")
         self.select()
 

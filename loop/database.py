@@ -18,8 +18,8 @@ class Database:
         self.categories = None
         self.source = {}
         self.connection = mysql.connector.connect(
-                        host=HOST, user=USER,
-                        password=PASSWORD)
+            host=HOST, user=USER,
+            password=PASSWORD)
         self.cursor = None
         self.status = False
 
@@ -76,16 +76,18 @@ class Database:
         """
         try:
             response_api = requests.get(
-                         parameters[0], headers=HEADER,
-                         params=parameters[1])
+                parameters[0], headers=HEADER,
+                params=parameters[1])
             self.source = response_api.json()
         except requests.ConnectionError:
-            print("A connection error occured. Please try later or \
-contact APP owner")
+            print(
+                "Un problème de connection est apparu. Ré-essaayez plus"
+                " tard ou contacter le propriétaire de l'application")
             leave_program()
         except requests.Timeout:
-            print("A connectionn timeout error occured. Please try later or\
-contact APP owner")
+            print(
+                "Un problème de connection est apparu. Ré-essaayez plus"
+                " tard ou contacter le propriétaire de l'application")
             leave_program()
 
     def open_cursor(self):

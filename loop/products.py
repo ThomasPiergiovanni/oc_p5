@@ -1,10 +1,12 @@
-#-*-coding:utf-8 -*
+# -*-coding:utf-8 -*
 """Products module.
 """
 from os import system
 
-from configuration.config import PRODUCTS_ENDPOINT, PRODUCTS_AMOUNT, MESSAGE_OOR
+from configuration.config import PRODUCTS_ENDPOINT, PRODUCTS_AMOUNT,\
+        MESSAGE_OOR
 from model.product import Product
+
 
 class Products:
     """Products class.
@@ -62,9 +64,9 @@ class Products:
         """
         endpoint = PRODUCTS_ENDPOINT
         params = {
-            "action":"process", "tagtype_0": "categories",
-            "tag_contains_0":"contains", "tag_0":category.id_origin,
-            "json":1, "page":1, "page_size": PRODUCTS_AMOUNT}
+            "action": "process", "tagtype_0": "categories",
+            "tag_contains_0": "contains", "tag_0": category.id_origin,
+            "json": 1, "page": 1, "page_size": PRODUCTS_AMOUNT}
         parameters = [endpoint, params]
         return parameters
 
@@ -96,8 +98,8 @@ class Products:
         nutriscore_grade, category_id, url, stores)\
         VALUES (%s, %s, %s, %s, %s, %s)"
         values = []
-        self.tests.test_consistency(self.database.source["products"],\
-        category)
+        self.tests.test_consistency(
+            self.database.source["products"], category)
         values = self.tests.unique_products
         parameters = [statement, values]
         return parameters
@@ -110,8 +112,8 @@ class Products:
         database.cursor.execute("SELECT * FROM product")
         selection = database.cursor.fetchall()
         for elt in selection:
-            product = Product(elt[0], elt[1], elt[2], elt[3], elt[4],\
-            elt[5], elt[6])
+            product = Product(
+                elt[0], elt[1], elt[2], elt[3], elt[4], elt[5], elt[6])
             self.products_list.append(product)
         database.close_cursor()
 
@@ -138,29 +140,32 @@ class Products:
         """Method that sorts the wanted category products
         per products name.
         """
-        self.selected_products = sorted(self.selected_products,\
-        key=lambda product: product.product_name)
+        self.selected_products = sorted(
+            self.selected_products, key=lambda product: product.product_name)
         self.show()
 
     def show(self):
         """Method that propose the products' options to the user.
         """
-        print("You're looking for products in category \"",\
-        self.selected_category.name, "\"")
-        print("PRODUCTS (Nutriscore):")
+        print(
+            "Vous cherchez un produit dans la catégorie \"",
+            self.selected_category.name, "\"")
+        print(
+            "PRODUCTS (Nutriscore):")
         rank = 1
         for elt in self.selected_products:
             elt.temp_product_rank = rank
-            print(elt.temp_product_rank, " - ", elt.product_name, "(",\
-            elt.nutriscore_grade.capitalize(), ")")
+            print(
+                elt.temp_product_rank, " - ", elt.product_name, "(",
+                elt.nutriscore_grade.capitalize(), ")")
             rank += 1
         self.ask()
 
     def ask(self):
         """Method that ask to select a product option to the user.
         """
-        self.question = input("Which product you want to find a \
-substitute for?\n")
+        self.question = input(
+            "Which product you want to find a substitute for?\n")
         system("cls")
         self.select()
 

@@ -81,7 +81,7 @@ class Categories:
         categories insertion into DB.
         """
         statement = "INSERT INTO category(id_origin, name,\
-        url) VALUES(%s, %s, %s)"
+            url) VALUES(%s, %s, %s)"
         values = []
         for elt in self.database.source["tags"]:
             if elt["id"] in SELECTED_CATEGORIES and elt["name"] and\
@@ -102,7 +102,7 @@ class Categories:
         selection = database.cursor.fetchall()
         for elt in selection:
             category = Category(
-                     elt[0], elt[1], elt[2], elt[3])
+                elt[0], elt[1], elt[2], elt[3])
             self.categories_list.append(category)
         database.close_cursor()
 
@@ -118,8 +118,7 @@ class Categories:
         """Method that sorts the categories' list per name.
         """
         self.categories_list = sorted(
-                             self.categories_list, key=lambda
-                             category: category.name)
+            self.categories_list, key=lambda category: category.name)
         self.show()
 
     def show(self):
@@ -136,8 +135,9 @@ class Categories:
     def ask(self):
         """Method that ask to select a category option to the user.
         """
-        self.question = input("Quelle catégorie de produits voulez-vous"
-                              " choisir?\n")
+        self.question = input(
+            "Quelle catégorie de produits voulez-vous"
+            " choisir?\n")
         system("cls")
         self.select()
 
