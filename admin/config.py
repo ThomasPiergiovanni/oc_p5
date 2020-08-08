@@ -53,7 +53,7 @@ SELECTED_CATEGORIES = ["en:snacks", "en:desserts", "en:breads",\
 # DEFAULT SETTINGS: 1000.
 # CUSTOM SETTINGS: Can be changed but should not exceed 2000 to avoid
 # upload failure.
-PRODUCTS_AMOUNT = 200
+PRODUCTS_AMOUNT = 10
 
 # DESCRIPTION: Message displayed when user input number is out of range.
 # MANDATORY: Yes.
