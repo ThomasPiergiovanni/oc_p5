@@ -1,6 +1,7 @@
 # -*-coding:utf-8 -*
 """Tests module.
 """
+from configuration.config import SELECTED_CATEGORIES
 
 
 class Tests:
@@ -8,6 +9,7 @@ class Tests:
     """
     def __init__(self):
         self.valid = False
+        self.consistent_categories = []
         self.consistent_products = []
         self.unique_products = []
 
@@ -21,7 +23,7 @@ class Tests:
         return self.valid
 
     def test_string(self, value):
-        """Method that test if is an alphabetic character
+        """Method that test if input is an alphabetic character
         """
         if value.isalpha():
             self.valid = True
@@ -29,7 +31,22 @@ class Tests:
             self.valid = False
         return self.valid
 
-    def test_consistency(self, products, category):
+    def test_categories_consistency(self, categories):
+        """Method that filter-in only OFF API categories that got values for
+        id, name and url attributes.
+        """
+        self.consistent_categories.clear()
+        for category in categories:
+            try:
+                if category["id"] in SELECTED_CATEGORIES and \
+                        category["name"] and category["url"]:
+                    valid_category = (category["id"], category["name"],
+                        category["url"])
+                    self.consistent_categories.append(valid_category)
+            except KeyError:
+                pass
+
+    def test_products_consistency(self, products, category):
         """Method that filter-in only OFF API products that got values for
         id, product_name, nutriscore_grade and url attributes.
         """
@@ -45,9 +62,9 @@ class Tests:
                     self.consistent_products.append(consistent_product)
             except KeyError:
                 pass
-        self.test_duplicate()
+        self.test_products_duplicate()
 
-    def test_duplicate(self):
+    def test_products_duplicate(self):
         """Method that filter-in only OFF API products that are
         unique per name and id_category.
         """

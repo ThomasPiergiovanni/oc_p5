@@ -54,7 +54,7 @@ class Engine:
                         self.connection_manager.verify(
                             self.products.select_all()):
                     self.set_datas_list()
-                    self.start_views()
+                    self.menu.start(self)
                 else:
                     self.reinitialize_database()
             else:
@@ -77,11 +77,16 @@ class Engine:
         self.connection_manager.execute_one(
             self.categories.create_table())
         self.connection_manager.download(
-            self, self.categories.get_source())
+            self,
+            self.categories.get_source())
+        self.tests.test_categories_consistency(
+             self.categories.source["tags"])
         self.connection_manager.execute_many(
-            self.categories.insert_in_table())
+            [self.categories.insert_in_table(),
+            self.tests.consistent_categories])
         self.connection_manager.set_categories_list(
-            self, self.categories.select_all())
+            self,
+            self.categories.select_all())
         self.reinitialize_products()
 
     def reinitialize_products(self):
@@ -92,16 +97,15 @@ class Engine:
             self.products.create_table())
         for category in self.categories.categories_list:
             self.connection_manager.download(
-                self, self.products.get_source(category))
-            self.tests.test_consistency(
-                self.products.source["products"], category)
-            self.add_products_in_db()
+                self,
+                self.products.get_source(category))
+            self.tests.test_products_consistency(
+                self.products.source["products"],
+                category)
+            self.connection_manager.execute_many(
+                [self.products.insert_in_table(),
+                self.tests.unique_products])
         self.reinitialize_substitutes()
-
-    def add_products_in_db(self):
-        parameters = [
-            self.products.insert_in_table(), self.tests.unique_products]
-        self.connection_manager.execute_many(parameters)
 
     def reinitialize_substitutes(self):
         """Method that resets substitutes into the database
@@ -148,8 +152,3 @@ class Engine:
             record = Record(
                 self.category[0], self.product[0], self.substitute[0])
             self.records.records_list.append(record)
-
-    def start_views(self):
-        """Method that start the Menu loop(i.e. the main loop).
-        """
-        self.menu.start(self)

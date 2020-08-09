@@ -1,8 +1,7 @@
 # -*-coding:utf-8 -*
 """Categories module.
 """
-from configuration.config import CATEGORIES_ENDPOINT, SELECTED_CATEGORIES,\
-    MESSAGE_OOR
+from configuration.config import CATEGORIES_ENDPOINT
 
 
 class Categories:
@@ -55,19 +54,12 @@ class Categories:
         parameters = [statement, None]
         return parameters
 
-    def insert_in_table(self):
+    @classmethod
+    def insert_in_table(cls):
         """Method that provides the sql statement for
         categories insertion into DB.
         """
         statement = "INSERT INTO category(id_origin, name,\
             url) VALUES(%s, %s, %s)"
-        values = []
-        for elt in self.source["tags"]:
-            if elt["id"] in SELECTED_CATEGORIES and elt["name"] and\
-                    elt["url"]:
-                elt_string = (elt["id"], elt["name"], elt["url"])
-                values.append(elt_string)
-            else:
-                pass
-        parameters = [statement, values]
+        parameters = statement
         return parameters

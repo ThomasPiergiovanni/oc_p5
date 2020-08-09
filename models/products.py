@@ -1,8 +1,7 @@
 # -*-coding:utf-8 -*
 """Products module.
 """
-from configuration.config import PRODUCTS_ENDPOINT, PRODUCTS_AMOUNT,\
-        MESSAGE_OOR
+from configuration.config import PRODUCTS_ENDPOINT, PRODUCTS_AMOUNT
 
 
 class Products:
