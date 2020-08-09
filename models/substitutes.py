@@ -1,13 +1,12 @@
 # -*-coding:utf-8 -*
 """Substitutes module.
 """
-from configuration.config import MESSAGE_OOR, MESSAGE_YN
 
 
 class Substitutes:
     """Substitutes class.
     """
-    def __init__(self): 
+    def __init__(self):
         self.substitutes_list = []
 
     @classmethod
@@ -41,7 +40,7 @@ class Substitutes:
             )ENGINE=INNODB;"
         parameters = [statement, None]
         return parameters
-        
+
     @classmethod
     def insert_in_table(cls):
         """Method that provides the sql statement for

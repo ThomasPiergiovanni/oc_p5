@@ -3,6 +3,7 @@
 """
 from configuration.env import DATABASE_NAME
 
+
 class Database:
     """Database class.
     """

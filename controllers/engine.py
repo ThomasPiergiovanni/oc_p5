@@ -11,7 +11,6 @@ from models.substitutes import Substitutes
 from verification.tests import Tests
 from views.abandon import Abandon
 from views.menu import Menu
-from views.abandon import Abandon
 from views.register import Register
 from views.research import Research
 
@@ -21,7 +20,6 @@ class Engine:
     """
     def __init__(self):
         self.connection_manager = ConnectionManager()
-        self.abandon = Abandon()
         self.database = Database()
         self.records = Records()
         self.categories = Categories()
@@ -72,7 +70,9 @@ class Engine:
 
     def reinitialize_categories(self):
         """Method that resets categories into the database
-        (i.e. download data, create table and insert data into table).
+        (i.e. download data, create table and insert data into table)
+        It also resets the categories' list for next step product
+        reinitialization.
         """
         self.connection_manager.execute_one(
             self.categories.create_table())
@@ -80,10 +80,11 @@ class Engine:
             self,
             self.categories.get_source())
         self.tests.test_categories_consistency(
-             self.categories.source["tags"])
+            self.categories.source["tags"])
         self.connection_manager.execute_many(
-            [self.categories.insert_in_table(),
-            self.tests.consistent_categories])
+            [
+                self.categories.insert_in_table(),
+                self.tests.consistent_categories])
         self.connection_manager.set_categories_list(
             self,
             self.categories.select_all())
@@ -103,14 +104,16 @@ class Engine:
                 self.products.source["products"],
                 category)
             self.connection_manager.execute_many(
-                [self.products.insert_in_table(),
-                self.tests.unique_products])
+                [
+                    self.products.insert_in_table(),
+                    self.tests.unique_products])
         self.reinitialize_substitutes()
 
     def reinitialize_substitutes(self):
-        """Method that resets substitutes into the database
-        (i.e. create table) and re-set all datas (i.e. reset
-        all datas into their respective list).
+        """Method that resets substitute table into the database
+        (i.e. create table) and finally conclude the reinitilaization
+        loop by re-settings all datas (i.e. reset all datas into their
+        respective list).
         """
         self.connection_manager.execute_one(
             self.substitutes.create_table())
@@ -118,6 +121,10 @@ class Engine:
         self.menu.start(self)
 
     def add_substitute_in_db(self, product_id, substitute_id):
+        """Method that add substitute into the database
+        (i.e. insert into table) and re-set all datas (i.e. reset
+        all datas into their respective list).
+        """
         parameters = [
             self.substitutes.insert_in_table(), [product_id, substitute_id]]
         self.connection_manager.execute_one(parameters)
@@ -140,15 +147,15 @@ class Engine:
         """
         self.records.records_list.clear()
         for substitute in self.substitutes.substitutes_list:
-            self.product = [
+            product = [
                 product for product in self.products.products_list
                 if product.id_product == substitute.product_id]
-            self.substitute = [
+            substitute = [
                 product for product in self.products.products_list
                 if product.id_product == substitute.substitute_id]
-            self.category = [
+            category = [
                 category for category in self.categories.categories_list
-                if category.id_category == self.product[0].category_id]
+                if category.id_category == product[0].category_id]
             record = Record(
-                self.category[0], self.product[0], self.substitute[0])
+                category[0], product[0], substitute[0])
             self.records.records_list.append(record)

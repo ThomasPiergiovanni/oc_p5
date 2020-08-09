@@ -7,10 +7,9 @@ import requests
 import mysql.connector
 
 from configuration.config import CATEGORIES_ENDPOINT, HEADER
-from configuration.env import HOST, USER, PASSWORD, DATABASE_NAME
+from configuration.env import HOST, USER, PASSWORD
 from models.mapper.category import Category
 from models.mapper.product import Product
-from models.mapper.record import Record
 from models.mapper.substitute import Substitute
 
 
@@ -97,6 +96,8 @@ class ConnectionManager:
         return self.status
 
     def set_categories_list(self, engine, parameters):
+        """Method that create the catgories' list.
+        """
         self.engine = engine
         self.categories = engine.categories
         self.categories.categories_list.clear()

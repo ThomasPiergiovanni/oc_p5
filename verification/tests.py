@@ -40,8 +40,8 @@ class Tests:
             try:
                 if category["id"] in SELECTED_CATEGORIES and \
                         category["name"] and category["url"]:
-                    valid_category = (category["id"], category["name"],
-                        category["url"])
+                    valid_category = (
+                        category["id"], category["name"], category["url"])
                     self.consistent_categories.append(valid_category)
             except KeyError:
                 pass

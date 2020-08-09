@@ -17,7 +17,7 @@ class Register:
         """
         self.engine = engine
         self.menu = engine.menu
-        self.records_list = engine.records.records_list 
+        self.records_list = engine.records.records_list
         self.show()
 
     def show(self):

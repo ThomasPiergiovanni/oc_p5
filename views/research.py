@@ -14,6 +14,7 @@ class Research:
         self.connection_manager = None
         self.tests = None
         self.products = None
+        self.substitutes = None
         self.categories_list = []
         self.selected_category = None
         self.products_list = []
