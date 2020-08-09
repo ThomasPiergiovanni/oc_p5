@@ -12,9 +12,9 @@ class Menu:
     def __init__(self):
         self.engine = None
         self.tests = None
-        self.database = None
-        self.categories = None
-        self.records = None
+        self.research = None
+        self.connection_manager = None
+        self.register = None
         self.abandon = None
         self.question = None
 
@@ -23,16 +23,15 @@ class Menu:
         """
         self.engine = engine
         self.tests = engine.tests
-        self.database = engine.database
-        self.categories = engine.categories
-        self.records = engine.records
+        self.research = engine.research
+        self.connection_manager = engine.connection_manager
+        self.register = engine.register
         self.abandon = engine.abandon
         self.show()
 
     def show(self):
         """Method that proposes the menus' options to the user.
         """
-        system("cls")
         print(
             "Menu:"
             "\n 1 - Chercher des produits alimentaires de substitution"
@@ -58,11 +57,11 @@ class Menu:
         if self.tests.test_integer(self.question):
             self.question = int(self.question)
             if self.question == 1:
-                self.categories.research(self.engine)
+                self.research.start_research(self.engine)
             elif self.question == 2:
-                self.records.watch(self.engine)
+                self.register.watch(self.engine)
             elif self.question == 3:
-                self.database.reset(self.engine)
+                self.engine.reinitialize_database()
             elif self.question == 4:
                 self.abandon.start(self.engine)
             else:

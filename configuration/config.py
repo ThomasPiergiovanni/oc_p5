@@ -60,7 +60,7 @@ PRODUCTS_AMOUNT = 10
 # DEFAULT SETTINGS: "Only numbers included in above list can be used. Retry"
 # CUSTOM SETTINGS: Cannot be changed.
 MESSAGE_OOR = "Seulement des nombres inclus dans la liste peuvent être \
-    utilisés. Ré-essayez"
+utilisés. Ré-essayez"
 
 # DESCRIPTION: Message displayed when user input should
 # be "y"(yes) or "n" (no) and is not.

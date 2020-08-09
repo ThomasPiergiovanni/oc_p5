@@ -1,7 +1,7 @@
 # -*-coding:utf-8 -*
 """Main module.
 """
-from engine import Engine
+from controllers.engine import Engine
 
 
 def main():
