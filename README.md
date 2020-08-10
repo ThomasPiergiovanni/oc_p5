@@ -32,17 +32,24 @@ Documentation is also available on the [python official website](https://www.pyt
 Make sure to have MySQL server installed. If not you can download it from the [MySQL official website](https://www.mysql.com/).
 
 ### 3.5. MySQL server start.
-Make sure to have MySQL server running. Please refer to the [MySQL official website](https://www.mysql.com/) for this.
+Make sure to have MySQL server running. Window users can check ths using the following statement in their bash:
+> NET START mysql80.
+
+Please refer to the [MySQL official website](https://www.mysql.com/) for more information.
 
 ### 3.6. Application mandatory settings.
-1. Rename**env.py.example.txt** file into **env.py**
-2. Change all constants with the appropriate value into **env.py** (e.g. the appropriate DB_NAME, DB_USER_NAME, etc.).  
-For more information details on application setting, check *4.1. env.py* section first. bellow.
+1. Rename **env.py.example** file into **env.py**.
+2. Change all constants with the appropriate value into **env.py**:
+    * DATABASE_NAME = "my_db_name"
+    * HOST = "my_host"
+    * etc.  
+For more information details on application setting, check *4.1. env.py* section bellow.
 
 ### 3.7. Use "HealthyProductApp".
 The program is now ready to use. You can start it using **main.py** with your bash.
 > python3 main.py
 
+For more information on the application use, check *5. Users' guide* section bellow.
 
 ### 3.8. Deactivate the virtual environment.
 Once you're done using the program, you should leave the virtual environment. Simply type the following statement in your bash.
@@ -57,64 +64,73 @@ If you want to uninstall the program, simply delete the complete repository form
 * Changing settings can be done to the following constants in **program/admin/config.py** file.
 
 ### 4.1. env.py.
+Located in **configuration/** package.
 
 #### 4.1.1. DATABASE_NAME.
-**DESCRIPTION**: The database name to use when connecting with the MySQL server.  
-**MANDATORY**: Yes.  
-**DEFAULT SETTINGS**: "HPA" (HealthyProductApp).  
-**CUSTOM SETTINGS**: Can be changed. Note that if a database using that name already exists, it will be overwritten.
+DESCRIPTION: The database name to use when connecting with the MySQL server.
+MANDATORY: Yes.
+DEFAULT SETTINGS: "db_name".
+CUSTOM SETTINGS: Database name can be changed. Note that if a database using that name already exists, it will be overwritten.
 
 #### 4.1.2. HOST.
-**DESCRIPTION**: Host name i.e. The server on which MySQL is running.  
-**MANDATORY**: Yes.  
-**DEFAULT SETTINGS**: "localhost".  
-**CUSTOM SETTINGS**: Can be changed if different. Can be an IP address as well if the MySQL server is not the local machine. For more information, please check [MySQL connector API official website](https://dev.mysql.com/doc/connector-python/en/).
+DESCRIPTION: Host name i.e. The server on which MySQL is running.
+MANDATORY: Yes.
+DEFAULT SETTINGS: "db_host".
+CUSTOM SETTINGS: Can be changed if different. Can be an IP address as well if the MySQL server is not the local machine.  
+For more information, please check "https://dev.mysql.com/doc/connector-python/en/".
 
 #### 4.1.3. USER.
-**DESCRIPTION**: The user name used to authenticate with the MySQL server.  
-**MANDATORY**: Yes.  
-**DEFAULT SETTINGS**: "root".  
-**CUSTOM SETTINGS**: User must have at least the following MySQL privileges CREATE, DROP, EXECUTE, INSERT, REFERENCES, SELECT, and SHOW DATABASE. For more information, please check [MySQL connector API official website](https://dev.mysql.com/doc/connector-python/en/). For more information specifically on privileges, please check [MySQL official website](https://www.mysql.com/).
+DESCRIPTION: The user name used to authenticate with the MySQL server.
+MANDATORY: Yes.
+DEFAULT SETTINGS: "db_user".
+CUSTOM SETTINGS: User must have at least the following MySQL privileges CREATE, DROP, EXECUTE, INSERT, REFERENCES, SELECT, and SHOW DATABASE.
+For more information, please check "https://dev.mysql.com/doc/connector-python/en/".  
+For more information specifically on privileges, please check
+"https://dev.mysql.com/doc/refman/5.7/en/grant.html#grant-privileges".
 
 #### 4.1.4. PASSWORD.
-**DESCRIPTION**: The password to authenticate the user with the MySQL server.  
-**MANDATORY**: Yes.  
-**DEFAULT SETTINGS**: root.  
-**CUSTOM SETTINGS**: Must be the password of the user's corresponding account.
-For more information, please check [MySQL connector API official website](https://dev.mysql.com/doc/connector-python/en/)
+DESCRIPTION: The password to authenticate the user with the MySQL server.
+MANDATORY: Yes.
+DEFAULT SETTINGS: "db_password".
+CUSTOM SETTINGS: Must be the password of the user corresponding account.   For more information, please check "https://dev.mysql.com/doc/connector-python/en/".
 
 ### 4.2. config.py.
+Located in **configuration/** package.
 
 #### 4.2.1. CATGEORIES_ENDPOINT.
-**DESCRIPTION**: OpenFoodFacts (OFF) API categories list endpoint. It returns the categories list per country.  
-**MANDATORY**: Yes.  
-**DEFAULT SETTINGS**: "ht<span>tps://</span>fr.openfoodfacts.org/categories.json".  
-**CUSTOM SETTINGS**: To use the application with product references from another country than France, use the appropriate ISO-3166-1 Alpha 2 code and replace it in the endpoint (e.g. "ht<span>tps://</span>es.openfoodfacts.org/categories.json" for Spain). For more information, please check [OFF API official documentation](https://documenter.getpostman.com/view/8470508/SVtN3Wzy?version=latest#intro).
+DESCRIPTION: OpenFoodFacts (OFF) API categories list endpoint. It returns the categories list per country.  
+MANDATORY: Yes.  
+DEFAULT SETTINGS: "ht<span>tps://</span>fr.openfoodfacts.org/categories.json".  
+CUSTOM SETTINGS: To use the application with product references from another country than France, use the appropriate ISO-3166-1 Alpha 2 code and replace it in the endpoint (e.g. "ht<span>tps://</span>es.openfoodfacts.org/categories.json" for Spain).  
+For more information, please check [OFF API official documentation](https://documenter.getpostman.com/view/8470508/SVtN3Wzy?version=latest#intro).
 
 #### 4.2.2. PRODUCTS_ENDPOINT.
-**DESCRIPTION**: OFF API products research functionality endpoint. It returns the product research functionality per country.  
-**MANDATORY**: Yes.  
-**DEFAULT SETTINGS**: "ht<span>tps://</span>fr.openfoodfacts.org/cgi/search.pl".  
-**CUSTOM SETTINGS**: To use the application with product references from another country than France, use the appropriate ISO-3166-1 Alpha 2 code and replace it in the endpoint (e.g. "ht<span>tps://</span>es.openfoodfacts.org/cgi/search.pl"). For more information, please check [OFF API official documentation](https://documenter.getpostman.com/view/8470508/SVtN3Wzy?version=latest#intro).
+DESCRIPTION: OFF API products research functionality endpoint. It returns the product research functionality per country.  
+MANDATORY: Yes.  
+DEFAULT SETTINGS: "ht<span>tps://</span>fr.openfoodfacts.org/cgi/search.pl".  
+CUSTOM SETTINGS: To use the application with product references from another country than France, use the appropriate ISO-3166-1 Alpha 2 code and replace it in the endpoint (e.g. "ht<span>tps://</span>es.openfoodfacts.org/cgi/search.pl").  
+For more information, please check [OFF API official documentation](https://documenter.getpostman.com/view/8470508/SVtN3Wzy?version=latest#intro).
 
 #### 4.2.3. HEADER.
-**DESCRIPTION**: Headers, i.e. the application general information, among other, its name and version number.  
-**MANDATORY**: Yes.  
-**DEFAULT SETTINGS**: {'User-Agent': 'HealthyProductApp - Web - Version 0.0'}.  
-**CUSTOM SETTINGS**: If you modify this app this settings must be changed but keeping the following structure {'User-Agent': 'your information'}. For more information, please check [OFF API official documentation](https://documenter.getpostman.com/view/8470508/SVtN3Wzy?version=latest#intro).
+DESCRIPTION: Headers, i.e. the application general information, among other, its name and version number.  
+MANDATORY: Yes.  
+DEFAULT SETTINGS: {'User-Agent': 'HealthyProductApp - Web - Version 0.0'}.  
+CUSTOM SETTINGS: If you modify this app this settings must be changed but keeping the following structure {'User-Agent': 'your information'}.  
+For more information, please check [OFF API official documentation](https://documenter.getpostman.com/view/8470508/SVtN3Wzy?version=latest#intro).
 
 #### 4.2.4. SELECTED_CATEGORIES.
-**DESCRIPTION**: OFF API products categories type used in the application.  
-**MANDATORY**: Yes.  
-**DEFAULT SETTINGS**: ["en:snacks", "en:desserts", "en:breads", "en:breakfast-cereals", "en:meals"].  
-**CUSTOM SETTINGS**: Categories can be changed. Available values to use can be found on  "https://world.openfoodfacts.org/categories.json" in the
-category "tags"/"id". For more information, please check [OFF API official documentation](https://documenter.getpostman.com/view/8470508/SVtN3Wzy?version=latest#intro).
+DESCRIPTION: OFF API products categories type used in the application.  
+MANDATORY: Yes.  
+DEFAULT SETTINGS: ["en:snacks", "en:desserts", "en:breads", "en:breakfast-cereals", "en:meals"].  
+CUSTOM SETTINGS: Categories can be changed. Available values to use can be found on  "https://world.openfoodfacts.org/categories.json" in the
+category "tags"/"id".  
+For more information, please check [OFF API official documentation](https://documenter.getpostman.com/view/8470508/SVtN3Wzy?version=latest#intro).
 
 #### 4.2.5. PRODUCTS_AMOUNT.
-**DESCRIPTION**: Amount of product to get from OFF API per product category.  
-**MANDATORY**: Yes.  
-**DEFAULT SETTINGS**: 1000.  
-**CUSTOM SETTINGS**: Can be changed but should not exceed 2000 to avoid upload failure.
+DESCRIPTION: Amount of product to get from OFF API per product category.  
+MANDATORY: Yes.  
+DEFAULT SETTINGS: 1000.  
+CUSTOM SETTINGS: Can be changed but should not exceed 2000 to avoid upload failure.
 
 ## 5. User guide.
 
