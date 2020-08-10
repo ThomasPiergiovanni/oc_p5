@@ -29,7 +29,7 @@ Make sure to have MySQL server installed.
 If not you can download it from the [MySQL official website](https://www.mysql.com/).  
 
 Once installed, make sure to have MySQL server running. Window users can check ths using the following statement in their bash:
-> NET START mysql80.
+> NET START mysql80
 
 Please refer to the [MySQL official website](https://www.mysql.com/) for more information.
 
