@@ -43,6 +43,7 @@ Please refer to the [MySQL official website](https://www.mysql.com/) for more in
     * DATABASE_NAME = "my_db_name"
     * HOST = "my_host"
     * etc.  
+
 For more information details on application setting, check *4.1. env.py* section bellow.
 
 ### 3.7. Use "HealthyProductApp".
