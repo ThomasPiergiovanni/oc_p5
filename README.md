@@ -1,4 +1,4 @@
-# P5 - Utilisez les données publiques d'Open Food Facts
+# P5 - Utilisez les données publiques d'Open Food Facts!
 
 ## 1. Introduction.
 This program is named **"HealthyProductApp"**. It consists of offering to "Pur Beurre", a French restaurant in Montmartre Paris, a solution for finding healthier food substitutes to products one is usually consuming. After having selected the product the user wants to find substitute for, the program presents to him/her a list of healthier substitutes. The user can then select a substitute and decide to record/register its choice for later review.  
@@ -6,7 +6,7 @@ Note that this program is designed for "Pur Beurre" users and its language is th
 
 ## 2. Prerequisite.
 This program requires the following components:
-* python 3
+* Python 3
 * MySQL server 8.0
 * mysql-connector-python==8.0.20
 * requests==2.24.0
@@ -168,7 +168,7 @@ This program provide the following functionalities:
     * 3 - Reinitiate the database.
     * 4 - Quit the program.
 * Use keyboard numbers to make your choice.
-* Use keyboards "y"/ "n" letters to confirm some decisions.
+* Use keyboards "o"/ "n" letters (french for yes/no) to confirm some decisions.
 
 
 *NB: the first time the program is used, the system will proceed to data upload and database initialization*.
