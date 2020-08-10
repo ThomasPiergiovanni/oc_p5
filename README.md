@@ -26,7 +26,8 @@ If not, you can download it and install it from the [python official website](ht
 Make sure to have MySQL server installed.
 > mysql --version
 
-If not you can download it from the [MySQL official website](https://www.mysql.com/).    
+If not you can download it from the [MySQL official website](https://www.mysql.com/).  
+
 Once installed, make sure to have MySQL server running. Window users can check ths using the following statement in their bash:
 > NET START mysql80.
 
