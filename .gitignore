@@ -8,8 +8,9 @@ configuration/env.py
 99_other/
 
 #  pychache repos
-# __pycache__/
-# configuration/__pycache__/
-# controllers/__pycache__/
-# models/__pycache__/
-# views/__pycache__/
+__pycache__/
+configuration/__pycache__/
+controllers/__pycache__/
+models/__pycache__/
+models/mapper/__pycache__/
+views/__pycache__/
