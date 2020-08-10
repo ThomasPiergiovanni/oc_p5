@@ -17,10 +17,16 @@ This program requires the following components:
 Download/clone this repository on your system, at the location that suits you best. 
 
 ### 3.2. Python 3 install.
-Make sure you have Python 3 installed. If not, you can download it and install it from the [python official website](https://www.python.org/). You will find the necessary documentation there.
+Make sure you have Python 3 installed.  
+> python3 --version
+
+If not, you can download it and install it from the [python official website](https://www.python.org/). You will find the necessary documentation there.
 
 ### 3.3. MySQL server install and start.
-Make sure to have MySQL server installed. If not you can download it from the [MySQL official website](https://www.mysql.com/).  
+Make sure to have MySQL server installed.
+> mysql --version
+
+If not you can download it from the [MySQL official website](https://www.mysql.com/).    
 Once installed, make sure to have MySQL server running. Window users can check ths using the following statement in their bash:
 > NET START mysql80.
 
