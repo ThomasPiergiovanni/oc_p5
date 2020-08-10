@@ -7,8 +7,9 @@ Note that this program is designed for "Pur Beurre" users and its language is th
 ## 2. Prerequisite.
 This program requires the following components:
 * python 3
-* requests==2.24.0
+* MySQL server 8.0
 * mysql-connector-python==8.0.20
+* requests==2.24.0
 
 ## 3. Installation.
 
@@ -18,7 +19,14 @@ Download/clone this repository on your system, at the location that suits you be
 ### 3.2. Python 3 install.
 Make sure you have Python 3 installed. If not, you can download it and install it from the [python official website](https://www.python.org/). You will find the necessary documentation there.
 
-### 3.3. Create & activate a virtual environment (recommended).
+### 3.3. MySQL server install & is runs.
+Make sure to have MySQL server installed. If not you can download it from the [MySQL official website](https://www.mysql.com/).  
+Once installed, make sure to have MySQL server running. Window users can check ths using the following statement in their bash:
+> NET START mysql80.
+
+Please refer to the [MySQL official website](https://www.mysql.com/) for more information.
+
+### 3.4. Create & activate a virtual environment (recommended).
 In order to avoid system conflicts:
 
 1. Go into your local repository and create a virtual environment using venv package.
@@ -29,14 +37,14 @@ In order to avoid system conflicts:
 
 Documentation is also available on the [python official website](https://www.python.org/).
 
-### 3.4. MySQL server install.
-Make sure to have MySQL server installed. If not you can download it from the [MySQL official website](https://www.mysql.com/).
+### 3.5. MySQL Connector and Requests install.
+Install **MySQL connector** and **Requests** on you virtual environement using the requirements.txt file.
 
-### 3.5. MySQL server start.
-Make sure to have MySQL server running. Window users can check ths using the following statement in their bash:
-> NET START mysql80.
+    pip install -r requirements.txt
 
-Please refer to the [MySQL official website](https://www.mysql.com/) for more information.
+Please refer to the [MySQL Connectors and API official website](https://dev.mysql.com/doc/index-connectors.html) for more information.  
+
+Please refer to the [Requests certified documentation](https://requests.readthedocs.io/en/master/) for more information.  
 
 ### 3.6. Application mandatory settings.
 1. Rename **configuration/env.py.example** file into **configuration/env.py**.

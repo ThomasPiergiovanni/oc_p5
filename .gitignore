@@ -1,3 +1,4 @@
+env/
 99_other/
-admin/env.py
+configuration/env.py
 __pycache__/
