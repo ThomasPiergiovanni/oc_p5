@@ -1,7 +1,8 @@
 # P5 - Utilisez les données publiques d'Open Food Facts
 
 ## 1. Introduction.
-This program is named **"HealthyProductApp"**. It consists of offering to "Pur Beurre", a French restaurant in Montmartre Paris, a solution for finding healthier food substitutes to products one is usually consuming. After having selected the product the user wants to find substitute for, the program presents to him/her a list of healthier substitutes. The user can then select a substitute and decide to record/register its choice for later review.
+This program is named **"HealthyProductApp"**. It consists of offering to "Pur Beurre", a French restaurant in Montmartre Paris, a solution for finding healthier food substitutes to products one is usually consuming. After having selected the product the user wants to find substitute for, the program presents to him/her a list of healthier substitutes. The user can then select a substitute and decide to record/register its choice for later review.  
+Note that this program is designed for "Pur Beurre" users and its language is therefore french.
 
 ## 2. Prerequisite.
 This program requires the following components:
@@ -38,19 +39,19 @@ Make sure to have MySQL server running. Window users can check ths using the fol
 Please refer to the [MySQL official website](https://www.mysql.com/) for more information.
 
 ### 3.6. Application mandatory settings.
-1. Rename **env.py.example** file into **env.py**.
+1. Rename **configuration/env.py.example** file into **configuration/env.py**.
 2. Change all constants with the appropriate value into **env.py**:
     * DATABASE_NAME = "my_db_name"
     * HOST = "my_host"
     * etc.  
 
-For more information details on application setting, check *4.1. env.py* section bellow.
+For more information details on application settings, please check *4.1. env.py* section bellow.
 
 ### 3.7. Use "HealthyProductApp".
 The program is now ready to use. You can start it using **main.py** with your bash.
 > python3 main.py
 
-For more information on the application use, check *5. Users' guide* section bellow.
+For more information on the application uses, please check *5. Users' guide* section bellow.
 
 ### 3.8. Deactivate the virtual environment.
 Once you're done using the program, you should leave the virtual environment. Simply type the following statement in your bash.
@@ -61,45 +62,46 @@ If you want to uninstall the program, simply delete the complete repository form
 
 ## 4. Settings.
 
-* Changing settings must be done in **program/admin/env.py** file. Make sure to read *3.6. Application mandatory settings* section first.
-* Changing settings can be done to the following constants in **program/admin/config.py** file.
+* Changing settings **must be** done in **env.py** file. Make sure to read *3.6. Application mandatory settings*.
+* Changing settings **can be** done in **config.py** file.
 
 ### 4.1. env.py.
 Located in **configuration/** package.
 
 #### 4.1.1. DATABASE_NAME.
-DESCRIPTION: The database name to use when connecting with the MySQL server.
-MANDATORY: Yes.
-DEFAULT SETTINGS: "db_name".
+DESCRIPTION: The database name to use when connecting with the MySQL server.  
+MANDATORY: Yes.  
+DEFAULT SETTINGS: "db_name".  
 CUSTOM SETTINGS: Database name can be changed. Note that if a database using that name already exists, it will be overwritten.
 
 #### 4.1.2. HOST.
-DESCRIPTION: Host name i.e. The server on which MySQL is running.
-MANDATORY: Yes.
-DEFAULT SETTINGS: "db_host".
-CUSTOM SETTINGS: Can be changed if different. Can be an IP address as well if the MySQL server is not the local machine.  
+DESCRIPTION: Host name i.e. The server on which MySQL is running.  
+MANDATORY: Yes.  
+DEFAULT SETTINGS: "db_host".  
+CUSTOM SETTINGS: Can be an IP address if the MySQL server is not the local machine.  
 For more information, please check "https://dev.mysql.com/doc/connector-python/en/".
 
 #### 4.1.3. USER.
-DESCRIPTION: The user name used to authenticate with the MySQL server.
-MANDATORY: Yes.
-DEFAULT SETTINGS: "db_user".
-CUSTOM SETTINGS: User must have at least the following MySQL privileges CREATE, DROP, EXECUTE, INSERT, REFERENCES, SELECT, and SHOW DATABASE.
+DESCRIPTION: The user name used to authenticate with the MySQL server.  
+MANDATORY: Yes.  
+DEFAULT SETTINGS: "db_user".  
+CUSTOM SETTINGS: User must have at least the following MySQL privileges CREATE, DROP, EXECUTE, INSERT, REFERENCES, SELECT, and SHOW DATABASE.  
 For more information, please check "https://dev.mysql.com/doc/connector-python/en/".  
 For more information specifically on privileges, please check
 "https://dev.mysql.com/doc/refman/5.7/en/grant.html#grant-privileges".
 
 #### 4.1.4. PASSWORD.
-DESCRIPTION: The password to authenticate the user with the MySQL server.
-MANDATORY: Yes.
-DEFAULT SETTINGS: "db_password".
-CUSTOM SETTINGS: Must be the password of the user corresponding account.   For more information, please check "https://dev.mysql.com/doc/connector-python/en/".
+DESCRIPTION: The password to authenticate the user with the MySQL server.  
+MANDATORY: Yes.  
+DEFAULT SETTINGS: "db_password".  
+CUSTOM SETTINGS: Must be the password of the user corresponding account.  
+For more information, please check "https://dev.mysql.com/doc/connector-python/en/".
 
 ### 4.2. config.py.
 Located in **configuration/** package.
 
 #### 4.2.1. CATGEORIES_ENDPOINT.
-DESCRIPTION: OpenFoodFacts (OFF) API categories list endpoint. It returns the categories list per country.  
+DESCRIPTION: OpenFoodFacts (OFF) API categories list endpoint. It returns the categories list per country.   
 MANDATORY: Yes.  
 DEFAULT SETTINGS: "ht<span>tps://</span>fr.openfoodfacts.org/categories.json".  
 CUSTOM SETTINGS: To use the application with product references from another country than France, use the appropriate ISO-3166-1 Alpha 2 code and replace it in the endpoint (e.g. "ht<span>tps://</span>es.openfoodfacts.org/categories.json" for Spain).  
@@ -133,7 +135,7 @@ MANDATORY: Yes.
 DEFAULT SETTINGS: 1000.  
 CUSTOM SETTINGS: Can be changed but should not exceed 2000 to avoid upload failure.
 
-## 5. User guide.
+## 5. Users' guide.
 
 ### 5.1. Program functionalities
 This program provide the following functionalities:
@@ -153,5 +155,5 @@ This program provide the following functionalities:
 * Use keyboard numbers to make your choice.
 * Use keyboards "y"/ "n" letters to confirm some decisions.
 
-  
+
 *NB: the first time the program is used, the system will proceed to data upload and database initialization*.
