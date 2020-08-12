@@ -176,6 +176,7 @@ class Research:
     def show_substitutes(self):
         """Method that propose the substitutes' options to the user.
         """
+        system("cls")
         print(
             "Vous cherchez un substitut pour le produit \"",
             self.selected_product.product_name, "(",

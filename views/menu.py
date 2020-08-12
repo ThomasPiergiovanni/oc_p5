@@ -32,6 +32,7 @@ class Menu:
     def show(self):
         """Method that proposes the menus' options to the user.
         """
+        system("cls")
         print(
             "Menu:"
             "\n 1 - Chercher des produits alimentaires de substitution"

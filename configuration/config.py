@@ -50,10 +50,10 @@ SELECTED_CATEGORIES = ["en:snacks", "en:desserts", "en:breads",
 
 # DESCRIPTION: Amount of product to get from OFF API per product category.
 # MANDATORY: Yes.
-# DEFAULT SETTINGS: 100.
+# DEFAULT SETTINGS: 50.
 # CUSTOM SETTINGS: Can be changed but should not exceed 2000 to avoid
 # upload failure.
-PRODUCTS_AMOUNT = 100
+PRODUCTS_AMOUNT = 50
 
 # DESCRIPTION: Message displayed when user input number is out of range.
 # MANDATORY: Yes.
